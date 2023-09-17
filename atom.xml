@@ -6,7 +6,7 @@
   <link href="http://example.com/atom.xml" rel="self"/>
   
   <link href="http://example.com/"/>
-  <updated>2023-09-16T18:06:28.167Z</updated>
+  <updated>2023-09-17T09:40:11.110Z</updated>
   <id>http://example.com/</id>
   
   <author>
@@ -17,28 +17,27 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>写在开始</title>
-    <link href="http://example.com/2023/09/16/test/"/>
-    <id>http://example.com/2023/09/16/test/</id>
-    <published>2023-09-16T11:21:16.000Z</published>
-    <updated>2023-09-16T18:06:28.167Z</updated>
+    <title>初来乍到</title>
+    <link href="http://example.com/2023/09/17/00-1/"/>
+    <id>http://example.com/2023/09/17/00-1/</id>
+    <published>2023-09-17T09:38:03.000Z</published>
+    <updated>2023-09-17T09:40:11.110Z</updated>
     
     
       
       
         
         
-    <summary type="html">&lt;p&gt;ccccccccccccccccccc&lt;/p&gt;
-</summary>
+    <summary type="html">&lt;p&gt;写在开始…&lt;br&gt;&lt;br&gt;初入职场，受组长凯哥影响，想要搭建自己的技术博客，于是有了这篇…&lt;br&gt;&lt;br&gt;本人博客传送门：&lt;a href=&quot;https://wzy012.github.io/&quot;&gt;https://wzy012.github.io/&lt;/a&gt;</summary>
         
       
     
     
     
-    <category term="测试过程" scheme="http://example.com/categories/%E6%B5%8B%E8%AF%95%E8%BF%87%E7%A8%8B/"/>
+    <category term="个人成长" scheme="http://example.com/categories/%E4%B8%AA%E4%BA%BA%E6%88%90%E9%95%BF/"/>
     
     
-    <category term="test" scheme="http://example.com/tags/test/"/>
+    <category term="关于本人" scheme="http://example.com/tags/%E5%85%B3%E4%BA%8E%E6%9C%AC%E4%BA%BA/"/>
     
   </entry>
   
