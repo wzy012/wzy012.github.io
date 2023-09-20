@@ -6,7 +6,7 @@
   <link href="http://example.com/atom.xml" rel="self"/>
   
   <link href="http://example.com/"/>
-  <updated>2023-09-20T12:36:48.613Z</updated>
+  <updated>2023-09-20T15:44:46.880Z</updated>
   <id>http://example.com/</id>
   
   <author>
@@ -15,6 +15,31 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>SQLite数据库</title>
+    <link href="http://example.com/2023/09/20/05-sqlitedb/"/>
+    <id>http://example.com/2023/09/20/05-sqlitedb/</id>
+    <published>2023-09-20T14:55:40.000Z</published>
+    <updated>2023-09-20T15:44:46.880Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h3 id=&quot;1-数据库&quot;&gt;&lt;a href=&quot;#1-数据库&quot; class=&quot;headerlink&quot; title=&quot;1 数据库&quot;&gt;&lt;/a&gt;1 数据库&lt;/h3&gt;&lt;h4 id=&quot;1-1-数据库的基本概念&quot;&gt;&lt;a href=&quot;#1-1-数据库的基本概念&quot;</summary>
+        
+      
+    
+    
+    
+    <category term="数据库" scheme="http://example.com/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/"/>
+    
+    
+    <category term="sqlite" scheme="http://example.com/tags/sqlite/"/>
+    
+  </entry>
   
   <entry>
     <title>数据结构基础知识</title>

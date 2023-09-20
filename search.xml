@@ -21,6 +21,54 @@
       </tags>
   </entry>
   <entry>
+    <title>UML（统一建模语言）</title>
+    <url>/2023/09/18/02-uml/</url>
+    <content><![CDATA[<h2 id="1-前言"><a href="#1-前言" class="headerlink" title="1 前言"></a>1 前言</h2><p>通过使用UML使得在软件开发之前， 对整个软件设计有更好的可读性，可理解性，从而降低开发风险。同时，也能方便各个开发人员之间的交流。</p>
+<h2 id="2-UML图分类"><a href="#2-UML图分类" class="headerlink" title="2 UML图分类"></a>2 UML图分类</h2><ul>
+<li>UML图分为结构图和行为图；</li>
+<li><strong>结构图</strong>分为: 类图、组件图、对象图、轮廓图、组合结构图、部署图、包图；</li>
+<li><strong>行为图</strong>分为：活动图、用例图、状态机图、交互图。<br><img src="https://cdn.jsdelivr.net/gh/wzy012/myblogPicBed@master/image/20230918223614.png" alt="20230918223614"><br></li>
+</ul>
+<h3 id="2-1-类图"><a href="#2-1-类图" class="headerlink" title="2.1 类图"></a>2.1 类图</h3><h4 id="2-1-1-前言"><a href="#2-1-1-前言" class="headerlink" title="2.1.1 前言"></a>2.1.1 前言</h4><p><strong>概念</strong>：类图是一切面向对象方法的核心建模工具，类图描述了系统中对象的类型以及它们之间存在的各种静态关系；<br><br><strong>目的</strong>：表示类、接口以及它们之间的静态结构和关系。</p>
+<h4 id="2-1-2-关系"><a href="#2-1-2-关系" class="headerlink" title="2.1.2 关系"></a>2.1.2 关系</h4><p>（1）泛化(Generalization)<br></p>
+<ul>
+<li>【泛化关系】是一种继承关系，表示子类继承父类的所有特征和行为。</li>
+<li>【箭头指向】带三角箭头的实现，箭头指向父类。<br><br><img src="https://cdn.jsdelivr.net/gh/wzy012/myblogPicBed@master/image/20230918225224.png" alt="20230918225224"><br><br>（2）实现(Realization)<br></li>
+<li>【实现关系】是一种类与接口的关系，表示类是接口所有特征和行为的实现。</li>
+<li>【箭头指向】带三角箭头的虚线，箭头指向接口。<br><br><img src="https://cdn.jsdelivr.net/gh/wzy012/myblogPicBed@master/image/20230918225239.png" alt="20230918225239"><br><br>（3）关联(Association)<br></li>
+<li>【关联关系】是一种拥有关系，它使得一个类知道另一个的属性和方法。</li>
+<li>【箭头指向】带普通箭头的实线，指向被拥有者。单向的关联只有一个箭头，双向的关联可以有两个箭头或者没有箭头。<br></li>
+<li>【代码体现】成员变量。<br><br><img src="https://cdn.jsdelivr.net/gh/wzy012/myblogPicBed@master/image/20230918225252.png" alt="20230918225252"><br><br>（4）聚合(Aggregation)<br></li>
+<li>【聚合关系】是一种整体与部分的关系，且部分可以离开整体而单独存在。聚合关系是关联关系的一种，是强的关联关系；关联和聚合在语法上无法区分，必须考察具体的逻辑关系。</li>
+<li>【箭头指向】带空心菱形的实线，空心菱形指向整体。</li>
+<li>【代码体现】成员变量。<br><br><img src="https://cdn.jsdelivr.net/gh/wzy012/myblogPicBed@master/image/20230918225306.png" alt="20230918225306"><br><br>（5）组合(Composition)<br></li>
+<li>【组合关系】是一种整体与部分的关系，但部分不能离开整体而单独存在。组合关系是关联关系的一种，是比聚合关系还要强的一种。</li>
+<li>【箭头指向】带实心菱形和普通箭头的实现，实心菱形指向整体。</li>
+<li>【代码体现】成员变量。<br><br><img src="https://cdn.jsdelivr.net/gh/wzy012/myblogPicBed@master/image/20230918225319.png" alt="20230918225319"><br><br>（6）依赖(Dependency)<br></li>
+<li>【依赖关系】是一种使用关系，即一个类的实现需要另一个类的协助。</li>
+<li>【箭头指向】带普通箭头的虚线，普通箭头指向被使用者。<br><img src="https://cdn.jsdelivr.net/gh/wzy012/myblogPicBed@master/image/20230918225336.png" alt="20230918225336"><br></li>
+</ul>
+<h4 id="2-2-组件图"><a href="#2-2-组件图" class="headerlink" title="2.2 组件图"></a>2.2 组件图</h4><ul>
+<li>【概念】描绘了系统中组件提供的、需要的接口、端口等，以及它们之间的关系。</li>
+<li>【目的】用来展示各个组件之间的依赖关系。<br><br><img src="https://cdn.jsdelivr.net/gh/wzy012/myblogPicBed@master/image/20230918230948.png" alt="20230918230948"><br><br>订单系统组件依赖于客户资源库和库存系统组件。中间的虚线箭头表示依赖关系。另外两个符号，表示组件连接器，一个提供接口，一个需要接口。</li>
+</ul>
+<h4 id="2-3-对象图"><a href="#2-3-对象图" class="headerlink" title="2.3 对象图"></a>2.3 对象图</h4><ul>
+<li>【概念】对象图是类图的一个实例，是系统在某个时间点的详细状态的快照。</li>
+<li>【目的】用来表示两个或者多个对象之间在某一时刻之间的关系。<br><br><img src="https://cdn.jsdelivr.net/gh/wzy012/myblogPicBed@master/image/20230918230817.png" alt="20230918230817"><br><br>图中就是描述的，某时间点bat这个公司有一个研发部，一个销售部，两个部门只有一个人iisheng。</li>
+</ul>
+<h4 id="2-4-轮廓图"><a href="#2-4-轮廓图" class="headerlink" title="2.4 轮廓图"></a>2.4 轮廓图</h4><h4 id="2-5-组合结构图"><a href="#2-5-组合结构图" class="headerlink" title="2.5 组合结构图"></a>2.5 组合结构图</h4><h4 id="2-6-部署图"><a href="#2-6-部署图" class="headerlink" title="2.6 部署图"></a>2.6 部署图</h4><h4 id="2-7-包图"><a href="#2-7-包图" class="headerlink" title="2.7 包图"></a>2.7 包图</h4><h4 id="2-8-活动图"><a href="#2-8-活动图" class="headerlink" title="2.8 活动图"></a>2.8 活动图</h4><ul>
+<li>【概念】描述了具体业务用例的实现流程</li>
+<li>【目的】用来表示用例实现的工作流程。</li>
+</ul>
+<h4 id="2-9-用例图"><a href="#2-9-用例图" class="headerlink" title="2.9 用例图"></a>2.9 用例图</h4><h4 id="2-10-状态机图"><a href="#2-10-状态机图" class="headerlink" title="2.10 状态机图"></a>2.10 状态机图</h4><h4 id="2-11-交互图"><a href="#2-11-交互图" class="headerlink" title="2.11 交互图"></a>2.11 交互图</h4><h4 id="2-12-序列图"><a href="#2-12-序列图" class="headerlink" title="2.12 序列图"></a>2.12 序列图</h4><h4 id="2-13-交互概览图"><a href="#2-13-交互概览图" class="headerlink" title="2.13 交互概览图"></a>2.13 交互概览图</h4><h4 id="2-14-通讯图"><a href="#2-14-通讯图" class="headerlink" title="2.14 通讯图"></a>2.14 通讯图</h4><h4 id="2-15-时序图"><a href="#2-15-时序图" class="headerlink" title="2.15 时序图"></a>2.15 时序图</h4>]]></content>
+      <categories>
+        <category>设计模式</category>
+      </categories>
+      <tags>
+        <tag>UML</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>sqlite性能测试</title>
     <url>/2023/09/20/03-sqlite-performancetest/</url>
     <content><![CDATA[<p><strong>SQLite执行SQL语句有两种方式</strong>：<br><br>(1) 开启事务：使用函数<code>sqlite3_exec()</code>，该函数直接调用包含SQL语句的字符串，对循环中每一句SQL语句进行“词法分析”和“语法分析”；<br></p>
@@ -459,54 +507,6 @@ h <span class="token operator">=</span> h <span class="token operator">/</span> 
       </tags>
   </entry>
   <entry>
-    <title>UML（统一建模语言）</title>
-    <url>/2023/09/18/02-uml/</url>
-    <content><![CDATA[<h2 id="1-前言"><a href="#1-前言" class="headerlink" title="1 前言"></a>1 前言</h2><p>通过使用UML使得在软件开发之前， 对整个软件设计有更好的可读性，可理解性，从而降低开发风险。同时，也能方便各个开发人员之间的交流。</p>
-<h2 id="2-UML图分类"><a href="#2-UML图分类" class="headerlink" title="2 UML图分类"></a>2 UML图分类</h2><ul>
-<li>UML图分为结构图和行为图；</li>
-<li><strong>结构图</strong>分为: 类图、组件图、对象图、轮廓图、组合结构图、部署图、包图；</li>
-<li><strong>行为图</strong>分为：活动图、用例图、状态机图、交互图。<br><img src="https://cdn.jsdelivr.net/gh/wzy012/myblogPicBed@master/image/20230918223614.png" alt="20230918223614"><br></li>
-</ul>
-<h3 id="2-1-类图"><a href="#2-1-类图" class="headerlink" title="2.1 类图"></a>2.1 类图</h3><h4 id="2-1-1-前言"><a href="#2-1-1-前言" class="headerlink" title="2.1.1 前言"></a>2.1.1 前言</h4><p><strong>概念</strong>：类图是一切面向对象方法的核心建模工具，类图描述了系统中对象的类型以及它们之间存在的各种静态关系；<br><br><strong>目的</strong>：表示类、接口以及它们之间的静态结构和关系。</p>
-<h4 id="2-1-2-关系"><a href="#2-1-2-关系" class="headerlink" title="2.1.2 关系"></a>2.1.2 关系</h4><p>（1）泛化(Generalization)<br></p>
-<ul>
-<li>【泛化关系】是一种继承关系，表示子类继承父类的所有特征和行为。</li>
-<li>【箭头指向】带三角箭头的实现，箭头指向父类。<br><br><img src="https://cdn.jsdelivr.net/gh/wzy012/myblogPicBed@master/image/20230918225224.png" alt="20230918225224"><br><br>（2）实现(Realization)<br></li>
-<li>【实现关系】是一种类与接口的关系，表示类是接口所有特征和行为的实现。</li>
-<li>【箭头指向】带三角箭头的虚线，箭头指向接口。<br><br><img src="https://cdn.jsdelivr.net/gh/wzy012/myblogPicBed@master/image/20230918225239.png" alt="20230918225239"><br><br>（3）关联(Association)<br></li>
-<li>【关联关系】是一种拥有关系，它使得一个类知道另一个的属性和方法。</li>
-<li>【箭头指向】带普通箭头的实线，指向被拥有者。单向的关联只有一个箭头，双向的关联可以有两个箭头或者没有箭头。<br></li>
-<li>【代码体现】成员变量。<br><br><img src="https://cdn.jsdelivr.net/gh/wzy012/myblogPicBed@master/image/20230918225252.png" alt="20230918225252"><br><br>（4）聚合(Aggregation)<br></li>
-<li>【聚合关系】是一种整体与部分的关系，且部分可以离开整体而单独存在。聚合关系是关联关系的一种，是强的关联关系；关联和聚合在语法上无法区分，必须考察具体的逻辑关系。</li>
-<li>【箭头指向】带空心菱形的实线，空心菱形指向整体。</li>
-<li>【代码体现】成员变量。<br><br><img src="https://cdn.jsdelivr.net/gh/wzy012/myblogPicBed@master/image/20230918225306.png" alt="20230918225306"><br><br>（5）组合(Composition)<br></li>
-<li>【组合关系】是一种整体与部分的关系，但部分不能离开整体而单独存在。组合关系是关联关系的一种，是比聚合关系还要强的一种。</li>
-<li>【箭头指向】带实心菱形和普通箭头的实现，实心菱形指向整体。</li>
-<li>【代码体现】成员变量。<br><br><img src="https://cdn.jsdelivr.net/gh/wzy012/myblogPicBed@master/image/20230918225319.png" alt="20230918225319"><br><br>（6）依赖(Dependency)<br></li>
-<li>【依赖关系】是一种使用关系，即一个类的实现需要另一个类的协助。</li>
-<li>【箭头指向】带普通箭头的虚线，普通箭头指向被使用者。<br><img src="https://cdn.jsdelivr.net/gh/wzy012/myblogPicBed@master/image/20230918225336.png" alt="20230918225336"><br></li>
-</ul>
-<h4 id="2-2-组件图"><a href="#2-2-组件图" class="headerlink" title="2.2 组件图"></a>2.2 组件图</h4><ul>
-<li>【概念】描绘了系统中组件提供的、需要的接口、端口等，以及它们之间的关系。</li>
-<li>【目的】用来展示各个组件之间的依赖关系。<br><br><img src="https://cdn.jsdelivr.net/gh/wzy012/myblogPicBed@master/image/20230918230948.png" alt="20230918230948"><br><br>订单系统组件依赖于客户资源库和库存系统组件。中间的虚线箭头表示依赖关系。另外两个符号，表示组件连接器，一个提供接口，一个需要接口。</li>
-</ul>
-<h4 id="2-3-对象图"><a href="#2-3-对象图" class="headerlink" title="2.3 对象图"></a>2.3 对象图</h4><ul>
-<li>【概念】对象图是类图的一个实例，是系统在某个时间点的详细状态的快照。</li>
-<li>【目的】用来表示两个或者多个对象之间在某一时刻之间的关系。<br><br><img src="https://cdn.jsdelivr.net/gh/wzy012/myblogPicBed@master/image/20230918230817.png" alt="20230918230817"><br><br>图中就是描述的，某时间点bat这个公司有一个研发部，一个销售部，两个部门只有一个人iisheng。</li>
-</ul>
-<h4 id="2-4-轮廓图"><a href="#2-4-轮廓图" class="headerlink" title="2.4 轮廓图"></a>2.4 轮廓图</h4><h4 id="2-5-组合结构图"><a href="#2-5-组合结构图" class="headerlink" title="2.5 组合结构图"></a>2.5 组合结构图</h4><h4 id="2-6-部署图"><a href="#2-6-部署图" class="headerlink" title="2.6 部署图"></a>2.6 部署图</h4><h4 id="2-7-包图"><a href="#2-7-包图" class="headerlink" title="2.7 包图"></a>2.7 包图</h4><h4 id="2-8-活动图"><a href="#2-8-活动图" class="headerlink" title="2.8 活动图"></a>2.8 活动图</h4><ul>
-<li>【概念】描述了具体业务用例的实现流程</li>
-<li>【目的】用来表示用例实现的工作流程。</li>
-</ul>
-<h4 id="2-9-用例图"><a href="#2-9-用例图" class="headerlink" title="2.9 用例图"></a>2.9 用例图</h4><h4 id="2-10-状态机图"><a href="#2-10-状态机图" class="headerlink" title="2.10 状态机图"></a>2.10 状态机图</h4><h4 id="2-11-交互图"><a href="#2-11-交互图" class="headerlink" title="2.11 交互图"></a>2.11 交互图</h4><h4 id="2-12-序列图"><a href="#2-12-序列图" class="headerlink" title="2.12 序列图"></a>2.12 序列图</h4><h4 id="2-13-交互概览图"><a href="#2-13-交互概览图" class="headerlink" title="2.13 交互概览图"></a>2.13 交互概览图</h4><h4 id="2-14-通讯图"><a href="#2-14-通讯图" class="headerlink" title="2.14 通讯图"></a>2.14 通讯图</h4><h4 id="2-15-时序图"><a href="#2-15-时序图" class="headerlink" title="2.15 时序图"></a>2.15 时序图</h4>]]></content>
-      <categories>
-        <category>设计模式</category>
-      </categories>
-      <tags>
-        <tag>UML</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>数据结构基础知识</title>
     <url>/2023/09/20/04-datastructure/</url>
     <content><![CDATA[<h3 id="3-数据结构"><a href="#3-数据结构" class="headerlink" title="3.数据结构"></a>3.数据结构</h3><h4 id="3-1-前言"><a href="#3-1-前言" class="headerlink" title="3.1 前言"></a>3.1 前言</h4><p>数据结构是为实现对计算机数据有效使用的各种数据组织形式，服务于各类计算机操作。不同的数据结构具有各自对应的适用场景，旨在降低各种算法计算的时间与空间复杂度，达到最佳的任务执行效率。</p>
@@ -570,6 +570,222 @@ n2<span class="token operator">-</span><span class="token operator">></span>righ
       </categories>
       <tags>
         <tag>基础知识</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>SQLite数据库</title>
+    <url>/2023/09/20/05-sqlitedb/</url>
+    <content><![CDATA[<h3 id="1-数据库"><a href="#1-数据库" class="headerlink" title="1 数据库"></a>1 数据库</h3><h4 id="1-1-数据库的基本概念"><a href="#1-1-数据库的基本概念" class="headerlink" title="1.1 数据库的基本概念"></a>1.1 数据库的基本概念<br></h4><p>数据库的核心概念包括数据、表格、字段、记录和主键等。<br></p>
+<ul>
+<li>数据<ul>
+<li>数据是指可以被计算机处理和存储的信息。</li>
+<li>数据可以是数字、字符、图像、音频等各种类型的信息。</li>
+<li>数据库中的数据是有意义的信息，可以被组织、管理和检索。</li>
+</ul>
+</li>
+<li>表格<ul>
+<li>表格是数据库中存储数据的基本单元，也被称为数据表或数据集合。</li>
+<li>表格由行和列组成，行表示记录，列表示字段。</li>
+<li>表格中的每个单元格包含一个值，该值对应于表格中的一个字段和一条记录。</li>
+</ul>
+</li>
+<li>字段<ul>
+<li>字段是表格中的列，每个字段都包含相同类型的数据。</li>
+<li>字段可以是数字、字符、日期、时间、布尔值等各种类型的数据。</li>
+<li>每个字段都有一个名称，用于标识该字段在表格中的位置。</li>
+</ul>
+</li>
+<li>记录<ul>
+<li>记录是表格中的行，每个记录包含一组字段值。</li>
+<li>记录的数量可以是零或多个，每个记录都有一个唯一标识符，称为主键。</li>
+</ul>
+</li>
+<li>主键<ul>
+<li>主键是一条记录的唯一标识符，用于区分表格中不同的记录。</li>
+<li>主键可以是一个或多个字段的组合，主键的值不能重复。</li>
+<li>主键可以是数据库中唯一的一个记录标识符。</li>
+</ul>
+</li>
+</ul>
+<h4 id="1-2-数据库的类型"><a href="#1-2-数据库的类型" class="headerlink" title="1.2 数据库的类型"></a>1.2 数据库的类型</h4><p>根据数据存储方式和结构的不同，数据库可以分为<strong>关系型数据库</strong>和<strong>非关系型数据库</strong>：</p>
+<ul>
+<li>关系型数据库:<ul>
+<li>采用关系模型来组织数据的数据库。关系模型是指将数据组织成一系列的表格，表格之间可以建立关系。</li>
+<li>常见的关系型数据库有MySQL、Oracle、SQLServer、PostgreSQL等。</li>
+<li>关系型数据库具有以下特点：<ul>
+<li>表格之间可以建立关系，数据之间的关联性可以通过外键进行管理。</li>
+<li>支持复杂的查询操作，可以通过SQL语句进行查询、更新、删除等操作。</li>
+<li>支持事务处理，可以保证数据的完整性和一致性。通过索引来加快数据访问速度。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>非关系型数据库（NoSQL）:<ul>
+<li>非关系型数据库指不使用传统的关系型数据库模型的数据库，使用其他的数据模型来组织和管理数据。</li>
+<li>非关系型数据库可以存储各种类型的数据，包括结构化、半结构化和非结构化的数据。</li>
+<li>常见的非关系型数据库有MongoDB、Cassandra、Redis、Elasticsearch等。</li>
+<li>非关系型数据库具有以下特点：<ul>
+<li>不需要事先定义数据模型，数据可以动态添加和删除。</li>
+<li>支持水平扩展，可以通过添加节点来扩展数据库的容量和性能。</li>
+<li>支持高可用性和可伸缩性，可以通过复制和分片来实现数据的冗余和负载均衡。</li>
+<li>支持键值对、文档、图形、列族等多种数据模型。</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h4 id="1-3-数据库的结构"><a href="#1-3-数据库的结构" class="headerlink" title="1.3 数据库的结构"></a>1.3 数据库的结构</h4><p>数据库的结构指的是数据在数据库中的组织形式和存储方式，根据数据库结构的不同，数据库可以分为层次型数据库、网状型数据库、关系型数据库和面向对象数据库等。</p>
+<ul>
+<li>层次型数据库层次型数据库（HierarchicalDatabase）：<ul>
+<li>是最早的数据库类型之一，它的数据结构类似于一棵树形结构，数据之间存在一对多的层次关系。</li>
+<li>每个节点可以包含多个子节点，但只能有一个父节点。</li>
+<li>层次型数据库常用于管理复杂的工程和科学数据。</li>
+</ul>
+</li>
+<li>网状型数据库网状型数据库（NetworkDatabase）<ul>
+<li>是在层次型数据库的基础上发展起来的一种数据库类型。</li>
+<li>网状型数据库的数据结构类似于一个网状结构，数据之间存在多对多的关系。</li>
+<li>每个记录可以有多个父记录和多个子记录。</li>
+<li>网状型数据库常用于处理复杂的关联数据。</li>
+</ul>
+</li>
+<li>关系型数据库关系型数据库<ul>
+<li>是目前应用最广泛的一种数据库类型，它的数据结构是由多个表格组成，表格之间可以建立关系。</li>
+<li>关系型数据库可以使用SQL语句进行查询、更新、删除等操作，支持事务处理和索引等高级功能。</li>
+</ul>
+</li>
+<li>面向对象数据库面向对象数据库（Object-orientedDatabase）<ul>
+<li>是一种新型的数据库类型，它的数据结构类似于面向对象程序设计中的对象和类。</li>
+<li>面向对象数据库将数据存储在对象中，对象之间可以建立关系和继承关系，支持多态和封装等面向对象的特性。</li>
+<li>面向对象数据库常用于存储复杂的对象数据和多媒体数据</li>
+</ul>
+</li>
+</ul>
+<h3 id="2-SQLite-C-C-API"><a href="#2-SQLite-C-C-API" class="headerlink" title="2 SQLite-C&#x2F;C++API"></a>2 SQLite-C&#x2F;C++API</h3><ul>
+<li>是一个嵌入式SQL数据库引擎</li>
+<li>头文件：#include&lt;sqlite3.h&gt;</li>
+<li>打开数据库。如果数据库不存在，则创建数据库；</li>
+</ul>
+<pre class=" language-cpp"><code class="language-cpp">    <span class="token function">intsqlite3_open</span><span class="token punctuation">(</span>
+        constchar<span class="token operator">*</span>filename<span class="token punctuation">,</span>     <span class="token comment" spellcheck="true">/*Databasefilename(UTF-8)*/</span>
+        sqlite3<span class="token operator">*</span><span class="token operator">*</span>ppDb           <span class="token comment" spellcheck="true">/*OUT:SQLitedbhandle*/</span>
+    <span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre>
+<pre class=" language-text"><code class="language-text">参数：
+        `char*filename`：指定要打开的数据库的路径及文件名;
+        `sqlite3**ppDb`：`sqlite3`句柄指针，存储打开的数据库的首地址;
+返回值：
+        成功，返回SQLITE_OK；其实就是0;
+        失败，返回数据库中的error_code，其实就是大于0;
+功能：
+        1.打开一个指向SQLite数据库文件的连接，返回一个用于其他SQLite程序的数据库连接对象。
+        2.如果filename参数是NULL或':memory:'，那么sqlite3_open()将会在RAM中创建一个内存数据库，这只会在session的有效时间内持续。
+        3.如果文件名filename不为NULL，那么sqlite3_open()将使用这个参数值尝试打开数据库文件。如果该名称的文件不存在，sqlite3_open()将创建一个新的命名为该名称的数据库文件并打开。
+</code></pre>
+<ul>
+<li>执行:</li>
+</ul>
+<pre class=" language-cpp"><code class="language-cpp">    <span class="token function">SQLintsqlite3_exec</span><span class="token punctuation">(</span>
+        sqlite3<span class="token operator">*</span><span class="token punctuation">,</span>           <span class="token comment" spellcheck="true">/*sqlite3是打开的数据库对象*/</span>
+        constchar<span class="token operator">*</span>sql<span class="token punctuation">,</span>      <span class="token comment" spellcheck="true">/*SQL命令，以\0结尾，可以由多个指令组成*/</span>
+        sqlite_callback<span class="token punctuation">,</span>    <span class="token comment" spellcheck="true">/*回调函数*/</span>
+        <span class="token keyword">void</span><span class="token operator">*</span>data<span class="token punctuation">,</span>          <span class="token comment" spellcheck="true">/*回调函数的第一个参数*/</span>
+        <span class="token keyword">char</span><span class="token operator">*</span><span class="token operator">*</span>errmsg        <span class="token comment" spellcheck="true">/*将被返回用来获取程序生成的任何错误*/</span>
+<span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre>
+<pre class=" language-text"><code class="language-text">功能：
+    1.提供了一个执行SQL命令的快捷方式
+    2.`sqlite3_exec()`程序解析并执行由sql参数所给的每个命令，直到字符串结束或者遇到错误为止
+    3.`sqlite3_callback`、`void*data`和`char**errmsg`都可以填NULL。
+        填NULL表示你不需要回调。比如你做insert操作，做`delete`操作；
+        而当做`select`时，就要使用回调，因为`sqlite3`把数据查出来，得通过回调告诉你查出了什么数据。
+</code></pre>
+<ul>
+<li><p>非回调的select查询：<br><br><code>sqlite3_get_table()</code><br></p>
+</li>
+<li><p>函数关闭数据库<br><br><code>int sqlite3_close(sqlite3*)</code><br></p>
+</li>
+</ul>
+<pre class=" language-text"><code class="language-text">功能：
+    1.关闭之前调用sqlite3_open()打开的数据库连接
+    2.如果还有查询没有完成，sqlite3_close()将返回SQLITE_BUSY禁止关闭的错误消息
+</code></pre>
+<ul>
+<li>打印错误信息</li>
+</ul>
+<pre class=" language-cpp"><code class="language-cpp"><span class="token keyword">const</span> <span class="token keyword">char</span><span class="token operator">*</span><span class="token function">sqlite3_errmsg</span><span class="token punctuation">(</span>sqlite3<span class="token operator">*</span>db<span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre>
+<pre class=" language-text"><code class="language-text">   参数：
+    sqlite3*db：数据库句柄指针;
+  返回值：
+    返回error_code对应的错误信息;
+</code></pre>
+<ul>
+<li>打印<code>error_code</code></li>
+</ul>
+<pre class=" language-cpp"><code class="language-cpp"><span class="token keyword">int</span> <span class="token function">sqlite3_errcode</span><span class="token punctuation">(</span>sqlite3<span class="token operator">*</span>db<span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre>
+<pre class=" language-text"><code class="language-text">  参数：
+    sqlite3*db：数据库句柄指针;
+  返回值：对应的error_code;
+</code></pre>
+<ul>
+<li>查询数据库:</li>
+</ul>
+<pre class=" language-cpp"><code class="language-cpp"><span class="token function">intsqlite3_get_table</span><span class="token punctuation">(</span>
+    sqlite3<span class="token operator">*</span> db<span class="token punctuation">,</span>
+    constchar<span class="token operator">*</span>zSql<span class="token punctuation">,</span>     <span class="token comment" spellcheck="true">/*sql语句，注意只能填查询相关的sql语句*/</span>
+    <span class="token keyword">char</span><span class="token operator">*</span><span class="token operator">*</span><span class="token operator">*</span> pazResult<span class="token punctuation">,</span>  <span class="token comment" spellcheck="true">/*指向查询的结果 */</span>
+    <span class="token keyword">int</span><span class="token operator">*</span> pnRow<span class="token punctuation">,</span>         <span class="token comment" spellcheck="true">/*存储查询到的记录数，行数; */</span>
+    <span class="token keyword">int</span><span class="token operator">*</span> pnColumn<span class="token punctuation">,</span>      <span class="token comment" spellcheck="true">/* 存储查询到的字段数，列数;*/</span>
+    <span class="token keyword">char</span><span class="token operator">*</span><span class="token operator">*</span> pzErrmsg     <span class="token comment" spellcheck="true">/*存储错误信息; */</span>
+<span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre>
+<pre class=" language-text"><code class="language-text">  返回值：
+    成功，返回SQLITE_OK；其实就是0;<br>
+    失败，返回数据库中的error_code，其实就是大于0;<br>
+</code></pre>
+<ul>
+<li>释放查询到的结果:</li>
+</ul>
+<pre class=" language-cpp"><code class="language-cpp"><span class="token keyword">void</span> <span class="token function">sqlite3_free_table</span><span class="token punctuation">(</span><span class="token keyword">char</span><span class="token operator">*</span><span class="token operator">*</span>result<span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre>
+<ul>
+<li>执行准备操作:</li>
+</ul>
+<pre class=" language-cpp"><code class="language-cpp"><span class="token keyword">int</span> <span class="token function">sqlite3_prepare_v2</span>
+<span class="token punctuation">(</span>
+    sqlite3<span class="token operator">*</span>db<span class="token punctuation">,</span>     <span class="token comment" spellcheck="true">//数据库连接对象</span>
+    constchar<span class="token operator">*</span>zSql<span class="token punctuation">,</span> <span class="token comment" spellcheck="true">//要编译的SQL语句</span>
+    intnByte<span class="token punctuation">,</span>       <span class="token comment" spellcheck="true">//要编译的SQL语句的长度，如果是-1，则自动计算其长度</span>
+    sqlite3_stmt<span class="token operator">*</span><span class="token operator">*</span>ppStmt<span class="token punctuation">,</span><span class="token comment" spellcheck="true">//编译后的SQLite3语句对象</span>
+    constchar<span class="token operator">*</span><span class="token operator">*</span>pzTail   <span class="token comment" spellcheck="true">//未编译部分的指针</span>
+<span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre>
+<pre class=" language-text"><code class="language-text">  功能：
+    该函数将SQL语句编译成SQLite虚拟机指令，并将编译后的SQLite3语句对象存储在ppStmt指向的指针中，以备执行。如果pzTail不是NULL，则该指针将指向SQL语句中未编译部分的起始位置。
+  函数返回值：
+    如果编译成功，则返回SQLITE_OK。
+    如果编译失败，则返回一个错误代码sqlite3_step()
+    返回值有三种结果:
+        sqlite_done表示执行完毕;
+        sqlite_busy,表示无法执行操作;
+        sqlite_row表示执行完毕，并且有返回。
+</code></pre>
+<h3 id="1-3-Linux终端操作sqlite数据库"><a href="#1-3-Linux终端操作sqlite数据库" class="headerlink" title="1.3 Linux终端操作sqlite数据库"></a>1.3 Linux终端操作sqlite数据库</h3><pre class=" language-linux"><code class="language-linux">$ sqlite3<database_name>.db //打开/连接数据库
+$ sqlite><SQL_statement>;//执行SQL语句
+    $ sqlite>.tables//显示所有表格
+    $ sqlite>.schema<table_name>//查看表的结构
+    $ sqlite>SELECT*FROM<table_name>;//查询表中的所有结构$sqlite>INSERTINTO<table_name>(column1,column2,...)VALUES(value1,value2,...);
+    $ sqlite>UPDATE<table_name>SETcolumn1=value1WHEREcondition;$sqlite>DELETEFROM<table_name>WHEREcondition;
+$ .exit//退出sqlite3数据库
+</code></pre>
+]]></content>
+      <categories>
+        <category>数据库</category>
+      </categories>
+      <tags>
+        <tag>sqlite</tag>
       </tags>
   </entry>
 </search>
