@@ -346,7 +346,7 @@
 <li>当<code>synchronous</code>设置<code>OFF</code>时，<code>SQLite</code>在传递数据给系统以后直接继续而不暂停。<code>off</code>可以加速数据库的一些操作，但如果系统崩溃或断电，则数据库可能会损毁。<br></li>
 </ul>
 <p>(3) <code>SQLite3</code>中，该选项的默认值就是<code>full</code>，如果我们再插入数据前将其改为off，则会提高效率。如果仅仅将<code>SQLite</code>当做一种临时数据库的话，完全没必要设置为<code>full</code>。<br></p>
-<p><strong>总结</strong><br>1.显示开启事务效率更高；<br><br>2.如果使用<strong>执行准备操作</strong>,配合<strong>关闭写同步</strong>效率更高。<br></p>
+<p><strong>总结</strong>:<br><br>1.显示开启事务效率更高；<br><br>2.如果使用<strong>执行准备操作</strong>,配合<strong>关闭写同步</strong>效率更高。<br></p>
 <p>以以下为测试代码：<br></p>
 <pre class=" language-cpp"><code class="language-cpp"><span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;iostream></span></span>
 <span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;sqlite3.h></span></span>
