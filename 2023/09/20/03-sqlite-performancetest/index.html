@@ -1,0 +1,1195 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+
+
+<head>
+    <meta charset="utf-8">
+    <meta name="keywords" content="sqlite性能测试, spring">
+    <meta name="description" content="SQLite执行SQL语句有两种方式：(1) 开启事务：使用函数sqlite3_exec()，该函数直接调用包含SQL语句的字符串，对循环中每一句SQL语句进行“词法分析”和“语法分析”；
+
+事务“就是指一组SQL命令，这些命令要么一起执行">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="renderer" content="webkit|ie-stand|ie-comp">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="referrer" content="no-referrer-when-downgrade">
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+
+
+    <title>sqlite性能测试 | spring</title>
+    <link rel="icon" type="image/png" href="/favicon.png">
+    
+
+
+    <!-- bg-cover style     -->
+
+
+
+<link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.min.css">
+<link rel="stylesheet" type="text/css" href="/libs/materialize/materialize.min.css">
+<link rel="stylesheet" type="text/css" href="/libs/aos/aos.css">
+<link rel="stylesheet" type="text/css" href="/libs/animate/animate.min.css">
+<link rel="stylesheet" type="text/css" href="/libs/lightGallery/css/lightgallery.min.css">
+<link rel="stylesheet" type="text/css" href="/css/matery.css">
+<link rel="stylesheet" type="text/css" href="/css/my.css">
+<link rel="stylesheet" type="text/css" href="/css/dark.css" media="none" onload="if(media!='all')media='all'">
+
+
+
+
+    <link rel="stylesheet" href="/libs/tocbot/tocbot.css">
+    <link rel="stylesheet" href="/css/post.css">
+
+
+
+
+    
+
+
+
+    <script src="/libs/jquery/jquery-3.6.0.min.js"></script>
+
+<meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="spring" type="application/atom+xml">
+<link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"></head>
+
+
+<body>
+    <header class="navbar-fixed">
+    <nav id="headNav" class="bg-color nav-transparent">
+        <div id="navContainer" class="nav-wrapper container">
+            <div class="brand-logo">
+                <a href="/" class="waves-effect waves-light">
+                    
+                    <img src="/medias/logo.png" class="logo-img" alt="LOGO">
+                    
+                    <span class="logo-span">spring</span>
+                </a>
+            </div>
+            
+
+<a href="#" data-target="mobile-nav" class="sidenav-trigger button-collapse"><i class="fas fa-bars"></i></a>
+<ul class="right nav-menu">
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/" class="waves-effect waves-light">
+      
+      <i class="fas fa-home" style="zoom: 0.6;"></i>
+      
+      <span>首页</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/tags" class="waves-effect waves-light">
+      
+      <i class="fas fa-tags" style="zoom: 0.6;"></i>
+      
+      <span>标签</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/categories" class="waves-effect waves-light">
+      
+      <i class="fas fa-bookmark" style="zoom: 0.6;"></i>
+      
+      <span>分类</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/archives" class="waves-effect waves-light">
+      
+      <i class="fas fa-archive" style="zoom: 0.6;"></i>
+      
+      <span>归档</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/about" class="waves-effect waves-light">
+      
+      <i class="fas fa-user-circle" style="zoom: 0.6;"></i>
+      
+      <span>关于</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/contact" class="waves-effect waves-light">
+      
+      <i class="fas fa-comments" style="zoom: 0.6;"></i>
+      
+      <span>留言板</span>
+    </a>
+    
+  </li>
+  
+  <li>
+    <a href="#searchModal" class="modal-trigger waves-effect waves-light">
+      <i id="searchIcon" class="fas fa-search" title="搜索" style="zoom: 0.85;"></i>
+    </a>
+  </li>
+  <li>
+    <a href="javascript:;" class="waves-effect waves-light" onclick="switchNightMode()" title="深色/浅色模式" >
+      <i id="sum-moon-icon" class="fas fa-sun" style="zoom: 0.85;"></i>
+    </a>
+  </li>
+</ul>
+
+
+<div id="mobile-nav" class="side-nav sidenav">
+
+    <div class="mobile-head bg-color">
+        
+        <img src="/medias/logo.png" class="logo-img circle responsive-img">
+        
+        <div class="logo-name">spring</div>
+        <div class="logo-desc">
+            
+            Never really desperate, only the lost of the soul.
+            
+        </div>
+    </div>
+
+    <ul class="menu-list mobile-menu-list">
+        
+        <li class="m-nav-item">
+	  
+		<a href="/" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-home"></i>
+			
+			首页
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/tags" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-tags"></i>
+			
+			标签
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/categories" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-bookmark"></i>
+			
+			分类
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/archives" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-archive"></i>
+			
+			归档
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/about" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-user-circle"></i>
+			
+			关于
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/contact" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-comments"></i>
+			
+			留言板
+		</a>
+          
+        </li>
+        
+        
+    </ul>
+</div>
+
+
+        </div>
+
+        
+    </nav>
+
+</header>
+
+    
+
+
+
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/4.jpg')">
+    <div class="container" style="right: 0px;left: 0px;">
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <div class="brand">
+                    <h1 class="description center-align post-title">sqlite性能测试</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<main class="post-container content">
+
+    
+    <div class="row">
+    <div id="main-content" class="col s12 m12 l9">
+        <!-- 文章内容详情 -->
+<div id="artDetail">
+    <div class="card">
+        <div class="card-content article-info">
+            <div class="row tag-cate">
+                <div class="col s7">
+                    
+                    <div class="article-tag">
+                        
+                            <a href="/tags/sqlite3/">
+                                <span class="chip bg-color">sqlite3</span>
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+                <div class="col s5 right-align">
+                    
+                    <div class="post-cate">
+                        <i class="fas fa-bookmark fa-fw icon-category"></i>
+                        
+                            <a href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/" class="post-category">
+                                数据库
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+
+            <div class="post-info">
+                
+                <div class="post-date info-break-policy">
+                    <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
+                    2023-09-20
+                </div>
+                
+
+                
+
+                
+
+                
+
+                
+            </div>
+        </div>
+        <hr class="clearfix">
+
+        
+
+        
+
+        <div class="card-content article-card-content">
+            <div id="articleContent">
+                <p><strong>SQLite执行SQL语句有两种方式</strong>：<br><br>(1) 开启事务：使用函数<code>sqlite3_exec()</code>，该函数直接调用包含SQL语句的字符串，对循环中每一句SQL语句进行“词法分析”和“语法分析”；<br></p>
+<ul>
+<li>事务“就是指一组<code>SQL</code>命令，这些命令要么一起执行，要么都不被执行。<br></li>
+<li>隐式开启事务：每调用一次<code>sqlite3_exec()</code>函数，就会隐式地开启了一个事务，如果插入一条数据，就调用该函数一次，事务就会被反复地开启、关闭，会增大IO量。<br></li>
+<li>显式开启事务：如果在插入数据前显式开启事务，插入后再一起提交，则会大大提高<code>IO</code>效率，进而加数据快插入速度。<br><br>  【显示开始事务效率高】<br></li>
+</ul>
+<p>(2) 执行准备操作：使用函数<code>sqlite3_prepare_v2()</code>，有三个步骤：<br></p>
+<ul>
+<li>声明一个指向<code>sqlite3_stmt</code>对象的指针，该函数对参数化的SQL语句进行编译，将编译后的状态存入<code>stmt</code>中。<br></li>
+<li>调用函数 <code>sqlite3_step()</code>，这个函数就是执行一步（本例中就是插入一行），如果函数返回的是<code>SQLite_ROW</code>则说明仍在继续执行，否则则说明已经执行完所有操作。<br></li>
+<li>调用函数 <code>sqlite3_finalize()</code>，关闭语句。<br><br>   【执行准备操作效率高】</li>
+</ul>
+<p><strong>关闭写同步</strong>：<code>sqlite3_exec(db,&quot;PRAGMA synchronous = OFF; &quot;,0,0,0);</code>  <br></p>
+<p>(1) 在<code>SQLite</code>中，数据库配置的参数都由编译指示<code>（pragma）</code>来实现的。<br></p>
+<p>(2) <code>synchronous</code>选项有三种可选状态，分别是<code>full、normal、off</code>。<br></p>
+<ul>
+<li>当<code>synchronous</code>设置为<code>FULL,SQLite</code>数据库引擎在紧急时刻会暂停以确定数据已经写入磁盘。这使系统崩溃或电源出问题时能确保数据库在重起后不会损坏。<code>FULL synchronous</code>很安全但很慢。<br></li>
+<li>当<code>synchronous</code>设置为<code>NORMAL, SQLite</code>数据库引擎在大部分紧急时刻会暂停，但不像<code>FULL</code>模式下那么频繁。<code> NORMAL</code>模式下有很小的几率(但不是不存在)发生电源故障导致数据库损坏的情况。<br></li>
+<li>当<code>synchronous</code>设置<code>OFF</code>时，<code>SQLite</code>在传递数据给系统以后直接继续而不暂停。<code>off</code>可以加速数据库的一些操作，但如果系统崩溃或断电，则数据库可能会损毁。<br></li>
+</ul>
+<p>(3) <code>SQLite3</code>中，该选项的默认值就是<code>full</code>，如果我们再插入数据前将其改为off，则会提高效率。如果仅仅将<code>SQLite</code>当做一种临时数据库的话，完全没必要设置为<code>full</code>。<br></p>
+<p><strong>总结</strong><br>1.显示开启事务效率更高；<br><br>2.如果使用<strong>执行准备操作</strong>,配合<strong>关闭写同步</strong>效率更高。<br></p>
+<p>以以下为测试代码：<br></p>
+<pre class=" language-cpp"><code class="language-cpp"><span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;iostream></span></span>
+<span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;sqlite3.h></span></span>
+<span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;chrono></span></span>
+
+<span class="token keyword">using</span> <span class="token keyword">namespace</span> std<span class="token punctuation">;</span>
+
+
+<span class="token keyword">void</span> <span class="token function">testInsertPerformance_prepare</span><span class="token punctuation">(</span>sqlite3<span class="token operator">*</span> db<span class="token punctuation">,</span> <span class="token keyword">int</span> numRecords<span class="token punctuation">)</span> <span class="token comment" spellcheck="true">//执行准备操作</span>
+<span class="token punctuation">{</span>
+    std<span class="token operator">::</span>string query <span class="token operator">=</span> <span class="token string">"INSERT INTO your_table_name (column1, column2) VALUES (?, ?)"</span><span class="token punctuation">;</span>
+    sqlite3_stmt<span class="token operator">*</span> stmt<span class="token punctuation">;</span>
+
+    <span class="token keyword">auto</span> start <span class="token operator">=</span> std<span class="token operator">::</span>chrono<span class="token operator">::</span>high_resolution_clock<span class="token operator">::</span><span class="token function">now</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> numRecords<span class="token punctuation">;</span> <span class="token operator">++</span>i<span class="token punctuation">)</span> 
+    <span class="token punctuation">{</span>
+        <span class="token keyword">int</span> value1 <span class="token operator">=</span> i<span class="token punctuation">;</span>
+        <span class="token keyword">int</span> value2 <span class="token operator">=</span> i <span class="token operator">*</span> <span class="token number">2</span><span class="token punctuation">;</span>
+
+        <span class="token function">sqlite3_prepare_v2</span><span class="token punctuation">(</span>db<span class="token punctuation">,</span> query<span class="token punctuation">.</span><span class="token function">c_str</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token operator">&amp;</span>stmt<span class="token punctuation">,</span> <span class="token keyword">nullptr</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token function">sqlite3_bind_int</span><span class="token punctuation">(</span>stmt<span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">,</span> value1<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token function">sqlite3_bind_int</span><span class="token punctuation">(</span>stmt<span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">,</span> value2<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+        <span class="token function">sqlite3_step</span><span class="token punctuation">(</span>stmt<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token function">sqlite3_finalize</span><span class="token punctuation">(</span>stmt<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword">auto</span> end <span class="token operator">=</span> std<span class="token operator">::</span>chrono<span class="token operator">::</span>high_resolution_clock<span class="token operator">::</span><span class="token function">now</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    std<span class="token operator">::</span>chrono<span class="token operator">::</span>duration<span class="token operator">&lt;</span><span class="token keyword">double</span><span class="token operator">></span> duration <span class="token operator">=</span> end <span class="token operator">-</span> start<span class="token punctuation">;</span>
+
+    std<span class="token operator">::</span>cout <span class="token operator">&lt;&lt;</span> <span class="token string">"prepare: Time taken for "</span> <span class="token operator">&lt;&lt;</span> numRecords <span class="token operator">&lt;&lt;</span> <span class="token string">" inserts: "</span> <span class="token operator">&lt;&lt;</span> duration<span class="token punctuation">.</span><span class="token function">count</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">&lt;&lt;</span> <span class="token string">" seconds."</span> <span class="token operator">&lt;&lt;</span> std<span class="token operator">::</span>endl<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">void</span> <span class="token function">testInsertPerformance_exec_a</span><span class="token punctuation">(</span>sqlite3<span class="token operator">*</span> db<span class="token punctuation">,</span> <span class="token keyword">int</span> numRecords<span class="token punctuation">)</span> <span class="token comment" spellcheck="true">//隐式事务</span>
+<span class="token punctuation">{</span>
+
+    <span class="token function">sqlite3_exec</span><span class="token punctuation">(</span>db<span class="token punctuation">,</span> <span class="token string">"CREATE TABLE Test(ID INTEGER,var INTEGER);"</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token keyword">auto</span> start <span class="token operator">=</span> std<span class="token operator">::</span>chrono<span class="token operator">::</span>high_resolution_clock<span class="token operator">::</span><span class="token function">now</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> numRecords<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span> 
+    <span class="token punctuation">{</span>
+        <span class="token function">sqlite3_exec</span><span class="token punctuation">(</span>db<span class="token punctuation">,</span> <span class="token string">"INSERT INTO Test (ID, var) VALUES (0, 1);"</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword">auto</span> end <span class="token operator">=</span> std<span class="token operator">::</span>chrono<span class="token operator">::</span>high_resolution_clock<span class="token operator">::</span><span class="token function">now</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    std<span class="token operator">::</span>chrono<span class="token operator">::</span>duration<span class="token operator">&lt;</span><span class="token keyword">double</span><span class="token operator">></span> duration <span class="token operator">=</span> end <span class="token operator">-</span> start<span class="token punctuation">;</span>
+
+    std<span class="token operator">::</span>cout <span class="token operator">&lt;&lt;</span> <span class="token string">"exec_a: Time taken for "</span> <span class="token operator">&lt;&lt;</span> numRecords <span class="token operator">&lt;&lt;</span> <span class="token string">" inserts: "</span> <span class="token operator">&lt;&lt;</span> duration<span class="token punctuation">.</span><span class="token function">count</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">&lt;&lt;</span> <span class="token string">" seconds."</span> <span class="token operator">&lt;&lt;</span> std<span class="token operator">::</span>endl<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">void</span> <span class="token function">testInsertPerformance_exec_b</span><span class="token punctuation">(</span>sqlite3<span class="token operator">*</span> db<span class="token punctuation">,</span> <span class="token keyword">int</span> numRecords<span class="token punctuation">)</span>  <span class="token comment" spellcheck="true">//开启显式事务</span>
+<span class="token punctuation">{</span>
+
+    <span class="token function">sqlite3_exec</span><span class="token punctuation">(</span>db<span class="token punctuation">,</span> <span class="token string">"BEGIN"</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token function">sqlite3_exec</span><span class="token punctuation">(</span>db<span class="token punctuation">,</span> <span class="token string">"CREATE TABLE Test(ID INTEGER,var INTEGER);"</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token keyword">auto</span> start <span class="token operator">=</span> std<span class="token operator">::</span>chrono<span class="token operator">::</span>high_resolution_clock<span class="token operator">::</span><span class="token function">now</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> numRecords<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span> 
+    <span class="token punctuation">{</span>
+        <span class="token function">sqlite3_exec</span><span class="token punctuation">(</span>db<span class="token punctuation">,</span> <span class="token string">"INSERT INTO Test (ID, var) VALUES (0, 1);"</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token function">sqlite3_exec</span><span class="token punctuation">(</span>db<span class="token punctuation">,</span> <span class="token string">"COMMIT"</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">auto</span> end <span class="token operator">=</span> std<span class="token operator">::</span>chrono<span class="token operator">::</span>high_resolution_clock<span class="token operator">::</span><span class="token function">now</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    std<span class="token operator">::</span>chrono<span class="token operator">::</span>duration<span class="token operator">&lt;</span><span class="token keyword">double</span><span class="token operator">></span> duration <span class="token operator">=</span> end <span class="token operator">-</span> start<span class="token punctuation">;</span>
+
+    std<span class="token operator">::</span>cout <span class="token operator">&lt;&lt;</span> <span class="token string">"exec_b: Time taken for "</span> <span class="token operator">&lt;&lt;</span> numRecords <span class="token operator">&lt;&lt;</span> <span class="token string">" inserts: "</span> <span class="token operator">&lt;&lt;</span> duration<span class="token punctuation">.</span><span class="token function">count</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">&lt;&lt;</span> <span class="token string">" seconds."</span> <span class="token operator">&lt;&lt;</span> std<span class="token operator">::</span>endl<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">void</span> <span class="token function">testInsertPerformance_exec_b_off</span><span class="token punctuation">(</span>sqlite3<span class="token operator">*</span> db<span class="token punctuation">,</span> <span class="token keyword">int</span> numRecords<span class="token punctuation">)</span> <span class="token comment" spellcheck="true">//是否关闭写同步 + 执行显式事务</span>
+<span class="token punctuation">{</span>
+    
+    <span class="token function">sqlite3_exec</span><span class="token punctuation">(</span>db<span class="token punctuation">,</span><span class="token string">"PRAGMA synchronous = OFF; "</span><span class="token punctuation">,</span><span class="token number">0</span><span class="token punctuation">,</span><span class="token number">0</span><span class="token punctuation">,</span><span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  
+    <span class="token function">sqlite3_exec</span><span class="token punctuation">(</span>db<span class="token punctuation">,</span> <span class="token string">"BEGIN"</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token function">sqlite3_exec</span><span class="token punctuation">(</span>db<span class="token punctuation">,</span> <span class="token string">"CREATE TABLE Test(ID INTEGER,var INTEGER);"</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token keyword">auto</span> start <span class="token operator">=</span> std<span class="token operator">::</span>chrono<span class="token operator">::</span>high_resolution_clock<span class="token operator">::</span><span class="token function">now</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> numRecords<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span> 
+    <span class="token punctuation">{</span>
+        <span class="token function">sqlite3_exec</span><span class="token punctuation">(</span>db<span class="token punctuation">,</span> <span class="token string">"INSERT INTO Test (ID, var) VALUES (0, 1);"</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token function">sqlite3_exec</span><span class="token punctuation">(</span>db<span class="token punctuation">,</span> <span class="token string">"COMMIT"</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">auto</span> end <span class="token operator">=</span> std<span class="token operator">::</span>chrono<span class="token operator">::</span>high_resolution_clock<span class="token operator">::</span><span class="token function">now</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    std<span class="token operator">::</span>chrono<span class="token operator">::</span>duration<span class="token operator">&lt;</span><span class="token keyword">double</span><span class="token operator">></span> duration <span class="token operator">=</span> end <span class="token operator">-</span> start<span class="token punctuation">;</span>
+
+    std<span class="token operator">::</span>cout <span class="token operator">&lt;&lt;</span> <span class="token string">"exec_b_off: Time taken for "</span> <span class="token operator">&lt;&lt;</span> numRecords <span class="token operator">&lt;&lt;</span> <span class="token string">" inserts: "</span> <span class="token operator">&lt;&lt;</span> duration<span class="token punctuation">.</span><span class="token function">count</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">&lt;&lt;</span> <span class="token string">" seconds."</span> <span class="token operator">&lt;&lt;</span> std<span class="token operator">::</span>endl<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">void</span> <span class="token function">testInsertPerformance_al</span><span class="token punctuation">(</span>sqlite3<span class="token operator">*</span> db<span class="token punctuation">,</span> <span class="token keyword">int</span> numRecords<span class="token punctuation">)</span> <span class="token comment" spellcheck="true">//关闭写同步 + 开始显式事务 + 执行准备操作</span>
+<span class="token punctuation">{</span>
+    
+
+    <span class="token function">sqlite3_exec</span><span class="token punctuation">(</span>db<span class="token punctuation">,</span><span class="token string">"PRAGMA synchronous = OFF; "</span><span class="token punctuation">,</span><span class="token number">0</span><span class="token punctuation">,</span><span class="token number">0</span><span class="token punctuation">,</span><span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  
+    <span class="token comment" spellcheck="true">//sqlite3_exec(db, "BEGIN", 0, 0, 0);</span>
+    std<span class="token operator">::</span>string query <span class="token operator">=</span> <span class="token string">"INSERT INTO your_table_name (column1, column2) VALUES (?, ?)"</span><span class="token punctuation">;</span>
+    sqlite3_stmt<span class="token operator">*</span> stmt<span class="token punctuation">;</span>
+
+    <span class="token keyword">auto</span> start <span class="token operator">=</span> std<span class="token operator">::</span>chrono<span class="token operator">::</span>high_resolution_clock<span class="token operator">::</span><span class="token function">now</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> numRecords<span class="token punctuation">;</span> <span class="token operator">++</span>i<span class="token punctuation">)</span> 
+    <span class="token punctuation">{</span>
+        <span class="token keyword">int</span> value1 <span class="token operator">=</span> i<span class="token punctuation">;</span>
+        <span class="token keyword">int</span> value2 <span class="token operator">=</span> i <span class="token operator">*</span> <span class="token number">2</span><span class="token punctuation">;</span>
+
+        <span class="token function">sqlite3_prepare_v2</span><span class="token punctuation">(</span>db<span class="token punctuation">,</span> query<span class="token punctuation">.</span><span class="token function">c_str</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token operator">&amp;</span>stmt<span class="token punctuation">,</span> <span class="token keyword">nullptr</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token function">sqlite3_bind_int</span><span class="token punctuation">(</span>stmt<span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">,</span> value1<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token function">sqlite3_bind_int</span><span class="token punctuation">(</span>stmt<span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">,</span> value2<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+        <span class="token function">sqlite3_step</span><span class="token punctuation">(</span>stmt<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token function">sqlite3_finalize</span><span class="token punctuation">(</span>stmt<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token comment" spellcheck="true">//sqlite3_exec(db, "COMMIT", 0, 0, 0);</span>
+    <span class="token keyword">auto</span> end <span class="token operator">=</span> std<span class="token operator">::</span>chrono<span class="token operator">::</span>high_resolution_clock<span class="token operator">::</span><span class="token function">now</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    std<span class="token operator">::</span>chrono<span class="token operator">::</span>duration<span class="token operator">&lt;</span><span class="token keyword">double</span><span class="token operator">></span> duration <span class="token operator">=</span> end <span class="token operator">-</span> start<span class="token punctuation">;</span>
+
+    std<span class="token operator">::</span>cout <span class="token operator">&lt;&lt;</span> <span class="token string">"exec_b_off: Time taken for "</span> <span class="token operator">&lt;&lt;</span> numRecords <span class="token operator">&lt;&lt;</span> <span class="token string">" inserts: "</span> <span class="token operator">&lt;&lt;</span> duration<span class="token punctuation">.</span><span class="token function">count</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">&lt;&lt;</span> <span class="token string">" seconds."</span> <span class="token operator">&lt;&lt;</span> std<span class="token operator">::</span>endl<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">void</span> <span class="token function">testInsertPerformance_all</span><span class="token punctuation">(</span>sqlite3<span class="token operator">*</span> db<span class="token punctuation">,</span> <span class="token keyword">int</span> numRecords<span class="token punctuation">)</span> <span class="token comment" spellcheck="true">//关闭写同步 + 开始显式事务 + 执行准备操作</span>
+<span class="token punctuation">{</span>
+    
+
+    <span class="token function">sqlite3_exec</span><span class="token punctuation">(</span>db<span class="token punctuation">,</span><span class="token string">"PRAGMA synchronous = OFF; "</span><span class="token punctuation">,</span><span class="token number">0</span><span class="token punctuation">,</span><span class="token number">0</span><span class="token punctuation">,</span><span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  
+    <span class="token function">sqlite3_exec</span><span class="token punctuation">(</span>db<span class="token punctuation">,</span> <span class="token string">"BEGIN"</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    std<span class="token operator">::</span>string query <span class="token operator">=</span> <span class="token string">"INSERT INTO your_table_name (column1, column2) VALUES (?, ?)"</span><span class="token punctuation">;</span>
+    sqlite3_stmt<span class="token operator">*</span> stmt<span class="token punctuation">;</span>
+
+    <span class="token keyword">auto</span> start <span class="token operator">=</span> std<span class="token operator">::</span>chrono<span class="token operator">::</span>high_resolution_clock<span class="token operator">::</span><span class="token function">now</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> numRecords<span class="token punctuation">;</span> <span class="token operator">++</span>i<span class="token punctuation">)</span> 
+    <span class="token punctuation">{</span>
+        <span class="token keyword">int</span> value1 <span class="token operator">=</span> i<span class="token punctuation">;</span>
+        <span class="token keyword">int</span> value2 <span class="token operator">=</span> i <span class="token operator">*</span> <span class="token number">2</span><span class="token punctuation">;</span>
+
+        <span class="token function">sqlite3_prepare_v2</span><span class="token punctuation">(</span>db<span class="token punctuation">,</span> query<span class="token punctuation">.</span><span class="token function">c_str</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token operator">&amp;</span>stmt<span class="token punctuation">,</span> <span class="token keyword">nullptr</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token function">sqlite3_bind_int</span><span class="token punctuation">(</span>stmt<span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">,</span> value1<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token function">sqlite3_bind_int</span><span class="token punctuation">(</span>stmt<span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">,</span> value2<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+        <span class="token function">sqlite3_step</span><span class="token punctuation">(</span>stmt<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token function">sqlite3_finalize</span><span class="token punctuation">(</span>stmt<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token function">sqlite3_exec</span><span class="token punctuation">(</span>db<span class="token punctuation">,</span> <span class="token string">"COMMIT"</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">auto</span> end <span class="token operator">=</span> std<span class="token operator">::</span>chrono<span class="token operator">::</span>high_resolution_clock<span class="token operator">::</span><span class="token function">now</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    std<span class="token operator">::</span>chrono<span class="token operator">::</span>duration<span class="token operator">&lt;</span><span class="token keyword">double</span><span class="token operator">></span> duration <span class="token operator">=</span> end <span class="token operator">-</span> start<span class="token punctuation">;</span>
+
+    std<span class="token operator">::</span>cout <span class="token operator">&lt;&lt;</span> <span class="token string">"exec_b_off: Time taken for "</span> <span class="token operator">&lt;&lt;</span> numRecords <span class="token operator">&lt;&lt;</span> <span class="token string">" inserts: "</span> <span class="token operator">&lt;&lt;</span> duration<span class="token punctuation">.</span><span class="token function">count</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">&lt;&lt;</span> <span class="token string">" seconds."</span> <span class="token operator">&lt;&lt;</span> std<span class="token operator">::</span>endl<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+
+<span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span> 
+<span class="token punctuation">{</span>
+    sqlite3<span class="token operator">*</span> db<span class="token punctuation">;</span>
+    <span class="token comment" spellcheck="true">//内存模式</span>
+    <span class="token comment" spellcheck="true">//int rc = sqlite3_open(":memory:", &amp;db);</span>
+    <span class="token comment" spellcheck="true">//磁盘模式</span>
+    <span class="token keyword">int</span> rc <span class="token operator">=</span> <span class="token function">sqlite3_open</span><span class="token punctuation">(</span><span class="token string">"/home/idc/TCP/db/mydatabase.db"</span><span class="token punctuation">,</span> <span class="token operator">&amp;</span>db<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>rc <span class="token operator">!=</span> SQLITE_OK<span class="token punctuation">)</span> 
+    <span class="token punctuation">{</span>
+        std<span class="token operator">::</span>cerr <span class="token operator">&lt;&lt;</span> <span class="token string">"Cannot open database: "</span> <span class="token operator">&lt;&lt;</span> <span class="token function">sqlite3_errmsg</span><span class="token punctuation">(</span>db<span class="token punctuation">)</span> <span class="token operator">&lt;&lt;</span> std<span class="token operator">::</span>endl<span class="token punctuation">;</span>
+        <span class="token keyword">return</span> <span class="token number">1</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token comment" spellcheck="true">// Perform performance tests</span>
+    <span class="token keyword">int</span> numRecords <span class="token operator">=</span> <span class="token number">10000</span><span class="token punctuation">;</span>  <span class="token comment" spellcheck="true">// Adjust the number of records as needed</span>
+
+    cout <span class="token operator">&lt;&lt;</span> <span class="token string">"准备执行运行时间： "</span> <span class="token operator">&lt;&lt;</span> endl<span class="token punctuation">;</span>
+    <span class="token function">testInsertPerformance_prepare</span><span class="token punctuation">(</span>db<span class="token punctuation">,</span> numRecords<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    cout <span class="token operator">&lt;&lt;</span> <span class="token string">"显式开启事务运行时间： "</span> <span class="token operator">&lt;&lt;</span> endl<span class="token punctuation">;</span>
+    <span class="token function">testInsertPerformance_exec_b</span><span class="token punctuation">(</span>db<span class="token punctuation">,</span> numRecords<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    cout <span class="token operator">&lt;&lt;</span> <span class="token string">"隐式开启事务运行时间： "</span> <span class="token operator">&lt;&lt;</span> endl<span class="token punctuation">;</span>
+    <span class="token function">testInsertPerformance_exec_a</span><span class="token punctuation">(</span>db<span class="token punctuation">,</span> numRecords<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    cout <span class="token operator">&lt;&lt;</span> <span class="token string">"显式开启事务 + 关闭写同步 运行时间： "</span> <span class="token operator">&lt;&lt;</span> endl<span class="token punctuation">;</span>
+    <span class="token function">testInsertPerformance_exec_b_off</span><span class="token punctuation">(</span>db<span class="token punctuation">,</span> numRecords<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    
+    cout <span class="token operator">&lt;&lt;</span> <span class="token string">"准备执行 + 关闭写同步： "</span> <span class="token operator">&lt;&lt;</span> endl<span class="token punctuation">;</span>
+    <span class="token function">testInsertPerformance_al</span><span class="token punctuation">(</span>db<span class="token punctuation">,</span> numRecords<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    cout <span class="token operator">&lt;&lt;</span> <span class="token string">"显式开启事务 + 关闭写同步 + 准备执行 运行时间： "</span> <span class="token operator">&lt;&lt;</span> endl<span class="token punctuation">;</span>
+    <span class="token function">testInsertPerformance_all</span><span class="token punctuation">(</span>db<span class="token punctuation">,</span> numRecords<span class="token punctuation">)</span><span class="token punctuation">;</span>
+   
+    <span class="token function">sqlite3_close</span><span class="token punctuation">(</span>db<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre>
+
+                
+            </div>
+            <hr/>
+
+            
+
+    <div class="reprint" id="reprint-statement">
+        
+            <div class="reprint__author">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-user">
+                        文章作者:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="/about" rel="external nofollow noreferrer">小王吧</a>
+                </span>
+            </div>
+            <div class="reprint__type">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-link">
+                        文章链接:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="http://example.com/2023/09/20/03-sqlite-performancetest/">http://example.com/2023/09/20/03-sqlite-performancetest/</a>
+                </span>
+            </div>
+            <div class="reprint__notice">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-copyright">
+                        版权声明:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    本博客所有文章除特別声明外，均采用
+                    <a href="https://creativecommons.org/licenses/by/4.0/deed.zh" rel="external nofollow noreferrer" target="_blank">CC BY 4.0</a>
+                    许可协议。转载请注明来源
+                    <a href="/about" target="_blank">小王吧</a>
+                    !
+                </span>
+            </div>
+        
+    </div>
+
+    <script async defer>
+      document.addEventListener("copy", function (e) {
+        let toastHTML = '<span>复制成功，请遵循本文的转载规则</span><button class="btn-flat toast-action" onclick="navToReprintStatement()" style="font-size: smaller">查看</a>';
+        M.toast({html: toastHTML})
+      });
+
+      function navToReprintStatement() {
+        $("html, body").animate({scrollTop: $("#reprint-statement").offset().top - 80}, 800);
+      }
+    </script>
+
+
+
+            <div class="tag_share" style="display: block;">
+                <div class="post-meta__tag-list" style="display: inline-block;">
+                    
+                        <div class="article-tag">
+                            
+                                <a href="/tags/sqlite3/">
+                                    <span class="chip bg-color">sqlite3</span>
+                                </a>
+                            
+                        </div>
+                    
+                </div>
+                <div class="post_share" style="zoom: 80%; width: fit-content; display: inline-block; float: right; margin: -0.15rem 0;">
+                    <link rel="stylesheet" type="text/css" href="/libs/share/css/share.min.css">
+<div id="article-share">
+
+    
+    <div class="social-share" data-sites="twitter,facebook,google,qq,qzone,wechat,weibo,douban,linkedin" data-wechat-qrcode-helper="<p>微信扫一扫即可分享！</p>"></div>
+    <script src="/libs/share/js/social-share.min.js"></script>
+    
+
+    
+
+</div>
+
+                </div>
+            </div>
+            
+        </div>
+    </div>
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+<article id="prenext-posts" class="prev-next articles">
+    <div class="row article-row">
+        
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
+            <div class="article-badge left-badge text-color">
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
+            <div class="card">
+                <a href="/2023/09/20/03-sqlite-performancetest/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/4.jpg" class="responsive-img" alt="sqlite性能测试">
+                        
+                        <span class="card-title">sqlite性能测试</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2023-09-20
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/" class="post-category">
+                                    数据库
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/sqlite3/">
+                        <span class="chip bg-color">sqlite3</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/2023/09/18/02-uml/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/10.jpg" class="responsive-img" alt="UML（统一建模语言）">
+                        
+                        <span class="card-title">UML（统一建模语言）</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2023-09-18
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" class="post-category">
+                                    设计模式
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/UML/">
+                        <span class="chip bg-color">UML</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+
+</div>
+
+
+
+<!-- 代码块功能依赖 -->
+<script type="text/javascript" src="/libs/codeBlock/codeBlockFuction.js"></script>
+
+
+
+<!-- 代码语言 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeLang.js"></script>
+
+
+<!-- 代码块复制 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeCopy.js"></script>
+
+
+<!-- 代码块收缩 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeShrink.js"></script>
+
+
+
+    </div>
+    <div id="toc-aside" class="expanded col l3 hide-on-med-and-down">
+        <div class="toc-widget card" style="background-color: white;">
+            <div class="toc-title"><i class="far fa-list-alt"></i>&nbsp;&nbsp;目录</div>
+            <div id="toc-content"></div>
+        </div>
+    </div>
+</div>
+
+<!-- TOC 悬浮按钮. -->
+
+<div id="floating-toc-btn" class="hide-on-med-and-down">
+    <a class="btn-floating btn-large bg-color">
+        <i class="fas fa-list-ul"></i>
+    </a>
+</div>
+
+
+<script src="/libs/tocbot/tocbot.min.js"></script>
+<script>
+    $(function () {
+        tocbot.init({
+            tocSelector: '#toc-content',
+            contentSelector: '#articleContent',
+            headingsOffset: -($(window).height() * 0.4 - 45),
+            collapseDepth: Number('0'),
+            headingSelector: 'h2, h3, h4'
+        });
+
+        // Set scroll toc fixed.
+        let tocHeight = parseInt($(window).height() * 0.4 - 64);
+        let $tocWidget = $('.toc-widget');
+        $(window).scroll(function () {
+            let scroll = $(window).scrollTop();
+            /* add post toc fixed. */
+            if (scroll > tocHeight) {
+                $tocWidget.addClass('toc-fixed');
+            } else {
+                $tocWidget.removeClass('toc-fixed');
+            }
+        });
+
+        
+        /* 修复文章卡片 div 的宽度. */
+        let fixPostCardWidth = function (srcId, targetId) {
+            let srcDiv = $('#' + srcId);
+            if (srcDiv.length === 0) {
+                return;
+            }
+
+            let w = srcDiv.width();
+            if (w >= 450) {
+                w = w + 21;
+            } else if (w >= 350 && w < 450) {
+                w = w + 18;
+            } else if (w >= 300 && w < 350) {
+                w = w + 16;
+            } else {
+                w = w + 14;
+            }
+            $('#' + targetId).width(w);
+        };
+
+        // 切换TOC目录展开收缩的相关操作.
+        const expandedClass = 'expanded';
+        let $tocAside = $('#toc-aside');
+        let $mainContent = $('#main-content');
+        $('#floating-toc-btn .btn-floating').click(function () {
+            if ($tocAside.hasClass(expandedClass)) {
+                $tocAside.removeClass(expandedClass).hide();
+                $mainContent.removeClass('l9');
+            } else {
+                $tocAside.addClass(expandedClass).show();
+                $mainContent.addClass('l9');
+            }
+            fixPostCardWidth('artDetail', 'prenext-posts');
+        });
+        
+    });
+</script>
+
+    
+
+</main>
+
+
+
+
+    <footer class="page-footer bg-color">
+    
+        <link rel="stylesheet" href="/libs/aplayer/APlayer.min.css">
+<style>
+    .aplayer .aplayer-lrc p {
+        
+        display: none;
+        
+        font-size: 12px;
+        font-weight: 700;
+        line-height: 16px !important;
+    }
+
+    .aplayer .aplayer-lrc p.aplayer-lrc-current {
+        
+        display: none;
+        
+        font-size: 15px;
+        color: #42b983;
+    }
+
+    
+    .aplayer.aplayer-fixed.aplayer-narrow .aplayer-body {
+        left: -66px !important;
+    }
+
+    .aplayer.aplayer-fixed.aplayer-narrow .aplayer-body:hover {
+        left: 0px !important;
+    }
+
+    
+</style>
+<div class="">
+    
+    <div class="row">
+        <meting-js class="col l8 offset-l2 m10 offset-m1 s12"
+                   server="netease"
+                   type="playlist"
+                   id="503838841"
+                   fixed='true'
+                   autoplay='false'
+                   theme='#42b983'
+                   loop='all'
+                   order='random'
+                   preload='auto'
+                   volume='0.7'
+                   list-folded='true'
+        >
+        </meting-js>
+    </div>
+</div>
+
+<script src="/libs/aplayer/APlayer.min.js"></script>
+<script src="/libs/aplayer/Meting.min.js"></script>
+
+    
+
+    <div class="container row center-align"
+         style="margin-bottom: 0px !important;">
+        <div class="col s12 m8 l8 copy-right">
+            Copyright&nbsp;&copy;
+            
+                <span id="year">2023</span>
+            
+            <a href="/about" target="_blank">小王吧</a>
+            |&nbsp;Powered by&nbsp;<a href="https://hexo.io/" target="_blank">Hexo</a>
+            |&nbsp;Theme&nbsp;<a href="https://github.com/blinkfox/hexo-theme-matery" target="_blank">Matery</a>
+            
+            <br>
+            
+            
+            
+                
+            
+            
+                <span id="busuanzi_container_site_pv">
+                &nbsp;|&nbsp;<i class="far fa-eye"></i>&nbsp;总访问量:&nbsp;
+                    <span id="busuanzi_value_site_pv" class="white-color"></span>
+            </span>
+            
+            
+                <span id="busuanzi_container_site_uv">
+                &nbsp;|&nbsp;<i class="fas fa-users"></i>&nbsp;总访问人数:&nbsp;
+                    <span id="busuanzi_value_site_uv" class="white-color"></span>
+            </span>
+            
+            <br>
+
+            <!-- 运行天数提醒. -->
+            
+            <br>
+            
+        </div>
+        <div class="col s12 m4 l4 social-link social-statis">
+    <a href="https://github.com/wzy012" class="tooltipped" target="_blank" data-tooltip="访问我的GitHub" data-position="top" data-delay="50">
+        <i class="fab fa-github"></i>
+    </a>
+
+
+
+    <a href="mailto:1778936150@qq.com" class="tooltipped" target="_blank" data-tooltip="邮件联系我" data-position="top" data-delay="50">
+        <i class="fas fa-envelope-open"></i>
+    </a>
+
+
+
+
+
+
+
+    <a href="tencent://AddContact/?fromId=50&fromSubId=1&subcmd=all&uin=1778936150" class="tooltipped" target="_blank" data-tooltip="QQ联系我: 1778936150" data-position="top" data-delay="50">
+        <i class="fab fa-qq"></i>
+    </a>
+
+
+
+
+
+
+
+</div>
+    </div>
+</footer>
+
+<div class="progress-bar"></div>
+
+
+    <!-- 搜索遮罩框 -->
+<div id="searchModal" class="modal">
+    <div class="modal-content">
+        <div class="search-header">
+            <span class="title"><i class="fas fa-search"></i>&nbsp;&nbsp;搜索</span>
+            <input type="search" id="searchInput" name="s" placeholder="请输入搜索的关键字"
+                   class="search-input">
+        </div>
+        <div id="searchResult"></div>
+    </div>
+</div>
+
+<script type="text/javascript">
+$(function () {
+    var searchFunc = function (path, search_id, content_id) {
+        'use strict';
+        $.ajax({
+            url: path,
+            dataType: "xml",
+            success: function (xmlResponse) {
+                // get the contents from search data
+                var datas = $("entry", xmlResponse).map(function () {
+                    return {
+                        title: $("title", this).text(),
+                        content: $("content", this).text(),
+                        url: $("url", this).text()
+                    };
+                }).get();
+                var $input = document.getElementById(search_id);
+                var $resultContent = document.getElementById(content_id);
+                $input.addEventListener('input', function () {
+                    var str = '<ul class=\"search-result-list\">';
+                    var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                    $resultContent.innerHTML = "";
+                    if (this.value.trim().length <= 0) {
+                        return;
+                    }
+                    // perform local searching
+                    datas.forEach(function (data) {
+                        var isMatch = true;
+                        var data_title = data.title.trim().toLowerCase();
+                        var data_content = data.content.trim().replace(/<[^>]+>/g, "").toLowerCase();
+                        var data_url = data.url;
+                        data_url = data_url.indexOf('/') === 0 ? data.url : '/' + data_url;
+                        var index_title = -1;
+                        var index_content = -1;
+                        var first_occur = -1;
+                        // only match artiles with not empty titles and contents
+                        if (data_title !== '' && data_content !== '') {
+                            keywords.forEach(function (keyword, i) {
+                                index_title = data_title.indexOf(keyword);
+                                index_content = data_content.indexOf(keyword);
+                                if (index_title < 0 && index_content < 0) {
+                                    isMatch = false;
+                                } else {
+                                    if (index_content < 0) {
+                                        index_content = 0;
+                                    }
+                                    if (i === 0) {
+                                        first_occur = index_content;
+                                    }
+                                }
+                            });
+                        }
+                        // show search results
+                        if (isMatch) {
+                            str += "<li><a href='" + data_url + "' class='search-result-title'>" + data_title + "</a>";
+                            var content = data.content.trim().replace(/<[^>]+>/g, "");
+                            if (first_occur >= 0) {
+                                // cut out 100 characters
+                                var start = first_occur - 20;
+                                var end = first_occur + 80;
+                                if (start < 0) {
+                                    start = 0;
+                                }
+                                if (start === 0) {
+                                    end = 100;
+                                }
+                                if (end > content.length) {
+                                    end = content.length;
+                                }
+                                var match_content = content.substr(start, end);
+                                // highlight all keywords
+                                keywords.forEach(function (keyword) {
+                                    var regS = new RegExp(keyword, "gi");
+                                    match_content = match_content.replace(regS, "<em class=\"search-keyword\">" + keyword + "</em>");
+                                });
+
+                                str += "<p class=\"search-result\">" + match_content + "...</p>"
+                            }
+                            str += "</li>";
+                        }
+                    });
+                    str += "</ul>";
+                    $resultContent.innerHTML = str;
+                });
+            }
+        });
+    };
+
+    searchFunc('/search.xml', 'searchInput', 'searchResult');
+});
+</script>
+
+    <!-- 白天和黑夜主题 -->
+<div class="stars-con">
+    <div id="stars"></div>
+    <div id="stars2"></div>
+    <div id="stars3"></div>  
+</div>
+
+<script>
+    function switchNightMode() {
+        $('<div class="Cuteen_DarkSky"><div class="Cuteen_DarkPlanet"></div></div>').appendTo($('body')),
+        setTimeout(function () {
+            $('body').hasClass('DarkMode') 
+            ? ($('body').removeClass('DarkMode'), localStorage.setItem('isDark', '0'), $('#sum-moon-icon').removeClass("fa-sun").addClass('fa-moon')) 
+            : ($('body').addClass('DarkMode'), localStorage.setItem('isDark', '1'), $('#sum-moon-icon').addClass("fa-sun").removeClass('fa-moon')),
+            
+            setTimeout(function () {
+            $('.Cuteen_DarkSky').fadeOut(1e3, function () {
+                $(this).remove()
+            })
+            }, 2e3)
+        })
+    }
+</script>
+
+    <!-- 回到顶部按钮 -->
+<div id="backTop" class="top-scroll">
+    <a class="btn-floating btn-large waves-effect waves-light" href="#!">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+</div>
+
+
+    <script src="/libs/materialize/materialize.min.js"></script>
+    <script src="/libs/masonry/masonry.pkgd.min.js"></script>
+    <script src="/libs/aos/aos.js"></script>
+    <script src="/libs/scrollprogress/scrollProgress.min.js"></script>
+    <script src="/libs/lightGallery/js/lightgallery-all.min.js"></script>
+    <script src="/js/matery.js"></script>
+
+    
+
+    
+    
+    
+
+    <!-- 雪花特效 -->
+    
+
+    <!-- 鼠标星星特效 -->
+    
+
+     
+        <script src="https://ssl.captcha.qq.com/TCaptcha.js"></script>
+        <script src="/libs/others/TencentCaptcha.js"></script>
+        <button id="TencentCaptcha" data-appid="xxxxxxxxxx" data-cbfn="callback" type="button" hidden></button>
+    
+
+    <!-- Baidu Analytics -->
+
+    <!-- Baidu Push -->
+
+<script>
+    (function () {
+        var bp = document.createElement('script');
+        var curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https') {
+            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        } else {
+            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    })();
+</script>
+
+    
+    <script src="/libs/others/clicklove.js" async="async"></script>
+    
+    
+    <script async src="/libs/others/busuanzi.pure.mini.js"></script>
+    
+
+    
+
+    
+
+    <!--腾讯兔小巢-->
+    
+    
+
+    
+
+    
+
+    
+    <script src="/libs/instantpage/instantpage.js" type="module"></script>
+    
+
+</body>
+
+</html>

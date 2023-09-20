@@ -6,7 +6,7 @@
   <link href="http://example.com/atom.xml" rel="self"/>
   
   <link href="http://example.com/"/>
-  <updated>2023-09-18T15:11:47.067Z</updated>
+  <updated>2023-09-20T12:30:03.018Z</updated>
   <id>http://example.com/</id>
   
   <author>
@@ -15,6 +15,31 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>sqlite性能测试</title>
+    <link href="http://example.com/2023/09/20/03-sqlite-performancetest/"/>
+    <id>http://example.com/2023/09/20/03-sqlite-performancetest/</id>
+    <published>2023-09-20T11:55:13.000Z</published>
+    <updated>2023-09-20T12:30:03.018Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;&lt;strong&gt;SQLite执行SQL语句有两种方式&lt;/strong&gt;：&lt;br&gt;&lt;br&gt;(1)</summary>
+        
+      
+    
+    
+    
+    <category term="数据库" scheme="http://example.com/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/"/>
+    
+    
+    <category term="sqlite3" scheme="http://example.com/tags/sqlite3/"/>
+    
+  </entry>
   
   <entry>
     <title>UML（统一建模语言）</title>
