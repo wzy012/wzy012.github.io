@@ -4,8 +4,10 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="初来乍到, spring">
-    <meta name="description" content="随笔">
+    <meta name="keywords" content="数据结构基础知识, spring">
+    <meta name="description" content="3.数据结构3.1 前言数据结构是为实现对计算机数据有效使用的各种数据组织形式，服务于各类计算机操作。不同的数据结构具有各自对应的适用场景，旨在降低各种算法计算的时间与空间复杂度，达到最佳的任务执行效率。
+3.2 数组固定数组和可变数组
+3">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -17,7 +19,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>初来乍到 | spring</title>
+    <title>数据结构基础知识 | spring</title>
     <link rel="icon" type="image/png" href="/favicon.png">
     
 
@@ -248,12 +250,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/3.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/14.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">初来乍到</h1>
+                    <h1 class="description center-align post-title">数据结构基础知识</h1>
                 </div>
             </div>
         </div>
@@ -277,8 +279,8 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/%E5%85%B3%E4%BA%8E%E6%9C%AC%E4%BA%BA/">
-                                <span class="chip bg-color">关于本人</span>
+                            <a href="/tags/%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/">
+                                <span class="chip bg-color">基础知识</span>
                             </a>
                         
                     </div>
@@ -289,8 +291,8 @@
                     <div class="post-cate">
                         <i class="fas fa-bookmark fa-fw icon-category"></i>
                         
-                            <a href="/categories/%E4%B8%AA%E4%BA%BA%E6%88%90%E9%95%BF/" class="post-category">
-                                个人成长
+                            <a href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/" class="post-category">
+                                数据结构与算法
                             </a>
                         
                     </div>
@@ -302,7 +304,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2023-09-17
+                    2023-09-20
                 </div>
                 
 
@@ -323,15 +325,61 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <p>写在开始…<br><br>初入职场，受组长凯哥影响，想要搭建自己的技术博客，于是有了这篇…<br><br>本人博客传送门：<a target="_blank" rel="noopener" href="https://wzy012.github.io/">https://wzy012.github.io/</a> <br></p>
-<p>2023.6.19 从SDU毕业<br><br>2023.8.3 入职byd<br><br>开始了自己的菜鸟<del>打工</del>（成长）生涯<br><br>从事智驾开发工作<br><br>作为一个7年的自动化<del>不</del>专业学生<br><br>进入了一个纯软的技术赛道<br><br>其实还是很有压力的<br><br>但同时感觉充满了兴奋与挑战<br><br>开个人博客的初衷是：<br></p>
+                <h3 id="3-数据结构"><a href="#3-数据结构" class="headerlink" title="3.数据结构"></a>3.数据结构</h3><h4 id="3-1-前言"><a href="#3-1-前言" class="headerlink" title="3.1 前言"></a>3.1 前言</h4><p>数据结构是为实现对计算机数据有效使用的各种数据组织形式，服务于各类计算机操作。不同的数据结构具有各自对应的适用场景，旨在降低各种算法计算的时间与空间复杂度，达到最佳的任务执行效率。</p>
+<h4 id="3-2-数组"><a href="#3-2-数组" class="headerlink" title="3.2 数组"></a>3.2 数组</h4><p>固定数组和可变数组</p>
+<h4 id="3-3-链表"><a href="#3-3-链表" class="headerlink" title="3.3 链表"></a>3.3 链表</h4><p>链表以节点为单位，每个元素都是一个独立对象，在内存中的存储空间是非连续的。链表的节点对象具有两个成员变量：「值 <code>val</code>」，「后继节点引用 <code>next</code>」 。</p>
+<pre class=" language-cpp"><code class="language-cpp"><span class="token keyword">struct</span> ListNode<span class="token punctuation">{</span>
+    <span class="token keyword">int</span> val<span class="token punctuation">;</span>
+    ListNode <span class="token operator">*</span>next<span class="token punctuation">;</span>
+    <span class="token function">ListNode</span><span class="token punctuation">(</span><span class="token keyword">int</span> x<span class="token punctuation">)</span> <span class="token operator">:</span> <span class="token function">val</span><span class="token punctuation">(</span>x<span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token function">next</span><span class="token punctuation">(</span><span class="token constant">NULL</span><span class="token punctuation">)</span> <span class="token punctuation">{</span><span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+</code></pre>
+<h4 id="3-4-栈"><a href="#3-4-栈" class="headerlink" title="3.4 栈"></a>3.4 栈</h4><p>栈是一种具有 「先入后出」 特点的抽象数据结构，可使用<strong>数组</strong>或<strong>链表</strong>实现</p>
+<pre class=" language-cpp"><code class="language-cpp">stack<span class="token operator">&lt;</span>T<span class="token operator">></span> stk<span class="token punctuation">;</span>
+</code></pre>
+<h4 id="3-5-队列"><a href="#3-5-队列" class="headerlink" title="3.5 队列"></a>3.5 队列</h4><p>队列是一种具有 「先入先出」 特点的抽象数据结构，可使用<strong>链表</strong>实现。</p>
+<pre class=" language-cpp"><code class="language-cpp">queue<span class="token operator">&lt;</span>T<span class="token operator">></span> que<span class="token punctuation">;</span>
+</code></pre>
+<h4 id="3-6-树"><a href="#3-6-树" class="headerlink" title="3.6 树"></a>3.6 树</h4><p>树是一种非线性数据结构，根据子节点数量可分为 「二叉树」 和 「多叉树」，最顶层的节点称为「根节点 root」。以二叉树为例，每个节点包含三个成员变量：「值 val」、「左子节点 left」、「右子节点 right」 。</p>
+<pre class=" language-cpp"><code class="language-cpp"><span class="token keyword">struct</span> TreeNode<span class="token punctuation">{</span>
+    <span class="token keyword">int</span> val<span class="token punctuation">;</span>
+    TreeNode <span class="token operator">*</span>left<span class="token punctuation">;</span>
+    TreeNode <span class="token operator">*</span>right<span class="token punctuation">;</span>
+    <span class="token function">TreeNode</span><span class="token punctuation">(</span><span class="token keyword">int</span> x<span class="token punctuation">)</span> <span class="token operator">:</span> <span class="token function">val</span><span class="token punctuation">(</span>x<span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token function">left</span><span class="token punctuation">(</span><span class="token constant">NULL</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token function">right</span><span class="token punctuation">(</span><span class="token constant">NULL</span><span class="token punctuation">)</span><span class="token punctuation">{</span><span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+</code></pre>
+<p>构建二叉树示例：</p>
+<pre class=" language-cpp"><code class="language-cpp"><span class="token comment" spellcheck="true">//初始化节点</span>
+TreeNode <span class="token operator">*</span>n1 <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token function">TreeNode</span><span class="token punctuation">(</span><span class="token number">3</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// root</span>
+TreeNode <span class="token operator">*</span>n2 <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token function">TreeNode</span><span class="token punctuation">(</span><span class="token number">4</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+TreeNode <span class="token operator">*</span>n3 <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token function">TreeNode</span><span class="token punctuation">(</span><span class="token number">5</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+TreeNode <span class="token operator">*</span>n4 <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token function">TreeNode</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+TreeNode <span class="token operator">*</span>n5 <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token function">TreeNode</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment" spellcheck="true">//构建引用指向</span>
+n1<span class="token operator">-</span><span class="token operator">></span>left <span class="token operator">=</span> n2<span class="token punctuation">;</span>
+n1<span class="token operator">-</span><span class="token operator">></span>right <span class="token operator">=</span> n3<span class="token punctuation">;</span>
+n2<span class="token operator">-</span><span class="token operator">></span>left <span class="token operator">=</span> n4<span class="token punctuation">;</span>
+n2<span class="token operator">-</span><span class="token operator">></span>right <span class="token operator">=</span> n5<span class="token punctuation">;</span>
+</code></pre>
+<h4 id="3-7-图"><a href="#3-7-图" class="headerlink" title="3.7 图"></a>3.7 图</h4><p>图是一种非线性数据结构，由「节点（顶点）<code>vertex</code>」和「边 <code>edge</code>」组成，每条边连接一对顶点。根据边的方向有无，图可分为「有向图」和「无向图」。</p>
+<p><strong>以无向图为例</strong> 开展介绍，无向图的 <strong>顶点</strong> 和 <strong>边</strong> 集合分别为：</p>
 <ul>
-<li>记录自己学习各个技术的过程，形成文档以备查漏补缺；<br></li>
-<li>如果有幸被需要的人看到，也是分享的意义</li>
+<li>顶点集合：<code>vertices = &#123;1, 2, 3, 4, 5&#125;</code></li>
+<li>边集合：<code>edges = &#123;(1, 2), (1, 3), (1, 4), (1, 5), (2,4), (3,5), (4,5)&#125;</code></li>
 </ul>
-<p>希望自己坚持学习，一点一点进步，争取成为一名技术<del>大</del>小佬！</p>
-<p>最后附：<br><br>    Hexo + Github + Git 的博客搭建方案链接：<a target="_blank" rel="noopener" href="https://yushuaigee.gitee.io/archives/">https://yushuaigee.gitee.io/archives/</a><br><br>    vscode + PicGo + Markdown All in one 的配置链接：<a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_35621494/article/details/106432399">https://blog.csdn.net/qq_35621494/article/details/106432399</a><br></p>
-<p>本人使用的是：vscode + Hexo + Github + Git + PicGO + Markdown All in one 的实现方案。</p>
+<p><strong>表示图</strong>的方法通常有两种：</p>
+<p>1.<strong>邻接矩阵</strong>：使用数组vertices存储顶点，邻接矩阵edges存储边；<code>edges[i][j]</code>代表节点<code>i+1</code>和节点<code>j+1</code>之间是否有边。</p>
+<pre class=" language-cpp"><code class="language-cpp"><span class="token keyword">int</span> vertices<span class="token punctuation">[</span><span class="token number">5</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">,</span> <span class="token number">4</span><span class="token punctuation">,</span> <span class="token number">5</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
+<span class="token keyword">int</span> edges<span class="token punctuation">[</span><span class="token number">5</span><span class="token punctuation">]</span><span class="token punctuation">[</span><span class="token number">5</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token punctuation">{</span><span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
+                   <span class="token punctuation">{</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
+                   <span class="token punctuation">{</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
+                   <span class="token punctuation">{</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
+                   <span class="token punctuation">{</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">}</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
+</code></pre>
+<p>2.<strong>邻接表</strong>：使用数组vertices存储顶点，邻接矩阵edges存储边。第一维<code>i</code>代表顶点索引，第二维edges[i]存储此顶点对应的边集合。</p>
+<p>邻接矩阵 VS 邻接表 ：</p>
+<p>邻接矩阵的大小只与节点数量有关，即 N^2  ，其中 N 为节点数量。因此，当边数量明显少于节点数量时，使用邻接矩阵存储图会造成较大的内存浪费。<br>因此，邻接表 适合存储稀疏图（顶点较多、边较少）； 邻接矩阵 适合存储稠密图（顶点较少、边较多）。</p>
 
                 
             </div>
@@ -358,7 +406,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="http://example.com/2023/09/17/00-1/">http://example.com/2023/09/17/00-1/</a>
+                    <a href="http://example.com/2023/09/20/04-datastructure/">http://example.com/2023/09/20/04-datastructure/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -396,8 +444,8 @@
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/%E5%85%B3%E4%BA%8E%E6%9C%AC%E4%BA%BA/">
-                                    <span class="chip bg-color">关于本人</span>
+                                <a href="/tags/%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/">
+                                    <span class="chip bg-color">基础知识</span>
                                 </a>
                             
                         </div>
@@ -443,17 +491,18 @@
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
             <div class="card">
-                <a href="/2023/09/17/01-sorting-algorithm/">
+                <a href="/2023/09/20/04-datastructure/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/3.jpg" class="responsive-img" alt="排序算法">
+                        <img src="/medias/featureimages/14.jpg" class="responsive-img" alt="数据结构基础知识">
                         
-                        <span class="card-title">排序算法</span>
+                        <span class="card-title">数据结构基础知识</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -463,9 +512,9 @@
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2023-09-17
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2023-09-20
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
@@ -478,11 +527,12 @@
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95/">
-                        <span class="chip bg-color">排序算法</span>
+                    <a href="/tags/%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/">
+                        <span class="chip bg-color">基础知识</span>
                     </a>
                     
                 </div>
@@ -493,46 +543,45 @@
         
         <div class="article col s12 m6" data-aos="fade-up">
             <div class="article-badge right-badge text-color">
-                本篇&nbsp;<i class="far fa-dot-circle"></i>
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2023/09/17/00-1/">
+                <a href="/2023/09/20/03-sqlite-performancetest/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/3.jpg" class="responsive-img" alt="初来乍到">
+                        <img src="/medias/featureimages/4.jpg" class="responsive-img" alt="sqlite性能测试">
                         
-                        <span class="card-title">初来乍到</span>
+                        <span class="card-title">sqlite性能测试</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            随笔
+                            
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2023-09-17
+                                <i class="far fa-clock fa-fw icon-date"></i>2023-09-20
                             </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/%E4%B8%AA%E4%BA%BA%E6%88%90%E9%95%BF/" class="post-category">
-                                    个人成长
+                            <a href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/" class="post-category">
+                                    数据库
                                 </a>
                             
                             
                         </span>
                     </div>
                 </div>
-
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/%E5%85%B3%E4%BA%8E%E6%9C%AC%E4%BA%BA/">
-                        <span class="chip bg-color">关于本人</span>
+                    <a href="/tags/sqlite3/">
+                        <span class="chip bg-color">sqlite3</span>
                     </a>
                     
                 </div>

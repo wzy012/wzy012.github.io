@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="Sorting_algorithm, spring">
+    <meta name="keywords" content="排序算法, spring">
     <meta name="description" content="1 前言排序算法分为 内部排序 和 外部排序，其中:内部排序：是数据记录在内存中进行排序；外部排序：因为要排序的数据很大，内存一次性不能容纳全部的排序记录，在排序中需要访问外存。ps:简单排序：冒泡排序、选择排序、插入排序； 高级排序：希尔">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -17,7 +17,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>Sorting_algorithm | spring</title>
+    <title>排序算法 | spring</title>
     <link rel="icon" type="image/png" href="/favicon.png">
     
 
@@ -248,12 +248,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/4.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/3.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">Sorting_algorithm</h1>
+                    <h1 class="description center-align post-title">排序算法</h1>
                 </div>
             </div>
         </div>
@@ -511,7 +511,23 @@ h <span class="token operator">=</span> h <span class="token operator">/</span> 
 <span class="token punctuation">}</span>
 </code></pre>
 <h4 id="2-4-3-性能分析"><a href="#2-4-3-性能分析" class="headerlink" title="2.4.3 性能分析"></a>2.4.3 性能分析</h4><p>时间复杂度O(N^1.5) [不好计算]<br><br>空间复杂度O(1)<br><br>ps: 非稳定排序算法,当h&gt;1时都是预排序，目的是让数组更接近于有序。当h&#x3D;&#x3D;1时，数组接近有序的，排序就会更快。<br></p>
-<h2 id="3-总结"><a href="#3-总结" class="headerlink" title="3. 总结"></a>3. 总结</h2><p>（1）简单排序算法的时间复杂度都为O(N^2)，随着输入规模的增大，时间成本急剧上升，因此简单排序算法不能处理大规模问题；<br></p>
+<h3 id="2-5-归并排序"><a href="#2-5-归并排序" class="headerlink" title="2.5 归并排序"></a>2.5 归并排序</h3><h4 id="2-5-0-递归"><a href="#2-5-0-递归" class="headerlink" title="2.5.0 递归"></a>2.5.0 递归</h4><ul>
+<li>定义：在方法内部调用方法本身；<br></li>
+<li>作用：可以把一个大型复杂问题层层转换为一个与原问题相似的、规模较小的问题来求解。递归策略只需要少量的程序就可以描述出解题过程所需要的多次重复计算，大大减少程序的代码量。<br></li>
+<li>注意事项：递归必须要有边界条件能够让递归结束，因为每一次调用都会在<strong>栈内存</strong>开辟新的空间，重复执行方法，如果递归的层级太深，很容易造成栈内存溢出。<br></li>
+<li>代码示例(n的阶乘)：</li>
+</ul>
+<pre class=" language-cpp"><code class="language-cpp"><span class="token keyword">long</span> <span class="token function">factorial</span><span class="token punctuation">(</span><span class="token keyword">int</span> n<span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    <span class="token keyword">if</span><span class="token punctuation">(</span>n <span class="token operator">==</span> <span class="token number">1</span><span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        <span class="token keyword">return</span> <span class="token number">1</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword">return</span> <span class="token function">factorial</span><span class="token punctuation">(</span>n<span class="token number">-1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<h4 id="2-5-1-算法步骤-原理"><a href="#2-5-1-算法步骤-原理" class="headerlink" title="2.5.1 算法步骤&#x2F;原理"></a>2.5.1 算法步骤&#x2F;原理</h4><p>(1) 尽可能的一组数据拆分成两个元素相等的子组，并对每一个子组继续拆分，直到拆分后的每个子组的元素个数是1为止；<br><br>(2) 将相邻的两个子组进行合并成一个有序的大组；<br><br>(3) 不断地重复步骤2，直到最终只有一个组为止。<br><br>ps:该算法采用分治法<br><br><img src="https://cdn.jsdelivr.net/gh/wzy012/myblogPicBed@master/image/20230920215644.png" alt="20230920215644"><br><br>具体过程：<br><br><img src="https://cdn.jsdelivr.net/gh/wzy012/myblogPicBed@master/image/20230920223650.png" alt="20230920223650"><br><img src="https://cdn.jsdelivr.net/gh/wzy012/myblogPicBed@master/image/20230920223732.png" alt="20230920223732"><br><img src="https://cdn.jsdelivr.net/gh/wzy012/myblogPicBed@master/image/20230920223619.png" alt="20230920223619"><br><img src="https://cdn.jsdelivr.net/gh/wzy012/myblogPicBed@master/image/20230920224044.png" alt="20230920224044"><br><img src="https://cdn.jsdelivr.net/gh/wzy012/myblogPicBed@master/image/20230920224130.png" alt="20230920224130"><br><img src="https://cdn.jsdelivr.net/gh/wzy012/myblogPicBed@master/image/20230920224231.png" alt="20230920224231"><br><img src="https://cdn.jsdelivr.net/gh/wzy012/myblogPicBed@master/image/20230920224343.png" alt="20230920224343"><br><img src="https://cdn.jsdelivr.net/gh/wzy012/myblogPicBed@master/image/20230920224419.png" alt="20230920224419"></p>
+<h4 id="2-5-2-代码实现"><a href="#2-5-2-代码实现" class="headerlink" title="2.5.2 代码实现"></a>2.5.2 代码实现</h4><h4 id="2-5-3-性能分析"><a href="#2-5-3-性能分析" class="headerlink" title="2.5.3 性能分析"></a>2.5.3 性能分析</h4><h2 id="3-总结"><a href="#3-总结" class="headerlink" title="3. 总结"></a>3. 总结</h2><p>（1）简单排序算法的时间复杂度都为O(N^2)，随着输入规模的增大，时间成本急剧上升，因此简单排序算法不能处理大规模问题；<br></p>
 
                 
             </div>
