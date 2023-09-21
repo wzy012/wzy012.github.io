@@ -1,6 +1,248 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>初来乍到</title>
+    <url>/2023/09/17/00-1/</url>
+    <content><![CDATA[<p>写在开始…<br><br>初入职场，受组长凯哥影响，想要搭建自己的技术博客，于是有了这篇…<br><br>本人博客传送门：<a href="https://wzy012.github.io/">https://wzy012.github.io/</a> <br></p>
+<p>2023.6.19 从SDU毕业<br><br>2023.8.3 入职byd<br><br>开始了自己的菜鸟<del>打工</del>（成长）生涯<br><br>从事智驾开发工作<br><br>作为一个7年的自动化<del>不</del>专业学生<br><br>进入了一个纯软的技术赛道<br><br>其实还是很有压力的<br><br>但同时感觉充满了兴奋与挑战<br><br>开个人博客的初衷是：<br></p>
+<ul>
+<li>记录自己学习各个技术的过程，形成文档以备查漏补缺；<br></li>
+<li>如果有幸被需要的人看到，也是分享的意义</li>
+</ul>
+<p>希望自己坚持学习，一点一点进步，争取成为一名技术<del>大</del>小佬！</p>
+<p>最后附：<br><br>    Hexo + Github + Git 的博客搭建方案链接：<a href="https://yushuaigee.gitee.io/archives/">https://yushuaigee.gitee.io/archives/</a><br><br>    vscode + PicGo + Markdown All in one 的配置链接：<a href="https://blog.csdn.net/qq_35621494/article/details/106432399">https://blog.csdn.net/qq_35621494/article/details/106432399</a><br></p>
+<p>本人使用的是：vscode + Hexo + Github + Git + PicGO + Markdown All in one 的实现方案。</p>
+]]></content>
+      <categories>
+        <category>个人成长</category>
+      </categories>
+      <tags>
+        <tag>关于本人</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>sqlite性能测试</title>
+    <url>/2023/09/20/03-sqlite-performancetest/</url>
+    <content><![CDATA[<p><strong>SQLite执行SQL语句有两种方式</strong>：<br><br>(1) 开启事务：使用函数<code>sqlite3_exec()</code>，该函数直接调用包含SQL语句的字符串，对循环中每一句SQL语句进行“词法分析”和“语法分析”；<br></p>
+<ul>
+<li>事务“就是指一组<code>SQL</code>命令，这些命令要么一起执行，要么都不被执行。<br></li>
+<li>隐式开启事务：每调用一次<code>sqlite3_exec()</code>函数，就会隐式地开启了一个事务，如果插入一条数据，就调用该函数一次，事务就会被反复地开启、关闭，会增大IO量。<br></li>
+<li>显式开启事务：如果在插入数据前显式开启事务，插入后再一起提交，则会大大提高<code>IO</code>效率，进而加数据快插入速度。<br><br>  【显示开始事务效率高】<br></li>
+</ul>
+<p>(2) 执行准备操作：使用函数<code>sqlite3_prepare_v2()</code>，有三个步骤：<br></p>
+<ul>
+<li>声明一个指向<code>sqlite3_stmt</code>对象的指针，该函数对参数化的SQL语句进行编译，将编译后的状态存入<code>stmt</code>中。<br></li>
+<li>调用函数 <code>sqlite3_step()</code>，这个函数就是执行一步（本例中就是插入一行），如果函数返回的是<code>SQLite_ROW</code>则说明仍在继续执行，否则则说明已经执行完所有操作。<br></li>
+<li>调用函数 <code>sqlite3_finalize()</code>，关闭语句。<br><br>   【执行准备操作效率高】</li>
+</ul>
+<p><strong>关闭写同步</strong>：<code>sqlite3_exec(db,&quot;PRAGMA synchronous = OFF; &quot;,0,0,0);</code>  <br></p>
+<p>(1) 在<code>SQLite</code>中，数据库配置的参数都由编译指示<code>（pragma）</code>来实现的。<br></p>
+<p>(2) <code>synchronous</code>选项有三种可选状态，分别是<code>full、normal、off</code>。<br></p>
+<ul>
+<li>当<code>synchronous</code>设置为<code>FULL,SQLite</code>数据库引擎在紧急时刻会暂停以确定数据已经写入磁盘。这使系统崩溃或电源出问题时能确保数据库在重起后不会损坏。<code>FULL synchronous</code>很安全但很慢。<br></li>
+<li>当<code>synchronous</code>设置为<code>NORMAL, SQLite</code>数据库引擎在大部分紧急时刻会暂停，但不像<code>FULL</code>模式下那么频繁。<code> NORMAL</code>模式下有很小的几率(但不是不存在)发生电源故障导致数据库损坏的情况。<br></li>
+<li>当<code>synchronous</code>设置<code>OFF</code>时，<code>SQLite</code>在传递数据给系统以后直接继续而不暂停。<code>off</code>可以加速数据库的一些操作，但如果系统崩溃或断电，则数据库可能会损毁。<br></li>
+</ul>
+<p>(3) <code>SQLite3</code>中，该选项的默认值就是<code>full</code>，如果我们再插入数据前将其改为off，则会提高效率。如果仅仅将<code>SQLite</code>当做一种临时数据库的话，完全没必要设置为<code>full</code>。<br></p>
+<p><strong>总结</strong>:<br><br>1.显示开启事务效率更高；<br><br>2.如果使用<strong>执行准备操作</strong>,配合<strong>关闭写同步</strong>效率更高。<br></p>
+<p>以以下为测试代码：<br></p>
+<pre class=" language-cpp"><code class="language-cpp"><span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;iostream></span></span>
+<span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;sqlite3.h></span></span>
+<span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;chrono></span></span>
+
+<span class="token keyword">using</span> <span class="token keyword">namespace</span> std<span class="token punctuation">;</span>
+
+
+<span class="token keyword">void</span> <span class="token function">testInsertPerformance_prepare</span><span class="token punctuation">(</span>sqlite3<span class="token operator">*</span> db<span class="token punctuation">,</span> <span class="token keyword">int</span> numRecords<span class="token punctuation">)</span> <span class="token comment" spellcheck="true">//执行准备操作</span>
+<span class="token punctuation">{</span>
+    std<span class="token operator">::</span>string query <span class="token operator">=</span> <span class="token string">"INSERT INTO your_table_name (column1, column2) VALUES (?, ?)"</span><span class="token punctuation">;</span>
+    sqlite3_stmt<span class="token operator">*</span> stmt<span class="token punctuation">;</span>
+
+    <span class="token keyword">auto</span> start <span class="token operator">=</span> std<span class="token operator">::</span>chrono<span class="token operator">::</span>high_resolution_clock<span class="token operator">::</span><span class="token function">now</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> numRecords<span class="token punctuation">;</span> <span class="token operator">++</span>i<span class="token punctuation">)</span> 
+    <span class="token punctuation">{</span>
+        <span class="token keyword">int</span> value1 <span class="token operator">=</span> i<span class="token punctuation">;</span>
+        <span class="token keyword">int</span> value2 <span class="token operator">=</span> i <span class="token operator">*</span> <span class="token number">2</span><span class="token punctuation">;</span>
+
+        <span class="token function">sqlite3_prepare_v2</span><span class="token punctuation">(</span>db<span class="token punctuation">,</span> query<span class="token punctuation">.</span><span class="token function">c_str</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token operator">&amp;</span>stmt<span class="token punctuation">,</span> <span class="token keyword">nullptr</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token function">sqlite3_bind_int</span><span class="token punctuation">(</span>stmt<span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">,</span> value1<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token function">sqlite3_bind_int</span><span class="token punctuation">(</span>stmt<span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">,</span> value2<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+        <span class="token function">sqlite3_step</span><span class="token punctuation">(</span>stmt<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token function">sqlite3_finalize</span><span class="token punctuation">(</span>stmt<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword">auto</span> end <span class="token operator">=</span> std<span class="token operator">::</span>chrono<span class="token operator">::</span>high_resolution_clock<span class="token operator">::</span><span class="token function">now</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    std<span class="token operator">::</span>chrono<span class="token operator">::</span>duration<span class="token operator">&lt;</span><span class="token keyword">double</span><span class="token operator">></span> duration <span class="token operator">=</span> end <span class="token operator">-</span> start<span class="token punctuation">;</span>
+
+    std<span class="token operator">::</span>cout <span class="token operator">&lt;&lt;</span> <span class="token string">"prepare: Time taken for "</span> <span class="token operator">&lt;&lt;</span> numRecords <span class="token operator">&lt;&lt;</span> <span class="token string">" inserts: "</span> <span class="token operator">&lt;&lt;</span> duration<span class="token punctuation">.</span><span class="token function">count</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">&lt;&lt;</span> <span class="token string">" seconds."</span> <span class="token operator">&lt;&lt;</span> std<span class="token operator">::</span>endl<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">void</span> <span class="token function">testInsertPerformance_exec_a</span><span class="token punctuation">(</span>sqlite3<span class="token operator">*</span> db<span class="token punctuation">,</span> <span class="token keyword">int</span> numRecords<span class="token punctuation">)</span> <span class="token comment" spellcheck="true">//隐式事务</span>
+<span class="token punctuation">{</span>
+
+    <span class="token function">sqlite3_exec</span><span class="token punctuation">(</span>db<span class="token punctuation">,</span> <span class="token string">"CREATE TABLE Test(ID INTEGER,var INTEGER);"</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token keyword">auto</span> start <span class="token operator">=</span> std<span class="token operator">::</span>chrono<span class="token operator">::</span>high_resolution_clock<span class="token operator">::</span><span class="token function">now</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> numRecords<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span> 
+    <span class="token punctuation">{</span>
+        <span class="token function">sqlite3_exec</span><span class="token punctuation">(</span>db<span class="token punctuation">,</span> <span class="token string">"INSERT INTO Test (ID, var) VALUES (0, 1);"</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword">auto</span> end <span class="token operator">=</span> std<span class="token operator">::</span>chrono<span class="token operator">::</span>high_resolution_clock<span class="token operator">::</span><span class="token function">now</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    std<span class="token operator">::</span>chrono<span class="token operator">::</span>duration<span class="token operator">&lt;</span><span class="token keyword">double</span><span class="token operator">></span> duration <span class="token operator">=</span> end <span class="token operator">-</span> start<span class="token punctuation">;</span>
+
+    std<span class="token operator">::</span>cout <span class="token operator">&lt;&lt;</span> <span class="token string">"exec_a: Time taken for "</span> <span class="token operator">&lt;&lt;</span> numRecords <span class="token operator">&lt;&lt;</span> <span class="token string">" inserts: "</span> <span class="token operator">&lt;&lt;</span> duration<span class="token punctuation">.</span><span class="token function">count</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">&lt;&lt;</span> <span class="token string">" seconds."</span> <span class="token operator">&lt;&lt;</span> std<span class="token operator">::</span>endl<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">void</span> <span class="token function">testInsertPerformance_exec_b</span><span class="token punctuation">(</span>sqlite3<span class="token operator">*</span> db<span class="token punctuation">,</span> <span class="token keyword">int</span> numRecords<span class="token punctuation">)</span>  <span class="token comment" spellcheck="true">//开启显式事务</span>
+<span class="token punctuation">{</span>
+
+    <span class="token function">sqlite3_exec</span><span class="token punctuation">(</span>db<span class="token punctuation">,</span> <span class="token string">"BEGIN"</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token function">sqlite3_exec</span><span class="token punctuation">(</span>db<span class="token punctuation">,</span> <span class="token string">"CREATE TABLE Test(ID INTEGER,var INTEGER);"</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token keyword">auto</span> start <span class="token operator">=</span> std<span class="token operator">::</span>chrono<span class="token operator">::</span>high_resolution_clock<span class="token operator">::</span><span class="token function">now</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> numRecords<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span> 
+    <span class="token punctuation">{</span>
+        <span class="token function">sqlite3_exec</span><span class="token punctuation">(</span>db<span class="token punctuation">,</span> <span class="token string">"INSERT INTO Test (ID, var) VALUES (0, 1);"</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token function">sqlite3_exec</span><span class="token punctuation">(</span>db<span class="token punctuation">,</span> <span class="token string">"COMMIT"</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">auto</span> end <span class="token operator">=</span> std<span class="token operator">::</span>chrono<span class="token operator">::</span>high_resolution_clock<span class="token operator">::</span><span class="token function">now</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    std<span class="token operator">::</span>chrono<span class="token operator">::</span>duration<span class="token operator">&lt;</span><span class="token keyword">double</span><span class="token operator">></span> duration <span class="token operator">=</span> end <span class="token operator">-</span> start<span class="token punctuation">;</span>
+
+    std<span class="token operator">::</span>cout <span class="token operator">&lt;&lt;</span> <span class="token string">"exec_b: Time taken for "</span> <span class="token operator">&lt;&lt;</span> numRecords <span class="token operator">&lt;&lt;</span> <span class="token string">" inserts: "</span> <span class="token operator">&lt;&lt;</span> duration<span class="token punctuation">.</span><span class="token function">count</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">&lt;&lt;</span> <span class="token string">" seconds."</span> <span class="token operator">&lt;&lt;</span> std<span class="token operator">::</span>endl<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">void</span> <span class="token function">testInsertPerformance_exec_b_off</span><span class="token punctuation">(</span>sqlite3<span class="token operator">*</span> db<span class="token punctuation">,</span> <span class="token keyword">int</span> numRecords<span class="token punctuation">)</span> <span class="token comment" spellcheck="true">//是否关闭写同步 + 执行显式事务</span>
+<span class="token punctuation">{</span>
+    
+    <span class="token function">sqlite3_exec</span><span class="token punctuation">(</span>db<span class="token punctuation">,</span><span class="token string">"PRAGMA synchronous = OFF; "</span><span class="token punctuation">,</span><span class="token number">0</span><span class="token punctuation">,</span><span class="token number">0</span><span class="token punctuation">,</span><span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  
+    <span class="token function">sqlite3_exec</span><span class="token punctuation">(</span>db<span class="token punctuation">,</span> <span class="token string">"BEGIN"</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token function">sqlite3_exec</span><span class="token punctuation">(</span>db<span class="token punctuation">,</span> <span class="token string">"CREATE TABLE Test(ID INTEGER,var INTEGER);"</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token keyword">auto</span> start <span class="token operator">=</span> std<span class="token operator">::</span>chrono<span class="token operator">::</span>high_resolution_clock<span class="token operator">::</span><span class="token function">now</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> numRecords<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span> 
+    <span class="token punctuation">{</span>
+        <span class="token function">sqlite3_exec</span><span class="token punctuation">(</span>db<span class="token punctuation">,</span> <span class="token string">"INSERT INTO Test (ID, var) VALUES (0, 1);"</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token function">sqlite3_exec</span><span class="token punctuation">(</span>db<span class="token punctuation">,</span> <span class="token string">"COMMIT"</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">auto</span> end <span class="token operator">=</span> std<span class="token operator">::</span>chrono<span class="token operator">::</span>high_resolution_clock<span class="token operator">::</span><span class="token function">now</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    std<span class="token operator">::</span>chrono<span class="token operator">::</span>duration<span class="token operator">&lt;</span><span class="token keyword">double</span><span class="token operator">></span> duration <span class="token operator">=</span> end <span class="token operator">-</span> start<span class="token punctuation">;</span>
+
+    std<span class="token operator">::</span>cout <span class="token operator">&lt;&lt;</span> <span class="token string">"exec_b_off: Time taken for "</span> <span class="token operator">&lt;&lt;</span> numRecords <span class="token operator">&lt;&lt;</span> <span class="token string">" inserts: "</span> <span class="token operator">&lt;&lt;</span> duration<span class="token punctuation">.</span><span class="token function">count</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">&lt;&lt;</span> <span class="token string">" seconds."</span> <span class="token operator">&lt;&lt;</span> std<span class="token operator">::</span>endl<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">void</span> <span class="token function">testInsertPerformance_al</span><span class="token punctuation">(</span>sqlite3<span class="token operator">*</span> db<span class="token punctuation">,</span> <span class="token keyword">int</span> numRecords<span class="token punctuation">)</span> <span class="token comment" spellcheck="true">//关闭写同步 + 开始显式事务 + 执行准备操作</span>
+<span class="token punctuation">{</span>
+    
+
+    <span class="token function">sqlite3_exec</span><span class="token punctuation">(</span>db<span class="token punctuation">,</span><span class="token string">"PRAGMA synchronous = OFF; "</span><span class="token punctuation">,</span><span class="token number">0</span><span class="token punctuation">,</span><span class="token number">0</span><span class="token punctuation">,</span><span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  
+    <span class="token comment" spellcheck="true">//sqlite3_exec(db, "BEGIN", 0, 0, 0);</span>
+    std<span class="token operator">::</span>string query <span class="token operator">=</span> <span class="token string">"INSERT INTO your_table_name (column1, column2) VALUES (?, ?)"</span><span class="token punctuation">;</span>
+    sqlite3_stmt<span class="token operator">*</span> stmt<span class="token punctuation">;</span>
+
+    <span class="token keyword">auto</span> start <span class="token operator">=</span> std<span class="token operator">::</span>chrono<span class="token operator">::</span>high_resolution_clock<span class="token operator">::</span><span class="token function">now</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> numRecords<span class="token punctuation">;</span> <span class="token operator">++</span>i<span class="token punctuation">)</span> 
+    <span class="token punctuation">{</span>
+        <span class="token keyword">int</span> value1 <span class="token operator">=</span> i<span class="token punctuation">;</span>
+        <span class="token keyword">int</span> value2 <span class="token operator">=</span> i <span class="token operator">*</span> <span class="token number">2</span><span class="token punctuation">;</span>
+
+        <span class="token function">sqlite3_prepare_v2</span><span class="token punctuation">(</span>db<span class="token punctuation">,</span> query<span class="token punctuation">.</span><span class="token function">c_str</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token operator">&amp;</span>stmt<span class="token punctuation">,</span> <span class="token keyword">nullptr</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token function">sqlite3_bind_int</span><span class="token punctuation">(</span>stmt<span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">,</span> value1<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token function">sqlite3_bind_int</span><span class="token punctuation">(</span>stmt<span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">,</span> value2<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+        <span class="token function">sqlite3_step</span><span class="token punctuation">(</span>stmt<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token function">sqlite3_finalize</span><span class="token punctuation">(</span>stmt<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token comment" spellcheck="true">//sqlite3_exec(db, "COMMIT", 0, 0, 0);</span>
+    <span class="token keyword">auto</span> end <span class="token operator">=</span> std<span class="token operator">::</span>chrono<span class="token operator">::</span>high_resolution_clock<span class="token operator">::</span><span class="token function">now</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    std<span class="token operator">::</span>chrono<span class="token operator">::</span>duration<span class="token operator">&lt;</span><span class="token keyword">double</span><span class="token operator">></span> duration <span class="token operator">=</span> end <span class="token operator">-</span> start<span class="token punctuation">;</span>
+
+    std<span class="token operator">::</span>cout <span class="token operator">&lt;&lt;</span> <span class="token string">"exec_b_off: Time taken for "</span> <span class="token operator">&lt;&lt;</span> numRecords <span class="token operator">&lt;&lt;</span> <span class="token string">" inserts: "</span> <span class="token operator">&lt;&lt;</span> duration<span class="token punctuation">.</span><span class="token function">count</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">&lt;&lt;</span> <span class="token string">" seconds."</span> <span class="token operator">&lt;&lt;</span> std<span class="token operator">::</span>endl<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">void</span> <span class="token function">testInsertPerformance_all</span><span class="token punctuation">(</span>sqlite3<span class="token operator">*</span> db<span class="token punctuation">,</span> <span class="token keyword">int</span> numRecords<span class="token punctuation">)</span> <span class="token comment" spellcheck="true">//关闭写同步 + 开始显式事务 + 执行准备操作</span>
+<span class="token punctuation">{</span>
+    
+
+    <span class="token function">sqlite3_exec</span><span class="token punctuation">(</span>db<span class="token punctuation">,</span><span class="token string">"PRAGMA synchronous = OFF; "</span><span class="token punctuation">,</span><span class="token number">0</span><span class="token punctuation">,</span><span class="token number">0</span><span class="token punctuation">,</span><span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  
+    <span class="token function">sqlite3_exec</span><span class="token punctuation">(</span>db<span class="token punctuation">,</span> <span class="token string">"BEGIN"</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    std<span class="token operator">::</span>string query <span class="token operator">=</span> <span class="token string">"INSERT INTO your_table_name (column1, column2) VALUES (?, ?)"</span><span class="token punctuation">;</span>
+    sqlite3_stmt<span class="token operator">*</span> stmt<span class="token punctuation">;</span>
+
+    <span class="token keyword">auto</span> start <span class="token operator">=</span> std<span class="token operator">::</span>chrono<span class="token operator">::</span>high_resolution_clock<span class="token operator">::</span><span class="token function">now</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> numRecords<span class="token punctuation">;</span> <span class="token operator">++</span>i<span class="token punctuation">)</span> 
+    <span class="token punctuation">{</span>
+        <span class="token keyword">int</span> value1 <span class="token operator">=</span> i<span class="token punctuation">;</span>
+        <span class="token keyword">int</span> value2 <span class="token operator">=</span> i <span class="token operator">*</span> <span class="token number">2</span><span class="token punctuation">;</span>
+
+        <span class="token function">sqlite3_prepare_v2</span><span class="token punctuation">(</span>db<span class="token punctuation">,</span> query<span class="token punctuation">.</span><span class="token function">c_str</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token operator">&amp;</span>stmt<span class="token punctuation">,</span> <span class="token keyword">nullptr</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token function">sqlite3_bind_int</span><span class="token punctuation">(</span>stmt<span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">,</span> value1<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token function">sqlite3_bind_int</span><span class="token punctuation">(</span>stmt<span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">,</span> value2<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+        <span class="token function">sqlite3_step</span><span class="token punctuation">(</span>stmt<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token function">sqlite3_finalize</span><span class="token punctuation">(</span>stmt<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token function">sqlite3_exec</span><span class="token punctuation">(</span>db<span class="token punctuation">,</span> <span class="token string">"COMMIT"</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">auto</span> end <span class="token operator">=</span> std<span class="token operator">::</span>chrono<span class="token operator">::</span>high_resolution_clock<span class="token operator">::</span><span class="token function">now</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    std<span class="token operator">::</span>chrono<span class="token operator">::</span>duration<span class="token operator">&lt;</span><span class="token keyword">double</span><span class="token operator">></span> duration <span class="token operator">=</span> end <span class="token operator">-</span> start<span class="token punctuation">;</span>
+
+    std<span class="token operator">::</span>cout <span class="token operator">&lt;&lt;</span> <span class="token string">"exec_b_off: Time taken for "</span> <span class="token operator">&lt;&lt;</span> numRecords <span class="token operator">&lt;&lt;</span> <span class="token string">" inserts: "</span> <span class="token operator">&lt;&lt;</span> duration<span class="token punctuation">.</span><span class="token function">count</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">&lt;&lt;</span> <span class="token string">" seconds."</span> <span class="token operator">&lt;&lt;</span> std<span class="token operator">::</span>endl<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+
+<span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span> 
+<span class="token punctuation">{</span>
+    sqlite3<span class="token operator">*</span> db<span class="token punctuation">;</span>
+    <span class="token comment" spellcheck="true">//内存模式</span>
+    <span class="token comment" spellcheck="true">//int rc = sqlite3_open(":memory:", &amp;db);</span>
+    <span class="token comment" spellcheck="true">//磁盘模式</span>
+    <span class="token keyword">int</span> rc <span class="token operator">=</span> <span class="token function">sqlite3_open</span><span class="token punctuation">(</span><span class="token string">"/home/idc/TCP/db/mydatabase.db"</span><span class="token punctuation">,</span> <span class="token operator">&amp;</span>db<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>rc <span class="token operator">!=</span> SQLITE_OK<span class="token punctuation">)</span> 
+    <span class="token punctuation">{</span>
+        std<span class="token operator">::</span>cerr <span class="token operator">&lt;&lt;</span> <span class="token string">"Cannot open database: "</span> <span class="token operator">&lt;&lt;</span> <span class="token function">sqlite3_errmsg</span><span class="token punctuation">(</span>db<span class="token punctuation">)</span> <span class="token operator">&lt;&lt;</span> std<span class="token operator">::</span>endl<span class="token punctuation">;</span>
+        <span class="token keyword">return</span> <span class="token number">1</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token comment" spellcheck="true">// Perform performance tests</span>
+    <span class="token keyword">int</span> numRecords <span class="token operator">=</span> <span class="token number">10000</span><span class="token punctuation">;</span>  <span class="token comment" spellcheck="true">// Adjust the number of records as needed</span>
+
+    cout <span class="token operator">&lt;&lt;</span> <span class="token string">"准备执行运行时间： "</span> <span class="token operator">&lt;&lt;</span> endl<span class="token punctuation">;</span>
+    <span class="token function">testInsertPerformance_prepare</span><span class="token punctuation">(</span>db<span class="token punctuation">,</span> numRecords<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    cout <span class="token operator">&lt;&lt;</span> <span class="token string">"显式开启事务运行时间： "</span> <span class="token operator">&lt;&lt;</span> endl<span class="token punctuation">;</span>
+    <span class="token function">testInsertPerformance_exec_b</span><span class="token punctuation">(</span>db<span class="token punctuation">,</span> numRecords<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    cout <span class="token operator">&lt;&lt;</span> <span class="token string">"隐式开启事务运行时间： "</span> <span class="token operator">&lt;&lt;</span> endl<span class="token punctuation">;</span>
+    <span class="token function">testInsertPerformance_exec_a</span><span class="token punctuation">(</span>db<span class="token punctuation">,</span> numRecords<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    cout <span class="token operator">&lt;&lt;</span> <span class="token string">"显式开启事务 + 关闭写同步 运行时间： "</span> <span class="token operator">&lt;&lt;</span> endl<span class="token punctuation">;</span>
+    <span class="token function">testInsertPerformance_exec_b_off</span><span class="token punctuation">(</span>db<span class="token punctuation">,</span> numRecords<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    
+    cout <span class="token operator">&lt;&lt;</span> <span class="token string">"准备执行 + 关闭写同步： "</span> <span class="token operator">&lt;&lt;</span> endl<span class="token punctuation">;</span>
+    <span class="token function">testInsertPerformance_al</span><span class="token punctuation">(</span>db<span class="token punctuation">,</span> numRecords<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    cout <span class="token operator">&lt;&lt;</span> <span class="token string">"显式开启事务 + 关闭写同步 + 准备执行 运行时间： "</span> <span class="token operator">&lt;&lt;</span> endl<span class="token punctuation">;</span>
+    <span class="token function">testInsertPerformance_all</span><span class="token punctuation">(</span>db<span class="token punctuation">,</span> numRecords<span class="token punctuation">)</span><span class="token punctuation">;</span>
+   
+    <span class="token function">sqlite3_close</span><span class="token punctuation">(</span>db<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre>
+]]></content>
+      <categories>
+        <category>数据库</category>
+      </categories>
+      <tags>
+        <tag>sqlite3</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>排序算法</title>
     <url>/2023/09/17/01-sorting-algorithm/</url>
     <content><![CDATA[<h2 id="1-前言"><a href="#1-前言" class="headerlink" title="1 前言"></a>1 前言</h2><p>排序算法分为 <strong>内部排序</strong> 和 <strong>外部排序</strong>，其中:<br><br><strong>内部排序</strong>：是数据记录在内存中进行排序；<br><br><strong>外部排序</strong>：因为要排序的数据很大，内存一次性不能容纳全部的排序记录，在排序中需要访问外存。<br><br>ps:简单排序：冒泡排序、选择排序、插入排序； 高级排序：希尔排序、归并排序、快速排序。</p>
@@ -279,72 +521,6 @@ h <span class="token operator">=</span> h <span class="token operator">/</span> 
       </tags>
   </entry>
   <entry>
-    <title>数据结构基础知识</title>
-    <url>/2023/09/20/04-datastructure/</url>
-    <content><![CDATA[<h3 id="3-数据结构"><a href="#3-数据结构" class="headerlink" title="3.数据结构"></a>3.数据结构</h3><h4 id="3-1-前言"><a href="#3-1-前言" class="headerlink" title="3.1 前言"></a>3.1 前言</h4><p>数据结构是为实现对计算机数据有效使用的各种数据组织形式，服务于各类计算机操作。不同的数据结构具有各自对应的适用场景，旨在降低各种算法计算的时间与空间复杂度，达到最佳的任务执行效率。</p>
-<h4 id="3-2-数组"><a href="#3-2-数组" class="headerlink" title="3.2 数组"></a>3.2 数组</h4><p>固定数组和可变数组</p>
-<h4 id="3-3-链表"><a href="#3-3-链表" class="headerlink" title="3.3 链表"></a>3.3 链表</h4><p>链表以节点为单位，每个元素都是一个独立对象，在内存中的存储空间是非连续的。链表的节点对象具有两个成员变量：「值 <code>val</code>」，「后继节点引用 <code>next</code>」 。</p>
-<pre class=" language-cpp"><code class="language-cpp"><span class="token keyword">struct</span> ListNode<span class="token punctuation">{</span>
-    <span class="token keyword">int</span> val<span class="token punctuation">;</span>
-    ListNode <span class="token operator">*</span>next<span class="token punctuation">;</span>
-    <span class="token function">ListNode</span><span class="token punctuation">(</span><span class="token keyword">int</span> x<span class="token punctuation">)</span> <span class="token operator">:</span> <span class="token function">val</span><span class="token punctuation">(</span>x<span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token function">next</span><span class="token punctuation">(</span><span class="token constant">NULL</span><span class="token punctuation">)</span> <span class="token punctuation">{</span><span class="token punctuation">}</span>
-<span class="token punctuation">}</span><span class="token punctuation">;</span>
-</code></pre>
-<h4 id="3-4-栈"><a href="#3-4-栈" class="headerlink" title="3.4 栈"></a>3.4 栈</h4><p>栈是一种具有 「先入后出」 特点的抽象数据结构，可使用<strong>数组</strong>或<strong>链表</strong>实现</p>
-<pre class=" language-cpp"><code class="language-cpp">stack<span class="token operator">&lt;</span>T<span class="token operator">></span> stk<span class="token punctuation">;</span>
-</code></pre>
-<h4 id="3-5-队列"><a href="#3-5-队列" class="headerlink" title="3.5 队列"></a>3.5 队列</h4><p>队列是一种具有 「先入先出」 特点的抽象数据结构，可使用<strong>链表</strong>实现。</p>
-<pre class=" language-cpp"><code class="language-cpp">queue<span class="token operator">&lt;</span>T<span class="token operator">></span> que<span class="token punctuation">;</span>
-</code></pre>
-<h4 id="3-6-树"><a href="#3-6-树" class="headerlink" title="3.6 树"></a>3.6 树</h4><p>树是一种非线性数据结构，根据子节点数量可分为 「二叉树」 和 「多叉树」，最顶层的节点称为「根节点 root」。以二叉树为例，每个节点包含三个成员变量：「值 val」、「左子节点 left」、「右子节点 right」 。</p>
-<pre class=" language-cpp"><code class="language-cpp"><span class="token keyword">struct</span> TreeNode<span class="token punctuation">{</span>
-    <span class="token keyword">int</span> val<span class="token punctuation">;</span>
-    TreeNode <span class="token operator">*</span>left<span class="token punctuation">;</span>
-    TreeNode <span class="token operator">*</span>right<span class="token punctuation">;</span>
-    <span class="token function">TreeNode</span><span class="token punctuation">(</span><span class="token keyword">int</span> x<span class="token punctuation">)</span> <span class="token operator">:</span> <span class="token function">val</span><span class="token punctuation">(</span>x<span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token function">left</span><span class="token punctuation">(</span><span class="token constant">NULL</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token function">right</span><span class="token punctuation">(</span><span class="token constant">NULL</span><span class="token punctuation">)</span><span class="token punctuation">{</span><span class="token punctuation">}</span>
-<span class="token punctuation">}</span><span class="token punctuation">;</span>
-</code></pre>
-<p>构建二叉树示例：</p>
-<pre class=" language-cpp"><code class="language-cpp"><span class="token comment" spellcheck="true">//初始化节点</span>
-TreeNode <span class="token operator">*</span>n1 <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token function">TreeNode</span><span class="token punctuation">(</span><span class="token number">3</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// root</span>
-TreeNode <span class="token operator">*</span>n2 <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token function">TreeNode</span><span class="token punctuation">(</span><span class="token number">4</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-TreeNode <span class="token operator">*</span>n3 <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token function">TreeNode</span><span class="token punctuation">(</span><span class="token number">5</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-TreeNode <span class="token operator">*</span>n4 <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token function">TreeNode</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-TreeNode <span class="token operator">*</span>n5 <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token function">TreeNode</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-
-<span class="token comment" spellcheck="true">//构建引用指向</span>
-n1<span class="token operator">-</span><span class="token operator">></span>left <span class="token operator">=</span> n2<span class="token punctuation">;</span>
-n1<span class="token operator">-</span><span class="token operator">></span>right <span class="token operator">=</span> n3<span class="token punctuation">;</span>
-n2<span class="token operator">-</span><span class="token operator">></span>left <span class="token operator">=</span> n4<span class="token punctuation">;</span>
-n2<span class="token operator">-</span><span class="token operator">></span>right <span class="token operator">=</span> n5<span class="token punctuation">;</span>
-</code></pre>
-<h4 id="3-7-图"><a href="#3-7-图" class="headerlink" title="3.7 图"></a>3.7 图</h4><p>图是一种非线性数据结构，由「节点（顶点）<code>vertex</code>」和「边 <code>edge</code>」组成，每条边连接一对顶点。根据边的方向有无，图可分为「有向图」和「无向图」。</p>
-<p><strong>以无向图为例</strong> 开展介绍，无向图的 <strong>顶点</strong> 和 <strong>边</strong> 集合分别为：</p>
-<ul>
-<li>顶点集合：<code>vertices = &#123;1, 2, 3, 4, 5&#125;</code></li>
-<li>边集合：<code>edges = &#123;(1, 2), (1, 3), (1, 4), (1, 5), (2,4), (3,5), (4,5)&#125;</code></li>
-</ul>
-<p><strong>表示图</strong>的方法通常有两种：</p>
-<p>1.<strong>邻接矩阵</strong>：使用数组vertices存储顶点，邻接矩阵edges存储边；<code>edges[i][j]</code>代表节点<code>i+1</code>和节点<code>j+1</code>之间是否有边。</p>
-<pre class=" language-cpp"><code class="language-cpp"><span class="token keyword">int</span> vertices<span class="token punctuation">[</span><span class="token number">5</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">,</span> <span class="token number">4</span><span class="token punctuation">,</span> <span class="token number">5</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
-<span class="token keyword">int</span> edges<span class="token punctuation">[</span><span class="token number">5</span><span class="token punctuation">]</span><span class="token punctuation">[</span><span class="token number">5</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token punctuation">{</span><span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
-                   <span class="token punctuation">{</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
-                   <span class="token punctuation">{</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
-                   <span class="token punctuation">{</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
-                   <span class="token punctuation">{</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">}</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
-</code></pre>
-<p>2.<strong>邻接表</strong>：使用数组vertices存储顶点，邻接矩阵edges存储边。第一维<code>i</code>代表顶点索引，第二维edges[i]存储此顶点对应的边集合。</p>
-<p>邻接矩阵 VS 邻接表 ：</p>
-<p>邻接矩阵的大小只与节点数量有关，即 N^2  ，其中 N 为节点数量。因此，当边数量明显少于节点数量时，使用邻接矩阵存储图会造成较大的内存浪费。<br>因此，邻接表 适合存储稀疏图（顶点较多、边较少）； 邻接矩阵 适合存储稠密图（顶点较少、边较多）。</p>
-]]></content>
-      <categories>
-        <category>数据结构与算法</category>
-      </categories>
-      <tags>
-        <tag>基础知识</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>SQLite数据库</title>
     <url>/2023/09/20/05-sqlitedb/</url>
     <content><![CDATA[<h3 id="1-数据库"><a href="#1-数据库" class="headerlink" title="1 数据库"></a>1 数据库</h3><h4 id="1-1-数据库的基本概念"><a href="#1-1-数据库的基本概念" class="headerlink" title="1.1 数据库的基本概念"></a>1.1 数据库的基本概念<br></h4><p>数据库的核心概念包括数据、表格、字段、记录和主键等。<br></p>
@@ -607,23 +783,69 @@ $ .exit//退出sqlite3数据库
       </tags>
   </entry>
   <entry>
-    <title>初来乍到</title>
-    <url>/2023/09/17/00-1/</url>
-    <content><![CDATA[<p>写在开始…<br><br>初入职场，受组长凯哥影响，想要搭建自己的技术博客，于是有了这篇…<br><br>本人博客传送门：<a href="https://wzy012.github.io/">https://wzy012.github.io/</a> <br></p>
-<p>2023.6.19 从SDU毕业<br><br>2023.8.3 入职byd<br><br>开始了自己的菜鸟<del>打工</del>（成长）生涯<br><br>从事智驾开发工作<br><br>作为一个7年的自动化<del>不</del>专业学生<br><br>进入了一个纯软的技术赛道<br><br>其实还是很有压力的<br><br>但同时感觉充满了兴奋与挑战<br><br>开个人博客的初衷是：<br></p>
+    <title>数据结构基础知识</title>
+    <url>/2023/09/20/04-datastructure/</url>
+    <content><![CDATA[<h3 id="3-数据结构"><a href="#3-数据结构" class="headerlink" title="3.数据结构"></a>3.数据结构</h3><h4 id="3-1-前言"><a href="#3-1-前言" class="headerlink" title="3.1 前言"></a>3.1 前言</h4><p>数据结构是为实现对计算机数据有效使用的各种数据组织形式，服务于各类计算机操作。不同的数据结构具有各自对应的适用场景，旨在降低各种算法计算的时间与空间复杂度，达到最佳的任务执行效率。</p>
+<h4 id="3-2-数组"><a href="#3-2-数组" class="headerlink" title="3.2 数组"></a>3.2 数组</h4><p>固定数组和可变数组</p>
+<h4 id="3-3-链表"><a href="#3-3-链表" class="headerlink" title="3.3 链表"></a>3.3 链表</h4><p>链表以节点为单位，每个元素都是一个独立对象，在内存中的存储空间是非连续的。链表的节点对象具有两个成员变量：「值 <code>val</code>」，「后继节点引用 <code>next</code>」 。</p>
+<pre class=" language-cpp"><code class="language-cpp"><span class="token keyword">struct</span> ListNode<span class="token punctuation">{</span>
+    <span class="token keyword">int</span> val<span class="token punctuation">;</span>
+    ListNode <span class="token operator">*</span>next<span class="token punctuation">;</span>
+    <span class="token function">ListNode</span><span class="token punctuation">(</span><span class="token keyword">int</span> x<span class="token punctuation">)</span> <span class="token operator">:</span> <span class="token function">val</span><span class="token punctuation">(</span>x<span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token function">next</span><span class="token punctuation">(</span><span class="token constant">NULL</span><span class="token punctuation">)</span> <span class="token punctuation">{</span><span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+</code></pre>
+<h4 id="3-4-栈"><a href="#3-4-栈" class="headerlink" title="3.4 栈"></a>3.4 栈</h4><p>栈是一种具有 「先入后出」 特点的抽象数据结构，可使用<strong>数组</strong>或<strong>链表</strong>实现</p>
+<pre class=" language-cpp"><code class="language-cpp">stack<span class="token operator">&lt;</span>T<span class="token operator">></span> stk<span class="token punctuation">;</span>
+</code></pre>
+<h4 id="3-5-队列"><a href="#3-5-队列" class="headerlink" title="3.5 队列"></a>3.5 队列</h4><p>队列是一种具有 「先入先出」 特点的抽象数据结构，可使用<strong>链表</strong>实现。</p>
+<pre class=" language-cpp"><code class="language-cpp">queue<span class="token operator">&lt;</span>T<span class="token operator">></span> que<span class="token punctuation">;</span>
+</code></pre>
+<h4 id="3-6-树"><a href="#3-6-树" class="headerlink" title="3.6 树"></a>3.6 树</h4><p>树是一种非线性数据结构，根据子节点数量可分为 「二叉树」 和 「多叉树」，最顶层的节点称为「根节点 root」。以二叉树为例，每个节点包含三个成员变量：「值 val」、「左子节点 left」、「右子节点 right」 。</p>
+<pre class=" language-cpp"><code class="language-cpp"><span class="token keyword">struct</span> TreeNode<span class="token punctuation">{</span>
+    <span class="token keyword">int</span> val<span class="token punctuation">;</span>
+    TreeNode <span class="token operator">*</span>left<span class="token punctuation">;</span>
+    TreeNode <span class="token operator">*</span>right<span class="token punctuation">;</span>
+    <span class="token function">TreeNode</span><span class="token punctuation">(</span><span class="token keyword">int</span> x<span class="token punctuation">)</span> <span class="token operator">:</span> <span class="token function">val</span><span class="token punctuation">(</span>x<span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token function">left</span><span class="token punctuation">(</span><span class="token constant">NULL</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token function">right</span><span class="token punctuation">(</span><span class="token constant">NULL</span><span class="token punctuation">)</span><span class="token punctuation">{</span><span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+</code></pre>
+<p>构建二叉树示例：</p>
+<pre class=" language-cpp"><code class="language-cpp"><span class="token comment" spellcheck="true">//初始化节点</span>
+TreeNode <span class="token operator">*</span>n1 <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token function">TreeNode</span><span class="token punctuation">(</span><span class="token number">3</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// root</span>
+TreeNode <span class="token operator">*</span>n2 <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token function">TreeNode</span><span class="token punctuation">(</span><span class="token number">4</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+TreeNode <span class="token operator">*</span>n3 <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token function">TreeNode</span><span class="token punctuation">(</span><span class="token number">5</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+TreeNode <span class="token operator">*</span>n4 <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token function">TreeNode</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+TreeNode <span class="token operator">*</span>n5 <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token function">TreeNode</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment" spellcheck="true">//构建引用指向</span>
+n1<span class="token operator">-</span><span class="token operator">></span>left <span class="token operator">=</span> n2<span class="token punctuation">;</span>
+n1<span class="token operator">-</span><span class="token operator">></span>right <span class="token operator">=</span> n3<span class="token punctuation">;</span>
+n2<span class="token operator">-</span><span class="token operator">></span>left <span class="token operator">=</span> n4<span class="token punctuation">;</span>
+n2<span class="token operator">-</span><span class="token operator">></span>right <span class="token operator">=</span> n5<span class="token punctuation">;</span>
+</code></pre>
+<h4 id="3-7-图"><a href="#3-7-图" class="headerlink" title="3.7 图"></a>3.7 图</h4><p>图是一种非线性数据结构，由「节点（顶点）<code>vertex</code>」和「边 <code>edge</code>」组成，每条边连接一对顶点。根据边的方向有无，图可分为「有向图」和「无向图」。</p>
+<p><strong>以无向图为例</strong> 开展介绍，无向图的 <strong>顶点</strong> 和 <strong>边</strong> 集合分别为：</p>
 <ul>
-<li>记录自己学习各个技术的过程，形成文档以备查漏补缺；<br></li>
-<li>如果有幸被需要的人看到，也是分享的意义</li>
+<li>顶点集合：<code>vertices = &#123;1, 2, 3, 4, 5&#125;</code></li>
+<li>边集合：<code>edges = &#123;(1, 2), (1, 3), (1, 4), (1, 5), (2,4), (3,5), (4,5)&#125;</code></li>
 </ul>
-<p>希望自己坚持学习，一点一点进步，争取成为一名技术<del>大</del>小佬！</p>
-<p>最后附：<br><br>    Hexo + Github + Git 的博客搭建方案链接：<a href="https://yushuaigee.gitee.io/archives/">https://yushuaigee.gitee.io/archives/</a><br><br>    vscode + PicGo + Markdown All in one 的配置链接：<a href="https://blog.csdn.net/qq_35621494/article/details/106432399">https://blog.csdn.net/qq_35621494/article/details/106432399</a><br></p>
-<p>本人使用的是：vscode + Hexo + Github + Git + PicGO + Markdown All in one 的实现方案。</p>
+<p><strong>表示图</strong>的方法通常有两种：</p>
+<p>1.<strong>邻接矩阵</strong>：使用数组vertices存储顶点，邻接矩阵edges存储边；<code>edges[i][j]</code>代表节点<code>i+1</code>和节点<code>j+1</code>之间是否有边。</p>
+<pre class=" language-cpp"><code class="language-cpp"><span class="token keyword">int</span> vertices<span class="token punctuation">[</span><span class="token number">5</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">,</span> <span class="token number">4</span><span class="token punctuation">,</span> <span class="token number">5</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
+<span class="token keyword">int</span> edges<span class="token punctuation">[</span><span class="token number">5</span><span class="token punctuation">]</span><span class="token punctuation">[</span><span class="token number">5</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token punctuation">{</span><span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
+                   <span class="token punctuation">{</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
+                   <span class="token punctuation">{</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
+                   <span class="token punctuation">{</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
+                   <span class="token punctuation">{</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">}</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
+</code></pre>
+<p>2.<strong>邻接表</strong>：使用数组vertices存储顶点，邻接矩阵edges存储边。第一维<code>i</code>代表顶点索引，第二维edges[i]存储此顶点对应的边集合。</p>
+<p>邻接矩阵 VS 邻接表 ：</p>
+<p>邻接矩阵的大小只与节点数量有关，即 N^2  ，其中 N 为节点数量。因此，当边数量明显少于节点数量时，使用邻接矩阵存储图会造成较大的内存浪费。<br>因此，邻接表 适合存储稀疏图（顶点较多、边较少）； 邻接矩阵 适合存储稠密图（顶点较少、边较多）。</p>
 ]]></content>
       <categories>
-        <category>个人成长</category>
+        <category>数据结构与算法</category>
       </categories>
       <tags>
-        <tag>关于本人</tag>
+        <tag>基础知识</tag>
       </tags>
   </entry>
   <entry>
@@ -672,228 +894,6 @@ $ .exit//退出sqlite3数据库
       </categories>
       <tags>
         <tag>UML</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>sqlite性能测试</title>
-    <url>/2023/09/20/03-sqlite-performancetest/</url>
-    <content><![CDATA[<p><strong>SQLite执行SQL语句有两种方式</strong>：<br><br>(1) 开启事务：使用函数<code>sqlite3_exec()</code>，该函数直接调用包含SQL语句的字符串，对循环中每一句SQL语句进行“词法分析”和“语法分析”；<br></p>
-<ul>
-<li>事务“就是指一组<code>SQL</code>命令，这些命令要么一起执行，要么都不被执行。<br></li>
-<li>隐式开启事务：每调用一次<code>sqlite3_exec()</code>函数，就会隐式地开启了一个事务，如果插入一条数据，就调用该函数一次，事务就会被反复地开启、关闭，会增大IO量。<br></li>
-<li>显式开启事务：如果在插入数据前显式开启事务，插入后再一起提交，则会大大提高<code>IO</code>效率，进而加数据快插入速度。<br><br>  【显示开始事务效率高】<br></li>
-</ul>
-<p>(2) 执行准备操作：使用函数<code>sqlite3_prepare_v2()</code>，有三个步骤：<br></p>
-<ul>
-<li>声明一个指向<code>sqlite3_stmt</code>对象的指针，该函数对参数化的SQL语句进行编译，将编译后的状态存入<code>stmt</code>中。<br></li>
-<li>调用函数 <code>sqlite3_step()</code>，这个函数就是执行一步（本例中就是插入一行），如果函数返回的是<code>SQLite_ROW</code>则说明仍在继续执行，否则则说明已经执行完所有操作。<br></li>
-<li>调用函数 <code>sqlite3_finalize()</code>，关闭语句。<br><br>   【执行准备操作效率高】</li>
-</ul>
-<p><strong>关闭写同步</strong>：<code>sqlite3_exec(db,&quot;PRAGMA synchronous = OFF; &quot;,0,0,0);</code>  <br></p>
-<p>(1) 在<code>SQLite</code>中，数据库配置的参数都由编译指示<code>（pragma）</code>来实现的。<br></p>
-<p>(2) <code>synchronous</code>选项有三种可选状态，分别是<code>full、normal、off</code>。<br></p>
-<ul>
-<li>当<code>synchronous</code>设置为<code>FULL,SQLite</code>数据库引擎在紧急时刻会暂停以确定数据已经写入磁盘。这使系统崩溃或电源出问题时能确保数据库在重起后不会损坏。<code>FULL synchronous</code>很安全但很慢。<br></li>
-<li>当<code>synchronous</code>设置为<code>NORMAL, SQLite</code>数据库引擎在大部分紧急时刻会暂停，但不像<code>FULL</code>模式下那么频繁。<code> NORMAL</code>模式下有很小的几率(但不是不存在)发生电源故障导致数据库损坏的情况。<br></li>
-<li>当<code>synchronous</code>设置<code>OFF</code>时，<code>SQLite</code>在传递数据给系统以后直接继续而不暂停。<code>off</code>可以加速数据库的一些操作，但如果系统崩溃或断电，则数据库可能会损毁。<br></li>
-</ul>
-<p>(3) <code>SQLite3</code>中，该选项的默认值就是<code>full</code>，如果我们再插入数据前将其改为off，则会提高效率。如果仅仅将<code>SQLite</code>当做一种临时数据库的话，完全没必要设置为<code>full</code>。<br></p>
-<p><strong>总结</strong>:<br><br>1.显示开启事务效率更高；<br><br>2.如果使用<strong>执行准备操作</strong>,配合<strong>关闭写同步</strong>效率更高。<br></p>
-<p>以以下为测试代码：<br></p>
-<pre class=" language-cpp"><code class="language-cpp"><span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;iostream></span></span>
-<span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;sqlite3.h></span></span>
-<span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;chrono></span></span>
-
-<span class="token keyword">using</span> <span class="token keyword">namespace</span> std<span class="token punctuation">;</span>
-
-
-<span class="token keyword">void</span> <span class="token function">testInsertPerformance_prepare</span><span class="token punctuation">(</span>sqlite3<span class="token operator">*</span> db<span class="token punctuation">,</span> <span class="token keyword">int</span> numRecords<span class="token punctuation">)</span> <span class="token comment" spellcheck="true">//执行准备操作</span>
-<span class="token punctuation">{</span>
-    std<span class="token operator">::</span>string query <span class="token operator">=</span> <span class="token string">"INSERT INTO your_table_name (column1, column2) VALUES (?, ?)"</span><span class="token punctuation">;</span>
-    sqlite3_stmt<span class="token operator">*</span> stmt<span class="token punctuation">;</span>
-
-    <span class="token keyword">auto</span> start <span class="token operator">=</span> std<span class="token operator">::</span>chrono<span class="token operator">::</span>high_resolution_clock<span class="token operator">::</span><span class="token function">now</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-
-    <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> numRecords<span class="token punctuation">;</span> <span class="token operator">++</span>i<span class="token punctuation">)</span> 
-    <span class="token punctuation">{</span>
-        <span class="token keyword">int</span> value1 <span class="token operator">=</span> i<span class="token punctuation">;</span>
-        <span class="token keyword">int</span> value2 <span class="token operator">=</span> i <span class="token operator">*</span> <span class="token number">2</span><span class="token punctuation">;</span>
-
-        <span class="token function">sqlite3_prepare_v2</span><span class="token punctuation">(</span>db<span class="token punctuation">,</span> query<span class="token punctuation">.</span><span class="token function">c_str</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token operator">&amp;</span>stmt<span class="token punctuation">,</span> <span class="token keyword">nullptr</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token function">sqlite3_bind_int</span><span class="token punctuation">(</span>stmt<span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">,</span> value1<span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token function">sqlite3_bind_int</span><span class="token punctuation">(</span>stmt<span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">,</span> value2<span class="token punctuation">)</span><span class="token punctuation">;</span>
-
-        <span class="token function">sqlite3_step</span><span class="token punctuation">(</span>stmt<span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token function">sqlite3_finalize</span><span class="token punctuation">(</span>stmt<span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-
-    <span class="token keyword">auto</span> end <span class="token operator">=</span> std<span class="token operator">::</span>chrono<span class="token operator">::</span>high_resolution_clock<span class="token operator">::</span><span class="token function">now</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    std<span class="token operator">::</span>chrono<span class="token operator">::</span>duration<span class="token operator">&lt;</span><span class="token keyword">double</span><span class="token operator">></span> duration <span class="token operator">=</span> end <span class="token operator">-</span> start<span class="token punctuation">;</span>
-
-    std<span class="token operator">::</span>cout <span class="token operator">&lt;&lt;</span> <span class="token string">"prepare: Time taken for "</span> <span class="token operator">&lt;&lt;</span> numRecords <span class="token operator">&lt;&lt;</span> <span class="token string">" inserts: "</span> <span class="token operator">&lt;&lt;</span> duration<span class="token punctuation">.</span><span class="token function">count</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">&lt;&lt;</span> <span class="token string">" seconds."</span> <span class="token operator">&lt;&lt;</span> std<span class="token operator">::</span>endl<span class="token punctuation">;</span>
-<span class="token punctuation">}</span>
-
-<span class="token keyword">void</span> <span class="token function">testInsertPerformance_exec_a</span><span class="token punctuation">(</span>sqlite3<span class="token operator">*</span> db<span class="token punctuation">,</span> <span class="token keyword">int</span> numRecords<span class="token punctuation">)</span> <span class="token comment" spellcheck="true">//隐式事务</span>
-<span class="token punctuation">{</span>
-
-    <span class="token function">sqlite3_exec</span><span class="token punctuation">(</span>db<span class="token punctuation">,</span> <span class="token string">"CREATE TABLE Test(ID INTEGER,var INTEGER);"</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-
-    <span class="token keyword">auto</span> start <span class="token operator">=</span> std<span class="token operator">::</span>chrono<span class="token operator">::</span>high_resolution_clock<span class="token operator">::</span><span class="token function">now</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> numRecords<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span> 
-    <span class="token punctuation">{</span>
-        <span class="token function">sqlite3_exec</span><span class="token punctuation">(</span>db<span class="token punctuation">,</span> <span class="token string">"INSERT INTO Test (ID, var) VALUES (0, 1);"</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-
-    <span class="token keyword">auto</span> end <span class="token operator">=</span> std<span class="token operator">::</span>chrono<span class="token operator">::</span>high_resolution_clock<span class="token operator">::</span><span class="token function">now</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    std<span class="token operator">::</span>chrono<span class="token operator">::</span>duration<span class="token operator">&lt;</span><span class="token keyword">double</span><span class="token operator">></span> duration <span class="token operator">=</span> end <span class="token operator">-</span> start<span class="token punctuation">;</span>
-
-    std<span class="token operator">::</span>cout <span class="token operator">&lt;&lt;</span> <span class="token string">"exec_a: Time taken for "</span> <span class="token operator">&lt;&lt;</span> numRecords <span class="token operator">&lt;&lt;</span> <span class="token string">" inserts: "</span> <span class="token operator">&lt;&lt;</span> duration<span class="token punctuation">.</span><span class="token function">count</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">&lt;&lt;</span> <span class="token string">" seconds."</span> <span class="token operator">&lt;&lt;</span> std<span class="token operator">::</span>endl<span class="token punctuation">;</span>
-<span class="token punctuation">}</span>
-
-<span class="token keyword">void</span> <span class="token function">testInsertPerformance_exec_b</span><span class="token punctuation">(</span>sqlite3<span class="token operator">*</span> db<span class="token punctuation">,</span> <span class="token keyword">int</span> numRecords<span class="token punctuation">)</span>  <span class="token comment" spellcheck="true">//开启显式事务</span>
-<span class="token punctuation">{</span>
-
-    <span class="token function">sqlite3_exec</span><span class="token punctuation">(</span>db<span class="token punctuation">,</span> <span class="token string">"BEGIN"</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token function">sqlite3_exec</span><span class="token punctuation">(</span>db<span class="token punctuation">,</span> <span class="token string">"CREATE TABLE Test(ID INTEGER,var INTEGER);"</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-
-    <span class="token keyword">auto</span> start <span class="token operator">=</span> std<span class="token operator">::</span>chrono<span class="token operator">::</span>high_resolution_clock<span class="token operator">::</span><span class="token function">now</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> numRecords<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span> 
-    <span class="token punctuation">{</span>
-        <span class="token function">sqlite3_exec</span><span class="token punctuation">(</span>db<span class="token punctuation">,</span> <span class="token string">"INSERT INTO Test (ID, var) VALUES (0, 1);"</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-    <span class="token function">sqlite3_exec</span><span class="token punctuation">(</span>db<span class="token punctuation">,</span> <span class="token string">"COMMIT"</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token keyword">auto</span> end <span class="token operator">=</span> std<span class="token operator">::</span>chrono<span class="token operator">::</span>high_resolution_clock<span class="token operator">::</span><span class="token function">now</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    std<span class="token operator">::</span>chrono<span class="token operator">::</span>duration<span class="token operator">&lt;</span><span class="token keyword">double</span><span class="token operator">></span> duration <span class="token operator">=</span> end <span class="token operator">-</span> start<span class="token punctuation">;</span>
-
-    std<span class="token operator">::</span>cout <span class="token operator">&lt;&lt;</span> <span class="token string">"exec_b: Time taken for "</span> <span class="token operator">&lt;&lt;</span> numRecords <span class="token operator">&lt;&lt;</span> <span class="token string">" inserts: "</span> <span class="token operator">&lt;&lt;</span> duration<span class="token punctuation">.</span><span class="token function">count</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">&lt;&lt;</span> <span class="token string">" seconds."</span> <span class="token operator">&lt;&lt;</span> std<span class="token operator">::</span>endl<span class="token punctuation">;</span>
-<span class="token punctuation">}</span>
-
-<span class="token keyword">void</span> <span class="token function">testInsertPerformance_exec_b_off</span><span class="token punctuation">(</span>sqlite3<span class="token operator">*</span> db<span class="token punctuation">,</span> <span class="token keyword">int</span> numRecords<span class="token punctuation">)</span> <span class="token comment" spellcheck="true">//是否关闭写同步 + 执行显式事务</span>
-<span class="token punctuation">{</span>
-    
-    <span class="token function">sqlite3_exec</span><span class="token punctuation">(</span>db<span class="token punctuation">,</span><span class="token string">"PRAGMA synchronous = OFF; "</span><span class="token punctuation">,</span><span class="token number">0</span><span class="token punctuation">,</span><span class="token number">0</span><span class="token punctuation">,</span><span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  
-    <span class="token function">sqlite3_exec</span><span class="token punctuation">(</span>db<span class="token punctuation">,</span> <span class="token string">"BEGIN"</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token function">sqlite3_exec</span><span class="token punctuation">(</span>db<span class="token punctuation">,</span> <span class="token string">"CREATE TABLE Test(ID INTEGER,var INTEGER);"</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-
-    <span class="token keyword">auto</span> start <span class="token operator">=</span> std<span class="token operator">::</span>chrono<span class="token operator">::</span>high_resolution_clock<span class="token operator">::</span><span class="token function">now</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> numRecords<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span> 
-    <span class="token punctuation">{</span>
-        <span class="token function">sqlite3_exec</span><span class="token punctuation">(</span>db<span class="token punctuation">,</span> <span class="token string">"INSERT INTO Test (ID, var) VALUES (0, 1);"</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-    <span class="token function">sqlite3_exec</span><span class="token punctuation">(</span>db<span class="token punctuation">,</span> <span class="token string">"COMMIT"</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token keyword">auto</span> end <span class="token operator">=</span> std<span class="token operator">::</span>chrono<span class="token operator">::</span>high_resolution_clock<span class="token operator">::</span><span class="token function">now</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    std<span class="token operator">::</span>chrono<span class="token operator">::</span>duration<span class="token operator">&lt;</span><span class="token keyword">double</span><span class="token operator">></span> duration <span class="token operator">=</span> end <span class="token operator">-</span> start<span class="token punctuation">;</span>
-
-    std<span class="token operator">::</span>cout <span class="token operator">&lt;&lt;</span> <span class="token string">"exec_b_off: Time taken for "</span> <span class="token operator">&lt;&lt;</span> numRecords <span class="token operator">&lt;&lt;</span> <span class="token string">" inserts: "</span> <span class="token operator">&lt;&lt;</span> duration<span class="token punctuation">.</span><span class="token function">count</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">&lt;&lt;</span> <span class="token string">" seconds."</span> <span class="token operator">&lt;&lt;</span> std<span class="token operator">::</span>endl<span class="token punctuation">;</span>
-<span class="token punctuation">}</span>
-
-<span class="token keyword">void</span> <span class="token function">testInsertPerformance_al</span><span class="token punctuation">(</span>sqlite3<span class="token operator">*</span> db<span class="token punctuation">,</span> <span class="token keyword">int</span> numRecords<span class="token punctuation">)</span> <span class="token comment" spellcheck="true">//关闭写同步 + 开始显式事务 + 执行准备操作</span>
-<span class="token punctuation">{</span>
-    
-
-    <span class="token function">sqlite3_exec</span><span class="token punctuation">(</span>db<span class="token punctuation">,</span><span class="token string">"PRAGMA synchronous = OFF; "</span><span class="token punctuation">,</span><span class="token number">0</span><span class="token punctuation">,</span><span class="token number">0</span><span class="token punctuation">,</span><span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  
-    <span class="token comment" spellcheck="true">//sqlite3_exec(db, "BEGIN", 0, 0, 0);</span>
-    std<span class="token operator">::</span>string query <span class="token operator">=</span> <span class="token string">"INSERT INTO your_table_name (column1, column2) VALUES (?, ?)"</span><span class="token punctuation">;</span>
-    sqlite3_stmt<span class="token operator">*</span> stmt<span class="token punctuation">;</span>
-
-    <span class="token keyword">auto</span> start <span class="token operator">=</span> std<span class="token operator">::</span>chrono<span class="token operator">::</span>high_resolution_clock<span class="token operator">::</span><span class="token function">now</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> numRecords<span class="token punctuation">;</span> <span class="token operator">++</span>i<span class="token punctuation">)</span> 
-    <span class="token punctuation">{</span>
-        <span class="token keyword">int</span> value1 <span class="token operator">=</span> i<span class="token punctuation">;</span>
-        <span class="token keyword">int</span> value2 <span class="token operator">=</span> i <span class="token operator">*</span> <span class="token number">2</span><span class="token punctuation">;</span>
-
-        <span class="token function">sqlite3_prepare_v2</span><span class="token punctuation">(</span>db<span class="token punctuation">,</span> query<span class="token punctuation">.</span><span class="token function">c_str</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token operator">&amp;</span>stmt<span class="token punctuation">,</span> <span class="token keyword">nullptr</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token function">sqlite3_bind_int</span><span class="token punctuation">(</span>stmt<span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">,</span> value1<span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token function">sqlite3_bind_int</span><span class="token punctuation">(</span>stmt<span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">,</span> value2<span class="token punctuation">)</span><span class="token punctuation">;</span>
-
-        <span class="token function">sqlite3_step</span><span class="token punctuation">(</span>stmt<span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token function">sqlite3_finalize</span><span class="token punctuation">(</span>stmt<span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-
-    <span class="token comment" spellcheck="true">//sqlite3_exec(db, "COMMIT", 0, 0, 0);</span>
-    <span class="token keyword">auto</span> end <span class="token operator">=</span> std<span class="token operator">::</span>chrono<span class="token operator">::</span>high_resolution_clock<span class="token operator">::</span><span class="token function">now</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    std<span class="token operator">::</span>chrono<span class="token operator">::</span>duration<span class="token operator">&lt;</span><span class="token keyword">double</span><span class="token operator">></span> duration <span class="token operator">=</span> end <span class="token operator">-</span> start<span class="token punctuation">;</span>
-
-    std<span class="token operator">::</span>cout <span class="token operator">&lt;&lt;</span> <span class="token string">"exec_b_off: Time taken for "</span> <span class="token operator">&lt;&lt;</span> numRecords <span class="token operator">&lt;&lt;</span> <span class="token string">" inserts: "</span> <span class="token operator">&lt;&lt;</span> duration<span class="token punctuation">.</span><span class="token function">count</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">&lt;&lt;</span> <span class="token string">" seconds."</span> <span class="token operator">&lt;&lt;</span> std<span class="token operator">::</span>endl<span class="token punctuation">;</span>
-<span class="token punctuation">}</span>
-
-<span class="token keyword">void</span> <span class="token function">testInsertPerformance_all</span><span class="token punctuation">(</span>sqlite3<span class="token operator">*</span> db<span class="token punctuation">,</span> <span class="token keyword">int</span> numRecords<span class="token punctuation">)</span> <span class="token comment" spellcheck="true">//关闭写同步 + 开始显式事务 + 执行准备操作</span>
-<span class="token punctuation">{</span>
-    
-
-    <span class="token function">sqlite3_exec</span><span class="token punctuation">(</span>db<span class="token punctuation">,</span><span class="token string">"PRAGMA synchronous = OFF; "</span><span class="token punctuation">,</span><span class="token number">0</span><span class="token punctuation">,</span><span class="token number">0</span><span class="token punctuation">,</span><span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  
-    <span class="token function">sqlite3_exec</span><span class="token punctuation">(</span>db<span class="token punctuation">,</span> <span class="token string">"BEGIN"</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    std<span class="token operator">::</span>string query <span class="token operator">=</span> <span class="token string">"INSERT INTO your_table_name (column1, column2) VALUES (?, ?)"</span><span class="token punctuation">;</span>
-    sqlite3_stmt<span class="token operator">*</span> stmt<span class="token punctuation">;</span>
-
-    <span class="token keyword">auto</span> start <span class="token operator">=</span> std<span class="token operator">::</span>chrono<span class="token operator">::</span>high_resolution_clock<span class="token operator">::</span><span class="token function">now</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> numRecords<span class="token punctuation">;</span> <span class="token operator">++</span>i<span class="token punctuation">)</span> 
-    <span class="token punctuation">{</span>
-        <span class="token keyword">int</span> value1 <span class="token operator">=</span> i<span class="token punctuation">;</span>
-        <span class="token keyword">int</span> value2 <span class="token operator">=</span> i <span class="token operator">*</span> <span class="token number">2</span><span class="token punctuation">;</span>
-
-        <span class="token function">sqlite3_prepare_v2</span><span class="token punctuation">(</span>db<span class="token punctuation">,</span> query<span class="token punctuation">.</span><span class="token function">c_str</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token operator">&amp;</span>stmt<span class="token punctuation">,</span> <span class="token keyword">nullptr</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token function">sqlite3_bind_int</span><span class="token punctuation">(</span>stmt<span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">,</span> value1<span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token function">sqlite3_bind_int</span><span class="token punctuation">(</span>stmt<span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">,</span> value2<span class="token punctuation">)</span><span class="token punctuation">;</span>
-
-        <span class="token function">sqlite3_step</span><span class="token punctuation">(</span>stmt<span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token function">sqlite3_finalize</span><span class="token punctuation">(</span>stmt<span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-
-    <span class="token function">sqlite3_exec</span><span class="token punctuation">(</span>db<span class="token punctuation">,</span> <span class="token string">"COMMIT"</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token keyword">auto</span> end <span class="token operator">=</span> std<span class="token operator">::</span>chrono<span class="token operator">::</span>high_resolution_clock<span class="token operator">::</span><span class="token function">now</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    std<span class="token operator">::</span>chrono<span class="token operator">::</span>duration<span class="token operator">&lt;</span><span class="token keyword">double</span><span class="token operator">></span> duration <span class="token operator">=</span> end <span class="token operator">-</span> start<span class="token punctuation">;</span>
-
-    std<span class="token operator">::</span>cout <span class="token operator">&lt;&lt;</span> <span class="token string">"exec_b_off: Time taken for "</span> <span class="token operator">&lt;&lt;</span> numRecords <span class="token operator">&lt;&lt;</span> <span class="token string">" inserts: "</span> <span class="token operator">&lt;&lt;</span> duration<span class="token punctuation">.</span><span class="token function">count</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">&lt;&lt;</span> <span class="token string">" seconds."</span> <span class="token operator">&lt;&lt;</span> std<span class="token operator">::</span>endl<span class="token punctuation">;</span>
-<span class="token punctuation">}</span>
-
-
-<span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span> 
-<span class="token punctuation">{</span>
-    sqlite3<span class="token operator">*</span> db<span class="token punctuation">;</span>
-    <span class="token comment" spellcheck="true">//内存模式</span>
-    <span class="token comment" spellcheck="true">//int rc = sqlite3_open(":memory:", &amp;db);</span>
-    <span class="token comment" spellcheck="true">//磁盘模式</span>
-    <span class="token keyword">int</span> rc <span class="token operator">=</span> <span class="token function">sqlite3_open</span><span class="token punctuation">(</span><span class="token string">"/home/idc/TCP/db/mydatabase.db"</span><span class="token punctuation">,</span> <span class="token operator">&amp;</span>db<span class="token punctuation">)</span><span class="token punctuation">;</span>
-
-    <span class="token keyword">if</span> <span class="token punctuation">(</span>rc <span class="token operator">!=</span> SQLITE_OK<span class="token punctuation">)</span> 
-    <span class="token punctuation">{</span>
-        std<span class="token operator">::</span>cerr <span class="token operator">&lt;&lt;</span> <span class="token string">"Cannot open database: "</span> <span class="token operator">&lt;&lt;</span> <span class="token function">sqlite3_errmsg</span><span class="token punctuation">(</span>db<span class="token punctuation">)</span> <span class="token operator">&lt;&lt;</span> std<span class="token operator">::</span>endl<span class="token punctuation">;</span>
-        <span class="token keyword">return</span> <span class="token number">1</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-
-    <span class="token comment" spellcheck="true">// Perform performance tests</span>
-    <span class="token keyword">int</span> numRecords <span class="token operator">=</span> <span class="token number">10000</span><span class="token punctuation">;</span>  <span class="token comment" spellcheck="true">// Adjust the number of records as needed</span>
-
-    cout <span class="token operator">&lt;&lt;</span> <span class="token string">"准备执行运行时间： "</span> <span class="token operator">&lt;&lt;</span> endl<span class="token punctuation">;</span>
-    <span class="token function">testInsertPerformance_prepare</span><span class="token punctuation">(</span>db<span class="token punctuation">,</span> numRecords<span class="token punctuation">)</span><span class="token punctuation">;</span>
-
-    cout <span class="token operator">&lt;&lt;</span> <span class="token string">"显式开启事务运行时间： "</span> <span class="token operator">&lt;&lt;</span> endl<span class="token punctuation">;</span>
-    <span class="token function">testInsertPerformance_exec_b</span><span class="token punctuation">(</span>db<span class="token punctuation">,</span> numRecords<span class="token punctuation">)</span><span class="token punctuation">;</span>
-
-    cout <span class="token operator">&lt;&lt;</span> <span class="token string">"隐式开启事务运行时间： "</span> <span class="token operator">&lt;&lt;</span> endl<span class="token punctuation">;</span>
-    <span class="token function">testInsertPerformance_exec_a</span><span class="token punctuation">(</span>db<span class="token punctuation">,</span> numRecords<span class="token punctuation">)</span><span class="token punctuation">;</span>
-
-    cout <span class="token operator">&lt;&lt;</span> <span class="token string">"显式开启事务 + 关闭写同步 运行时间： "</span> <span class="token operator">&lt;&lt;</span> endl<span class="token punctuation">;</span>
-    <span class="token function">testInsertPerformance_exec_b_off</span><span class="token punctuation">(</span>db<span class="token punctuation">,</span> numRecords<span class="token punctuation">)</span><span class="token punctuation">;</span>
-
-    
-    cout <span class="token operator">&lt;&lt;</span> <span class="token string">"准备执行 + 关闭写同步： "</span> <span class="token operator">&lt;&lt;</span> endl<span class="token punctuation">;</span>
-    <span class="token function">testInsertPerformance_al</span><span class="token punctuation">(</span>db<span class="token punctuation">,</span> numRecords<span class="token punctuation">)</span><span class="token punctuation">;</span>
-
-    cout <span class="token operator">&lt;&lt;</span> <span class="token string">"显式开启事务 + 关闭写同步 + 准备执行 运行时间： "</span> <span class="token operator">&lt;&lt;</span> endl<span class="token punctuation">;</span>
-    <span class="token function">testInsertPerformance_all</span><span class="token punctuation">(</span>db<span class="token punctuation">,</span> numRecords<span class="token punctuation">)</span><span class="token punctuation">;</span>
-   
-    <span class="token function">sqlite3_close</span><span class="token punctuation">(</span>db<span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
-<span class="token punctuation">}</span>
-</code></pre>
-]]></content>
-      <categories>
-        <category>数据库</category>
-      </categories>
-      <tags>
-        <tag>sqlite3</tag>
       </tags>
   </entry>
 </search>
