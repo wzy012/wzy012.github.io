@@ -475,7 +475,8 @@
 <span class="token comment" spellcheck="true">// 减小规则</span>
 h <span class="token operator">=</span> h <span class="token operator">/</span> <span class="token number">2</span><span class="token punctuation">;</span>
 </code></pre>
-<h4 id="2-4-2-代码实现-核心代码"><a href="#2-4-2-代码实现-核心代码" class="headerlink" title="2.4.2 代码实现&#x2F;核心代码"></a>2.4.2 代码实现&#x2F;核心代码</h4><pre class=" language-cpp"><code class="language-cpp"><span class="token keyword">void</span> <span class="token function">shell_sort</span><span class="token punctuation">(</span>T arr<span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">,</span> <span class="token keyword">int</span> len<span class="token punctuation">)</span>
+<h4 id="2-4-2-代码实现-核心代码"><a href="#2-4-2-代码实现-核心代码" class="headerlink" title="2.4.2 代码实现&#x2F;核心代码"></a>2.4.2 代码实现&#x2F;核心代码</h4><pre class=" language-cpp"><code class="language-cpp"><span class="token keyword">template</span><span class="token operator">&lt;</span><span class="token keyword">typename</span> T<span class="token operator">></span>
+<span class="token keyword">void</span> <span class="token function">shell_sort</span><span class="token punctuation">(</span>T arr<span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">,</span> <span class="token keyword">int</span> len<span class="token punctuation">)</span>
 <span class="token punctuation">{</span>
     <span class="token comment" spellcheck="true">// 1.根据数组长度确定增长量h的初始值</span>
     <span class="token keyword">int</span> h <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span>
@@ -526,8 +527,69 @@ h <span class="token operator">=</span> h <span class="token operator">/</span> 
     <span class="token keyword">return</span> <span class="token function">factorial</span><span class="token punctuation">(</span>n<span class="token number">-1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span class="token punctuation">}</span>
 </code></pre>
-<h4 id="2-5-1-算法步骤-原理"><a href="#2-5-1-算法步骤-原理" class="headerlink" title="2.5.1 算法步骤&#x2F;原理"></a>2.5.1 算法步骤&#x2F;原理</h4><p>(1) 尽可能的一组数据拆分成两个元素相等的子组，并对每一个子组继续拆分，直到拆分后的每个子组的元素个数是1为止；<br><br>(2) 将相邻的两个子组进行合并成一个有序的大组；<br><br>(3) 不断地重复步骤2，直到最终只有一个组为止。<br><br>ps:该算法采用分治法<br><br><img src="https://cdn.jsdelivr.net/gh/wzy012/myblogPicBed@master/image/20230920215644.png" alt="20230920215644"><br><br>具体过程：<br><br><img src="https://cdn.jsdelivr.net/gh/wzy012/myblogPicBed@master/image/20230920223650.png" alt="20230920223650"><br><img src="https://cdn.jsdelivr.net/gh/wzy012/myblogPicBed@master/image/20230920223732.png" alt="20230920223732"><br><img src="https://cdn.jsdelivr.net/gh/wzy012/myblogPicBed@master/image/20230920223619.png" alt="20230920223619"><br><img src="https://cdn.jsdelivr.net/gh/wzy012/myblogPicBed@master/image/20230920224044.png" alt="20230920224044"><br><img src="https://cdn.jsdelivr.net/gh/wzy012/myblogPicBed@master/image/20230920224130.png" alt="20230920224130"><br><img src="https://cdn.jsdelivr.net/gh/wzy012/myblogPicBed@master/image/20230920224231.png" alt="20230920224231"><br><img src="https://cdn.jsdelivr.net/gh/wzy012/myblogPicBed@master/image/20230920224343.png" alt="20230920224343"><br><img src="https://cdn.jsdelivr.net/gh/wzy012/myblogPicBed@master/image/20230920224419.png" alt="20230920224419"></p>
-<h4 id="2-5-2-代码实现"><a href="#2-5-2-代码实现" class="headerlink" title="2.5.2 代码实现"></a>2.5.2 代码实现</h4><h4 id="2-5-3-性能分析"><a href="#2-5-3-性能分析" class="headerlink" title="2.5.3 性能分析"></a>2.5.3 性能分析</h4><h2 id="3-总结"><a href="#3-总结" class="headerlink" title="3. 总结"></a>3. 总结</h2><p>（1）简单排序算法的时间复杂度都为O(N^2)，随着输入规模的增大，时间成本急剧上升，因此简单排序算法不能处理大规模问题；<br></p>
+<h4 id="2-5-1-算法步骤-原理"><a href="#2-5-1-算法步骤-原理" class="headerlink" title="2.5.1 算法步骤&#x2F;原理"></a>2.5.1 算法步骤&#x2F;原理</h4><p>(1) 尽可能的一组数据拆分成两个元素相等的子组，并对每一个子组继续拆分，直到拆分后的每个子组的元素个数是1为止；<br><br>(2) 将相邻的两个子组进行合并成一个有序的大组；<br><br>(3) 不断地重复步骤2，直到最终只有一个组为止。<br><br>ps:该算法采用分治法<br><br><img src="https://cdn.jsdelivr.net/gh/wzy012/myblogPicBed@master/image/20230920215644.png" alt="20230920215644"><br><br>具体过程：<br><br><img src="https://cdn.jsdelivr.net/gh/wzy012/myblogPicBed@master/image/20230920223650.png" alt="20230920223650"><br><br><img src="https://cdn.jsdelivr.net/gh/wzy012/myblogPicBed@master/image/20230920223732.png" alt="20230920223732"><br><br><img src="https://cdn.jsdelivr.net/gh/wzy012/myblogPicBed@master/image/20230920223619.png" alt="20230920223619"><br><br><img src="https://cdn.jsdelivr.net/gh/wzy012/myblogPicBed@master/image/20230920224044.png" alt="20230920224044"><br><br><img src="https://cdn.jsdelivr.net/gh/wzy012/myblogPicBed@master/image/20230920224130.png" alt="20230920224130"><br><br><img src="https://cdn.jsdelivr.net/gh/wzy012/myblogPicBed@master/image/20230920224231.png" alt="20230920224231"><br><br><img src="https://cdn.jsdelivr.net/gh/wzy012/myblogPicBed@master/image/20230920224343.png" alt="20230920224343"><br><br><img src="https://cdn.jsdelivr.net/gh/wzy012/myblogPicBed@master/image/20230920224419.png" alt="20230920224419"><br></p>
+<h4 id="2-5-2-代码实现"><a href="#2-5-2-代码实现" class="headerlink" title="2.5.2 代码实现"></a>2.5.2 代码实现</h4><pre class=" language-cpp"><code class="language-cpp"><span class="token comment" spellcheck="true">// 递归实现</span>
+<span class="token keyword">template</span><span class="token operator">&lt;</span><span class="token keyword">typename</span> T<span class="token operator">></span>
+<span class="token keyword">void</span> <span class="token function">merge_sort</span><span class="token punctuation">(</span>T arr<span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">,</span> <span class="token keyword">int</span> begin<span class="token punctuation">,</span> <span class="token keyword">int</span> end<span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    <span class="token comment" spellcheck="true">// 做安全性校验</span>
+    <span class="token keyword">if</span><span class="token punctuation">(</span>begin <span class="token operator">&lt;=</span> end<span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        <span class="token keyword">return</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token comment" spellcheck="true">// 对begin到end之间的数据进行分组</span>
+    <span class="token keyword">int</span> mid <span class="token operator">=</span> begin <span class="token operator">+</span> <span class="token punctuation">(</span>end <span class="token operator">-</span> begin<span class="token punctuation">)</span><span class="token operator">/</span><span class="token number">2</span><span class="token punctuation">;</span>
+
+    <span class="token comment" spellcheck="true">// 分别对每一组数据进行排序</span>
+    <span class="token function">merge_sort</span><span class="token punctuation">(</span>arr<span class="token punctuation">,</span> begin<span class="token punctuation">,</span> mid<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token function">merge_sort</span><span class="token punctuation">(</span>arr<span class="token punctuation">,</span> mid<span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">,</span> end<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token comment" spellcheck="true">// 再把两个组中的数据进行归并</span>
+    <span class="token function">merge</span><span class="token punctuation">(</span>arr<span class="token punctuation">,</span> begin<span class="token punctuation">,</span> mid<span class="token punctuation">,</span> end<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">void</span> <span class="token function">merge</span><span class="token punctuation">(</span>T arr<span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">,</span> <span class="token keyword">int</span> begin<span class="token punctuation">,</span> <span class="token keyword">int</span> mid<span class="token punctuation">,</span> <span class="token keyword">int</span> end<span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    <span class="token comment" spellcheck="true">// 定义三个指针</span>
+    <span class="token keyword">int</span> i <span class="token operator">=</span> begin<span class="token punctuation">;</span>
+    <span class="token keyword">int</span> p1 <span class="token operator">=</span> begin<span class="token punctuation">;</span>
+    <span class="token keyword">int</span> p2 <span class="token operator">=</span> mid <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">;</span>
+    
+    <span class="token comment" spellcheck="true">// 初始化一个辅助数组</span>
+    T assist<span class="token punctuation">[</span>end<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token number">0</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+    <span class="token comment" spellcheck="true">// 遍历，移动p1指针和p2指针，比较对应索引处的值，找出最小的值，放到辅助数组的对应索引处</span>
+    <span class="token keyword">while</span><span class="token punctuation">(</span>p1 <span class="token operator">&lt;=</span> mid <span class="token operator">&amp;&amp;</span> p2 <span class="token operator">&lt;=</span> end<span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        <span class="token keyword">if</span><span class="token punctuation">(</span>arr<span class="token punctuation">[</span>p1<span class="token punctuation">]</span> <span class="token operator">></span> arr<span class="token punctuation">[</span>p2<span class="token punctuation">]</span><span class="token punctuation">)</span>
+        <span class="token punctuation">{</span>
+            assist<span class="token punctuation">[</span>i<span class="token operator">++</span><span class="token punctuation">]</span> <span class="token operator">=</span> arr<span class="token punctuation">[</span>p2<span class="token operator">++</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+        <span class="token keyword">else</span>
+        <span class="token punctuation">{</span>
+            assist<span class="token punctuation">[</span>i<span class="token operator">++</span><span class="token punctuation">]</span> <span class="token operator">=</span> arr<span class="token punctuation">[</span>p1<span class="token operator">++</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+    <span class="token comment" spellcheck="true">// 遍历，如果p1的指针没有走完， 那么顺序移动p1指针，把对应的元素放到辅助数组的对应索引处</span>
+    <span class="token keyword">while</span><span class="token punctuation">(</span>p1 <span class="token operator">&lt;=</span> mid<span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        assist<span class="token punctuation">[</span>i<span class="token operator">++</span><span class="token punctuation">]</span> <span class="token operator">=</span> arr<span class="token punctuation">[</span>p1<span class="token operator">++</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token comment" spellcheck="true">// 遍历，如果p2的指针没有走完， 那么顺序移动p2指针，把对应的元素放到辅助数组的对应索引处</span>
+    <span class="token keyword">while</span><span class="token punctuation">(</span>p2 <span class="token operator">&lt;=</span> end<span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        assist<span class="token punctuation">[</span>i<span class="token operator">++</span><span class="token punctuation">]</span> <span class="token operator">=</span> arr<span class="token punctuation">[</span>p2<span class="token operator">++</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token comment" spellcheck="true">// 把辅助数组中的元素拷贝到原数组中</span>
+    <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> begin<span class="token punctuation">;</span> i <span class="token operator">&lt;=</span> end<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        arr<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">=</span> assist<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<h4 id="2-5-3-性能分析"><a href="#2-5-3-性能分析" class="headerlink" title="2.5.3 性能分析"></a>2.5.3 性能分析</h4><p>时间复杂度：O(N*logN) <br><br>空间复杂度：O(N) <br></p>
+<h2 id="3-总结"><a href="#3-总结" class="headerlink" title="3. 总结"></a>3. 总结</h2><p>（1）简单排序算法的时间复杂度都为O(N^2)，随着输入规模的增大，时间成本急剧上升，因此简单排序算法不能处理大规模问题；<br></p>
 
                 
             </div>

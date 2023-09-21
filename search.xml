@@ -1,23 +1,69 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>初来乍到</title>
-    <url>/2023/09/17/00-1/</url>
-    <content><![CDATA[<p>写在开始…<br><br>初入职场，受组长凯哥影响，想要搭建自己的技术博客，于是有了这篇…<br><br>本人博客传送门：<a href="https://wzy012.github.io/">https://wzy012.github.io/</a> <br></p>
-<p>2023.6.19 从SDU毕业<br><br>2023.8.3 入职byd<br><br>开始了自己的菜鸟<del>打工</del>（成长）生涯<br><br>从事智驾开发工作<br><br>作为一个7年的自动化<del>不</del>专业学生<br><br>进入了一个纯软的技术赛道<br><br>其实还是很有压力的<br><br>但同时感觉充满了兴奋与挑战<br><br>开个人博客的初衷是：<br></p>
+    <title>数据结构基础知识</title>
+    <url>/2023/09/20/04-datastructure/</url>
+    <content><![CDATA[<h3 id="3-数据结构"><a href="#3-数据结构" class="headerlink" title="3.数据结构"></a>3.数据结构</h3><h4 id="3-1-前言"><a href="#3-1-前言" class="headerlink" title="3.1 前言"></a>3.1 前言</h4><p>数据结构是为实现对计算机数据有效使用的各种数据组织形式，服务于各类计算机操作。不同的数据结构具有各自对应的适用场景，旨在降低各种算法计算的时间与空间复杂度，达到最佳的任务执行效率。</p>
+<h4 id="3-2-数组"><a href="#3-2-数组" class="headerlink" title="3.2 数组"></a>3.2 数组</h4><p>固定数组和可变数组</p>
+<h4 id="3-3-链表"><a href="#3-3-链表" class="headerlink" title="3.3 链表"></a>3.3 链表</h4><p>链表以节点为单位，每个元素都是一个独立对象，在内存中的存储空间是非连续的。链表的节点对象具有两个成员变量：「值 <code>val</code>」，「后继节点引用 <code>next</code>」 。</p>
+<pre class=" language-cpp"><code class="language-cpp"><span class="token keyword">struct</span> ListNode<span class="token punctuation">{</span>
+    <span class="token keyword">int</span> val<span class="token punctuation">;</span>
+    ListNode <span class="token operator">*</span>next<span class="token punctuation">;</span>
+    <span class="token function">ListNode</span><span class="token punctuation">(</span><span class="token keyword">int</span> x<span class="token punctuation">)</span> <span class="token operator">:</span> <span class="token function">val</span><span class="token punctuation">(</span>x<span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token function">next</span><span class="token punctuation">(</span><span class="token constant">NULL</span><span class="token punctuation">)</span> <span class="token punctuation">{</span><span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+</code></pre>
+<h4 id="3-4-栈"><a href="#3-4-栈" class="headerlink" title="3.4 栈"></a>3.4 栈</h4><p>栈是一种具有 「先入后出」 特点的抽象数据结构，可使用<strong>数组</strong>或<strong>链表</strong>实现</p>
+<pre class=" language-cpp"><code class="language-cpp">stack<span class="token operator">&lt;</span>T<span class="token operator">></span> stk<span class="token punctuation">;</span>
+</code></pre>
+<h4 id="3-5-队列"><a href="#3-5-队列" class="headerlink" title="3.5 队列"></a>3.5 队列</h4><p>队列是一种具有 「先入先出」 特点的抽象数据结构，可使用<strong>链表</strong>实现。</p>
+<pre class=" language-cpp"><code class="language-cpp">queue<span class="token operator">&lt;</span>T<span class="token operator">></span> que<span class="token punctuation">;</span>
+</code></pre>
+<h4 id="3-6-树"><a href="#3-6-树" class="headerlink" title="3.6 树"></a>3.6 树</h4><p>树是一种非线性数据结构，根据子节点数量可分为 「二叉树」 和 「多叉树」，最顶层的节点称为「根节点 root」。以二叉树为例，每个节点包含三个成员变量：「值 val」、「左子节点 left」、「右子节点 right」 。</p>
+<pre class=" language-cpp"><code class="language-cpp"><span class="token keyword">struct</span> TreeNode<span class="token punctuation">{</span>
+    <span class="token keyword">int</span> val<span class="token punctuation">;</span>
+    TreeNode <span class="token operator">*</span>left<span class="token punctuation">;</span>
+    TreeNode <span class="token operator">*</span>right<span class="token punctuation">;</span>
+    <span class="token function">TreeNode</span><span class="token punctuation">(</span><span class="token keyword">int</span> x<span class="token punctuation">)</span> <span class="token operator">:</span> <span class="token function">val</span><span class="token punctuation">(</span>x<span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token function">left</span><span class="token punctuation">(</span><span class="token constant">NULL</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token function">right</span><span class="token punctuation">(</span><span class="token constant">NULL</span><span class="token punctuation">)</span><span class="token punctuation">{</span><span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+</code></pre>
+<p>构建二叉树示例：</p>
+<pre class=" language-cpp"><code class="language-cpp"><span class="token comment" spellcheck="true">//初始化节点</span>
+TreeNode <span class="token operator">*</span>n1 <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token function">TreeNode</span><span class="token punctuation">(</span><span class="token number">3</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// root</span>
+TreeNode <span class="token operator">*</span>n2 <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token function">TreeNode</span><span class="token punctuation">(</span><span class="token number">4</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+TreeNode <span class="token operator">*</span>n3 <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token function">TreeNode</span><span class="token punctuation">(</span><span class="token number">5</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+TreeNode <span class="token operator">*</span>n4 <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token function">TreeNode</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+TreeNode <span class="token operator">*</span>n5 <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token function">TreeNode</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment" spellcheck="true">//构建引用指向</span>
+n1<span class="token operator">-</span><span class="token operator">></span>left <span class="token operator">=</span> n2<span class="token punctuation">;</span>
+n1<span class="token operator">-</span><span class="token operator">></span>right <span class="token operator">=</span> n3<span class="token punctuation">;</span>
+n2<span class="token operator">-</span><span class="token operator">></span>left <span class="token operator">=</span> n4<span class="token punctuation">;</span>
+n2<span class="token operator">-</span><span class="token operator">></span>right <span class="token operator">=</span> n5<span class="token punctuation">;</span>
+</code></pre>
+<h4 id="3-7-图"><a href="#3-7-图" class="headerlink" title="3.7 图"></a>3.7 图</h4><p>图是一种非线性数据结构，由「节点（顶点）<code>vertex</code>」和「边 <code>edge</code>」组成，每条边连接一对顶点。根据边的方向有无，图可分为「有向图」和「无向图」。</p>
+<p><strong>以无向图为例</strong> 开展介绍，无向图的 <strong>顶点</strong> 和 <strong>边</strong> 集合分别为：</p>
 <ul>
-<li>记录自己学习各个技术的过程，形成文档以备查漏补缺；<br></li>
-<li>如果有幸被需要的人看到，也是分享的意义</li>
+<li>顶点集合：<code>vertices = &#123;1, 2, 3, 4, 5&#125;</code></li>
+<li>边集合：<code>edges = &#123;(1, 2), (1, 3), (1, 4), (1, 5), (2,4), (3,5), (4,5)&#125;</code></li>
 </ul>
-<p>希望自己坚持学习，一点一点进步，争取成为一名技术<del>大</del>小佬！</p>
-<p>最后附：<br><br>    Hexo + Github + Git 的博客搭建方案链接：<a href="https://yushuaigee.gitee.io/archives/">https://yushuaigee.gitee.io/archives/</a><br><br>    vscode + PicGo + Markdown All in one 的配置链接：<a href="https://blog.csdn.net/qq_35621494/article/details/106432399">https://blog.csdn.net/qq_35621494/article/details/106432399</a><br></p>
-<p>本人使用的是：vscode + Hexo + Github + Git + PicGO + Markdown All in one 的实现方案。</p>
+<p><strong>表示图</strong>的方法通常有两种：</p>
+<p>1.<strong>邻接矩阵</strong>：使用数组vertices存储顶点，邻接矩阵edges存储边；<code>edges[i][j]</code>代表节点<code>i+1</code>和节点<code>j+1</code>之间是否有边。</p>
+<pre class=" language-cpp"><code class="language-cpp"><span class="token keyword">int</span> vertices<span class="token punctuation">[</span><span class="token number">5</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">,</span> <span class="token number">4</span><span class="token punctuation">,</span> <span class="token number">5</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
+<span class="token keyword">int</span> edges<span class="token punctuation">[</span><span class="token number">5</span><span class="token punctuation">]</span><span class="token punctuation">[</span><span class="token number">5</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token punctuation">{</span><span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
+                   <span class="token punctuation">{</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
+                   <span class="token punctuation">{</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
+                   <span class="token punctuation">{</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
+                   <span class="token punctuation">{</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">}</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
+</code></pre>
+<p>2.<strong>邻接表</strong>：使用数组vertices存储顶点，邻接矩阵edges存储边。第一维<code>i</code>代表顶点索引，第二维edges[i]存储此顶点对应的边集合。</p>
+<p>邻接矩阵 VS 邻接表 ：</p>
+<p>邻接矩阵的大小只与节点数量有关，即 N^2  ，其中 N 为节点数量。因此，当边数量明显少于节点数量时，使用邻接矩阵存储图会造成较大的内存浪费。<br>因此，邻接表 适合存储稀疏图（顶点较多、边较少）； 邻接矩阵 适合存储稠密图（顶点较少、边较多）。</p>
 ]]></content>
       <categories>
-        <category>个人成长</category>
+        <category>数据结构与算法</category>
       </categories>
       <tags>
-        <tag>关于本人</tag>
+        <tag>基础知识</tag>
       </tags>
   </entry>
   <entry>
@@ -66,6 +112,520 @@
       </categories>
       <tags>
         <tag>UML</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>排序算法</title>
+    <url>/2023/09/17/01-sorting-algorithm/</url>
+    <content><![CDATA[<h2 id="1-前言"><a href="#1-前言" class="headerlink" title="1 前言"></a>1 前言</h2><p>排序算法分为 <strong>内部排序</strong> 和 <strong>外部排序</strong>，其中:<br><br><strong>内部排序</strong>：是数据记录在内存中进行排序；<br><br><strong>外部排序</strong>：因为要排序的数据很大，内存一次性不能容纳全部的排序记录，在排序中需要访问外存。<br><br>ps:简单排序：冒泡排序、选择排序、插入排序； 高级排序：希尔排序、归并排序、快速排序。</p>
+<h2 id="2-常见（内部）排序算法"><a href="#2-常见（内部）排序算法" class="headerlink" title="2 常见（内部）排序算法"></a>2 常见（内部）排序算法</h2><p>常见的内部排序算法有：冒泡排序、选择排序、插入排序、希尔排序、归并排序、快速排序、堆排序、基数排序等。<br></p>
+<h3 id="2-1-冒泡排序"><a href="#2-1-冒泡排序" class="headerlink" title="2.1 冒泡排序"></a>2.1 冒泡排序</h3><h4 id="2-1-1-算法步骤"><a href="#2-1-1-算法步骤" class="headerlink" title="2.1.1 算法步骤"></a>2.1.1 算法步骤</h4><p>（1）比较相邻的元素。如果第一个比第二个大，就交换他们两个；<br><br>（2）对每一对相邻元素做同样的工作，执行完毕后，找到第一个最大的值；<br><br>（3）重复以上步骤，每次比较次数-1，直到不需要比较。<br></p>
+<h4 id="2-1-2-代码实现"><a href="#2-1-2-代码实现" class="headerlink" title="2.1.2 代码实现"></a>2.1.2 代码实现</h4><pre class=" language-cpp"><code class="language-cpp"><span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;iostream></span></span>
+<span class="token keyword">using</span> <span class="token keyword">namespace</span> std<span class="token punctuation">;</span>
+
+<span class="token keyword">template</span><span class="token operator">&lt;</span><span class="token keyword">typename</span> T<span class="token operator">></span>
+<span class="token keyword">void</span> <span class="token function">bubble_sort</span><span class="token punctuation">(</span>T arr<span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">,</span> <span class="token keyword">int</span> len<span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    <span class="token comment" spellcheck="true">// 排序的总趟数=元素个数-1；</span>
+    <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> len <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        <span class="token comment" spellcheck="true">// 每趟对比次数=元素个数-当前排序趟数-1；</span>
+        <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> j <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> j <span class="token operator">&lt;</span> len <span class="token operator">-</span> i <span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">;</span> j<span class="token operator">++</span><span class="token punctuation">)</span>
+        <span class="token punctuation">{</span>
+            <span class="token comment" spellcheck="true">// 相邻元素比较</span>
+            <span class="token keyword">if</span><span class="token punctuation">(</span>arr<span class="token punctuation">[</span>j<span class="token punctuation">]</span> <span class="token operator">></span> arr<span class="token punctuation">[</span>j <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+            <span class="token punctuation">{</span>
+                <span class="token keyword">int</span> temp <span class="token operator">=</span> arr<span class="token punctuation">[</span>j<span class="token punctuation">]</span><span class="token punctuation">;</span>
+                arr<span class="token punctuation">[</span>j<span class="token punctuation">]</span> <span class="token operator">=</span> arr<span class="token punctuation">[</span>j <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+                arr<span class="token punctuation">[</span>j <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">]</span> <span class="token operator">=</span> temp<span class="token punctuation">;</span>
+            <span class="token punctuation">}</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">void</span> <span class="token function">printArr</span><span class="token punctuation">(</span>T arr<span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">,</span> <span class="token keyword">int</span> len<span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> len<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        cout <span class="token operator">&lt;&lt;</span> arr<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">&lt;&lt;</span> <span class="token string">" "</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    cout <span class="token operator">&lt;&lt;</span> endl<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+<span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    <span class="token keyword">int</span> arr<span class="token punctuation">[</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token number">61</span><span class="token punctuation">,</span> <span class="token number">17</span><span class="token punctuation">,</span> <span class="token number">29</span><span class="token punctuation">,</span> <span class="token number">22</span><span class="token punctuation">,</span> <span class="token number">34</span><span class="token punctuation">,</span> <span class="token number">60</span><span class="token punctuation">,</span> <span class="token number">72</span><span class="token punctuation">,</span> <span class="token number">21</span><span class="token punctuation">,</span> <span class="token number">50</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">62</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
+    <span class="token keyword">int</span> len <span class="token operator">=</span> <span class="token keyword">sizeof</span><span class="token punctuation">(</span>arr<span class="token punctuation">)</span> <span class="token operator">/</span> <span class="token keyword">sizeof</span><span class="token punctuation">(</span>arr<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token function">bubble_sort</span><span class="token punctuation">(</span>arr<span class="token punctuation">,</span> len<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token function">printArr</span><span class="token punctuation">(</span>arr<span class="token punctuation">,</span> len<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token keyword">float</span> arrf<span class="token punctuation">[</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token punctuation">{</span> <span class="token number">17.5</span><span class="token punctuation">,</span> <span class="token number">19.1</span><span class="token punctuation">,</span> <span class="token number">0.6</span><span class="token punctuation">,</span> <span class="token number">1.9</span><span class="token punctuation">,</span> <span class="token number">10.5</span><span class="token punctuation">,</span> <span class="token number">12.4</span><span class="token punctuation">,</span> <span class="token number">3.8</span><span class="token punctuation">,</span> <span class="token number">19.7</span><span class="token punctuation">,</span> <span class="token number">1.5</span><span class="token punctuation">,</span> <span class="token number">25.4</span><span class="token punctuation">,</span> <span class="token number">28.6</span><span class="token punctuation">,</span> <span class="token number">4.4</span><span class="token punctuation">,</span> <span class="token number">23.8</span><span class="token punctuation">,</span> <span class="token number">5.4</span> <span class="token punctuation">}</span><span class="token punctuation">;</span>
+    <span class="token keyword">int</span> len <span class="token operator">=</span> <span class="token keyword">sizeof</span><span class="token punctuation">(</span>arr<span class="token punctuation">)</span> <span class="token operator">/</span> <span class="token keyword">sizeof</span><span class="token punctuation">(</span>arr<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token function">bubble_sort</span><span class="token punctuation">(</span>arr<span class="token punctuation">,</span> len<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token function">printArr</span><span class="token punctuation">(</span>arr<span class="token punctuation">,</span> len<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<h4 id="2-1-3-性能分析"><a href="#2-1-3-性能分析" class="headerlink" title="2.1.3 性能分析"></a>2.1.3 性能分析</h4><p>时间复杂度：O(N^2) <br><br>空间复杂度：O(1)</p>
+<h3 id="2-2-选择排序"><a href="#2-2-选择排序" class="headerlink" title="2.2 选择排序"></a>2.2 选择排序</h3><h4 id="2-2-1-算法步骤"><a href="#2-2-1-算法步骤" class="headerlink" title="2.2.1 算法步骤"></a>2.2.1 算法步骤</h4><p>（1）在每一次遍历的过程中，都假定第一个索引处的元素是最小值，并和其他索引处的值进行比较，如果当前索引处的值大于其他索引处的值，则假定其他索引处的值为最小值，最后可以找到最小值所在的索引；<br><br>（2）交换第一个索引处和最小值所在的索引处的值。<br><br><img src="https://cdn.jsdelivr.net/gh/wzy012/myblogPicBed@master/image/20230917221302.png" alt="20230917221302"></p>
+<h4 id="2-2-2-代码实现"><a href="#2-2-2-代码实现" class="headerlink" title="2.2.2 代码实现"></a>2.2.2 代码实现</h4><pre class=" language-cpp"><code class="language-cpp"><span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;iostream></span></span>
+<span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;algorithm></span></span>
+<span class="token keyword">using</span> <span class="token keyword">namespace</span> std<span class="token punctuation">;</span>
+
+<span class="token keyword">template</span><span class="token operator">&lt;</span><span class="token keyword">typename</span> T<span class="token operator">></span>
+<span class="token keyword">void</span> <span class="token function">selection_sort</span><span class="token punctuation">(</span>vector<span class="token operator">&lt;</span>T<span class="token operator">></span><span class="token operator">&amp;</span> arr<span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    <span class="token comment" spellcheck="true">// 排序的总趟数=元素个数-1；</span>
+    <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> arr<span class="token punctuation">.</span><span class="token function">size</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        <span class="token comment" spellcheck="true">// 定义一个变量，记录最小元素所在的索引，默认为参与选择排序的第一个元素所在的位置</span>
+        <span class="token keyword">int</span> minIndex <span class="token operator">=</span> i<span class="token punctuation">;</span>
+        <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> j <span class="token operator">=</span> i <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">;</span> j <span class="token operator">&lt;</span> arr<span class="token punctuation">.</span><span class="token function">size</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> j<span class="token operator">++</span><span class="token punctuation">)</span>
+        <span class="token punctuation">{</span>
+            <span class="token comment" spellcheck="true">// 比较 最小索引处minIndex处的值 与 j索引处的值 的大小</span>
+            <span class="token keyword">if</span><span class="token punctuation">(</span>arr<span class="token punctuation">[</span>minIndex<span class="token punctuation">]</span> <span class="token operator">></span> arr<span class="token punctuation">[</span>j<span class="token punctuation">]</span><span class="token punctuation">)</span>
+            <span class="token punctuation">{</span>
+                minIndex <span class="token operator">=</span> j<span class="token punctuation">;</span>
+            <span class="token punctuation">}</span>
+        <span class="token punctuation">}</span>
+
+        <span class="token comment" spellcheck="true">//交换最小元素所在索引minIndex处的值和第一个位置处的值</span>
+        <span class="token function">swap</span><span class="token punctuation">(</span>arr<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">,</span> arr<span class="token punctuation">[</span>minIndex<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+<span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    vector<span class="token operator">&lt;</span><span class="token keyword">int</span><span class="token operator">></span> intv<span class="token punctuation">;</span>
+    intv<span class="token punctuation">.</span><span class="token function">push_back</span><span class="token punctuation">(</span><span class="token number">5</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    intv<span class="token punctuation">.</span><span class="token function">push_back</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    intv<span class="token punctuation">.</span><span class="token function">push_back</span><span class="token punctuation">(</span><span class="token number">4</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    intv<span class="token punctuation">.</span><span class="token function">push_back</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    intv<span class="token punctuation">.</span><span class="token function">push_back</span><span class="token punctuation">(</span><span class="token number">3</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token function">selection_sort</span><span class="token punctuation">(</span>intv<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">auto</span> v <span class="token operator">:</span> intv<span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        cout <span class="token operator">&lt;&lt;</span> v <span class="token operator">&lt;&lt;</span> <span class="token string">" "</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    cout <span class="token operator">&lt;&lt;</span> endl<span class="token punctuation">;</span>
+    <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<h4 id="2-2-3-性能分析"><a href="#2-2-3-性能分析" class="headerlink" title="2.2.3 性能分析"></a>2.2.3 性能分析</h4><p>时间复杂度：O(N^2) <br><br>空间复杂度：O(1)</p>
+<h3 id="2-3-插入排序"><a href="#2-3-插入排序" class="headerlink" title="2.3 插入排序"></a>2.3 插入排序</h3><h4 id="2-3-1-算法步骤-原理"><a href="#2-3-1-算法步骤-原理" class="headerlink" title="2.3.1 算法步骤&#x2F;原理"></a>2.3.1 算法步骤&#x2F;原理</h4><p>（1）把所有的元素分为两组，已经排序的和未排序的；<br><br>（2）找到未排序的组中的第一个元素，向已经排序的组中进行插入；<br><br>（3）倒叙遍历已经排序的元素，依次和待插入的元素进行比较，直到找到一个元素小于等于待插元素，那么就把待插入元素放到这个位置，其他的元素向后移动一位。<br><br><img src="https://cdn.jsdelivr.net/gh/wzy012/myblogPicBed@master/image/20230918222309.png" alt="20230918222309"><br><br>ps:假设排序前的数组的第一个的元素为已排序，其余为未排序</p>
+<h4 id="2-3-2-代码实现"><a href="#2-3-2-代码实现" class="headerlink" title="2.3.2 代码实现"></a>2.3.2 代码实现</h4><pre class=" language-cpp"><code class="language-cpp"><span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;iostream></span></span>
+<span class="token keyword">using</span> <span class="token keyword">namespace</span> std<span class="token punctuation">;</span>
+
+<span class="token keyword">template</span><span class="token operator">&lt;</span><span class="token keyword">typename</span> T<span class="token operator">></span>
+<span class="token keyword">void</span> <span class="token function">insertion_sort</span><span class="token punctuation">(</span>T arr<span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">,</span> <span class="token keyword">int</span> len<span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    <span class="token comment" spellcheck="true">// 索引0处为已排序，待排序的元素索引从1开始</span>
+    <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> len<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> j <span class="token operator">=</span> i<span class="token punctuation">;</span> j <span class="token operator">>=</span> <span class="token number">0</span><span class="token punctuation">;</span> j<span class="token operator">--</span><span class="token punctuation">)</span>
+        <span class="token punctuation">{</span>
+            <span class="token comment" spellcheck="true">// 比较索引j处的值和索引j-1处的值，</span>
+            <span class="token comment" spellcheck="true">// 如果j-1处的值大于j处的值，则交换位置；</span>
+            <span class="token keyword">if</span><span class="token punctuation">(</span>arr<span class="token punctuation">[</span>j<span class="token number">-1</span><span class="token punctuation">]</span> <span class="token operator">></span> arr<span class="token punctuation">[</span>j<span class="token punctuation">]</span><span class="token punctuation">)</span>
+            <span class="token punctuation">{</span>
+                <span class="token function">swap</span><span class="token punctuation">(</span>arr<span class="token punctuation">[</span>j<span class="token number">-1</span><span class="token punctuation">]</span><span class="token punctuation">,</span> arr<span class="token punctuation">[</span>j<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token punctuation">}</span>
+            <span class="token comment" spellcheck="true">// 否则找到合适的位置退出循环</span>
+            <span class="token keyword">else</span>
+            <span class="token punctuation">{</span>
+                <span class="token keyword">break</span><span class="token punctuation">;</span>
+            <span class="token punctuation">}</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">void</span> <span class="token function">printArr</span><span class="token punctuation">(</span>T arr<span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">,</span> <span class="token keyword">int</span> len<span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> len<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        cout <span class="token operator">&lt;&lt;</span> arr<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">&lt;&lt;</span> <span class="token string">" "</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    cout <span class="token operator">&lt;&lt;</span> endl<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    <span class="token keyword">int</span> arr<span class="token punctuation">[</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token number">61</span><span class="token punctuation">,</span> <span class="token number">17</span><span class="token punctuation">,</span> <span class="token number">29</span><span class="token punctuation">,</span> <span class="token number">22</span><span class="token punctuation">,</span> <span class="token number">34</span><span class="token punctuation">,</span> <span class="token number">60</span><span class="token punctuation">,</span> <span class="token number">72</span><span class="token punctuation">,</span> <span class="token number">21</span><span class="token punctuation">,</span> <span class="token number">50</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">62</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
+    <span class="token keyword">int</span> len <span class="token operator">=</span> <span class="token keyword">sizeof</span><span class="token punctuation">(</span>arr<span class="token punctuation">)</span> <span class="token operator">/</span> <span class="token keyword">sizeof</span><span class="token punctuation">(</span>arr<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token function">printArr</span><span class="token punctuation">(</span>arr<span class="token punctuation">,</span> len<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<h4 id="2-3-3-性能分析"><a href="#2-3-3-性能分析" class="headerlink" title="2.3.3 性能分析"></a>2.3.3 性能分析</h4><p>时间复杂度：O(N^2)<br><br>空间复杂度：O(1)，稳定的排序算法<br><br>ps:元素集合越接近有序，插入排序算法的时间效率越高</p>
+<h3 id="2-4-希尔排序"><a href="#2-4-希尔排序" class="headerlink" title="2.4 希尔排序"></a>2.4 希尔排序</h3><p>希尔排序是插入排序的一种，又称“缩小增量排序”，是插入排序算法的一种更高效的改进版。</p>
+<h4 id="2-4-1-算法步骤-原理"><a href="#2-4-1-算法步骤-原理" class="headerlink" title="2.4.1 算法步骤&#x2F;原理"></a>2.4.1 算法步骤&#x2F;原理</h4><p>（1）选定一个增长量h，按照增长量h作为数据分组的依据，对数据进行分组；<br><br>（2）对分好组的每一组数据完成插入排序；<br><br>（3）减小增长量，最小减为1，重复第二步操作。<br><br><img src="https://cdn.jsdelivr.net/gh/wzy012/myblogPicBed@master/image/20230918222218.png" alt="20230918222218"><br><br><strong>增量h的确定规则：</strong></p>
+<pre class=" language-cpp"><code class="language-cpp"><span class="token comment" spellcheck="true">// h初始化</span>
+<span class="token keyword">int</span> h <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span>
+<span class="token keyword">while</span><span class="token punctuation">(</span>h <span class="token operator">&lt;</span> 数组的长度<span class="token operator">/</span><span class="token number">2</span><span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    h <span class="token operator">=</span> 2h <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token comment" spellcheck="true">// 减小规则</span>
+h <span class="token operator">=</span> h <span class="token operator">/</span> <span class="token number">2</span><span class="token punctuation">;</span>
+</code></pre>
+<h4 id="2-4-2-代码实现-核心代码"><a href="#2-4-2-代码实现-核心代码" class="headerlink" title="2.4.2 代码实现&#x2F;核心代码"></a>2.4.2 代码实现&#x2F;核心代码</h4><pre class=" language-cpp"><code class="language-cpp"><span class="token keyword">template</span><span class="token operator">&lt;</span><span class="token keyword">typename</span> T<span class="token operator">></span>
+<span class="token keyword">void</span> <span class="token function">shell_sort</span><span class="token punctuation">(</span>T arr<span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">,</span> <span class="token keyword">int</span> len<span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    <span class="token comment" spellcheck="true">// 1.根据数组长度确定增长量h的初始值</span>
+    <span class="token keyword">int</span> h <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span>
+    <span class="token keyword">while</span><span class="token punctuation">(</span>h <span class="token operator">&lt;</span> len<span class="token operator">/</span><span class="token number">2</span><span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        h <span class="token operator">=</span> <span class="token number">2</span><span class="token operator">*</span>h <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token comment" spellcheck="true">// 2.希尔排序</span>
+    <span class="token keyword">while</span><span class="token punctuation">(</span>h <span class="token operator">>=</span> <span class="token number">1</span><span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        <span class="token comment" spellcheck="true">// 排序</span>
+        <span class="token comment" spellcheck="true">// 2.1 找到待插入的元素</span>
+        <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> h<span class="token punctuation">;</span> i <span class="token operator">&lt;</span> len<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span>
+        <span class="token punctuation">{</span>
+            <span class="token comment" spellcheck="true">// 2.2 将待插入的元素插入到有序数列中</span>
+            <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> j <span class="token operator">=</span> i<span class="token punctuation">;</span> j <span class="token operator">>=</span> h<span class="token punctuation">;</span> j<span class="token operator">-</span><span class="token operator">=</span>h<span class="token punctuation">)</span>
+            <span class="token punctuation">{</span>
+                <span class="token comment" spellcheck="true">// 待插入的元素是a[j],比较a[j]和a[j-h]</span>
+                <span class="token keyword">if</span><span class="token punctuation">(</span>a<span class="token punctuation">[</span>j<span class="token operator">-</span>h<span class="token punctuation">]</span> <span class="token operator">></span> a<span class="token punctuation">[</span>j<span class="token punctuation">]</span><span class="token punctuation">)</span>
+                <span class="token punctuation">{</span>
+                    <span class="token function">swap</span><span class="token punctuation">(</span>a<span class="token punctuation">[</span>j<span class="token operator">-</span>h<span class="token punctuation">]</span><span class="token punctuation">,</span> a<span class="token punctuation">[</span>j<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                <span class="token punctuation">}</span>
+                <span class="token keyword">else</span>
+                <span class="token punctuation">{</span>
+                    <span class="token keyword">break</span><span class="token punctuation">;</span>
+                <span class="token punctuation">}</span>
+            <span class="token punctuation">}</span>
+        <span class="token punctuation">}</span>
+        
+        <span class="token comment" spellcheck="true">// 减小h的值</span>
+        h <span class="token operator">=</span> h <span class="token operator">/</span> <span class="token number">2</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<h4 id="2-4-3-性能分析"><a href="#2-4-3-性能分析" class="headerlink" title="2.4.3 性能分析"></a>2.4.3 性能分析</h4><p>时间复杂度O(N^1.5) [不好计算]<br><br>空间复杂度O(1)<br><br>ps: 非稳定排序算法,当h&gt;1时都是预排序，目的是让数组更接近于有序。当h&#x3D;&#x3D;1时，数组接近有序的，排序就会更快。<br></p>
+<h3 id="2-5-归并排序"><a href="#2-5-归并排序" class="headerlink" title="2.5 归并排序"></a>2.5 归并排序</h3><h4 id="2-5-0-递归"><a href="#2-5-0-递归" class="headerlink" title="2.5.0 递归"></a>2.5.0 递归</h4><ul>
+<li>定义：在方法内部调用方法本身；<br></li>
+<li>作用：可以把一个大型复杂问题层层转换为一个与原问题相似的、规模较小的问题来求解。递归策略只需要少量的程序就可以描述出解题过程所需要的多次重复计算，大大减少程序的代码量。<br></li>
+<li>注意事项：递归必须要有边界条件能够让递归结束，因为每一次调用都会在<strong>栈内存</strong>开辟新的空间，重复执行方法，如果递归的层级太深，很容易造成栈内存溢出。<br></li>
+<li>代码示例(n的阶乘)：</li>
+</ul>
+<pre class=" language-cpp"><code class="language-cpp"><span class="token keyword">long</span> <span class="token function">factorial</span><span class="token punctuation">(</span><span class="token keyword">int</span> n<span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    <span class="token keyword">if</span><span class="token punctuation">(</span>n <span class="token operator">==</span> <span class="token number">1</span><span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        <span class="token keyword">return</span> <span class="token number">1</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword">return</span> <span class="token function">factorial</span><span class="token punctuation">(</span>n<span class="token number">-1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<h4 id="2-5-1-算法步骤-原理"><a href="#2-5-1-算法步骤-原理" class="headerlink" title="2.5.1 算法步骤&#x2F;原理"></a>2.5.1 算法步骤&#x2F;原理</h4><p>(1) 尽可能的一组数据拆分成两个元素相等的子组，并对每一个子组继续拆分，直到拆分后的每个子组的元素个数是1为止；<br><br>(2) 将相邻的两个子组进行合并成一个有序的大组；<br><br>(3) 不断地重复步骤2，直到最终只有一个组为止。<br><br>ps:该算法采用分治法<br><br><img src="https://cdn.jsdelivr.net/gh/wzy012/myblogPicBed@master/image/20230920215644.png" alt="20230920215644"><br><br>具体过程：<br><br><img src="https://cdn.jsdelivr.net/gh/wzy012/myblogPicBed@master/image/20230920223650.png" alt="20230920223650"><br><br><img src="https://cdn.jsdelivr.net/gh/wzy012/myblogPicBed@master/image/20230920223732.png" alt="20230920223732"><br><br><img src="https://cdn.jsdelivr.net/gh/wzy012/myblogPicBed@master/image/20230920223619.png" alt="20230920223619"><br><br><img src="https://cdn.jsdelivr.net/gh/wzy012/myblogPicBed@master/image/20230920224044.png" alt="20230920224044"><br><br><img src="https://cdn.jsdelivr.net/gh/wzy012/myblogPicBed@master/image/20230920224130.png" alt="20230920224130"><br><br><img src="https://cdn.jsdelivr.net/gh/wzy012/myblogPicBed@master/image/20230920224231.png" alt="20230920224231"><br><br><img src="https://cdn.jsdelivr.net/gh/wzy012/myblogPicBed@master/image/20230920224343.png" alt="20230920224343"><br><br><img src="https://cdn.jsdelivr.net/gh/wzy012/myblogPicBed@master/image/20230920224419.png" alt="20230920224419"><br></p>
+<h4 id="2-5-2-代码实现"><a href="#2-5-2-代码实现" class="headerlink" title="2.5.2 代码实现"></a>2.5.2 代码实现</h4><pre class=" language-cpp"><code class="language-cpp"><span class="token comment" spellcheck="true">// 递归实现</span>
+<span class="token keyword">template</span><span class="token operator">&lt;</span><span class="token keyword">typename</span> T<span class="token operator">></span>
+<span class="token keyword">void</span> <span class="token function">merge_sort</span><span class="token punctuation">(</span>T arr<span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">,</span> <span class="token keyword">int</span> begin<span class="token punctuation">,</span> <span class="token keyword">int</span> end<span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    <span class="token comment" spellcheck="true">// 做安全性校验</span>
+    <span class="token keyword">if</span><span class="token punctuation">(</span>begin <span class="token operator">&lt;=</span> end<span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        <span class="token keyword">return</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token comment" spellcheck="true">// 对begin到end之间的数据进行分组</span>
+    <span class="token keyword">int</span> mid <span class="token operator">=</span> begin <span class="token operator">+</span> <span class="token punctuation">(</span>end <span class="token operator">-</span> begin<span class="token punctuation">)</span><span class="token operator">/</span><span class="token number">2</span><span class="token punctuation">;</span>
+
+    <span class="token comment" spellcheck="true">// 分别对每一组数据进行排序</span>
+    <span class="token function">merge_sort</span><span class="token punctuation">(</span>arr<span class="token punctuation">,</span> begin<span class="token punctuation">,</span> mid<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token function">merge_sort</span><span class="token punctuation">(</span>arr<span class="token punctuation">,</span> mid<span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">,</span> end<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token comment" spellcheck="true">// 再把两个组中的数据进行归并</span>
+    <span class="token function">merge</span><span class="token punctuation">(</span>arr<span class="token punctuation">,</span> begin<span class="token punctuation">,</span> mid<span class="token punctuation">,</span> end<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">void</span> <span class="token function">merge</span><span class="token punctuation">(</span>T arr<span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">,</span> <span class="token keyword">int</span> begin<span class="token punctuation">,</span> <span class="token keyword">int</span> mid<span class="token punctuation">,</span> <span class="token keyword">int</span> end<span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    <span class="token comment" spellcheck="true">// 定义三个指针</span>
+    <span class="token keyword">int</span> i <span class="token operator">=</span> begin<span class="token punctuation">;</span>
+    <span class="token keyword">int</span> p1 <span class="token operator">=</span> begin<span class="token punctuation">;</span>
+    <span class="token keyword">int</span> p2 <span class="token operator">=</span> mid <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">;</span>
+    
+    <span class="token comment" spellcheck="true">// 初始化一个辅助数组</span>
+    T assist<span class="token punctuation">[</span>end<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token number">0</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+    <span class="token comment" spellcheck="true">// 遍历，移动p1指针和p2指针，比较对应索引处的值，找出最小的值，放到辅助数组的对应索引处</span>
+    <span class="token keyword">while</span><span class="token punctuation">(</span>p1 <span class="token operator">&lt;=</span> mid <span class="token operator">&amp;&amp;</span> p2 <span class="token operator">&lt;=</span> end<span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        <span class="token keyword">if</span><span class="token punctuation">(</span>arr<span class="token punctuation">[</span>p1<span class="token punctuation">]</span> <span class="token operator">></span> arr<span class="token punctuation">[</span>p2<span class="token punctuation">]</span><span class="token punctuation">)</span>
+        <span class="token punctuation">{</span>
+            assist<span class="token punctuation">[</span>i<span class="token operator">++</span><span class="token punctuation">]</span> <span class="token operator">=</span> arr<span class="token punctuation">[</span>p2<span class="token operator">++</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+        <span class="token keyword">else</span>
+        <span class="token punctuation">{</span>
+            assist<span class="token punctuation">[</span>i<span class="token operator">++</span><span class="token punctuation">]</span> <span class="token operator">=</span> arr<span class="token punctuation">[</span>p1<span class="token operator">++</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+    <span class="token comment" spellcheck="true">// 遍历，如果p1的指针没有走完， 那么顺序移动p1指针，把对应的元素放到辅助数组的对应索引处</span>
+    <span class="token keyword">while</span><span class="token punctuation">(</span>p1 <span class="token operator">&lt;=</span> mid<span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        assist<span class="token punctuation">[</span>i<span class="token operator">++</span><span class="token punctuation">]</span> <span class="token operator">=</span> arr<span class="token punctuation">[</span>p1<span class="token operator">++</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token comment" spellcheck="true">// 遍历，如果p2的指针没有走完， 那么顺序移动p2指针，把对应的元素放到辅助数组的对应索引处</span>
+    <span class="token keyword">while</span><span class="token punctuation">(</span>p2 <span class="token operator">&lt;=</span> end<span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        assist<span class="token punctuation">[</span>i<span class="token operator">++</span><span class="token punctuation">]</span> <span class="token operator">=</span> arr<span class="token punctuation">[</span>p2<span class="token operator">++</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token comment" spellcheck="true">// 把辅助数组中的元素拷贝到原数组中</span>
+    <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> begin<span class="token punctuation">;</span> i <span class="token operator">&lt;=</span> end<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        arr<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">=</span> assist<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<h4 id="2-5-3-性能分析"><a href="#2-5-3-性能分析" class="headerlink" title="2.5.3 性能分析"></a>2.5.3 性能分析</h4><p>时间复杂度：O(N*logN) <br><br>空间复杂度：O(N) <br></p>
+<h2 id="3-总结"><a href="#3-总结" class="headerlink" title="3. 总结"></a>3. 总结</h2><p>（1）简单排序算法的时间复杂度都为O(N^2)，随着输入规模的增大，时间成本急剧上升，因此简单排序算法不能处理大规模问题；<br></p>
+]]></content>
+      <categories>
+        <category>数据结构与算法</category>
+      </categories>
+      <tags>
+        <tag>排序算法</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>SQLite数据库</title>
+    <url>/2023/09/20/05-sqlitedb/</url>
+    <content><![CDATA[<h3 id="1-数据库"><a href="#1-数据库" class="headerlink" title="1 数据库"></a>1 数据库</h3><h4 id="1-1-数据库的基本概念"><a href="#1-1-数据库的基本概念" class="headerlink" title="1.1 数据库的基本概念"></a>1.1 数据库的基本概念<br></h4><p>数据库的核心概念包括数据、表格、字段、记录和主键等。<br></p>
+<ul>
+<li>数据<ul>
+<li>数据是指可以被计算机处理和存储的信息。</li>
+<li>数据可以是数字、字符、图像、音频等各种类型的信息。</li>
+<li>数据库中的数据是有意义的信息，可以被组织、管理和检索。</li>
+</ul>
+</li>
+<li>表格<ul>
+<li>表格是数据库中存储数据的基本单元，也被称为数据表或数据集合。</li>
+<li>表格由行和列组成，行表示记录，列表示字段。</li>
+<li>表格中的每个单元格包含一个值，该值对应于表格中的一个字段和一条记录。</li>
+</ul>
+</li>
+<li>字段<ul>
+<li>字段是表格中的列，每个字段都包含相同类型的数据。</li>
+<li>字段可以是数字、字符、日期、时间、布尔值等各种类型的数据。</li>
+<li>每个字段都有一个名称，用于标识该字段在表格中的位置。</li>
+</ul>
+</li>
+<li>记录<ul>
+<li>记录是表格中的行，每个记录包含一组字段值。</li>
+<li>记录的数量可以是零或多个，每个记录都有一个唯一标识符，称为主键。</li>
+</ul>
+</li>
+<li>主键<ul>
+<li>主键是一条记录的唯一标识符，用于区分表格中不同的记录。</li>
+<li>主键可以是一个或多个字段的组合，主键的值不能重复。</li>
+<li>主键可以是数据库中唯一的一个记录标识符。</li>
+</ul>
+</li>
+</ul>
+<h4 id="1-2-数据库的类型"><a href="#1-2-数据库的类型" class="headerlink" title="1.2 数据库的类型"></a>1.2 数据库的类型</h4><p>根据数据存储方式和结构的不同，数据库可以分为<strong>关系型数据库</strong>和<strong>非关系型数据库</strong>：</p>
+<ul>
+<li>关系型数据库:<ul>
+<li>采用关系模型来组织数据的数据库。关系模型是指将数据组织成一系列的表格，表格之间可以建立关系。</li>
+<li>常见的关系型数据库有MySQL、Oracle、SQLServer、PostgreSQL等。</li>
+<li>关系型数据库具有以下特点：<ul>
+<li>表格之间可以建立关系，数据之间的关联性可以通过外键进行管理。</li>
+<li>支持复杂的查询操作，可以通过SQL语句进行查询、更新、删除等操作。</li>
+<li>支持事务处理，可以保证数据的完整性和一致性。通过索引来加快数据访问速度。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>非关系型数据库（NoSQL）:<ul>
+<li>非关系型数据库指不使用传统的关系型数据库模型的数据库，使用其他的数据模型来组织和管理数据。</li>
+<li>非关系型数据库可以存储各种类型的数据，包括结构化、半结构化和非结构化的数据。</li>
+<li>常见的非关系型数据库有MongoDB、Cassandra、Redis、Elasticsearch等。</li>
+<li>非关系型数据库具有以下特点：<ul>
+<li>不需要事先定义数据模型，数据可以动态添加和删除。</li>
+<li>支持水平扩展，可以通过添加节点来扩展数据库的容量和性能。</li>
+<li>支持高可用性和可伸缩性，可以通过复制和分片来实现数据的冗余和负载均衡。</li>
+<li>支持键值对、文档、图形、列族等多种数据模型。</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h4 id="1-3-数据库的结构"><a href="#1-3-数据库的结构" class="headerlink" title="1.3 数据库的结构"></a>1.3 数据库的结构</h4><p>数据库的结构指的是数据在数据库中的组织形式和存储方式，根据数据库结构的不同，数据库可以分为层次型数据库、网状型数据库、关系型数据库和面向对象数据库等。</p>
+<ul>
+<li>层次型数据库层次型数据库（HierarchicalDatabase）：<ul>
+<li>是最早的数据库类型之一，它的数据结构类似于一棵树形结构，数据之间存在一对多的层次关系。</li>
+<li>每个节点可以包含多个子节点，但只能有一个父节点。</li>
+<li>层次型数据库常用于管理复杂的工程和科学数据。</li>
+</ul>
+</li>
+<li>网状型数据库网状型数据库（NetworkDatabase）<ul>
+<li>是在层次型数据库的基础上发展起来的一种数据库类型。</li>
+<li>网状型数据库的数据结构类似于一个网状结构，数据之间存在多对多的关系。</li>
+<li>每个记录可以有多个父记录和多个子记录。</li>
+<li>网状型数据库常用于处理复杂的关联数据。</li>
+</ul>
+</li>
+<li>关系型数据库关系型数据库<ul>
+<li>是目前应用最广泛的一种数据库类型，它的数据结构是由多个表格组成，表格之间可以建立关系。</li>
+<li>关系型数据库可以使用SQL语句进行查询、更新、删除等操作，支持事务处理和索引等高级功能。</li>
+</ul>
+</li>
+<li>面向对象数据库面向对象数据库（Object-orientedDatabase）<ul>
+<li>是一种新型的数据库类型，它的数据结构类似于面向对象程序设计中的对象和类。</li>
+<li>面向对象数据库将数据存储在对象中，对象之间可以建立关系和继承关系，支持多态和封装等面向对象的特性。</li>
+<li>面向对象数据库常用于存储复杂的对象数据和多媒体数据</li>
+</ul>
+</li>
+</ul>
+<h3 id="2-SQLite-C-C-API"><a href="#2-SQLite-C-C-API" class="headerlink" title="2 SQLite-C&#x2F;C++API"></a>2 SQLite-C&#x2F;C++API</h3><ul>
+<li>是一个嵌入式SQL数据库引擎</li>
+<li>头文件：#include&lt;sqlite3.h&gt;</li>
+<li>打开数据库。如果数据库不存在，则创建数据库；</li>
+</ul>
+<pre class=" language-cpp"><code class="language-cpp">    <span class="token function">intsqlite3_open</span><span class="token punctuation">(</span>
+        constchar<span class="token operator">*</span>filename<span class="token punctuation">,</span>     <span class="token comment" spellcheck="true">/*Databasefilename(UTF-8)*/</span>
+        sqlite3<span class="token operator">*</span><span class="token operator">*</span>ppDb           <span class="token comment" spellcheck="true">/*OUT:SQLitedbhandle*/</span>
+    <span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre>
+<pre class=" language-text"><code class="language-text">参数：
+        `char*filename`：指定要打开的数据库的路径及文件名;
+        `sqlite3**ppDb`：`sqlite3`句柄指针，存储打开的数据库的首地址;
+返回值：
+        成功，返回SQLITE_OK；其实就是0;
+        失败，返回数据库中的error_code，其实就是大于0;
+功能：
+        1.打开一个指向SQLite数据库文件的连接，返回一个用于其他SQLite程序的数据库连接对象。
+        2.如果filename参数是NULL或':memory:'，那么sqlite3_open()将会在RAM中创建一个内存数据库，这只会在session的有效时间内持续。
+        3.如果文件名filename不为NULL，那么sqlite3_open()将使用这个参数值尝试打开数据库文件。如果该名称的文件不存在，sqlite3_open()将创建一个新的命名为该名称的数据库文件并打开。
+</code></pre>
+<ul>
+<li>执行:</li>
+</ul>
+<pre class=" language-cpp"><code class="language-cpp">    <span class="token function">SQLintsqlite3_exec</span><span class="token punctuation">(</span>
+        sqlite3<span class="token operator">*</span><span class="token punctuation">,</span>           <span class="token comment" spellcheck="true">/*sqlite3是打开的数据库对象*/</span>
+        constchar<span class="token operator">*</span>sql<span class="token punctuation">,</span>      <span class="token comment" spellcheck="true">/*SQL命令，以\0结尾，可以由多个指令组成*/</span>
+        sqlite_callback<span class="token punctuation">,</span>    <span class="token comment" spellcheck="true">/*回调函数*/</span>
+        <span class="token keyword">void</span><span class="token operator">*</span>data<span class="token punctuation">,</span>          <span class="token comment" spellcheck="true">/*回调函数的第一个参数*/</span>
+        <span class="token keyword">char</span><span class="token operator">*</span><span class="token operator">*</span>errmsg        <span class="token comment" spellcheck="true">/*将被返回用来获取程序生成的任何错误*/</span>
+<span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre>
+<pre class=" language-text"><code class="language-text">功能：
+    1.提供了一个执行SQL命令的快捷方式
+    2.`sqlite3_exec()`程序解析并执行由sql参数所给的每个命令，直到字符串结束或者遇到错误为止
+    3.`sqlite3_callback`、`void*data`和`char**errmsg`都可以填NULL。
+        填NULL表示你不需要回调。比如你做insert操作，做`delete`操作；
+        而当做`select`时，就要使用回调，因为`sqlite3`把数据查出来，得通过回调告诉你查出了什么数据。
+</code></pre>
+<ul>
+<li><p>非回调的select查询：<br><br><code>sqlite3_get_table()</code><br></p>
+</li>
+<li><p>函数关闭数据库<br><br><code>int sqlite3_close(sqlite3*)</code><br></p>
+</li>
+</ul>
+<pre class=" language-text"><code class="language-text">功能：
+    1.关闭之前调用sqlite3_open()打开的数据库连接
+    2.如果还有查询没有完成，sqlite3_close()将返回SQLITE_BUSY禁止关闭的错误消息
+</code></pre>
+<ul>
+<li>打印错误信息</li>
+</ul>
+<pre class=" language-cpp"><code class="language-cpp"><span class="token keyword">const</span> <span class="token keyword">char</span><span class="token operator">*</span><span class="token function">sqlite3_errmsg</span><span class="token punctuation">(</span>sqlite3<span class="token operator">*</span>db<span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre>
+<pre class=" language-text"><code class="language-text">   参数：
+    sqlite3*db：数据库句柄指针;
+  返回值：
+    返回error_code对应的错误信息;
+</code></pre>
+<ul>
+<li>打印<code>error_code</code></li>
+</ul>
+<pre class=" language-cpp"><code class="language-cpp"><span class="token keyword">int</span> <span class="token function">sqlite3_errcode</span><span class="token punctuation">(</span>sqlite3<span class="token operator">*</span>db<span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre>
+<pre class=" language-text"><code class="language-text">  参数：
+    sqlite3*db：数据库句柄指针;
+  返回值：对应的error_code;
+</code></pre>
+<ul>
+<li>查询数据库:</li>
+</ul>
+<pre class=" language-cpp"><code class="language-cpp"><span class="token function">intsqlite3_get_table</span><span class="token punctuation">(</span>
+    sqlite3<span class="token operator">*</span> db<span class="token punctuation">,</span>
+    constchar<span class="token operator">*</span>zSql<span class="token punctuation">,</span>     <span class="token comment" spellcheck="true">/*sql语句，注意只能填查询相关的sql语句*/</span>
+    <span class="token keyword">char</span><span class="token operator">*</span><span class="token operator">*</span><span class="token operator">*</span> pazResult<span class="token punctuation">,</span>  <span class="token comment" spellcheck="true">/*指向查询的结果 */</span>
+    <span class="token keyword">int</span><span class="token operator">*</span> pnRow<span class="token punctuation">,</span>         <span class="token comment" spellcheck="true">/*存储查询到的记录数，行数; */</span>
+    <span class="token keyword">int</span><span class="token operator">*</span> pnColumn<span class="token punctuation">,</span>      <span class="token comment" spellcheck="true">/* 存储查询到的字段数，列数;*/</span>
+    <span class="token keyword">char</span><span class="token operator">*</span><span class="token operator">*</span> pzErrmsg     <span class="token comment" spellcheck="true">/*存储错误信息; */</span>
+<span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre>
+<pre class=" language-text"><code class="language-text">  返回值：
+    成功，返回SQLITE_OK；其实就是0;<br>
+    失败，返回数据库中的error_code，其实就是大于0;<br>
+</code></pre>
+<ul>
+<li>释放查询到的结果:</li>
+</ul>
+<pre class=" language-cpp"><code class="language-cpp"><span class="token keyword">void</span> <span class="token function">sqlite3_free_table</span><span class="token punctuation">(</span><span class="token keyword">char</span><span class="token operator">*</span><span class="token operator">*</span>result<span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre>
+<ul>
+<li>执行准备操作:</li>
+</ul>
+<pre class=" language-cpp"><code class="language-cpp"><span class="token keyword">int</span> <span class="token function">sqlite3_prepare_v2</span>
+<span class="token punctuation">(</span>
+    sqlite3<span class="token operator">*</span>db<span class="token punctuation">,</span>     <span class="token comment" spellcheck="true">//数据库连接对象</span>
+    constchar<span class="token operator">*</span>zSql<span class="token punctuation">,</span> <span class="token comment" spellcheck="true">//要编译的SQL语句</span>
+    intnByte<span class="token punctuation">,</span>       <span class="token comment" spellcheck="true">//要编译的SQL语句的长度，如果是-1，则自动计算其长度</span>
+    sqlite3_stmt<span class="token operator">*</span><span class="token operator">*</span>ppStmt<span class="token punctuation">,</span><span class="token comment" spellcheck="true">//编译后的SQLite3语句对象</span>
+    constchar<span class="token operator">*</span><span class="token operator">*</span>pzTail   <span class="token comment" spellcheck="true">//未编译部分的指针</span>
+<span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre>
+<pre class=" language-text"><code class="language-text">  功能：
+    该函数将SQL语句编译成SQLite虚拟机指令，并将编译后的SQLite3语句对象存储在ppStmt指向的指针中，以备执行。如果pzTail不是NULL，则该指针将指向SQL语句中未编译部分的起始位置。
+  函数返回值：
+    如果编译成功，则返回SQLITE_OK。
+    如果编译失败，则返回一个错误代码sqlite3_step()
+    返回值有三种结果:
+        sqlite_done表示执行完毕;
+        sqlite_busy,表示无法执行操作;
+        sqlite_row表示执行完毕，并且有返回。
+</code></pre>
+<h3 id="1-3-Linux终端操作sqlite数据库"><a href="#1-3-Linux终端操作sqlite数据库" class="headerlink" title="1.3 Linux终端操作sqlite数据库"></a>1.3 Linux终端操作sqlite数据库</h3><pre class=" language-linux"><code class="language-linux">$ sqlite3<database_name>.db //打开/连接数据库
+$ sqlite><SQL_statement>;//执行SQL语句
+    $ sqlite>.tables//显示所有表格
+    $ sqlite>.schema<table_name>//查看表的结构
+    $ sqlite>SELECT*FROM<table_name>;//查询表中的所有结构$sqlite>INSERTINTO<table_name>(column1,column2,...)VALUES(value1,value2,...);
+    $ sqlite>UPDATE<table_name>SETcolumn1=value1WHEREcondition;$sqlite>DELETEFROM<table_name>WHEREcondition;
+$ .exit//退出sqlite3数据库
+</code></pre>
+]]></content>
+      <categories>
+        <category>数据库</category>
+      </categories>
+      <tags>
+        <tag>sqlite</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>初来乍到</title>
+    <url>/2023/09/17/00-1/</url>
+    <content><![CDATA[<p>写在开始…<br><br>初入职场，受组长凯哥影响，想要搭建自己的技术博客，于是有了这篇…<br><br>本人博客传送门：<a href="https://wzy012.github.io/">https://wzy012.github.io/</a> <br></p>
+<p>2023.6.19 从SDU毕业<br><br>2023.8.3 入职byd<br><br>开始了自己的菜鸟<del>打工</del>（成长）生涯<br><br>从事智驾开发工作<br><br>作为一个7年的自动化<del>不</del>专业学生<br><br>进入了一个纯软的技术赛道<br><br>其实还是很有压力的<br><br>但同时感觉充满了兴奋与挑战<br><br>开个人博客的初衷是：<br></p>
+<ul>
+<li>记录自己学习各个技术的过程，形成文档以备查漏补缺；<br></li>
+<li>如果有幸被需要的人看到，也是分享的意义</li>
+</ul>
+<p>希望自己坚持学习，一点一点进步，争取成为一名技术<del>大</del>小佬！</p>
+<p>最后附：<br><br>    Hexo + Github + Git 的博客搭建方案链接：<a href="https://yushuaigee.gitee.io/archives/">https://yushuaigee.gitee.io/archives/</a><br><br>    vscode + PicGo + Markdown All in one 的配置链接：<a href="https://blog.csdn.net/qq_35621494/article/details/106432399">https://blog.csdn.net/qq_35621494/article/details/106432399</a><br></p>
+<p>本人使用的是：vscode + Hexo + Github + Git + PicGO + Markdown All in one 的实现方案。</p>
+]]></content>
+      <categories>
+        <category>个人成长</category>
+      </categories>
+      <tags>
+        <tag>关于本人</tag>
       </tags>
   </entry>
   <entry>
@@ -288,504 +848,6 @@
       </categories>
       <tags>
         <tag>sqlite3</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>排序算法</title>
-    <url>/2023/09/17/01-sorting-algorithm/</url>
-    <content><![CDATA[<h2 id="1-前言"><a href="#1-前言" class="headerlink" title="1 前言"></a>1 前言</h2><p>排序算法分为 <strong>内部排序</strong> 和 <strong>外部排序</strong>，其中:<br><br><strong>内部排序</strong>：是数据记录在内存中进行排序；<br><br><strong>外部排序</strong>：因为要排序的数据很大，内存一次性不能容纳全部的排序记录，在排序中需要访问外存。<br><br>ps:简单排序：冒泡排序、选择排序、插入排序； 高级排序：希尔排序、归并排序、快速排序。</p>
-<h2 id="2-常见（内部）排序算法"><a href="#2-常见（内部）排序算法" class="headerlink" title="2 常见（内部）排序算法"></a>2 常见（内部）排序算法</h2><p>常见的内部排序算法有：冒泡排序、选择排序、插入排序、希尔排序、归并排序、快速排序、堆排序、基数排序等。<br></p>
-<h3 id="2-1-冒泡排序"><a href="#2-1-冒泡排序" class="headerlink" title="2.1 冒泡排序"></a>2.1 冒泡排序</h3><h4 id="2-1-1-算法步骤"><a href="#2-1-1-算法步骤" class="headerlink" title="2.1.1 算法步骤"></a>2.1.1 算法步骤</h4><p>（1）比较相邻的元素。如果第一个比第二个大，就交换他们两个；<br><br>（2）对每一对相邻元素做同样的工作，执行完毕后，找到第一个最大的值；<br><br>（3）重复以上步骤，每次比较次数-1，直到不需要比较。<br></p>
-<h4 id="2-1-2-代码实现"><a href="#2-1-2-代码实现" class="headerlink" title="2.1.2 代码实现"></a>2.1.2 代码实现</h4><pre class=" language-cpp"><code class="language-cpp"><span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;iostream></span></span>
-<span class="token keyword">using</span> <span class="token keyword">namespace</span> std<span class="token punctuation">;</span>
-
-<span class="token keyword">template</span><span class="token operator">&lt;</span><span class="token keyword">typename</span> T<span class="token operator">></span>
-<span class="token keyword">void</span> <span class="token function">bubble_sort</span><span class="token punctuation">(</span>T arr<span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">,</span> <span class="token keyword">int</span> len<span class="token punctuation">)</span>
-<span class="token punctuation">{</span>
-    <span class="token comment" spellcheck="true">// 排序的总趟数=元素个数-1；</span>
-    <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> len <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span>
-    <span class="token punctuation">{</span>
-        <span class="token comment" spellcheck="true">// 每趟对比次数=元素个数-当前排序趟数-1；</span>
-        <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> j <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> j <span class="token operator">&lt;</span> len <span class="token operator">-</span> i <span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">;</span> j<span class="token operator">++</span><span class="token punctuation">)</span>
-        <span class="token punctuation">{</span>
-            <span class="token comment" spellcheck="true">// 相邻元素比较</span>
-            <span class="token keyword">if</span><span class="token punctuation">(</span>arr<span class="token punctuation">[</span>j<span class="token punctuation">]</span> <span class="token operator">></span> arr<span class="token punctuation">[</span>j <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
-            <span class="token punctuation">{</span>
-                <span class="token keyword">int</span> temp <span class="token operator">=</span> arr<span class="token punctuation">[</span>j<span class="token punctuation">]</span><span class="token punctuation">;</span>
-                arr<span class="token punctuation">[</span>j<span class="token punctuation">]</span> <span class="token operator">=</span> arr<span class="token punctuation">[</span>j <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
-                arr<span class="token punctuation">[</span>j <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">]</span> <span class="token operator">=</span> temp<span class="token punctuation">;</span>
-            <span class="token punctuation">}</span>
-        <span class="token punctuation">}</span>
-    <span class="token punctuation">}</span>
-<span class="token punctuation">}</span>
-
-<span class="token keyword">void</span> <span class="token function">printArr</span><span class="token punctuation">(</span>T arr<span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">,</span> <span class="token keyword">int</span> len<span class="token punctuation">)</span>
-<span class="token punctuation">{</span>
-    <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> len<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span>
-    <span class="token punctuation">{</span>
-        cout <span class="token operator">&lt;&lt;</span> arr<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">&lt;&lt;</span> <span class="token string">" "</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-    cout <span class="token operator">&lt;&lt;</span> endl<span class="token punctuation">;</span>
-<span class="token punctuation">}</span>
-<span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
-<span class="token punctuation">{</span>
-    <span class="token keyword">int</span> arr<span class="token punctuation">[</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token number">61</span><span class="token punctuation">,</span> <span class="token number">17</span><span class="token punctuation">,</span> <span class="token number">29</span><span class="token punctuation">,</span> <span class="token number">22</span><span class="token punctuation">,</span> <span class="token number">34</span><span class="token punctuation">,</span> <span class="token number">60</span><span class="token punctuation">,</span> <span class="token number">72</span><span class="token punctuation">,</span> <span class="token number">21</span><span class="token punctuation">,</span> <span class="token number">50</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">62</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
-    <span class="token keyword">int</span> len <span class="token operator">=</span> <span class="token keyword">sizeof</span><span class="token punctuation">(</span>arr<span class="token punctuation">)</span> <span class="token operator">/</span> <span class="token keyword">sizeof</span><span class="token punctuation">(</span>arr<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token function">bubble_sort</span><span class="token punctuation">(</span>arr<span class="token punctuation">,</span> len<span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token function">printArr</span><span class="token punctuation">(</span>arr<span class="token punctuation">,</span> len<span class="token punctuation">)</span><span class="token punctuation">;</span>
-
-    <span class="token keyword">float</span> arrf<span class="token punctuation">[</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token punctuation">{</span> <span class="token number">17.5</span><span class="token punctuation">,</span> <span class="token number">19.1</span><span class="token punctuation">,</span> <span class="token number">0.6</span><span class="token punctuation">,</span> <span class="token number">1.9</span><span class="token punctuation">,</span> <span class="token number">10.5</span><span class="token punctuation">,</span> <span class="token number">12.4</span><span class="token punctuation">,</span> <span class="token number">3.8</span><span class="token punctuation">,</span> <span class="token number">19.7</span><span class="token punctuation">,</span> <span class="token number">1.5</span><span class="token punctuation">,</span> <span class="token number">25.4</span><span class="token punctuation">,</span> <span class="token number">28.6</span><span class="token punctuation">,</span> <span class="token number">4.4</span><span class="token punctuation">,</span> <span class="token number">23.8</span><span class="token punctuation">,</span> <span class="token number">5.4</span> <span class="token punctuation">}</span><span class="token punctuation">;</span>
-    <span class="token keyword">int</span> len <span class="token operator">=</span> <span class="token keyword">sizeof</span><span class="token punctuation">(</span>arr<span class="token punctuation">)</span> <span class="token operator">/</span> <span class="token keyword">sizeof</span><span class="token punctuation">(</span>arr<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token function">bubble_sort</span><span class="token punctuation">(</span>arr<span class="token punctuation">,</span> len<span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token function">printArr</span><span class="token punctuation">(</span>arr<span class="token punctuation">,</span> len<span class="token punctuation">)</span><span class="token punctuation">;</span>
-
-    <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
-<span class="token punctuation">}</span>
-</code></pre>
-<h4 id="2-1-3-性能分析"><a href="#2-1-3-性能分析" class="headerlink" title="2.1.3 性能分析"></a>2.1.3 性能分析</h4><p>时间复杂度：O(N^2) <br><br>空间复杂度：O(1)</p>
-<h3 id="2-2-选择排序"><a href="#2-2-选择排序" class="headerlink" title="2.2 选择排序"></a>2.2 选择排序</h3><h4 id="2-2-1-算法步骤"><a href="#2-2-1-算法步骤" class="headerlink" title="2.2.1 算法步骤"></a>2.2.1 算法步骤</h4><p>（1）在每一次遍历的过程中，都假定第一个索引处的元素是最小值，并和其他索引处的值进行比较，如果当前索引处的值大于其他索引处的值，则假定其他索引处的值为最小值，最后可以找到最小值所在的索引；<br><br>（2）交换第一个索引处和最小值所在的索引处的值。<br><br><img src="https://cdn.jsdelivr.net/gh/wzy012/myblogPicBed@master/image/20230917221302.png" alt="20230917221302"></p>
-<h4 id="2-2-2-代码实现"><a href="#2-2-2-代码实现" class="headerlink" title="2.2.2 代码实现"></a>2.2.2 代码实现</h4><pre class=" language-cpp"><code class="language-cpp"><span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;iostream></span></span>
-<span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;algorithm></span></span>
-<span class="token keyword">using</span> <span class="token keyword">namespace</span> std<span class="token punctuation">;</span>
-
-<span class="token keyword">template</span><span class="token operator">&lt;</span><span class="token keyword">typename</span> T<span class="token operator">></span>
-<span class="token keyword">void</span> <span class="token function">selection_sort</span><span class="token punctuation">(</span>vector<span class="token operator">&lt;</span>T<span class="token operator">></span><span class="token operator">&amp;</span> arr<span class="token punctuation">)</span>
-<span class="token punctuation">{</span>
-    <span class="token comment" spellcheck="true">// 排序的总趟数=元素个数-1；</span>
-    <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> arr<span class="token punctuation">.</span><span class="token function">size</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span>
-    <span class="token punctuation">{</span>
-        <span class="token comment" spellcheck="true">// 定义一个变量，记录最小元素所在的索引，默认为参与选择排序的第一个元素所在的位置</span>
-        <span class="token keyword">int</span> minIndex <span class="token operator">=</span> i<span class="token punctuation">;</span>
-        <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> j <span class="token operator">=</span> i <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">;</span> j <span class="token operator">&lt;</span> arr<span class="token punctuation">.</span><span class="token function">size</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> j<span class="token operator">++</span><span class="token punctuation">)</span>
-        <span class="token punctuation">{</span>
-            <span class="token comment" spellcheck="true">// 比较 最小索引处minIndex处的值 与 j索引处的值 的大小</span>
-            <span class="token keyword">if</span><span class="token punctuation">(</span>arr<span class="token punctuation">[</span>minIndex<span class="token punctuation">]</span> <span class="token operator">></span> arr<span class="token punctuation">[</span>j<span class="token punctuation">]</span><span class="token punctuation">)</span>
-            <span class="token punctuation">{</span>
-                minIndex <span class="token operator">=</span> j<span class="token punctuation">;</span>
-            <span class="token punctuation">}</span>
-        <span class="token punctuation">}</span>
-
-        <span class="token comment" spellcheck="true">//交换最小元素所在索引minIndex处的值和第一个位置处的值</span>
-        <span class="token function">swap</span><span class="token punctuation">(</span>arr<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">,</span> arr<span class="token punctuation">[</span>minIndex<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-<span class="token punctuation">}</span>
-<span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
-<span class="token punctuation">{</span>
-    vector<span class="token operator">&lt;</span><span class="token keyword">int</span><span class="token operator">></span> intv<span class="token punctuation">;</span>
-    intv<span class="token punctuation">.</span><span class="token function">push_back</span><span class="token punctuation">(</span><span class="token number">5</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    intv<span class="token punctuation">.</span><span class="token function">push_back</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    intv<span class="token punctuation">.</span><span class="token function">push_back</span><span class="token punctuation">(</span><span class="token number">4</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    intv<span class="token punctuation">.</span><span class="token function">push_back</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    intv<span class="token punctuation">.</span><span class="token function">push_back</span><span class="token punctuation">(</span><span class="token number">3</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-
-    <span class="token function">selection_sort</span><span class="token punctuation">(</span>intv<span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">auto</span> v <span class="token operator">:</span> intv<span class="token punctuation">)</span>
-    <span class="token punctuation">{</span>
-        cout <span class="token operator">&lt;&lt;</span> v <span class="token operator">&lt;&lt;</span> <span class="token string">" "</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-    cout <span class="token operator">&lt;&lt;</span> endl<span class="token punctuation">;</span>
-    <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
-<span class="token punctuation">}</span>
-</code></pre>
-<h4 id="2-2-3-性能分析"><a href="#2-2-3-性能分析" class="headerlink" title="2.2.3 性能分析"></a>2.2.3 性能分析</h4><p>时间复杂度：O(N^2) <br><br>空间复杂度：O(1)</p>
-<h3 id="2-3-插入排序"><a href="#2-3-插入排序" class="headerlink" title="2.3 插入排序"></a>2.3 插入排序</h3><h4 id="2-3-1-算法步骤-原理"><a href="#2-3-1-算法步骤-原理" class="headerlink" title="2.3.1 算法步骤&#x2F;原理"></a>2.3.1 算法步骤&#x2F;原理</h4><p>（1）把所有的元素分为两组，已经排序的和未排序的；<br><br>（2）找到未排序的组中的第一个元素，向已经排序的组中进行插入；<br><br>（3）倒叙遍历已经排序的元素，依次和待插入的元素进行比较，直到找到一个元素小于等于待插元素，那么就把待插入元素放到这个位置，其他的元素向后移动一位。<br><br><img src="https://cdn.jsdelivr.net/gh/wzy012/myblogPicBed@master/image/20230918222309.png" alt="20230918222309"><br><br>ps:假设排序前的数组的第一个的元素为已排序，其余为未排序</p>
-<h4 id="2-3-2-代码实现"><a href="#2-3-2-代码实现" class="headerlink" title="2.3.2 代码实现"></a>2.3.2 代码实现</h4><pre class=" language-cpp"><code class="language-cpp"><span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;iostream></span></span>
-<span class="token keyword">using</span> <span class="token keyword">namespace</span> std<span class="token punctuation">;</span>
-
-<span class="token keyword">template</span><span class="token operator">&lt;</span><span class="token keyword">typename</span> T<span class="token operator">></span>
-<span class="token keyword">void</span> <span class="token function">insertion_sort</span><span class="token punctuation">(</span>T arr<span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">,</span> <span class="token keyword">int</span> len<span class="token punctuation">)</span>
-<span class="token punctuation">{</span>
-    <span class="token comment" spellcheck="true">// 索引0处为已排序，待排序的元素索引从1开始</span>
-    <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> len<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span>
-    <span class="token punctuation">{</span>
-        <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> j <span class="token operator">=</span> i<span class="token punctuation">;</span> j <span class="token operator">>=</span> <span class="token number">0</span><span class="token punctuation">;</span> j<span class="token operator">--</span><span class="token punctuation">)</span>
-        <span class="token punctuation">{</span>
-            <span class="token comment" spellcheck="true">// 比较索引j处的值和索引j-1处的值，</span>
-            <span class="token comment" spellcheck="true">// 如果j-1处的值大于j处的值，则交换位置；</span>
-            <span class="token keyword">if</span><span class="token punctuation">(</span>arr<span class="token punctuation">[</span>j<span class="token number">-1</span><span class="token punctuation">]</span> <span class="token operator">></span> arr<span class="token punctuation">[</span>j<span class="token punctuation">]</span><span class="token punctuation">)</span>
-            <span class="token punctuation">{</span>
-                <span class="token function">swap</span><span class="token punctuation">(</span>arr<span class="token punctuation">[</span>j<span class="token number">-1</span><span class="token punctuation">]</span><span class="token punctuation">,</span> arr<span class="token punctuation">[</span>j<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-            <span class="token punctuation">}</span>
-            <span class="token comment" spellcheck="true">// 否则找到合适的位置退出循环</span>
-            <span class="token keyword">else</span>
-            <span class="token punctuation">{</span>
-                <span class="token keyword">break</span><span class="token punctuation">;</span>
-            <span class="token punctuation">}</span>
-        <span class="token punctuation">}</span>
-    <span class="token punctuation">}</span>
-<span class="token punctuation">}</span>
-
-<span class="token keyword">void</span> <span class="token function">printArr</span><span class="token punctuation">(</span>T arr<span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">,</span> <span class="token keyword">int</span> len<span class="token punctuation">)</span>
-<span class="token punctuation">{</span>
-    <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> len<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span>
-    <span class="token punctuation">{</span>
-        cout <span class="token operator">&lt;&lt;</span> arr<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">&lt;&lt;</span> <span class="token string">" "</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-    cout <span class="token operator">&lt;&lt;</span> endl<span class="token punctuation">;</span>
-<span class="token punctuation">}</span>
-
-<span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
-<span class="token punctuation">{</span>
-    <span class="token keyword">int</span> arr<span class="token punctuation">[</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token number">61</span><span class="token punctuation">,</span> <span class="token number">17</span><span class="token punctuation">,</span> <span class="token number">29</span><span class="token punctuation">,</span> <span class="token number">22</span><span class="token punctuation">,</span> <span class="token number">34</span><span class="token punctuation">,</span> <span class="token number">60</span><span class="token punctuation">,</span> <span class="token number">72</span><span class="token punctuation">,</span> <span class="token number">21</span><span class="token punctuation">,</span> <span class="token number">50</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">62</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
-    <span class="token keyword">int</span> len <span class="token operator">=</span> <span class="token keyword">sizeof</span><span class="token punctuation">(</span>arr<span class="token punctuation">)</span> <span class="token operator">/</span> <span class="token keyword">sizeof</span><span class="token punctuation">(</span>arr<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token function">printArr</span><span class="token punctuation">(</span>arr<span class="token punctuation">,</span> len<span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
-<span class="token punctuation">}</span>
-</code></pre>
-<h4 id="2-3-3-性能分析"><a href="#2-3-3-性能分析" class="headerlink" title="2.3.3 性能分析"></a>2.3.3 性能分析</h4><p>时间复杂度：O(N^2)<br><br>空间复杂度：O(1)，稳定的排序算法<br><br>ps:元素集合越接近有序，插入排序算法的时间效率越高</p>
-<h3 id="2-4-希尔排序"><a href="#2-4-希尔排序" class="headerlink" title="2.4 希尔排序"></a>2.4 希尔排序</h3><p>希尔排序是插入排序的一种，又称“缩小增量排序”，是插入排序算法的一种更高效的改进版。</p>
-<h4 id="2-4-1-算法步骤-原理"><a href="#2-4-1-算法步骤-原理" class="headerlink" title="2.4.1 算法步骤&#x2F;原理"></a>2.4.1 算法步骤&#x2F;原理</h4><p>（1）选定一个增长量h，按照增长量h作为数据分组的依据，对数据进行分组；<br><br>（2）对分好组的每一组数据完成插入排序；<br><br>（3）减小增长量，最小减为1，重复第二步操作。<br><br><img src="https://cdn.jsdelivr.net/gh/wzy012/myblogPicBed@master/image/20230918222218.png" alt="20230918222218"><br><br><strong>增量h的确定规则：</strong></p>
-<pre class=" language-cpp"><code class="language-cpp"><span class="token comment" spellcheck="true">// h初始化</span>
-<span class="token keyword">int</span> h <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span>
-<span class="token keyword">while</span><span class="token punctuation">(</span>h <span class="token operator">&lt;</span> 数组的长度<span class="token operator">/</span><span class="token number">2</span><span class="token punctuation">)</span>
-<span class="token punctuation">{</span>
-    h <span class="token operator">=</span> 2h <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">;</span>
-<span class="token punctuation">}</span>
-
-<span class="token comment" spellcheck="true">// 减小规则</span>
-h <span class="token operator">=</span> h <span class="token operator">/</span> <span class="token number">2</span><span class="token punctuation">;</span>
-</code></pre>
-<h4 id="2-4-2-代码实现-核心代码"><a href="#2-4-2-代码实现-核心代码" class="headerlink" title="2.4.2 代码实现&#x2F;核心代码"></a>2.4.2 代码实现&#x2F;核心代码</h4><pre class=" language-cpp"><code class="language-cpp"><span class="token keyword">void</span> <span class="token function">shell_sort</span><span class="token punctuation">(</span>T arr<span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">,</span> <span class="token keyword">int</span> len<span class="token punctuation">)</span>
-<span class="token punctuation">{</span>
-    <span class="token comment" spellcheck="true">// 1.根据数组长度确定增长量h的初始值</span>
-    <span class="token keyword">int</span> h <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span>
-    <span class="token keyword">while</span><span class="token punctuation">(</span>h <span class="token operator">&lt;</span> len<span class="token operator">/</span><span class="token number">2</span><span class="token punctuation">)</span>
-    <span class="token punctuation">{</span>
-        h <span class="token operator">=</span> <span class="token number">2</span><span class="token operator">*</span>h <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-    <span class="token comment" spellcheck="true">// 2.希尔排序</span>
-    <span class="token keyword">while</span><span class="token punctuation">(</span>h <span class="token operator">>=</span> <span class="token number">1</span><span class="token punctuation">)</span>
-    <span class="token punctuation">{</span>
-        <span class="token comment" spellcheck="true">// 排序</span>
-        <span class="token comment" spellcheck="true">// 2.1 找到待插入的元素</span>
-        <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> h<span class="token punctuation">;</span> i <span class="token operator">&lt;</span> len<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span>
-        <span class="token punctuation">{</span>
-            <span class="token comment" spellcheck="true">// 2.2 将待插入的元素插入到有序数列中</span>
-            <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> j <span class="token operator">=</span> i<span class="token punctuation">;</span> j <span class="token operator">>=</span> h<span class="token punctuation">;</span> j<span class="token operator">-</span><span class="token operator">=</span>h<span class="token punctuation">)</span>
-            <span class="token punctuation">{</span>
-                <span class="token comment" spellcheck="true">// 待插入的元素是a[j],比较a[j]和a[j-h]</span>
-                <span class="token keyword">if</span><span class="token punctuation">(</span>a<span class="token punctuation">[</span>j<span class="token operator">-</span>h<span class="token punctuation">]</span> <span class="token operator">></span> a<span class="token punctuation">[</span>j<span class="token punctuation">]</span><span class="token punctuation">)</span>
-                <span class="token punctuation">{</span>
-                    <span class="token function">swap</span><span class="token punctuation">(</span>a<span class="token punctuation">[</span>j<span class="token operator">-</span>h<span class="token punctuation">]</span><span class="token punctuation">,</span> a<span class="token punctuation">[</span>j<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-                <span class="token punctuation">}</span>
-                <span class="token keyword">else</span>
-                <span class="token punctuation">{</span>
-                    <span class="token keyword">break</span><span class="token punctuation">;</span>
-                <span class="token punctuation">}</span>
-            <span class="token punctuation">}</span>
-        <span class="token punctuation">}</span>
-        
-        <span class="token comment" spellcheck="true">// 减小h的值</span>
-        h <span class="token operator">=</span> h <span class="token operator">/</span> <span class="token number">2</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-<span class="token punctuation">}</span>
-</code></pre>
-<h4 id="2-4-3-性能分析"><a href="#2-4-3-性能分析" class="headerlink" title="2.4.3 性能分析"></a>2.4.3 性能分析</h4><p>时间复杂度O(N^1.5) [不好计算]<br><br>空间复杂度O(1)<br><br>ps: 非稳定排序算法,当h&gt;1时都是预排序，目的是让数组更接近于有序。当h&#x3D;&#x3D;1时，数组接近有序的，排序就会更快。<br></p>
-<h3 id="2-5-归并排序"><a href="#2-5-归并排序" class="headerlink" title="2.5 归并排序"></a>2.5 归并排序</h3><h4 id="2-5-0-递归"><a href="#2-5-0-递归" class="headerlink" title="2.5.0 递归"></a>2.5.0 递归</h4><ul>
-<li>定义：在方法内部调用方法本身；<br></li>
-<li>作用：可以把一个大型复杂问题层层转换为一个与原问题相似的、规模较小的问题来求解。递归策略只需要少量的程序就可以描述出解题过程所需要的多次重复计算，大大减少程序的代码量。<br></li>
-<li>注意事项：递归必须要有边界条件能够让递归结束，因为每一次调用都会在<strong>栈内存</strong>开辟新的空间，重复执行方法，如果递归的层级太深，很容易造成栈内存溢出。<br></li>
-<li>代码示例(n的阶乘)：</li>
-</ul>
-<pre class=" language-cpp"><code class="language-cpp"><span class="token keyword">long</span> <span class="token function">factorial</span><span class="token punctuation">(</span><span class="token keyword">int</span> n<span class="token punctuation">)</span>
-<span class="token punctuation">{</span>
-    <span class="token keyword">if</span><span class="token punctuation">(</span>n <span class="token operator">==</span> <span class="token number">1</span><span class="token punctuation">)</span>
-    <span class="token punctuation">{</span>
-        <span class="token keyword">return</span> <span class="token number">1</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-    <span class="token keyword">return</span> <span class="token function">factorial</span><span class="token punctuation">(</span>n<span class="token number">-1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token punctuation">}</span>
-</code></pre>
-<h4 id="2-5-1-算法步骤-原理"><a href="#2-5-1-算法步骤-原理" class="headerlink" title="2.5.1 算法步骤&#x2F;原理"></a>2.5.1 算法步骤&#x2F;原理</h4><p>(1) 尽可能的一组数据拆分成两个元素相等的子组，并对每一个子组继续拆分，直到拆分后的每个子组的元素个数是1为止；<br><br>(2) 将相邻的两个子组进行合并成一个有序的大组；<br><br>(3) 不断地重复步骤2，直到最终只有一个组为止。<br><br>ps:该算法采用分治法<br><br><img src="https://cdn.jsdelivr.net/gh/wzy012/myblogPicBed@master/image/20230920215644.png" alt="20230920215644"><br><br>具体过程：<br><br><img src="https://cdn.jsdelivr.net/gh/wzy012/myblogPicBed@master/image/20230920223650.png" alt="20230920223650"><br><img src="https://cdn.jsdelivr.net/gh/wzy012/myblogPicBed@master/image/20230920223732.png" alt="20230920223732"><br><img src="https://cdn.jsdelivr.net/gh/wzy012/myblogPicBed@master/image/20230920223619.png" alt="20230920223619"><br><img src="https://cdn.jsdelivr.net/gh/wzy012/myblogPicBed@master/image/20230920224044.png" alt="20230920224044"><br><img src="https://cdn.jsdelivr.net/gh/wzy012/myblogPicBed@master/image/20230920224130.png" alt="20230920224130"><br><img src="https://cdn.jsdelivr.net/gh/wzy012/myblogPicBed@master/image/20230920224231.png" alt="20230920224231"><br><img src="https://cdn.jsdelivr.net/gh/wzy012/myblogPicBed@master/image/20230920224343.png" alt="20230920224343"><br><img src="https://cdn.jsdelivr.net/gh/wzy012/myblogPicBed@master/image/20230920224419.png" alt="20230920224419"></p>
-<h4 id="2-5-2-代码实现"><a href="#2-5-2-代码实现" class="headerlink" title="2.5.2 代码实现"></a>2.5.2 代码实现</h4><h4 id="2-5-3-性能分析"><a href="#2-5-3-性能分析" class="headerlink" title="2.5.3 性能分析"></a>2.5.3 性能分析</h4><h2 id="3-总结"><a href="#3-总结" class="headerlink" title="3. 总结"></a>3. 总结</h2><p>（1）简单排序算法的时间复杂度都为O(N^2)，随着输入规模的增大，时间成本急剧上升，因此简单排序算法不能处理大规模问题；<br></p>
-]]></content>
-      <categories>
-        <category>数据结构与算法</category>
-      </categories>
-      <tags>
-        <tag>排序算法</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>数据结构基础知识</title>
-    <url>/2023/09/20/04-datastructure/</url>
-    <content><![CDATA[<h3 id="3-数据结构"><a href="#3-数据结构" class="headerlink" title="3.数据结构"></a>3.数据结构</h3><h4 id="3-1-前言"><a href="#3-1-前言" class="headerlink" title="3.1 前言"></a>3.1 前言</h4><p>数据结构是为实现对计算机数据有效使用的各种数据组织形式，服务于各类计算机操作。不同的数据结构具有各自对应的适用场景，旨在降低各种算法计算的时间与空间复杂度，达到最佳的任务执行效率。</p>
-<h4 id="3-2-数组"><a href="#3-2-数组" class="headerlink" title="3.2 数组"></a>3.2 数组</h4><p>固定数组和可变数组</p>
-<h4 id="3-3-链表"><a href="#3-3-链表" class="headerlink" title="3.3 链表"></a>3.3 链表</h4><p>链表以节点为单位，每个元素都是一个独立对象，在内存中的存储空间是非连续的。链表的节点对象具有两个成员变量：「值 <code>val</code>」，「后继节点引用 <code>next</code>」 。</p>
-<pre class=" language-cpp"><code class="language-cpp"><span class="token keyword">struct</span> ListNode<span class="token punctuation">{</span>
-    <span class="token keyword">int</span> val<span class="token punctuation">;</span>
-    ListNode <span class="token operator">*</span>next<span class="token punctuation">;</span>
-    <span class="token function">ListNode</span><span class="token punctuation">(</span><span class="token keyword">int</span> x<span class="token punctuation">)</span> <span class="token operator">:</span> <span class="token function">val</span><span class="token punctuation">(</span>x<span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token function">next</span><span class="token punctuation">(</span><span class="token constant">NULL</span><span class="token punctuation">)</span> <span class="token punctuation">{</span><span class="token punctuation">}</span>
-<span class="token punctuation">}</span><span class="token punctuation">;</span>
-</code></pre>
-<h4 id="3-4-栈"><a href="#3-4-栈" class="headerlink" title="3.4 栈"></a>3.4 栈</h4><p>栈是一种具有 「先入后出」 特点的抽象数据结构，可使用<strong>数组</strong>或<strong>链表</strong>实现</p>
-<pre class=" language-cpp"><code class="language-cpp">stack<span class="token operator">&lt;</span>T<span class="token operator">></span> stk<span class="token punctuation">;</span>
-</code></pre>
-<h4 id="3-5-队列"><a href="#3-5-队列" class="headerlink" title="3.5 队列"></a>3.5 队列</h4><p>队列是一种具有 「先入先出」 特点的抽象数据结构，可使用<strong>链表</strong>实现。</p>
-<pre class=" language-cpp"><code class="language-cpp">queue<span class="token operator">&lt;</span>T<span class="token operator">></span> que<span class="token punctuation">;</span>
-</code></pre>
-<h4 id="3-6-树"><a href="#3-6-树" class="headerlink" title="3.6 树"></a>3.6 树</h4><p>树是一种非线性数据结构，根据子节点数量可分为 「二叉树」 和 「多叉树」，最顶层的节点称为「根节点 root」。以二叉树为例，每个节点包含三个成员变量：「值 val」、「左子节点 left」、「右子节点 right」 。</p>
-<pre class=" language-cpp"><code class="language-cpp"><span class="token keyword">struct</span> TreeNode<span class="token punctuation">{</span>
-    <span class="token keyword">int</span> val<span class="token punctuation">;</span>
-    TreeNode <span class="token operator">*</span>left<span class="token punctuation">;</span>
-    TreeNode <span class="token operator">*</span>right<span class="token punctuation">;</span>
-    <span class="token function">TreeNode</span><span class="token punctuation">(</span><span class="token keyword">int</span> x<span class="token punctuation">)</span> <span class="token operator">:</span> <span class="token function">val</span><span class="token punctuation">(</span>x<span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token function">left</span><span class="token punctuation">(</span><span class="token constant">NULL</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token function">right</span><span class="token punctuation">(</span><span class="token constant">NULL</span><span class="token punctuation">)</span><span class="token punctuation">{</span><span class="token punctuation">}</span>
-<span class="token punctuation">}</span><span class="token punctuation">;</span>
-</code></pre>
-<p>构建二叉树示例：</p>
-<pre class=" language-cpp"><code class="language-cpp"><span class="token comment" spellcheck="true">//初始化节点</span>
-TreeNode <span class="token operator">*</span>n1 <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token function">TreeNode</span><span class="token punctuation">(</span><span class="token number">3</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// root</span>
-TreeNode <span class="token operator">*</span>n2 <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token function">TreeNode</span><span class="token punctuation">(</span><span class="token number">4</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-TreeNode <span class="token operator">*</span>n3 <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token function">TreeNode</span><span class="token punctuation">(</span><span class="token number">5</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-TreeNode <span class="token operator">*</span>n4 <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token function">TreeNode</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-TreeNode <span class="token operator">*</span>n5 <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token function">TreeNode</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-
-<span class="token comment" spellcheck="true">//构建引用指向</span>
-n1<span class="token operator">-</span><span class="token operator">></span>left <span class="token operator">=</span> n2<span class="token punctuation">;</span>
-n1<span class="token operator">-</span><span class="token operator">></span>right <span class="token operator">=</span> n3<span class="token punctuation">;</span>
-n2<span class="token operator">-</span><span class="token operator">></span>left <span class="token operator">=</span> n4<span class="token punctuation">;</span>
-n2<span class="token operator">-</span><span class="token operator">></span>right <span class="token operator">=</span> n5<span class="token punctuation">;</span>
-</code></pre>
-<h4 id="3-7-图"><a href="#3-7-图" class="headerlink" title="3.7 图"></a>3.7 图</h4><p>图是一种非线性数据结构，由「节点（顶点）<code>vertex</code>」和「边 <code>edge</code>」组成，每条边连接一对顶点。根据边的方向有无，图可分为「有向图」和「无向图」。</p>
-<p><strong>以无向图为例</strong> 开展介绍，无向图的 <strong>顶点</strong> 和 <strong>边</strong> 集合分别为：</p>
-<ul>
-<li>顶点集合：<code>vertices = &#123;1, 2, 3, 4, 5&#125;</code></li>
-<li>边集合：<code>edges = &#123;(1, 2), (1, 3), (1, 4), (1, 5), (2,4), (3,5), (4,5)&#125;</code></li>
-</ul>
-<p><strong>表示图</strong>的方法通常有两种：</p>
-<p>1.<strong>邻接矩阵</strong>：使用数组vertices存储顶点，邻接矩阵edges存储边；<code>edges[i][j]</code>代表节点<code>i+1</code>和节点<code>j+1</code>之间是否有边。</p>
-<pre class=" language-cpp"><code class="language-cpp"><span class="token keyword">int</span> vertices<span class="token punctuation">[</span><span class="token number">5</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">,</span> <span class="token number">4</span><span class="token punctuation">,</span> <span class="token number">5</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
-<span class="token keyword">int</span> edges<span class="token punctuation">[</span><span class="token number">5</span><span class="token punctuation">]</span><span class="token punctuation">[</span><span class="token number">5</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token punctuation">{</span><span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
-                   <span class="token punctuation">{</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
-                   <span class="token punctuation">{</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
-                   <span class="token punctuation">{</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
-                   <span class="token punctuation">{</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">}</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
-</code></pre>
-<p>2.<strong>邻接表</strong>：使用数组vertices存储顶点，邻接矩阵edges存储边。第一维<code>i</code>代表顶点索引，第二维edges[i]存储此顶点对应的边集合。</p>
-<p>邻接矩阵 VS 邻接表 ：</p>
-<p>邻接矩阵的大小只与节点数量有关，即 N^2  ，其中 N 为节点数量。因此，当边数量明显少于节点数量时，使用邻接矩阵存储图会造成较大的内存浪费。<br>因此，邻接表 适合存储稀疏图（顶点较多、边较少）； 邻接矩阵 适合存储稠密图（顶点较少、边较多）。</p>
-]]></content>
-      <categories>
-        <category>数据结构与算法</category>
-      </categories>
-      <tags>
-        <tag>基础知识</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>SQLite数据库</title>
-    <url>/2023/09/20/05-sqlitedb/</url>
-    <content><![CDATA[<h3 id="1-数据库"><a href="#1-数据库" class="headerlink" title="1 数据库"></a>1 数据库</h3><h4 id="1-1-数据库的基本概念"><a href="#1-1-数据库的基本概念" class="headerlink" title="1.1 数据库的基本概念"></a>1.1 数据库的基本概念<br></h4><p>数据库的核心概念包括数据、表格、字段、记录和主键等。<br></p>
-<ul>
-<li>数据<ul>
-<li>数据是指可以被计算机处理和存储的信息。</li>
-<li>数据可以是数字、字符、图像、音频等各种类型的信息。</li>
-<li>数据库中的数据是有意义的信息，可以被组织、管理和检索。</li>
-</ul>
-</li>
-<li>表格<ul>
-<li>表格是数据库中存储数据的基本单元，也被称为数据表或数据集合。</li>
-<li>表格由行和列组成，行表示记录，列表示字段。</li>
-<li>表格中的每个单元格包含一个值，该值对应于表格中的一个字段和一条记录。</li>
-</ul>
-</li>
-<li>字段<ul>
-<li>字段是表格中的列，每个字段都包含相同类型的数据。</li>
-<li>字段可以是数字、字符、日期、时间、布尔值等各种类型的数据。</li>
-<li>每个字段都有一个名称，用于标识该字段在表格中的位置。</li>
-</ul>
-</li>
-<li>记录<ul>
-<li>记录是表格中的行，每个记录包含一组字段值。</li>
-<li>记录的数量可以是零或多个，每个记录都有一个唯一标识符，称为主键。</li>
-</ul>
-</li>
-<li>主键<ul>
-<li>主键是一条记录的唯一标识符，用于区分表格中不同的记录。</li>
-<li>主键可以是一个或多个字段的组合，主键的值不能重复。</li>
-<li>主键可以是数据库中唯一的一个记录标识符。</li>
-</ul>
-</li>
-</ul>
-<h4 id="1-2-数据库的类型"><a href="#1-2-数据库的类型" class="headerlink" title="1.2 数据库的类型"></a>1.2 数据库的类型</h4><p>根据数据存储方式和结构的不同，数据库可以分为<strong>关系型数据库</strong>和<strong>非关系型数据库</strong>：</p>
-<ul>
-<li>关系型数据库:<ul>
-<li>采用关系模型来组织数据的数据库。关系模型是指将数据组织成一系列的表格，表格之间可以建立关系。</li>
-<li>常见的关系型数据库有MySQL、Oracle、SQLServer、PostgreSQL等。</li>
-<li>关系型数据库具有以下特点：<ul>
-<li>表格之间可以建立关系，数据之间的关联性可以通过外键进行管理。</li>
-<li>支持复杂的查询操作，可以通过SQL语句进行查询、更新、删除等操作。</li>
-<li>支持事务处理，可以保证数据的完整性和一致性。通过索引来加快数据访问速度。</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>非关系型数据库（NoSQL）:<ul>
-<li>非关系型数据库指不使用传统的关系型数据库模型的数据库，使用其他的数据模型来组织和管理数据。</li>
-<li>非关系型数据库可以存储各种类型的数据，包括结构化、半结构化和非结构化的数据。</li>
-<li>常见的非关系型数据库有MongoDB、Cassandra、Redis、Elasticsearch等。</li>
-<li>非关系型数据库具有以下特点：<ul>
-<li>不需要事先定义数据模型，数据可以动态添加和删除。</li>
-<li>支持水平扩展，可以通过添加节点来扩展数据库的容量和性能。</li>
-<li>支持高可用性和可伸缩性，可以通过复制和分片来实现数据的冗余和负载均衡。</li>
-<li>支持键值对、文档、图形、列族等多种数据模型。</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<h4 id="1-3-数据库的结构"><a href="#1-3-数据库的结构" class="headerlink" title="1.3 数据库的结构"></a>1.3 数据库的结构</h4><p>数据库的结构指的是数据在数据库中的组织形式和存储方式，根据数据库结构的不同，数据库可以分为层次型数据库、网状型数据库、关系型数据库和面向对象数据库等。</p>
-<ul>
-<li>层次型数据库层次型数据库（HierarchicalDatabase）：<ul>
-<li>是最早的数据库类型之一，它的数据结构类似于一棵树形结构，数据之间存在一对多的层次关系。</li>
-<li>每个节点可以包含多个子节点，但只能有一个父节点。</li>
-<li>层次型数据库常用于管理复杂的工程和科学数据。</li>
-</ul>
-</li>
-<li>网状型数据库网状型数据库（NetworkDatabase）<ul>
-<li>是在层次型数据库的基础上发展起来的一种数据库类型。</li>
-<li>网状型数据库的数据结构类似于一个网状结构，数据之间存在多对多的关系。</li>
-<li>每个记录可以有多个父记录和多个子记录。</li>
-<li>网状型数据库常用于处理复杂的关联数据。</li>
-</ul>
-</li>
-<li>关系型数据库关系型数据库<ul>
-<li>是目前应用最广泛的一种数据库类型，它的数据结构是由多个表格组成，表格之间可以建立关系。</li>
-<li>关系型数据库可以使用SQL语句进行查询、更新、删除等操作，支持事务处理和索引等高级功能。</li>
-</ul>
-</li>
-<li>面向对象数据库面向对象数据库（Object-orientedDatabase）<ul>
-<li>是一种新型的数据库类型，它的数据结构类似于面向对象程序设计中的对象和类。</li>
-<li>面向对象数据库将数据存储在对象中，对象之间可以建立关系和继承关系，支持多态和封装等面向对象的特性。</li>
-<li>面向对象数据库常用于存储复杂的对象数据和多媒体数据</li>
-</ul>
-</li>
-</ul>
-<h3 id="2-SQLite-C-C-API"><a href="#2-SQLite-C-C-API" class="headerlink" title="2 SQLite-C&#x2F;C++API"></a>2 SQLite-C&#x2F;C++API</h3><ul>
-<li>是一个嵌入式SQL数据库引擎</li>
-<li>头文件：#include&lt;sqlite3.h&gt;</li>
-<li>打开数据库。如果数据库不存在，则创建数据库；</li>
-</ul>
-<pre class=" language-cpp"><code class="language-cpp">    <span class="token function">intsqlite3_open</span><span class="token punctuation">(</span>
-        constchar<span class="token operator">*</span>filename<span class="token punctuation">,</span>     <span class="token comment" spellcheck="true">/*Databasefilename(UTF-8)*/</span>
-        sqlite3<span class="token operator">*</span><span class="token operator">*</span>ppDb           <span class="token comment" spellcheck="true">/*OUT:SQLitedbhandle*/</span>
-    <span class="token punctuation">)</span><span class="token punctuation">;</span>
-</code></pre>
-<pre class=" language-text"><code class="language-text">参数：
-        `char*filename`：指定要打开的数据库的路径及文件名;
-        `sqlite3**ppDb`：`sqlite3`句柄指针，存储打开的数据库的首地址;
-返回值：
-        成功，返回SQLITE_OK；其实就是0;
-        失败，返回数据库中的error_code，其实就是大于0;
-功能：
-        1.打开一个指向SQLite数据库文件的连接，返回一个用于其他SQLite程序的数据库连接对象。
-        2.如果filename参数是NULL或':memory:'，那么sqlite3_open()将会在RAM中创建一个内存数据库，这只会在session的有效时间内持续。
-        3.如果文件名filename不为NULL，那么sqlite3_open()将使用这个参数值尝试打开数据库文件。如果该名称的文件不存在，sqlite3_open()将创建一个新的命名为该名称的数据库文件并打开。
-</code></pre>
-<ul>
-<li>执行:</li>
-</ul>
-<pre class=" language-cpp"><code class="language-cpp">    <span class="token function">SQLintsqlite3_exec</span><span class="token punctuation">(</span>
-        sqlite3<span class="token operator">*</span><span class="token punctuation">,</span>           <span class="token comment" spellcheck="true">/*sqlite3是打开的数据库对象*/</span>
-        constchar<span class="token operator">*</span>sql<span class="token punctuation">,</span>      <span class="token comment" spellcheck="true">/*SQL命令，以\0结尾，可以由多个指令组成*/</span>
-        sqlite_callback<span class="token punctuation">,</span>    <span class="token comment" spellcheck="true">/*回调函数*/</span>
-        <span class="token keyword">void</span><span class="token operator">*</span>data<span class="token punctuation">,</span>          <span class="token comment" spellcheck="true">/*回调函数的第一个参数*/</span>
-        <span class="token keyword">char</span><span class="token operator">*</span><span class="token operator">*</span>errmsg        <span class="token comment" spellcheck="true">/*将被返回用来获取程序生成的任何错误*/</span>
-<span class="token punctuation">)</span><span class="token punctuation">;</span>
-</code></pre>
-<pre class=" language-text"><code class="language-text">功能：
-    1.提供了一个执行SQL命令的快捷方式
-    2.`sqlite3_exec()`程序解析并执行由sql参数所给的每个命令，直到字符串结束或者遇到错误为止
-    3.`sqlite3_callback`、`void*data`和`char**errmsg`都可以填NULL。
-        填NULL表示你不需要回调。比如你做insert操作，做`delete`操作；
-        而当做`select`时，就要使用回调，因为`sqlite3`把数据查出来，得通过回调告诉你查出了什么数据。
-</code></pre>
-<ul>
-<li><p>非回调的select查询：<br><br><code>sqlite3_get_table()</code><br></p>
-</li>
-<li><p>函数关闭数据库<br><br><code>int sqlite3_close(sqlite3*)</code><br></p>
-</li>
-</ul>
-<pre class=" language-text"><code class="language-text">功能：
-    1.关闭之前调用sqlite3_open()打开的数据库连接
-    2.如果还有查询没有完成，sqlite3_close()将返回SQLITE_BUSY禁止关闭的错误消息
-</code></pre>
-<ul>
-<li>打印错误信息</li>
-</ul>
-<pre class=" language-cpp"><code class="language-cpp"><span class="token keyword">const</span> <span class="token keyword">char</span><span class="token operator">*</span><span class="token function">sqlite3_errmsg</span><span class="token punctuation">(</span>sqlite3<span class="token operator">*</span>db<span class="token punctuation">)</span><span class="token punctuation">;</span>
-</code></pre>
-<pre class=" language-text"><code class="language-text">   参数：
-    sqlite3*db：数据库句柄指针;
-  返回值：
-    返回error_code对应的错误信息;
-</code></pre>
-<ul>
-<li>打印<code>error_code</code></li>
-</ul>
-<pre class=" language-cpp"><code class="language-cpp"><span class="token keyword">int</span> <span class="token function">sqlite3_errcode</span><span class="token punctuation">(</span>sqlite3<span class="token operator">*</span>db<span class="token punctuation">)</span><span class="token punctuation">;</span>
-</code></pre>
-<pre class=" language-text"><code class="language-text">  参数：
-    sqlite3*db：数据库句柄指针;
-  返回值：对应的error_code;
-</code></pre>
-<ul>
-<li>查询数据库:</li>
-</ul>
-<pre class=" language-cpp"><code class="language-cpp"><span class="token function">intsqlite3_get_table</span><span class="token punctuation">(</span>
-    sqlite3<span class="token operator">*</span> db<span class="token punctuation">,</span>
-    constchar<span class="token operator">*</span>zSql<span class="token punctuation">,</span>     <span class="token comment" spellcheck="true">/*sql语句，注意只能填查询相关的sql语句*/</span>
-    <span class="token keyword">char</span><span class="token operator">*</span><span class="token operator">*</span><span class="token operator">*</span> pazResult<span class="token punctuation">,</span>  <span class="token comment" spellcheck="true">/*指向查询的结果 */</span>
-    <span class="token keyword">int</span><span class="token operator">*</span> pnRow<span class="token punctuation">,</span>         <span class="token comment" spellcheck="true">/*存储查询到的记录数，行数; */</span>
-    <span class="token keyword">int</span><span class="token operator">*</span> pnColumn<span class="token punctuation">,</span>      <span class="token comment" spellcheck="true">/* 存储查询到的字段数，列数;*/</span>
-    <span class="token keyword">char</span><span class="token operator">*</span><span class="token operator">*</span> pzErrmsg     <span class="token comment" spellcheck="true">/*存储错误信息; */</span>
-<span class="token punctuation">)</span><span class="token punctuation">;</span>
-</code></pre>
-<pre class=" language-text"><code class="language-text">  返回值：
-    成功，返回SQLITE_OK；其实就是0;<br>
-    失败，返回数据库中的error_code，其实就是大于0;<br>
-</code></pre>
-<ul>
-<li>释放查询到的结果:</li>
-</ul>
-<pre class=" language-cpp"><code class="language-cpp"><span class="token keyword">void</span> <span class="token function">sqlite3_free_table</span><span class="token punctuation">(</span><span class="token keyword">char</span><span class="token operator">*</span><span class="token operator">*</span>result<span class="token punctuation">)</span><span class="token punctuation">;</span>
-</code></pre>
-<ul>
-<li>执行准备操作:</li>
-</ul>
-<pre class=" language-cpp"><code class="language-cpp"><span class="token keyword">int</span> <span class="token function">sqlite3_prepare_v2</span>
-<span class="token punctuation">(</span>
-    sqlite3<span class="token operator">*</span>db<span class="token punctuation">,</span>     <span class="token comment" spellcheck="true">//数据库连接对象</span>
-    constchar<span class="token operator">*</span>zSql<span class="token punctuation">,</span> <span class="token comment" spellcheck="true">//要编译的SQL语句</span>
-    intnByte<span class="token punctuation">,</span>       <span class="token comment" spellcheck="true">//要编译的SQL语句的长度，如果是-1，则自动计算其长度</span>
-    sqlite3_stmt<span class="token operator">*</span><span class="token operator">*</span>ppStmt<span class="token punctuation">,</span><span class="token comment" spellcheck="true">//编译后的SQLite3语句对象</span>
-    constchar<span class="token operator">*</span><span class="token operator">*</span>pzTail   <span class="token comment" spellcheck="true">//未编译部分的指针</span>
-<span class="token punctuation">)</span><span class="token punctuation">;</span>
-</code></pre>
-<pre class=" language-text"><code class="language-text">  功能：
-    该函数将SQL语句编译成SQLite虚拟机指令，并将编译后的SQLite3语句对象存储在ppStmt指向的指针中，以备执行。如果pzTail不是NULL，则该指针将指向SQL语句中未编译部分的起始位置。
-  函数返回值：
-    如果编译成功，则返回SQLITE_OK。
-    如果编译失败，则返回一个错误代码sqlite3_step()
-    返回值有三种结果:
-        sqlite_done表示执行完毕;
-        sqlite_busy,表示无法执行操作;
-        sqlite_row表示执行完毕，并且有返回。
-</code></pre>
-<h3 id="1-3-Linux终端操作sqlite数据库"><a href="#1-3-Linux终端操作sqlite数据库" class="headerlink" title="1.3 Linux终端操作sqlite数据库"></a>1.3 Linux终端操作sqlite数据库</h3><pre class=" language-linux"><code class="language-linux">$ sqlite3<database_name>.db //打开/连接数据库
-$ sqlite><SQL_statement>;//执行SQL语句
-    $ sqlite>.tables//显示所有表格
-    $ sqlite>.schema<table_name>//查看表的结构
-    $ sqlite>SELECT*FROM<table_name>;//查询表中的所有结构$sqlite>INSERTINTO<table_name>(column1,column2,...)VALUES(value1,value2,...);
-    $ sqlite>UPDATE<table_name>SETcolumn1=value1WHEREcondition;$sqlite>DELETEFROM<table_name>WHEREcondition;
-$ .exit//退出sqlite3数据库
-</code></pre>
-]]></content>
-      <categories>
-        <category>数据库</category>
-      </categories>
-      <tags>
-        <tag>sqlite</tag>
       </tags>
   </entry>
 </search>
