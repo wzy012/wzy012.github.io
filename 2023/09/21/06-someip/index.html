@@ -4,13 +4,10 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="SQLite数据库, spring">
-    <meta name="description" content="1 数据库1.1 数据库的基本概念数据库的核心概念包括数据、表格、字段、记录和主键等。
-
-数据
-数据是指可以被计算机处理和存储的信息。
-数据可以是数字、字符、图像、音频等各种类型的信息。
-数据库中的数据是有意义的信息，可以被组织、管理和检索">
+    <meta name="keywords" content="someip, spring">
+    <meta name="description" content="1 SOA（Service Oriented Architecture）1.1 前言
+单体式应用程序所有功能模块包含在一个进程内功能模块之间通过直接调用API进行通信
+SOA应用程序各个功能模块以独立进程（服务）运行功能模块之间通过服务接口">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -22,7 +19,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>SQLite数据库 | spring</title>
+    <title>someip | spring</title>
     <link rel="icon" type="image/png" href="/favicon.png">
     
 
@@ -253,12 +250,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/9.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/5.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">SQLite数据库</h1>
+                    <h1 class="description center-align post-title">someip</h1>
                 </div>
             </div>
         </div>
@@ -282,8 +279,8 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/sqlite/">
-                                <span class="chip bg-color">sqlite</span>
+                            <a href="/tags/SOME-IP/">
+                                <span class="chip bg-color">SOME/IP</span>
                             </a>
                         
                     </div>
@@ -294,8 +291,8 @@
                     <div class="post-cate">
                         <i class="fas fa-bookmark fa-fw icon-category"></i>
                         
-                            <a href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/" class="post-category">
-                                数据库
+                            <a href="/categories/%E9%80%9A%E4%BF%A1%E5%8D%8F%E8%AE%AE/" class="post-category">
+                                通信协议
                             </a>
                         
                     </div>
@@ -307,7 +304,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2023-09-20
+                    2023-09-21
                 </div>
                 
 
@@ -328,211 +325,41 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h3 id="1-数据库"><a href="#1-数据库" class="headerlink" title="1 数据库"></a>1 数据库</h3><h4 id="1-1-数据库的基本概念"><a href="#1-1-数据库的基本概念" class="headerlink" title="1.1 数据库的基本概念"></a>1.1 数据库的基本概念<br></h4><p>数据库的核心概念包括数据、表格、字段、记录和主键等。<br></p>
+                <h3 id="1-SOA（Service-Oriented-Architecture）"><a href="#1-SOA（Service-Oriented-Architecture）" class="headerlink" title="1 SOA（Service Oriented Architecture）"></a>1 SOA（Service Oriented Architecture）</h3><h4 id="1-1-前言"><a href="#1-1-前言" class="headerlink" title="1.1 前言"></a>1.1 前言</h4><ul>
+<li><strong>单体式应用程序</strong><br>所有功能模块包含在一个进程内功能模块之间通过直接调用API进行通信<br><img src="https://cdn.jsdelivr.net/gh/wzy012/myblogPicBed@master/image/20230921232656.png" alt="20230921232656"><br><br><img src="https://cdn.jsdelivr.net/gh/wzy012/myblogPicBed@master/image/20230921232719.png" alt="20230921232719"><br><br><img src="https://cdn.jsdelivr.net/gh/wzy012/myblogPicBed@master/image/20230921232735.png" alt="20230921232735"><br></li>
+<li><strong>SOA应用程序</strong><br>各个功能模块以独立进程（服务）运行功能模块之间通过服务接口进行通信<br><br><img src="https://cdn.jsdelivr.net/gh/wzy012/myblogPicBed@master/image/20230921232817.png" alt="20230921232817"><br><br><img src="https://cdn.jsdelivr.net/gh/wzy012/myblogPicBed@master/image/20230921232847.png" alt="20230921232847"><br><br>图中：Process_C进程中divide服务接口想使用minus服务接口也必须需要使用IPC、网络，是因为minus以服务接口对外提供功能，没有提供API。<br></li>
+</ul>
+<p>服务等价于函数体；<br><br>服务是独立运行的进程，可以通过IPC、网络远程访问；<br><br>一个进程可以提供多个服务。<br></p>
 <ul>
-<li>数据<ul>
-<li>数据是指可以被计算机处理和存储的信息。</li>
-<li>数据可以是数字、字符、图像、音频等各种类型的信息。</li>
-<li>数据库中的数据是有意义的信息，可以被组织、管理和检索。</li>
+<li>服务接口<br><br>服务接口等价于函数接口；<br><br>服务接口是使用服务的唯一途径<br></li>
 </ul>
-</li>
-<li>表格<ul>
-<li>表格是数据库中存储数据的基本单元，也被称为数据表或数据集合。</li>
-<li>表格由行和列组成，行表示记录，列表示字段。</li>
-<li>表格中的每个单元格包含一个值，该值对应于表格中的一个字段和一条记录。</li>
+<h4 id="1-2-SOA（面向服务的架构）："><a href="#1-2-SOA（面向服务的架构）：" class="headerlink" title="1.2 SOA（面向服务的架构）："></a>1.2 SOA（面向服务的架构）：</h4><h5 id="1-2-1-定义"><a href="#1-2-1-定义" class="headerlink" title="1.2.1 定义"></a>1.2.1 定义</h5><p>SOA是一个组件模型，将应用程序的不同功能单元（称为服务）进行拆分，并通过定义良好的通信机制【接口和协议】将这些服务联系起来。<br><br>接口是采用<strong>中立的方式</strong>【互联网、通信协议】进行定义的，它独立于实现服务的硬件平台、操作系统和编程语言，这使得在各种各样的系统中的服务可以以一种统一和通用的方式进行交互。<br><br><img src="https://cdn.jsdelivr.net/gh/wzy012/myblogPicBed@master/image/20230921233039.png" alt="20230921233039"><br></p>
+<h5 id="1-2-2-SOA中的-3-种角色："><a href="#1-2-2-SOA中的-3-种角色：" class="headerlink" title="1.2.2 SOA中的 3 种角色："></a>1.2.2 <strong>SOA中的 3 种角色</strong>：</h5><ul>
+<li>服务提供者（server）：利用服务中心对外提供服务；响应客户端的请求</li>
+<li>服务使用者（client）：利用服务中心查找所需的服务；使用服务</li>
+<li>服务中心（位于server）：注册、保存服务提供者提供的服务，广播服务</li>
+<li>服务中心（位于client）：查找网络中的有效服务，并通知client服务是否可用<br><img src="https://cdn.jsdelivr.net/gh/wzy012/myblogPicBed@master/image/20230921233313.png" alt="20230921233313"><br><br>一台设备有且只能有一个服务中心一台设备可有0个或多个服务提供者一台设备可有0个或多个服务使用者<br></li>
 </ul>
-</li>
-<li>字段<ul>
-<li>字段是表格中的列，每个字段都包含相同类型的数据。</li>
-<li>字段可以是数字、字符、日期、时间、布尔值等各种类型的数据。</li>
-<li>每个字段都有一个名称，用于标识该字段在表格中的位置。</li>
+<h5 id="1-2-3-SOA中的-4-种操作："><a href="#1-2-3-SOA中的-4-种操作：" class="headerlink" title="1.2.3 SOA中的 4 种操作："></a>1.2.3 <strong>SOA中的 4 种操作</strong>：</h5><ul>
+<li>发布服务（server）：发布服务的具体信息到网络</li>
+<li>查找服务（client）：查看目标服务在当前网络中是否可用</li>
+<li>使用服务（client）：根据查找到的服务具体信息（ip\port\tcp&#x2F;udp）与服务提供者建立联系，使用服务<br></li>
+<li>提供服务（server）：响应服务消费者的请求<br><br><img src="https://cdn.jsdelivr.net/gh/wzy012/myblogPicBed@master/image/20230921233340.png" alt="20230921233340"><br></li>
 </ul>
-</li>
-<li>记录<ul>
-<li>记录是表格中的行，每个记录包含一组字段值。</li>
-<li>记录的数量可以是零或多个，每个记录都有一个唯一标识符，称为主键。</li>
-</ul>
-</li>
-<li>主键<ul>
-<li>主键是一条记录的唯一标识符，用于区分表格中不同的记录。</li>
-<li>主键可以是一个或多个字段的组合，主键的值不能重复。</li>
-<li>主键可以是数据库中唯一的一个记录标识符。</li>
-</ul>
-</li>
-</ul>
-<h4 id="1-2-数据库的类型"><a href="#1-2-数据库的类型" class="headerlink" title="1.2 数据库的类型"></a>1.2 数据库的类型</h4><p>根据数据存储方式和结构的不同，数据库可以分为<strong>关系型数据库</strong>和<strong>非关系型数据库</strong>：</p>
-<ul>
-<li>关系型数据库:<ul>
-<li>采用关系模型来组织数据的数据库。关系模型是指将数据组织成一系列的表格，表格之间可以建立关系。</li>
-<li>常见的关系型数据库有MySQL、Oracle、SQLServer、PostgreSQL等。</li>
-<li>关系型数据库具有以下特点：<ul>
-<li>表格之间可以建立关系，数据之间的关联性可以通过外键进行管理。</li>
-<li>支持复杂的查询操作，可以通过SQL语句进行查询、更新、删除等操作。</li>
-<li>支持事务处理，可以保证数据的完整性和一致性。通过索引来加快数据访问速度。</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>非关系型数据库（NoSQL）:<ul>
-<li>非关系型数据库指不使用传统的关系型数据库模型的数据库，使用其他的数据模型来组织和管理数据。</li>
-<li>非关系型数据库可以存储各种类型的数据，包括结构化、半结构化和非结构化的数据。</li>
-<li>常见的非关系型数据库有MongoDB、Cassandra、Redis、Elasticsearch等。</li>
-<li>非关系型数据库具有以下特点：<ul>
-<li>不需要事先定义数据模型，数据可以动态添加和删除。</li>
-<li>支持水平扩展，可以通过添加节点来扩展数据库的容量和性能。</li>
-<li>支持高可用性和可伸缩性，可以通过复制和分片来实现数据的冗余和负载均衡。</li>
-<li>支持键值对、文档、图形、列族等多种数据模型。</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<h4 id="1-3-数据库的结构"><a href="#1-3-数据库的结构" class="headerlink" title="1.3 数据库的结构"></a>1.3 数据库的结构</h4><p>数据库的结构指的是数据在数据库中的组织形式和存储方式，根据数据库结构的不同，数据库可以分为层次型数据库、网状型数据库、关系型数据库和面向对象数据库等。</p>
-<ul>
-<li>层次型数据库层次型数据库（HierarchicalDatabase）：<ul>
-<li>是最早的数据库类型之一，它的数据结构类似于一棵树形结构，数据之间存在一对多的层次关系。</li>
-<li>每个节点可以包含多个子节点，但只能有一个父节点。</li>
-<li>层次型数据库常用于管理复杂的工程和科学数据。</li>
-</ul>
-</li>
-<li>网状型数据库网状型数据库（NetworkDatabase）<ul>
-<li>是在层次型数据库的基础上发展起来的一种数据库类型。</li>
-<li>网状型数据库的数据结构类似于一个网状结构，数据之间存在多对多的关系。</li>
-<li>每个记录可以有多个父记录和多个子记录。</li>
-<li>网状型数据库常用于处理复杂的关联数据。</li>
-</ul>
-</li>
-<li>关系型数据库关系型数据库<ul>
-<li>是目前应用最广泛的一种数据库类型，它的数据结构是由多个表格组成，表格之间可以建立关系。</li>
-<li>关系型数据库可以使用SQL语句进行查询、更新、删除等操作，支持事务处理和索引等高级功能。</li>
-</ul>
-</li>
-<li>面向对象数据库面向对象数据库（Object-orientedDatabase）<ul>
-<li>是一种新型的数据库类型，它的数据结构类似于面向对象程序设计中的对象和类。</li>
-<li>面向对象数据库将数据存储在对象中，对象之间可以建立关系和继承关系，支持多态和封装等面向对象的特性。</li>
-<li>面向对象数据库常用于存储复杂的对象数据和多媒体数据</li>
-</ul>
-</li>
-</ul>
-<h3 id="2-SQLite-C-C-API"><a href="#2-SQLite-C-C-API" class="headerlink" title="2 SQLite-C&#x2F;C++API"></a>2 SQLite-C&#x2F;C++API</h3><ul>
-<li>是一个嵌入式SQL数据库引擎</li>
-<li>头文件：#include&lt;sqlite3.h&gt;</li>
-<li>打开数据库。如果数据库不存在，则创建数据库；</li>
-</ul>
-<pre class=" language-cpp"><code class="language-cpp">    <span class="token function">intsqlite3_open</span><span class="token punctuation">(</span>
-        constchar<span class="token operator">*</span>filename<span class="token punctuation">,</span>     <span class="token comment" spellcheck="true">/*Databasefilename(UTF-8)*/</span>
-        sqlite3<span class="token operator">*</span><span class="token operator">*</span>ppDb           <span class="token comment" spellcheck="true">/*OUT:SQLitedbhandle*/</span>
-    <span class="token punctuation">)</span><span class="token punctuation">;</span>
-</code></pre>
-<pre class=" language-text"><code class="language-text">参数：
-        `char*filename`：指定要打开的数据库的路径及文件名;
-        `sqlite3**ppDb`：`sqlite3`句柄指针，存储打开的数据库的首地址;
-返回值：
-        成功，返回SQLITE_OK；其实就是0;
-        失败，返回数据库中的error_code，其实就是大于0;
-功能：
-        1.打开一个指向SQLite数据库文件的连接，返回一个用于其他SQLite程序的数据库连接对象。
-        2.如果filename参数是NULL或':memory:'，那么sqlite3_open()将会在RAM中创建一个内存数据库，这只会在session的有效时间内持续。
-        3.如果文件名filename不为NULL，那么sqlite3_open()将使用这个参数值尝试打开数据库文件。如果该名称的文件不存在，sqlite3_open()将创建一个新的命名为该名称的数据库文件并打开。
-</code></pre>
-<ul>
-<li>执行:</li>
-</ul>
-<pre class=" language-cpp"><code class="language-cpp">    <span class="token function">SQLintsqlite3_exec</span><span class="token punctuation">(</span>
-        sqlite3<span class="token operator">*</span><span class="token punctuation">,</span>           <span class="token comment" spellcheck="true">/*sqlite3是打开的数据库对象*/</span>
-        constchar<span class="token operator">*</span>sql<span class="token punctuation">,</span>      <span class="token comment" spellcheck="true">/*SQL命令，以\0结尾，可以由多个指令组成*/</span>
-        sqlite_callback<span class="token punctuation">,</span>    <span class="token comment" spellcheck="true">/*回调函数*/</span>
-        <span class="token keyword">void</span><span class="token operator">*</span>data<span class="token punctuation">,</span>          <span class="token comment" spellcheck="true">/*回调函数的第一个参数*/</span>
-        <span class="token keyword">char</span><span class="token operator">*</span><span class="token operator">*</span>errmsg        <span class="token comment" spellcheck="true">/*将被返回用来获取程序生成的任何错误*/</span>
-<span class="token punctuation">)</span><span class="token punctuation">;</span>
-</code></pre>
-<pre class=" language-text"><code class="language-text">功能：
-    1.提供了一个执行SQL命令的快捷方式
-    2.`sqlite3_exec()`程序解析并执行由sql参数所给的每个命令，直到字符串结束或者遇到错误为止
-    3.`sqlite3_callback`、`void*data`和`char**errmsg`都可以填NULL。
-        填NULL表示你不需要回调。比如你做insert操作，做`delete`操作；
-        而当做`select`时，就要使用回调，因为`sqlite3`把数据查出来，得通过回调告诉你查出了什么数据。
-</code></pre>
-<ul>
-<li><p>非回调的select查询：<br><br><code>sqlite3_get_table()</code><br></p>
-</li>
-<li><p>函数关闭数据库<br><br><code>int sqlite3_close(sqlite3*)</code><br></p>
-</li>
-</ul>
-<pre class=" language-text"><code class="language-text">功能：
-    1.关闭之前调用sqlite3_open()打开的数据库连接
-    2.如果还有查询没有完成，sqlite3_close()将返回SQLITE_BUSY禁止关闭的错误消息
-</code></pre>
-<ul>
-<li>打印错误信息</li>
-</ul>
-<pre class=" language-cpp"><code class="language-cpp"><span class="token keyword">const</span> <span class="token keyword">char</span><span class="token operator">*</span><span class="token function">sqlite3_errmsg</span><span class="token punctuation">(</span>sqlite3<span class="token operator">*</span>db<span class="token punctuation">)</span><span class="token punctuation">;</span>
-</code></pre>
-<pre class=" language-text"><code class="language-text">   参数：
-    sqlite3*db：数据库句柄指针;
-  返回值：
-    返回error_code对应的错误信息;
-</code></pre>
-<ul>
-<li>打印<code>error_code</code></li>
-</ul>
-<pre class=" language-cpp"><code class="language-cpp"><span class="token keyword">int</span> <span class="token function">sqlite3_errcode</span><span class="token punctuation">(</span>sqlite3<span class="token operator">*</span>db<span class="token punctuation">)</span><span class="token punctuation">;</span>
-</code></pre>
-<pre class=" language-text"><code class="language-text">  参数：
-    sqlite3*db：数据库句柄指针;
-  返回值：对应的error_code;
-</code></pre>
-<ul>
-<li>查询数据库:</li>
-</ul>
-<pre class=" language-cpp"><code class="language-cpp"><span class="token function">intsqlite3_get_table</span><span class="token punctuation">(</span>
-    sqlite3<span class="token operator">*</span> db<span class="token punctuation">,</span>
-    constchar<span class="token operator">*</span>zSql<span class="token punctuation">,</span>     <span class="token comment" spellcheck="true">/*sql语句，注意只能填查询相关的sql语句*/</span>
-    <span class="token keyword">char</span><span class="token operator">*</span><span class="token operator">*</span><span class="token operator">*</span> pazResult<span class="token punctuation">,</span>  <span class="token comment" spellcheck="true">/*指向查询的结果 */</span>
-    <span class="token keyword">int</span><span class="token operator">*</span> pnRow<span class="token punctuation">,</span>         <span class="token comment" spellcheck="true">/*存储查询到的记录数，行数; */</span>
-    <span class="token keyword">int</span><span class="token operator">*</span> pnColumn<span class="token punctuation">,</span>      <span class="token comment" spellcheck="true">/* 存储查询到的字段数，列数;*/</span>
-    <span class="token keyword">char</span><span class="token operator">*</span><span class="token operator">*</span> pzErrmsg     <span class="token comment" spellcheck="true">/*存储错误信息; */</span>
-<span class="token punctuation">)</span><span class="token punctuation">;</span>
-</code></pre>
-<pre class=" language-text"><code class="language-text">  返回值：
-    成功，返回SQLITE_OK；其实就是0;<br>
-    失败，返回数据库中的error_code，其实就是大于0;<br>
-</code></pre>
-<ul>
-<li>释放查询到的结果:</li>
-</ul>
-<pre class=" language-cpp"><code class="language-cpp"><span class="token keyword">void</span> <span class="token function">sqlite3_free_table</span><span class="token punctuation">(</span><span class="token keyword">char</span><span class="token operator">*</span><span class="token operator">*</span>result<span class="token punctuation">)</span><span class="token punctuation">;</span>
-</code></pre>
-<ul>
-<li>执行准备操作:</li>
-</ul>
-<pre class=" language-cpp"><code class="language-cpp"><span class="token keyword">int</span> <span class="token function">sqlite3_prepare_v2</span>
-<span class="token punctuation">(</span>
-    sqlite3<span class="token operator">*</span>db<span class="token punctuation">,</span>     <span class="token comment" spellcheck="true">//数据库连接对象</span>
-    constchar<span class="token operator">*</span>zSql<span class="token punctuation">,</span> <span class="token comment" spellcheck="true">//要编译的SQL语句</span>
-    intnByte<span class="token punctuation">,</span>       <span class="token comment" spellcheck="true">//要编译的SQL语句的长度，如果是-1，则自动计算其长度</span>
-    sqlite3_stmt<span class="token operator">*</span><span class="token operator">*</span>ppStmt<span class="token punctuation">,</span><span class="token comment" spellcheck="true">//编译后的SQLite3语句对象</span>
-    constchar<span class="token operator">*</span><span class="token operator">*</span>pzTail   <span class="token comment" spellcheck="true">//未编译部分的指针</span>
-<span class="token punctuation">)</span><span class="token punctuation">;</span>
-</code></pre>
-<pre class=" language-text"><code class="language-text">  功能：
-    该函数将SQL语句编译成SQLite虚拟机指令，并将编译后的SQLite3语句对象存储在ppStmt指向的指针中，以备执行。如果pzTail不是NULL，则该指针将指向SQL语句中未编译部分的起始位置。
-  函数返回值：
-    如果编译成功，则返回SQLITE_OK。
-    如果编译失败，则返回一个错误代码sqlite3_step()
-    返回值有三种结果:
-        sqlite_done表示执行完毕;
-        sqlite_busy,表示无法执行操作;
-        sqlite_row表示执行完毕，并且有返回。
-</code></pre>
-<h3 id="1-3-Linux终端操作sqlite数据库"><a href="#1-3-Linux终端操作sqlite数据库" class="headerlink" title="1.3 Linux终端操作sqlite数据库"></a>1.3 Linux终端操作sqlite数据库</h3><pre class=" language-linux"><code class="language-linux">$ sqlite3<database_name>.db //打开/连接数据库
-$ sqlite><SQL_statement>;//执行SQL语句
-    $ sqlite>.tables//显示所有表格
-    $ sqlite>.schema<table_name>//查看表的结构
-    $ sqlite>SELECT*FROM<table_name>;//查询表中的所有结构$sqlite>INSERTINTO<table_name>(column1,column2,...)VALUES(value1,value2,...);
-    $ sqlite>UPDATE<table_name>SETcolumn1=value1WHEREcondition;$sqlite>DELETEFROM<table_name>WHEREcondition;
-$ .exit//退出sqlite3数据库
-</code></pre>
+<h5 id="1-2-4-SOA的工作流程："><a href="#1-2-4-SOA的工作流程：" class="headerlink" title="1.2.4 SOA的工作流程："></a>1.2.4 <strong>SOA的工作流程</strong>：</h5><p><img src="https://cdn.jsdelivr.net/gh/wzy012/myblogPicBed@master/image/20230921233439.png" alt="20230921233439"><br></p>
+<h5 id="1-2-5-SOA优势："><a href="#1-2-5-SOA优势：" class="headerlink" title="1.2.5 SOA优势："></a>1.2.5 SOA优势：</h5><p>优势：灵活适应业务变化、降低网络负担、通信机制标准化-跨平台、松耦合、隔离性、后期维护成本低<br><br>劣势：性能成本（IPC、网络通信）、维护开发成本<br></p>
+<h3 id="2-someip"><a href="#2-someip" class="headerlink" title="2 someip"></a>2 <strong>someip</strong></h3><h4 id="2-1-someip与SOA的关系："><a href="#2-1-someip与SOA的关系：" class="headerlink" title="2.1 someip与SOA的关系："></a>2.1 someip与SOA的关系：</h4><p><img src="https://cdn.jsdelivr.net/gh/wzy012/myblogPicBed@master/image/20230921231543.png" alt="20230921231543"><br><br><img src="https://cdn.jsdelivr.net/gh/wzy012/myblogPicBed@master/image/20230921231616.png" alt="20230921231616"><br></p>
+<p>SOME&#x2F;IP定义了服务提供者、服务使用者之间的通信接口<br><br>SD：service discovery<br><br>someip-sd协议是someip协议的特殊实现<br><br><img src="https://cdn.jsdelivr.net/gh/wzy012/myblogPicBed@master/image/20230921231711.png" alt="20230921231711"><br><br>some&#x2F;ip-sd是服务中心，只负责服务发现功能；<br></p>
+<p><img src="https://cdn.jsdelivr.net/gh/wzy012/myblogPicBed@master/image/20230921231730.png" alt="20230921231730"><br></p>
+<p>some&#x2F;IP&amp;SD：服务中心不仅仅是服务中心，也可以是服务提供者、服务使用者。<br><br><img src="https://cdn.jsdelivr.net/gh/wzy012/myblogPicBed@master/image/20230921231812.png" alt="20230921231812"><br></p>
+<p>一台设备只能有一个sd<br></p>
+<h4 id="2-2-someip工作原理："><a href="#2-2-someip工作原理：" class="headerlink" title="2.2 someip工作原理："></a>2.2 <strong>someip工作原理</strong>：</h4><p><img src="https://cdn.jsdelivr.net/gh/wzy012/myblogPicBed@master/image/20230921231856.png" alt="20230921231856"><br></p>
+<p>SOME&#x2F;IP协议位于TCP&#x2F;IP 5层模型中的第5层-应用层<br><br><img src="https://cdn.jsdelivr.net/gh/wzy012/myblogPicBed@master/image/20230921231909.png" alt="20230921231909"><br></p>
+<p>SOME&#x2F;IP中间件成功解耦了具体的应用与通信机制<br></p>
+<h5 id="2-2-1-接口类型"><a href="#2-2-1-接口类型" class="headerlink" title="2.2.1 接口类型"></a>2.2.1 <strong>接口类型</strong></h5><p><img src="https://cdn.jsdelivr.net/gh/wzy012/myblogPicBed@master/image/20230921232007.png" alt="20230921232007"><br><br>(1) <strong>method方法</strong>：由client向server发送请求消息<br><br>RR：server需要回复的请求&#x2F;RR&#x3D;&#x3D;int func();<br><br>FF：server不需要回复的请求&#x2F;FF&#x3D;&#x3D; void func();<br><br><img src="https://cdn.jsdelivr.net/gh/wzy012/myblogPicBed@master/image/20230921232040.png" alt="20230921232040"><br><br>（2）<strong>event事件</strong>：由server向client发送事件消息<br><br>server会在合适的时候发送event消息给客户端<br><br><img src="https://cdn.jsdelivr.net/gh/wzy012/myblogPicBed@master/image/20230921232121.png" alt="20230921232121"><br></p>
+<p>ps:subscribe eventgroup\ACK\stop subscribe是SD协议<br><br>事件组、强相关：将强相关的事件放到一个事件组中<br><br>客户端可以通过订阅事件组订阅感兴趣的事件<br><br>一个event（事件）必须加入事件组<br><br>一个event可以加入多个事件组<br><br>一个事件组中可以包含多个event<br><br>必须订阅event的所在事件组，不能订阅某个具体的event<br><br>(3) <strong>filed字段&#x2F;属性</strong>：一段内存空间的值，保存在server端<br><br>getter(method):获取，client可通过该方法主动从server获取field值<br><br>setter(method):设置，client可通过该方法设置field值<br><br>notifier(event):通知，当filed值发生改变，server就将最新值发送给client<br><br><img src="https://cdn.jsdelivr.net/gh/wzy012/myblogPicBed@master/image/20230921232208.png" alt="20230921232208"><br><br><img src="https://cdn.jsdelivr.net/gh/wzy012/myblogPicBed@master/image/20230921232234.png" alt="20230921232234"><br><br>一个field必须加入事件组<br><br>一个field可以加入多个事件组<br><br>一个事件组中可以包含多个field<br><br>必须订阅field所在事件组，不能订阅某个具体的field<br></p>
+<h5 id="2-2-2-someip服务接口："><a href="#2-2-2-someip服务接口：" class="headerlink" title="2.2.2 someip服务接口："></a>2.2.2 someip服务接口：</h5><p>所有接口都有ID（除了Field）：<br><br>service ID：区分系统里不同的服务，<br><br>Method ID：区分一个服务里的不同method，<br><br>Event ID：区分一个服务里的不同事件，<br><br>Eventgroup ID：区分事件组<br><br><img src="https://cdn.jsdelivr.net/gh/wzy012/myblogPicBed@master/image/20230921232404.png" alt="20230921232404"><br><br>同一服务的同类型接口ID不能重复<br><br>使用哪个服务哪个功能发生了哪个事件<br><br><img src="https://cdn.jsdelivr.net/gh/wzy012/myblogPicBed@master/image/20230921232533.png" alt="20230921232533"><br><br>第一个字段表示type、第二个表示ID<br><br>服务接口其实就是通信双方之间的交互机制<br><br>event notifier单向传输：只能由server端发起，发送给client<br></p>
+<h3 id="3-关于汽车软件通信"><a href="#3-关于汽车软件通信" class="headerlink" title="3.关于汽车软件通信"></a>3.关于汽车软件通信</h3><p>传统的车载软件通信采用的是经典的总线协议（比如CAN、LIN、FlexRay），这些总线采用的是面向信号的数据传输(Signal-based)，基于信号在双绞线中的传输来通信，但是这些协议的传输带宽和传输速率有限，且不容易实现基于无线网更新车载软件(OTA)的需求。因此，新一代的车载软件通信更多采用了SOA架构下的SOME&#x2F;IP协议，该协议采用的是面向服务的数据传输(Service-Oriented)，基于ECU的服务在车载以太网中被请求或订阅来通信。<br><br>有用链接：<br><br><a target="_blank" rel="noopener" href="https://www.51fusa.com/client/information/informationdetail/id/1788.html">https://www.51fusa.com/client/information/informationdetail/id/1788.html</a><br><br><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_42981705/article/details/130735667">https://blog.csdn.net/qq_42981705/article/details/130735667</a><br><br><a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s/rCRuCbHb_SUyysA7lWUPGA">https://mp.weixin.qq.com/s/rCRuCbHb_SUyysA7lWUPGA</a><br></p>
 
                 
             </div>
@@ -559,7 +386,7 @@ $ .exit//退出sqlite3数据库
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="http://example.com/2023/09/20/05-sqlitedb/">http://example.com/2023/09/20/05-sqlitedb/</a>
+                    <a href="http://example.com/2023/09/21/06-someip/">http://example.com/2023/09/21/06-someip/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -597,8 +424,8 @@ $ .exit//退出sqlite3数据库
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/sqlite/">
-                                    <span class="chip bg-color">sqlite</span>
+                                <a href="/tags/SOME-IP/">
+                                    <span class="chip bg-color">SOME/IP</span>
                                 </a>
                             
                         </div>
@@ -644,9 +471,10 @@ $ .exit//退出sqlite3数据库
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
             <div class="card">
                 <a href="/2023/09/21/06-someip/">
                     <div class="card-image">
@@ -664,9 +492,9 @@ $ .exit//退出sqlite3数据库
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2023-09-21
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2023-09-21
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
@@ -679,6 +507,7 @@ $ .exit//退出sqlite3数据库
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
@@ -697,13 +526,13 @@ $ .exit//退出sqlite3数据库
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2023/09/20/04-datastructure/">
+                <a href="/2023/09/20/05-sqlitedb/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/14.jpg" class="responsive-img" alt="数据结构基础知识">
+                        <img src="/medias/featureimages/9.jpg" class="responsive-img" alt="SQLite数据库">
                         
-                        <span class="card-title">数据结构基础知识</span>
+                        <span class="card-title">SQLite数据库</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -720,8 +549,8 @@ $ .exit//退出sqlite3数据库
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/" class="post-category">
-                                    数据结构与算法
+                            <a href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/" class="post-category">
+                                    数据库
                                 </a>
                             
                             
@@ -731,8 +560,8 @@ $ .exit//退出sqlite3数据库
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/">
-                        <span class="chip bg-color">基础知识</span>
+                    <a href="/tags/sqlite/">
+                        <span class="chip bg-color">sqlite</span>
                     </a>
                     
                 </div>

@@ -6,7 +6,7 @@
   <link href="http://example.com/atom.xml" rel="self"/>
   
   <link href="http://example.com/"/>
-  <updated>2023-09-20T15:44:46.880Z</updated>
+  <updated>2023-09-21T15:36:49.166Z</updated>
   <id>http://example.com/</id>
   
   <author>
@@ -15,6 +15,31 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>someip</title>
+    <link href="http://example.com/2023/09/21/06-someip/"/>
+    <id>http://example.com/2023/09/21/06-someip/</id>
+    <published>2023-09-21T14:57:26.000Z</published>
+    <updated>2023-09-21T15:36:49.166Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h3 id=&quot;1-SOA（Service-Oriented-Architecture）&quot;&gt;&lt;a href=&quot;#1-SOA（Service-Oriented-Architecture）&quot; class=&quot;headerlink&quot; title=&quot;1 SOA（Service</summary>
+        
+      
+    
+    
+    
+    <category term="通信协议" scheme="http://example.com/categories/%E9%80%9A%E4%BF%A1%E5%8D%8F%E8%AE%AE/"/>
+    
+    
+    <category term="SOME/IP" scheme="http://example.com/tags/SOME-IP/"/>
+    
+  </entry>
   
   <entry>
     <title>SQLite数据库</title>
@@ -121,7 +146,7 @@
     <link href="http://example.com/2023/09/17/01-sorting-algorithm/"/>
     <id>http://example.com/2023/09/17/01-sorting-algorithm/</id>
     <published>2023-09-17T13:00:43.000Z</published>
-    <updated>2023-09-21T14:55:25.874Z</updated>
+    <updated>2023-09-21T15:26:33.610Z</updated>
     
     
       
