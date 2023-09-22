@@ -588,8 +588,73 @@ h <span class="token operator">=</span> h <span class="token operator">/</span> 
     <span class="token punctuation">}</span>
 <span class="token punctuation">}</span>
 </code></pre>
-<h4 id="2-5-3-性能分析"><a href="#2-5-3-性能分析" class="headerlink" title="2.5.3 性能分析"></a>2.5.3 性能分析</h4><p>时间复杂度：O(N*logN) <br><br>空间复杂度：O(N) <br></p>
-<h2 id="3-总结"><a href="#3-总结" class="headerlink" title="3. 总结"></a>3. 总结</h2><p>（1）简单排序算法的时间复杂度都为O(N^2)，随着输入规模的增大，时间成本急剧上升，因此简单排序算法不能处理大规模问题；<br></p>
+<h4 id="2-5-3-性能分析"><a href="#2-5-3-性能分析" class="headerlink" title="2.5.3 性能分析"></a>2.5.3 性能分析</h4><p>时间复杂度：O(NlogN) <br><br>空间复杂度：O(N) <br><br>分析过程：<br><br><img src="https://cdn.jsdelivr.net/gh/wzy012/myblogPicBed@master/image/20230922152626.png" alt="20230922152626"><br><br>用树状图描述归并排序，如图所示，一个数组有8个元素，每次除以2找最小的子数组，共拆分log2^8次即3次，所以树共有3层。<br><br>那么，自顶向下第k层共有2^k个子数组，每个数组的长度为2^(3-k)，归并最多需要2^(3-k)次比较；<br><br>因此，每层的比较次数为2^k*2^(3-k)&#x3D;2^3,那么3层共有3*2^3。<br><br>|递推<br><br>假设元素的个数为n，那么使用归并排序拆分的次数为log2(n)，所以共log2(n)层，最终得出的归并排序的时间复杂度为：<br><br>log2(n)*2^(log2(n))&#x3D;log(n)*n,根据大O推导法则，忽略底数，最终归并排序的时间复杂度为O(nlogn);</p>
+<h3 id="2-6-快速排序"><a href="#2-6-快速排序" class="headerlink" title="2.6 快速排序"></a>2.6 快速排序</h3><h4 id="2-6-1-算法步骤-原理"><a href="#2-6-1-算法步骤-原理" class="headerlink" title="2.6.1 算法步骤&#x2F;原理"></a>2.6.1 算法步骤&#x2F;原理</h4><p>快递排序是对冒泡排序的一种改进，基本思想是：通过一趟排序将要排序的数据分割成独立的两部分，其中一部分的所有元素都比另外一部分的所有元素都要小，然后再按此方法对这两部分数据分别进行快速排序，整个排序过程可以递归进行，以此达到整个数据变成有序序列。<br><br>(1)首先设定一个分界值，通过该分界值将数组分成两部分；<br>(2)将大于或等于分界值的数据放到数组右边，小于分界值的数据放到数组左边。此时左边部分中各元素都小于等于分界值，而右边部分中各元素都大于等于分界值；<br><br>(3)然后，左边和右边的数据可以独立排序。对于左侧的数组数据，又可以取一个分界值，将该部分数据分成左右两部分，同样在左边放置较小值，右边放置较大值。右侧的数组数据也可以做类似处理。<br><br>(4)重复上述过程，可以看出这是一个递归定义。通过递归将左侧部分排好序后，再递归排好右侧部分的顺序。当左侧和右侧两个部分的数据排完序后，整个数组的排序也就完成了。<br><br><img src="https://cdn.jsdelivr.net/gh/wzy012/myblogPicBed@master/image/20230922155945.png" alt="20230922155945"><br><br><img src="https://cdn.jsdelivr.net/gh/wzy012/myblogPicBed@master/image/20230922162752.png" alt="20230922162752"><br><br><img src="https://cdn.jsdelivr.net/gh/wzy012/myblogPicBed@master/image/20230922162954.png" alt="20230922162954"><br><br><img src="https://cdn.jsdelivr.net/gh/wzy012/myblogPicBed@master/image/20230922163111.png" alt="20230922163111"><br><br><img src="https://cdn.jsdelivr.net/gh/wzy012/myblogPicBed@master/image/20230922163331.png" alt="20230922163331"><br><br><strong>切分原理</strong>：<br>把一个数组切分成两个子数组的基本思想：<br><br>（1）找一个基准值，用两个指针分别指向数组的头部和尾部；<br><br>（2）先从尾部向头部开始搜索一个比基准值小的元素，搜索到即停止，并记录指针的位置；<br><br>（3）再从头部向尾部开始搜索一个比基准值大的元素，搜索到即停止，并记录指针的位置；<br><br>（4）交换当前左边指针位置和右边指针位置的元素；<br><br>（5）重复2，3，4步骤，直到左边指针的值大于右边指针的值停止。<br></p>
+<h4 id="2-6-2-代码实现"><a href="#2-6-2-代码实现" class="headerlink" title="2.6.2 代码实现"></a>2.6.2 代码实现</h4><pre class=" language-cpp"><code class="language-cpp"><span class="token keyword">template</span><span class="token operator">&lt;</span><span class="token keyword">typename</span> T<span class="token operator">></span>
+<span class="token keyword">void</span> <span class="token function">quick_sort</span><span class="token punctuation">(</span>T arr<span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">,</span> <span class="token keyword">int</span> begin<span class="token punctuation">,</span> <span class="token keyword">int</span> end<span class="token punctuation">)</span> <span class="token comment" spellcheck="true">//end = size()-1</span>
+<span class="token punctuation">{</span>
+    <span class="token comment" spellcheck="true">// 安全性校验</span>
+    <span class="token keyword">if</span><span class="token punctuation">(</span>end <span class="token operator">&lt;=</span> begin<span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        <span class="token keyword">return</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token comment" spellcheck="true">//对数组[begin, end]的元素进行分组（左子组，右子组）</span>
+    <span class="token keyword">int</span> partition <span class="token operator">=</span> <span class="token function">partition</span><span class="token punctuation">(</span>arr<span class="token punctuation">,</span> begin<span class="token punctuation">,</span> end<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token comment" spellcheck="true">//让左子组有序</span>
+    <span class="token function">quick_sort</span><span class="token punctuation">(</span>arr<span class="token punctuation">,</span> begin<span class="token punctuation">,</span> partition<span class="token number">-1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token comment" spellcheck="true">//让右子组有序</span>
+    <span class="token function">quick_sort</span><span class="token punctuation">(</span>arr<span class="token punctuation">,</span> partition<span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">,</span> end<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token comment" spellcheck="true">// 对数组arr，从索引begin到end之间的元素进行分组，并返回分组界限对应的索引</span>
+<span class="token keyword">int</span> <span class="token function">partition</span><span class="token punctuation">(</span>T arr<span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">,</span> <span class="token keyword">int</span> begin<span class="token punctuation">,</span> <span class="token keyword">int</span> end<span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    <span class="token comment" spellcheck="true">// 确定分界值</span>
+    <span class="token keyword">int</span> key <span class="token operator">=</span> a<span class="token punctuation">[</span>begin<span class="token punctuation">]</span><span class="token punctuation">;</span>
+
+    <span class="token comment" spellcheck="true">// 定义两个指针，分别指向待切分元素的最小索引处和最大索引处的下一个位置</span>
+    <span class="token keyword">int</span> left <span class="token operator">=</span> begin<span class="token punctuation">;</span>
+    <span class="token keyword">int</span> right <span class="token operator">=</span> end <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">;</span>
+
+    <span class="token comment" spellcheck="true">//切分</span>
+    <span class="token keyword">while</span><span class="token punctuation">(</span><span class="token boolean">true</span><span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        <span class="token comment" spellcheck="true">// 先从右向左扫描，移动right指针，找到一个比分界值小的元素，停止</span>
+        <span class="token keyword">while</span><span class="token punctuation">(</span>key <span class="token operator">&lt;</span> arr<span class="token punctuation">[</span><span class="token operator">--</span>right<span class="token punctuation">]</span><span class="token punctuation">)</span>
+        <span class="token punctuation">{</span>
+            <span class="token keyword">if</span><span class="token punctuation">(</span>right <span class="token operator">==</span> begin<span class="token punctuation">)</span>
+            <span class="token punctuation">{</span>
+                <span class="token keyword">break</span><span class="token punctuation">;</span>
+            <span class="token punctuation">}</span>
+        <span class="token punctuation">}</span>
+        <span class="token comment" spellcheck="true">// 再先从左向右扫描，移动left指针，找到一个比分界值大的元素，停止</span>
+        <span class="token keyword">while</span><span class="token punctuation">(</span>arr<span class="token punctuation">[</span><span class="token operator">++</span>left<span class="token punctuation">]</span> <span class="token operator">&lt;</span> key<span class="token punctuation">)</span>
+        <span class="token punctuation">{</span>
+            <span class="token keyword">if</span><span class="token punctuation">(</span>left <span class="token operator">==</span> end<span class="token punctuation">)</span>
+            <span class="token punctuation">{</span>
+                <span class="token keyword">break</span><span class="token punctuation">;</span>
+            <span class="token punctuation">}</span>
+        <span class="token punctuation">}</span>
+        <span class="token comment" spellcheck="true">// 判断 left>=right，如果是则证明元素扫描完毕，结束循环；否则交换元素即可</span>
+        <span class="token keyword">if</span><span class="token punctuation">(</span>left <span class="token operator">>=</span> right<span class="token punctuation">)</span>
+        <span class="token punctuation">{</span>
+            <span class="token keyword">break</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+        <span class="token keyword">else</span>
+        <span class="token punctuation">{</span>
+            <span class="token function">swap</span><span class="token punctuation">(</span>left<span class="token punctuation">,</span> right<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+
+    <span class="token punctuation">}</span>
+    <span class="token function">swap</span><span class="token punctuation">(</span>arr<span class="token punctuation">[</span>begin<span class="token punctuation">]</span><span class="token punctuation">,</span> arr<span class="token punctuation">[</span>right<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token keyword">return</span> right<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<h4 id="2-6-3-性能分析"><a href="#2-6-3-性能分析" class="headerlink" title="2.6.3 性能分析"></a>2.6.3 性能分析</h4><h2 id="3-总结"><a href="#3-总结" class="headerlink" title="3. 总结"></a>3. 总结</h2><p>（1）简单排序算法的时间复杂度都为O(N^2)，随着输入规模的增大，时间成本急剧上升，因此简单排序算法不能处理大规模问题；<br></p>
 
                 
             </div>

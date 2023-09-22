@@ -1,23 +1,117 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>初来乍到</title>
-    <url>/2023/09/17/00-1/</url>
-    <content><![CDATA[<p>写在开始…<br><br>初入职场，受组长凯哥影响，想要搭建自己的技术博客，于是有了这篇…<br><br>本人博客传送门：<a href="https://wzy012.github.io/">https://wzy012.github.io/</a> <br></p>
-<p>2023.6.19 从SDU毕业<br><br>2023.8.3 入职byd<br><br>开始了自己的菜鸟<del>打工</del>（成长）生涯<br><br>从事智驾开发工作<br><br>作为一个7年的自动化<del>不</del>专业学生<br><br>进入了一个纯软的技术赛道<br><br>其实还是很有压力的<br><br>但同时感觉充满了兴奋与挑战<br><br>开个人博客的初衷是：<br></p>
-<ul>
-<li>记录自己学习各个技术的过程，形成文档以备查漏补缺；<br></li>
-<li>如果有幸被需要的人看到，也是分享的意义</li>
+    <title>UML（统一建模语言）</title>
+    <url>/2023/09/18/02-uml/</url>
+    <content><![CDATA[<h2 id="1-前言"><a href="#1-前言" class="headerlink" title="1 前言"></a>1 前言</h2><p>通过使用UML使得在软件开发之前， 对整个软件设计有更好的可读性，可理解性，从而降低开发风险。同时，也能方便各个开发人员之间的交流。</p>
+<h2 id="2-UML图分类"><a href="#2-UML图分类" class="headerlink" title="2 UML图分类"></a>2 UML图分类</h2><ul>
+<li>UML图分为结构图和行为图；</li>
+<li><strong>结构图</strong>分为: 类图、组件图、对象图、轮廓图、组合结构图、部署图、包图；</li>
+<li><strong>行为图</strong>分为：活动图、用例图、状态机图、交互图。<br><img src="https://cdn.jsdelivr.net/gh/wzy012/myblogPicBed@master/image/20230918223614.png" alt="20230918223614"><br></li>
 </ul>
-<p>希望自己坚持学习，一点一点进步，争取成为一名技术<del>大</del>小佬！</p>
-<p>最后附：<br><br>    Hexo + Github + Git 的博客搭建方案链接：<a href="https://yushuaigee.gitee.io/archives/">https://yushuaigee.gitee.io/archives/</a><br><br>    vscode + PicGo + Markdown All in one 的配置链接：<a href="https://blog.csdn.net/qq_35621494/article/details/106432399">https://blog.csdn.net/qq_35621494/article/details/106432399</a><br></p>
-<p>本人使用的是：vscode + Hexo + Github + Git + PicGO + Markdown All in one 的实现方案。</p>
-]]></content>
+<h3 id="2-1-类图"><a href="#2-1-类图" class="headerlink" title="2.1 类图"></a>2.1 类图</h3><h4 id="2-1-1-前言"><a href="#2-1-1-前言" class="headerlink" title="2.1.1 前言"></a>2.1.1 前言</h4><p><strong>概念</strong>：类图是一切面向对象方法的核心建模工具，类图描述了系统中对象的类型以及它们之间存在的各种静态关系；<br><br><strong>目的</strong>：表示类、接口以及它们之间的静态结构和关系。</p>
+<h4 id="2-1-2-关系"><a href="#2-1-2-关系" class="headerlink" title="2.1.2 关系"></a>2.1.2 关系</h4><p>（1）泛化(Generalization)<br></p>
+<ul>
+<li>【泛化关系】是一种继承关系，表示子类继承父类的所有特征和行为。</li>
+<li>【箭头指向】带三角箭头的实现，箭头指向父类。<br><br><img src="https://cdn.jsdelivr.net/gh/wzy012/myblogPicBed@master/image/20230918225224.png" alt="20230918225224"><br><br>（2）实现(Realization)<br></li>
+<li>【实现关系】是一种类与接口的关系，表示类是接口所有特征和行为的实现。</li>
+<li>【箭头指向】带三角箭头的虚线，箭头指向接口。<br><br><img src="https://cdn.jsdelivr.net/gh/wzy012/myblogPicBed@master/image/20230918225239.png" alt="20230918225239"><br><br>（3）关联(Association)<br></li>
+<li>【关联关系】是一种拥有关系，它使得一个类知道另一个的属性和方法。</li>
+<li>【箭头指向】带普通箭头的实线，指向被拥有者。单向的关联只有一个箭头，双向的关联可以有两个箭头或者没有箭头。<br></li>
+<li>【代码体现】成员变量。<br><br><img src="https://cdn.jsdelivr.net/gh/wzy012/myblogPicBed@master/image/20230918225252.png" alt="20230918225252"><br><br>（4）聚合(Aggregation)<br></li>
+<li>【聚合关系】是一种整体与部分的关系，且部分可以离开整体而单独存在。聚合关系是关联关系的一种，是强的关联关系；关联和聚合在语法上无法区分，必须考察具体的逻辑关系。</li>
+<li>【箭头指向】带空心菱形的实线，空心菱形指向整体。</li>
+<li>【代码体现】成员变量。<br><br><img src="https://cdn.jsdelivr.net/gh/wzy012/myblogPicBed@master/image/20230918225306.png" alt="20230918225306"><br><br>（5）组合(Composition)<br></li>
+<li>【组合关系】是一种整体与部分的关系，但部分不能离开整体而单独存在。组合关系是关联关系的一种，是比聚合关系还要强的一种。</li>
+<li>【箭头指向】带实心菱形和普通箭头的实现，实心菱形指向整体。</li>
+<li>【代码体现】成员变量。<br><br><img src="https://cdn.jsdelivr.net/gh/wzy012/myblogPicBed@master/image/20230918225319.png" alt="20230918225319"><br><br>（6）依赖(Dependency)<br></li>
+<li>【依赖关系】是一种使用关系，即一个类的实现需要另一个类的协助。</li>
+<li>【箭头指向】带普通箭头的虚线，普通箭头指向被使用者。<br><img src="https://cdn.jsdelivr.net/gh/wzy012/myblogPicBed@master/image/20230918225336.png" alt="20230918225336"><br></li>
+</ul>
+<h4 id="2-2-组件图"><a href="#2-2-组件图" class="headerlink" title="2.2 组件图"></a>2.2 组件图</h4><ul>
+<li>【概念】描绘了系统中组件提供的、需要的接口、端口等，以及它们之间的关系。</li>
+<li>【目的】用来展示各个组件之间的依赖关系。<br><br><img src="https://cdn.jsdelivr.net/gh/wzy012/myblogPicBed@master/image/20230918230948.png" alt="20230918230948"><br><br>订单系统组件依赖于客户资源库和库存系统组件。中间的虚线箭头表示依赖关系。另外两个符号，表示组件连接器，一个提供接口，一个需要接口。</li>
+</ul>
+<h4 id="2-3-对象图"><a href="#2-3-对象图" class="headerlink" title="2.3 对象图"></a>2.3 对象图</h4><ul>
+<li>【概念】对象图是类图的一个实例，是系统在某个时间点的详细状态的快照。</li>
+<li>【目的】用来表示两个或者多个对象之间在某一时刻之间的关系。<br><br><img src="https://cdn.jsdelivr.net/gh/wzy012/myblogPicBed@master/image/20230918230817.png" alt="20230918230817"><br><br>图中就是描述的，某时间点bat这个公司有一个研发部，一个销售部，两个部门只有一个人iisheng。</li>
+</ul>
+<h4 id="2-4-轮廓图"><a href="#2-4-轮廓图" class="headerlink" title="2.4 轮廓图"></a>2.4 轮廓图</h4><h4 id="2-5-组合结构图"><a href="#2-5-组合结构图" class="headerlink" title="2.5 组合结构图"></a>2.5 组合结构图</h4><h4 id="2-6-部署图"><a href="#2-6-部署图" class="headerlink" title="2.6 部署图"></a>2.6 部署图</h4><h4 id="2-7-包图"><a href="#2-7-包图" class="headerlink" title="2.7 包图"></a>2.7 包图</h4><h4 id="2-8-活动图"><a href="#2-8-活动图" class="headerlink" title="2.8 活动图"></a>2.8 活动图</h4><ul>
+<li>【概念】描述了具体业务用例的实现流程</li>
+<li>【目的】用来表示用例实现的工作流程。</li>
+</ul>
+<h4 id="2-9-用例图"><a href="#2-9-用例图" class="headerlink" title="2.9 用例图"></a>2.9 用例图</h4><h4 id="2-10-状态机图"><a href="#2-10-状态机图" class="headerlink" title="2.10 状态机图"></a>2.10 状态机图</h4><h4 id="2-11-交互图"><a href="#2-11-交互图" class="headerlink" title="2.11 交互图"></a>2.11 交互图</h4><h4 id="2-12-序列图"><a href="#2-12-序列图" class="headerlink" title="2.12 序列图"></a>2.12 序列图</h4><h4 id="2-13-交互概览图"><a href="#2-13-交互概览图" class="headerlink" title="2.13 交互概览图"></a>2.13 交互概览图</h4><h4 id="2-14-通讯图"><a href="#2-14-通讯图" class="headerlink" title="2.14 通讯图"></a>2.14 通讯图</h4><h4 id="2-15-时序图"><a href="#2-15-时序图" class="headerlink" title="2.15 时序图"></a>2.15 时序图</h4>]]></content>
       <categories>
-        <category>个人成长</category>
+        <category>设计模式</category>
       </categories>
       <tags>
-        <tag>关于本人</tag>
+        <tag>UML</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>数据结构基础知识</title>
+    <url>/2023/09/20/04-datastructure/</url>
+    <content><![CDATA[<h3 id="3-数据结构"><a href="#3-数据结构" class="headerlink" title="3.数据结构"></a>3.数据结构</h3><h4 id="3-1-前言"><a href="#3-1-前言" class="headerlink" title="3.1 前言"></a>3.1 前言</h4><p>数据结构是为实现对计算机数据有效使用的各种数据组织形式，服务于各类计算机操作。不同的数据结构具有各自对应的适用场景，旨在降低各种算法计算的时间与空间复杂度，达到最佳的任务执行效率。</p>
+<h4 id="3-2-数组"><a href="#3-2-数组" class="headerlink" title="3.2 数组"></a>3.2 数组</h4><p>固定数组和可变数组</p>
+<h4 id="3-3-链表"><a href="#3-3-链表" class="headerlink" title="3.3 链表"></a>3.3 链表</h4><p>链表以节点为单位，每个元素都是一个独立对象，在内存中的存储空间是非连续的。链表的节点对象具有两个成员变量：「值 <code>val</code>」，「后继节点引用 <code>next</code>」 。</p>
+<pre class=" language-cpp"><code class="language-cpp"><span class="token keyword">struct</span> ListNode<span class="token punctuation">{</span>
+    <span class="token keyword">int</span> val<span class="token punctuation">;</span>
+    ListNode <span class="token operator">*</span>next<span class="token punctuation">;</span>
+    <span class="token function">ListNode</span><span class="token punctuation">(</span><span class="token keyword">int</span> x<span class="token punctuation">)</span> <span class="token operator">:</span> <span class="token function">val</span><span class="token punctuation">(</span>x<span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token function">next</span><span class="token punctuation">(</span><span class="token constant">NULL</span><span class="token punctuation">)</span> <span class="token punctuation">{</span><span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+</code></pre>
+<h4 id="3-4-栈"><a href="#3-4-栈" class="headerlink" title="3.4 栈"></a>3.4 栈</h4><p>栈是一种具有 「先入后出」 特点的抽象数据结构，可使用<strong>数组</strong>或<strong>链表</strong>实现</p>
+<pre class=" language-cpp"><code class="language-cpp">stack<span class="token operator">&lt;</span>T<span class="token operator">></span> stk<span class="token punctuation">;</span>
+</code></pre>
+<h4 id="3-5-队列"><a href="#3-5-队列" class="headerlink" title="3.5 队列"></a>3.5 队列</h4><p>队列是一种具有 「先入先出」 特点的抽象数据结构，可使用<strong>链表</strong>实现。</p>
+<pre class=" language-cpp"><code class="language-cpp">queue<span class="token operator">&lt;</span>T<span class="token operator">></span> que<span class="token punctuation">;</span>
+</code></pre>
+<h4 id="3-6-树"><a href="#3-6-树" class="headerlink" title="3.6 树"></a>3.6 树</h4><p>树是一种非线性数据结构，根据子节点数量可分为 「二叉树」 和 「多叉树」，最顶层的节点称为「根节点 root」。以二叉树为例，每个节点包含三个成员变量：「值 val」、「左子节点 left」、「右子节点 right」 。</p>
+<pre class=" language-cpp"><code class="language-cpp"><span class="token keyword">struct</span> TreeNode<span class="token punctuation">{</span>
+    <span class="token keyword">int</span> val<span class="token punctuation">;</span>
+    TreeNode <span class="token operator">*</span>left<span class="token punctuation">;</span>
+    TreeNode <span class="token operator">*</span>right<span class="token punctuation">;</span>
+    <span class="token function">TreeNode</span><span class="token punctuation">(</span><span class="token keyword">int</span> x<span class="token punctuation">)</span> <span class="token operator">:</span> <span class="token function">val</span><span class="token punctuation">(</span>x<span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token function">left</span><span class="token punctuation">(</span><span class="token constant">NULL</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token function">right</span><span class="token punctuation">(</span><span class="token constant">NULL</span><span class="token punctuation">)</span><span class="token punctuation">{</span><span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+</code></pre>
+<p>构建二叉树示例：</p>
+<pre class=" language-cpp"><code class="language-cpp"><span class="token comment" spellcheck="true">//初始化节点</span>
+TreeNode <span class="token operator">*</span>n1 <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token function">TreeNode</span><span class="token punctuation">(</span><span class="token number">3</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// root</span>
+TreeNode <span class="token operator">*</span>n2 <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token function">TreeNode</span><span class="token punctuation">(</span><span class="token number">4</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+TreeNode <span class="token operator">*</span>n3 <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token function">TreeNode</span><span class="token punctuation">(</span><span class="token number">5</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+TreeNode <span class="token operator">*</span>n4 <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token function">TreeNode</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+TreeNode <span class="token operator">*</span>n5 <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token function">TreeNode</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment" spellcheck="true">//构建引用指向</span>
+n1<span class="token operator">-</span><span class="token operator">></span>left <span class="token operator">=</span> n2<span class="token punctuation">;</span>
+n1<span class="token operator">-</span><span class="token operator">></span>right <span class="token operator">=</span> n3<span class="token punctuation">;</span>
+n2<span class="token operator">-</span><span class="token operator">></span>left <span class="token operator">=</span> n4<span class="token punctuation">;</span>
+n2<span class="token operator">-</span><span class="token operator">></span>right <span class="token operator">=</span> n5<span class="token punctuation">;</span>
+</code></pre>
+<h4 id="3-7-图"><a href="#3-7-图" class="headerlink" title="3.7 图"></a>3.7 图</h4><p>图是一种非线性数据结构，由「节点（顶点）<code>vertex</code>」和「边 <code>edge</code>」组成，每条边连接一对顶点。根据边的方向有无，图可分为「有向图」和「无向图」。</p>
+<p><strong>以无向图为例</strong> 开展介绍，无向图的 <strong>顶点</strong> 和 <strong>边</strong> 集合分别为：</p>
+<ul>
+<li>顶点集合：<code>vertices = &#123;1, 2, 3, 4, 5&#125;</code></li>
+<li>边集合：<code>edges = &#123;(1, 2), (1, 3), (1, 4), (1, 5), (2,4), (3,5), (4,5)&#125;</code></li>
+</ul>
+<p><strong>表示图</strong>的方法通常有两种：</p>
+<p>1.<strong>邻接矩阵</strong>：使用数组vertices存储顶点，邻接矩阵edges存储边；<code>edges[i][j]</code>代表节点<code>i+1</code>和节点<code>j+1</code>之间是否有边。</p>
+<pre class=" language-cpp"><code class="language-cpp"><span class="token keyword">int</span> vertices<span class="token punctuation">[</span><span class="token number">5</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">,</span> <span class="token number">4</span><span class="token punctuation">,</span> <span class="token number">5</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
+<span class="token keyword">int</span> edges<span class="token punctuation">[</span><span class="token number">5</span><span class="token punctuation">]</span><span class="token punctuation">[</span><span class="token number">5</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token punctuation">{</span><span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
+                   <span class="token punctuation">{</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
+                   <span class="token punctuation">{</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
+                   <span class="token punctuation">{</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
+                   <span class="token punctuation">{</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">}</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
+</code></pre>
+<p>2.<strong>邻接表</strong>：使用数组vertices存储顶点，邻接矩阵edges存储边。第一维<code>i</code>代表顶点索引，第二维edges[i]存储此顶点对应的边集合。</p>
+<p>邻接矩阵 VS 邻接表 ：</p>
+<p>邻接矩阵的大小只与节点数量有关，即 N^2  ，其中 N 为节点数量。因此，当边数量明显少于节点数量时，使用邻接矩阵存储图会造成较大的内存浪费。<br>因此，邻接表 适合存储稀疏图（顶点较多、边较少）； 邻接矩阵 适合存储稠密图（顶点较少、边较多）。</p>
+]]></content>
+      <categories>
+        <category>数据结构与算法</category>
+      </categories>
+      <tags>
+        <tag>基础知识</tag>
       </tags>
   </entry>
   <entry>
@@ -240,6 +334,72 @@
       </categories>
       <tags>
         <tag>sqlite3</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>初来乍到</title>
+    <url>/2023/09/17/00-1/</url>
+    <content><![CDATA[<p>写在开始…<br><br>初入职场，受组长凯哥影响，想要搭建自己的技术博客，于是有了这篇…<br><br>本人博客传送门：<a href="https://wzy012.github.io/">https://wzy012.github.io/</a> <br></p>
+<p>2023.6.19 从SDU毕业<br><br>2023.8.3 入职byd<br><br>开始了自己的菜鸟<del>打工</del>（成长）生涯<br><br>从事智驾开发工作<br><br>作为一个7年的自动化<del>不</del>专业学生<br><br>进入了一个纯软的技术赛道<br><br>其实还是很有压力的<br><br>但同时感觉充满了兴奋与挑战<br><br>开个人博客的初衷是：<br></p>
+<ul>
+<li>记录自己学习各个技术的过程，形成文档以备查漏补缺；<br></li>
+<li>如果有幸被需要的人看到，也是分享的意义</li>
+</ul>
+<p>希望自己坚持学习，一点一点进步，争取成为一名技术<del>大</del>小佬！</p>
+<p>最后附：<br><br>    Hexo + Github + Git 的博客搭建方案链接：<a href="https://yushuaigee.gitee.io/archives/">https://yushuaigee.gitee.io/archives/</a><br><br>    vscode + PicGo + Markdown All in one 的配置链接：<a href="https://blog.csdn.net/qq_35621494/article/details/106432399">https://blog.csdn.net/qq_35621494/article/details/106432399</a><br></p>
+<p>本人使用的是：vscode + Hexo + Github + Git + PicGO + Markdown All in one 的实现方案。</p>
+]]></content>
+      <categories>
+        <category>个人成长</category>
+      </categories>
+      <tags>
+        <tag>关于本人</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>someip</title>
+    <url>/2023/09/21/06-someip/</url>
+    <content><![CDATA[<h3 id="1-SOA（Service-Oriented-Architecture）"><a href="#1-SOA（Service-Oriented-Architecture）" class="headerlink" title="1 SOA（Service Oriented Architecture）"></a>1 SOA（Service Oriented Architecture）</h3><h4 id="1-1-前言"><a href="#1-1-前言" class="headerlink" title="1.1 前言"></a>1.1 前言</h4><ul>
+<li><strong>单体式应用程序</strong><br>所有功能模块包含在一个进程内功能模块之间通过直接调用API进行通信<br><img src="https://cdn.jsdelivr.net/gh/wzy012/myblogPicBed@master/image/20230921232656.png" alt="20230921232656"><br><br><img src="https://cdn.jsdelivr.net/gh/wzy012/myblogPicBed@master/image/20230921232719.png" alt="20230921232719"><br><br><img src="https://cdn.jsdelivr.net/gh/wzy012/myblogPicBed@master/image/20230921232735.png" alt="20230921232735"><br></li>
+<li><strong>SOA应用程序</strong><br>各个功能模块以独立进程（服务）运行功能模块之间通过服务接口进行通信<br><br><img src="https://cdn.jsdelivr.net/gh/wzy012/myblogPicBed@master/image/20230921232817.png" alt="20230921232817"><br><br><img src="https://cdn.jsdelivr.net/gh/wzy012/myblogPicBed@master/image/20230921232847.png" alt="20230921232847"><br><br>图中：Process_C进程中divide服务接口想使用minus服务接口也必须需要使用IPC、网络，是因为minus以服务接口对外提供功能，没有提供API。<br></li>
+</ul>
+<p>服务等价于函数体；<br><br>服务是独立运行的进程，可以通过IPC、网络远程访问；<br><br>一个进程可以提供多个服务。<br></p>
+<ul>
+<li>服务接口<br><br>服务接口等价于函数接口；<br><br>服务接口是使用服务的唯一途径<br></li>
+</ul>
+<h4 id="1-2-SOA（面向服务的架构）："><a href="#1-2-SOA（面向服务的架构）：" class="headerlink" title="1.2 SOA（面向服务的架构）："></a>1.2 SOA（面向服务的架构）：</h4><h5 id="1-2-1-定义"><a href="#1-2-1-定义" class="headerlink" title="1.2.1 定义"></a>1.2.1 定义</h5><p>SOA是一个组件模型，将应用程序的不同功能单元（称为服务）进行拆分，并通过定义良好的通信机制【接口和协议】将这些服务联系起来。<br><br>接口是采用<strong>中立的方式</strong>【互联网、通信协议】进行定义的，它独立于实现服务的硬件平台、操作系统和编程语言，这使得在各种各样的系统中的服务可以以一种统一和通用的方式进行交互。<br><br><img src="https://cdn.jsdelivr.net/gh/wzy012/myblogPicBed@master/image/20230921233039.png" alt="20230921233039"><br></p>
+<h5 id="1-2-2-SOA中的-3-种角色："><a href="#1-2-2-SOA中的-3-种角色：" class="headerlink" title="1.2.2 SOA中的 3 种角色："></a>1.2.2 <strong>SOA中的 3 种角色</strong>：</h5><ul>
+<li>服务提供者（server）：利用服务中心对外提供服务；响应客户端的请求</li>
+<li>服务使用者（client）：利用服务中心查找所需的服务；使用服务</li>
+<li>服务中心（位于server）：注册、保存服务提供者提供的服务，广播服务</li>
+<li>服务中心（位于client）：查找网络中的有效服务，并通知client服务是否可用<br><img src="https://cdn.jsdelivr.net/gh/wzy012/myblogPicBed@master/image/20230921233313.png" alt="20230921233313"><br><br>一台设备有且只能有一个服务中心一台设备可有0个或多个服务提供者一台设备可有0个或多个服务使用者<br></li>
+</ul>
+<h5 id="1-2-3-SOA中的-4-种操作："><a href="#1-2-3-SOA中的-4-种操作：" class="headerlink" title="1.2.3 SOA中的 4 种操作："></a>1.2.3 <strong>SOA中的 4 种操作</strong>：</h5><ul>
+<li>发布服务（server）：发布服务的具体信息到网络</li>
+<li>查找服务（client）：查看目标服务在当前网络中是否可用</li>
+<li>使用服务（client）：根据查找到的服务具体信息（ip\port\tcp&#x2F;udp）与服务提供者建立联系，使用服务<br></li>
+<li>提供服务（server）：响应服务消费者的请求<br><br><img src="https://cdn.jsdelivr.net/gh/wzy012/myblogPicBed@master/image/20230921233340.png" alt="20230921233340"><br></li>
+</ul>
+<h5 id="1-2-4-SOA的工作流程："><a href="#1-2-4-SOA的工作流程：" class="headerlink" title="1.2.4 SOA的工作流程："></a>1.2.4 <strong>SOA的工作流程</strong>：</h5><p><img src="https://cdn.jsdelivr.net/gh/wzy012/myblogPicBed@master/image/20230921233439.png" alt="20230921233439"><br></p>
+<h5 id="1-2-5-SOA优势："><a href="#1-2-5-SOA优势：" class="headerlink" title="1.2.5 SOA优势："></a>1.2.5 SOA优势：</h5><p>优势：灵活适应业务变化、降低网络负担、通信机制标准化-跨平台、松耦合、隔离性、后期维护成本低<br><br>劣势：性能成本（IPC、网络通信）、维护开发成本<br></p>
+<h3 id="2-someip"><a href="#2-someip" class="headerlink" title="2 someip"></a>2 <strong>someip</strong></h3><h4 id="2-1-someip与SOA的关系："><a href="#2-1-someip与SOA的关系：" class="headerlink" title="2.1 someip与SOA的关系："></a>2.1 someip与SOA的关系：</h4><p><img src="https://cdn.jsdelivr.net/gh/wzy012/myblogPicBed@master/image/20230921231543.png" alt="20230921231543"><br><br><img src="https://cdn.jsdelivr.net/gh/wzy012/myblogPicBed@master/image/20230921231616.png" alt="20230921231616"><br></p>
+<p>SOME&#x2F;IP定义了服务提供者、服务使用者之间的通信接口<br><br>SD：service discovery<br><br>someip-sd协议是someip协议的特殊实现<br><br><img src="https://cdn.jsdelivr.net/gh/wzy012/myblogPicBed@master/image/20230921231711.png" alt="20230921231711"><br><br>some&#x2F;ip-sd是服务中心，只负责服务发现功能；<br></p>
+<p><img src="https://cdn.jsdelivr.net/gh/wzy012/myblogPicBed@master/image/20230921231730.png" alt="20230921231730"><br></p>
+<p>some&#x2F;IP&amp;SD：服务中心不仅仅是服务中心，也可以是服务提供者、服务使用者。<br><br><img src="https://cdn.jsdelivr.net/gh/wzy012/myblogPicBed@master/image/20230921231812.png" alt="20230921231812"><br></p>
+<p>一台设备只能有一个sd<br></p>
+<h4 id="2-2-someip工作原理："><a href="#2-2-someip工作原理：" class="headerlink" title="2.2 someip工作原理："></a>2.2 <strong>someip工作原理</strong>：</h4><p><img src="https://cdn.jsdelivr.net/gh/wzy012/myblogPicBed@master/image/20230921231856.png" alt="20230921231856"><br></p>
+<p>SOME&#x2F;IP协议位于TCP&#x2F;IP 5层模型中的第5层-应用层<br><br><img src="https://cdn.jsdelivr.net/gh/wzy012/myblogPicBed@master/image/20230921231909.png" alt="20230921231909"><br></p>
+<p>SOME&#x2F;IP中间件成功解耦了具体的应用与通信机制<br></p>
+<h5 id="2-2-1-接口类型"><a href="#2-2-1-接口类型" class="headerlink" title="2.2.1 接口类型"></a>2.2.1 <strong>接口类型</strong></h5><p><img src="https://cdn.jsdelivr.net/gh/wzy012/myblogPicBed@master/image/20230921232007.png" alt="20230921232007"><br><br>(1) <strong>method方法</strong>：由client向server发送请求消息<br><br>RR：server需要回复的请求&#x2F;RR&#x3D;&#x3D;int func();<br><br>FF：server不需要回复的请求&#x2F;FF&#x3D;&#x3D; void func();<br><br><img src="https://cdn.jsdelivr.net/gh/wzy012/myblogPicBed@master/image/20230921232040.png" alt="20230921232040"><br><br>（2）<strong>event事件</strong>：由server向client发送事件消息<br><br>server会在合适的时候发送event消息给客户端<br><br><img src="https://cdn.jsdelivr.net/gh/wzy012/myblogPicBed@master/image/20230921232121.png" alt="20230921232121"><br></p>
+<p>ps:subscribe eventgroup\ACK\stop subscribe是SD协议<br><br>事件组、强相关：将强相关的事件放到一个事件组中<br><br>客户端可以通过订阅事件组订阅感兴趣的事件<br><br>一个event（事件）必须加入事件组<br><br>一个event可以加入多个事件组<br><br>一个事件组中可以包含多个event<br><br>必须订阅event的所在事件组，不能订阅某个具体的event<br><br>(3) <strong>filed字段&#x2F;属性</strong>：一段内存空间的值，保存在server端<br><br>getter(method):获取，client可通过该方法主动从server获取field值<br><br>setter(method):设置，client可通过该方法设置field值<br><br>notifier(event):通知，当filed值发生改变，server就将最新值发送给client<br><br><img src="https://cdn.jsdelivr.net/gh/wzy012/myblogPicBed@master/image/20230921232208.png" alt="20230921232208"><br><br><img src="https://cdn.jsdelivr.net/gh/wzy012/myblogPicBed@master/image/20230921232234.png" alt="20230921232234"><br><br>一个field必须加入事件组<br><br>一个field可以加入多个事件组<br><br>一个事件组中可以包含多个field<br><br>必须订阅field所在事件组，不能订阅某个具体的field<br></p>
+<h5 id="2-2-2-someip服务接口："><a href="#2-2-2-someip服务接口：" class="headerlink" title="2.2.2 someip服务接口："></a>2.2.2 someip服务接口：</h5><p>所有接口都有ID（除了Field）：<br><br>service ID：区分系统里不同的服务，<br><br>Method ID：区分一个服务里的不同method，<br><br>Event ID：区分一个服务里的不同事件，<br><br>Eventgroup ID：区分事件组<br><br><img src="https://cdn.jsdelivr.net/gh/wzy012/myblogPicBed@master/image/20230921232404.png" alt="20230921232404"><br><br>同一服务的同类型接口ID不能重复<br><br>使用哪个服务哪个功能发生了哪个事件<br><br><img src="https://cdn.jsdelivr.net/gh/wzy012/myblogPicBed@master/image/20230921232533.png" alt="20230921232533"><br><br>第一个字段表示type、第二个表示ID<br><br>服务接口其实就是通信双方之间的交互机制<br><br>event notifier单向传输：只能由server端发起，发送给client<br></p>
+<h3 id="3-关于汽车软件通信"><a href="#3-关于汽车软件通信" class="headerlink" title="3.关于汽车软件通信"></a>3.关于汽车软件通信</h3><p>传统的车载软件通信采用的是经典的总线协议（比如CAN、LIN、FlexRay），这些总线采用的是面向信号的数据传输(Signal-based)，基于信号在双绞线中的传输来通信，但是这些协议的传输带宽和传输速率有限，且不容易实现基于无线网更新车载软件(OTA)的需求。因此，新一代的车载软件通信更多采用了SOA架构下的SOME&#x2F;IP协议，该协议采用的是面向服务的数据传输(Service-Oriented)，基于ECU的服务在车载以太网中被请求或订阅来通信。<br><br>有用链接：<br><br><a href="https://www.51fusa.com/client/information/informationdetail/id/1788.html">https://www.51fusa.com/client/information/informationdetail/id/1788.html</a><br><br><a href="https://blog.csdn.net/qq_42981705/article/details/130735667">https://blog.csdn.net/qq_42981705/article/details/130735667</a><br><br><a href="https://mp.weixin.qq.com/s/rCRuCbHb_SUyysA7lWUPGA">https://mp.weixin.qq.com/s/rCRuCbHb_SUyysA7lWUPGA</a><br></p>
+]]></content>
+      <categories>
+        <category>通信协议</category>
+      </categories>
+      <tags>
+        <tag>SOME/IP</tag>
       </tags>
   </entry>
   <entry>
@@ -510,8 +670,73 @@ h <span class="token operator">=</span> h <span class="token operator">/</span> 
     <span class="token punctuation">}</span>
 <span class="token punctuation">}</span>
 </code></pre>
-<h4 id="2-5-3-性能分析"><a href="#2-5-3-性能分析" class="headerlink" title="2.5.3 性能分析"></a>2.5.3 性能分析</h4><p>时间复杂度：O(N*logN) <br><br>空间复杂度：O(N) <br></p>
-<h2 id="3-总结"><a href="#3-总结" class="headerlink" title="3. 总结"></a>3. 总结</h2><p>（1）简单排序算法的时间复杂度都为O(N^2)，随着输入规模的增大，时间成本急剧上升，因此简单排序算法不能处理大规模问题；<br></p>
+<h4 id="2-5-3-性能分析"><a href="#2-5-3-性能分析" class="headerlink" title="2.5.3 性能分析"></a>2.5.3 性能分析</h4><p>时间复杂度：O(NlogN) <br><br>空间复杂度：O(N) <br><br>分析过程：<br><br><img src="https://cdn.jsdelivr.net/gh/wzy012/myblogPicBed@master/image/20230922152626.png" alt="20230922152626"><br><br>用树状图描述归并排序，如图所示，一个数组有8个元素，每次除以2找最小的子数组，共拆分log2^8次即3次，所以树共有3层。<br><br>那么，自顶向下第k层共有2^k个子数组，每个数组的长度为2^(3-k)，归并最多需要2^(3-k)次比较；<br><br>因此，每层的比较次数为2^k*2^(3-k)&#x3D;2^3,那么3层共有3*2^3。<br><br>|递推<br><br>假设元素的个数为n，那么使用归并排序拆分的次数为log2(n)，所以共log2(n)层，最终得出的归并排序的时间复杂度为：<br><br>log2(n)*2^(log2(n))&#x3D;log(n)*n,根据大O推导法则，忽略底数，最终归并排序的时间复杂度为O(nlogn);</p>
+<h3 id="2-6-快速排序"><a href="#2-6-快速排序" class="headerlink" title="2.6 快速排序"></a>2.6 快速排序</h3><h4 id="2-6-1-算法步骤-原理"><a href="#2-6-1-算法步骤-原理" class="headerlink" title="2.6.1 算法步骤&#x2F;原理"></a>2.6.1 算法步骤&#x2F;原理</h4><p>快递排序是对冒泡排序的一种改进，基本思想是：通过一趟排序将要排序的数据分割成独立的两部分，其中一部分的所有元素都比另外一部分的所有元素都要小，然后再按此方法对这两部分数据分别进行快速排序，整个排序过程可以递归进行，以此达到整个数据变成有序序列。<br><br>(1)首先设定一个分界值，通过该分界值将数组分成两部分；<br>(2)将大于或等于分界值的数据放到数组右边，小于分界值的数据放到数组左边。此时左边部分中各元素都小于等于分界值，而右边部分中各元素都大于等于分界值；<br><br>(3)然后，左边和右边的数据可以独立排序。对于左侧的数组数据，又可以取一个分界值，将该部分数据分成左右两部分，同样在左边放置较小值，右边放置较大值。右侧的数组数据也可以做类似处理。<br><br>(4)重复上述过程，可以看出这是一个递归定义。通过递归将左侧部分排好序后，再递归排好右侧部分的顺序。当左侧和右侧两个部分的数据排完序后，整个数组的排序也就完成了。<br><br><img src="https://cdn.jsdelivr.net/gh/wzy012/myblogPicBed@master/image/20230922155945.png" alt="20230922155945"><br><br><img src="https://cdn.jsdelivr.net/gh/wzy012/myblogPicBed@master/image/20230922162752.png" alt="20230922162752"><br><br><img src="https://cdn.jsdelivr.net/gh/wzy012/myblogPicBed@master/image/20230922162954.png" alt="20230922162954"><br><br><img src="https://cdn.jsdelivr.net/gh/wzy012/myblogPicBed@master/image/20230922163111.png" alt="20230922163111"><br><br><img src="https://cdn.jsdelivr.net/gh/wzy012/myblogPicBed@master/image/20230922163331.png" alt="20230922163331"><br><br><strong>切分原理</strong>：<br>把一个数组切分成两个子数组的基本思想：<br><br>（1）找一个基准值，用两个指针分别指向数组的头部和尾部；<br><br>（2）先从尾部向头部开始搜索一个比基准值小的元素，搜索到即停止，并记录指针的位置；<br><br>（3）再从头部向尾部开始搜索一个比基准值大的元素，搜索到即停止，并记录指针的位置；<br><br>（4）交换当前左边指针位置和右边指针位置的元素；<br><br>（5）重复2，3，4步骤，直到左边指针的值大于右边指针的值停止。<br></p>
+<h4 id="2-6-2-代码实现"><a href="#2-6-2-代码实现" class="headerlink" title="2.6.2 代码实现"></a>2.6.2 代码实现</h4><pre class=" language-cpp"><code class="language-cpp"><span class="token keyword">template</span><span class="token operator">&lt;</span><span class="token keyword">typename</span> T<span class="token operator">></span>
+<span class="token keyword">void</span> <span class="token function">quick_sort</span><span class="token punctuation">(</span>T arr<span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">,</span> <span class="token keyword">int</span> begin<span class="token punctuation">,</span> <span class="token keyword">int</span> end<span class="token punctuation">)</span> <span class="token comment" spellcheck="true">//end = size()-1</span>
+<span class="token punctuation">{</span>
+    <span class="token comment" spellcheck="true">// 安全性校验</span>
+    <span class="token keyword">if</span><span class="token punctuation">(</span>end <span class="token operator">&lt;=</span> begin<span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        <span class="token keyword">return</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token comment" spellcheck="true">//对数组[begin, end]的元素进行分组（左子组，右子组）</span>
+    <span class="token keyword">int</span> partition <span class="token operator">=</span> <span class="token function">partition</span><span class="token punctuation">(</span>arr<span class="token punctuation">,</span> begin<span class="token punctuation">,</span> end<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token comment" spellcheck="true">//让左子组有序</span>
+    <span class="token function">quick_sort</span><span class="token punctuation">(</span>arr<span class="token punctuation">,</span> begin<span class="token punctuation">,</span> partition<span class="token number">-1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token comment" spellcheck="true">//让右子组有序</span>
+    <span class="token function">quick_sort</span><span class="token punctuation">(</span>arr<span class="token punctuation">,</span> partition<span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">,</span> end<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token comment" spellcheck="true">// 对数组arr，从索引begin到end之间的元素进行分组，并返回分组界限对应的索引</span>
+<span class="token keyword">int</span> <span class="token function">partition</span><span class="token punctuation">(</span>T arr<span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">,</span> <span class="token keyword">int</span> begin<span class="token punctuation">,</span> <span class="token keyword">int</span> end<span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    <span class="token comment" spellcheck="true">// 确定分界值</span>
+    <span class="token keyword">int</span> key <span class="token operator">=</span> a<span class="token punctuation">[</span>begin<span class="token punctuation">]</span><span class="token punctuation">;</span>
+
+    <span class="token comment" spellcheck="true">// 定义两个指针，分别指向待切分元素的最小索引处和最大索引处的下一个位置</span>
+    <span class="token keyword">int</span> left <span class="token operator">=</span> begin<span class="token punctuation">;</span>
+    <span class="token keyword">int</span> right <span class="token operator">=</span> end <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">;</span>
+
+    <span class="token comment" spellcheck="true">//切分</span>
+    <span class="token keyword">while</span><span class="token punctuation">(</span><span class="token boolean">true</span><span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        <span class="token comment" spellcheck="true">// 先从右向左扫描，移动right指针，找到一个比分界值小的元素，停止</span>
+        <span class="token keyword">while</span><span class="token punctuation">(</span>key <span class="token operator">&lt;</span> arr<span class="token punctuation">[</span><span class="token operator">--</span>right<span class="token punctuation">]</span><span class="token punctuation">)</span>
+        <span class="token punctuation">{</span>
+            <span class="token keyword">if</span><span class="token punctuation">(</span>right <span class="token operator">==</span> begin<span class="token punctuation">)</span>
+            <span class="token punctuation">{</span>
+                <span class="token keyword">break</span><span class="token punctuation">;</span>
+            <span class="token punctuation">}</span>
+        <span class="token punctuation">}</span>
+        <span class="token comment" spellcheck="true">// 再先从左向右扫描，移动left指针，找到一个比分界值大的元素，停止</span>
+        <span class="token keyword">while</span><span class="token punctuation">(</span>arr<span class="token punctuation">[</span><span class="token operator">++</span>left<span class="token punctuation">]</span> <span class="token operator">&lt;</span> key<span class="token punctuation">)</span>
+        <span class="token punctuation">{</span>
+            <span class="token keyword">if</span><span class="token punctuation">(</span>left <span class="token operator">==</span> end<span class="token punctuation">)</span>
+            <span class="token punctuation">{</span>
+                <span class="token keyword">break</span><span class="token punctuation">;</span>
+            <span class="token punctuation">}</span>
+        <span class="token punctuation">}</span>
+        <span class="token comment" spellcheck="true">// 判断 left>=right，如果是则证明元素扫描完毕，结束循环；否则交换元素即可</span>
+        <span class="token keyword">if</span><span class="token punctuation">(</span>left <span class="token operator">>=</span> right<span class="token punctuation">)</span>
+        <span class="token punctuation">{</span>
+            <span class="token keyword">break</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+        <span class="token keyword">else</span>
+        <span class="token punctuation">{</span>
+            <span class="token function">swap</span><span class="token punctuation">(</span>left<span class="token punctuation">,</span> right<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+
+    <span class="token punctuation">}</span>
+    <span class="token function">swap</span><span class="token punctuation">(</span>arr<span class="token punctuation">[</span>begin<span class="token punctuation">]</span><span class="token punctuation">,</span> arr<span class="token punctuation">[</span>right<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token keyword">return</span> right<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<h4 id="2-6-3-性能分析"><a href="#2-6-3-性能分析" class="headerlink" title="2.6.3 性能分析"></a>2.6.3 性能分析</h4><h2 id="3-总结"><a href="#3-总结" class="headerlink" title="3. 总结"></a>3. 总结</h2><p>（1）简单排序算法的时间复杂度都为O(N^2)，随着输入规模的增大，时间成本急剧上升，因此简单排序算法不能处理大规模问题；<br></p>
 ]]></content>
       <categories>
         <category>数据结构与算法</category>
@@ -734,166 +959,6 @@ $ .exit//退出sqlite3数据库
       </categories>
       <tags>
         <tag>sqlite</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>someip</title>
-    <url>/2023/09/21/06-someip/</url>
-    <content><![CDATA[<h3 id="1-SOA（Service-Oriented-Architecture）"><a href="#1-SOA（Service-Oriented-Architecture）" class="headerlink" title="1 SOA（Service Oriented Architecture）"></a>1 SOA（Service Oriented Architecture）</h3><h4 id="1-1-前言"><a href="#1-1-前言" class="headerlink" title="1.1 前言"></a>1.1 前言</h4><ul>
-<li><strong>单体式应用程序</strong><br>所有功能模块包含在一个进程内功能模块之间通过直接调用API进行通信<br><img src="https://cdn.jsdelivr.net/gh/wzy012/myblogPicBed@master/image/20230921232656.png" alt="20230921232656"><br><br><img src="https://cdn.jsdelivr.net/gh/wzy012/myblogPicBed@master/image/20230921232719.png" alt="20230921232719"><br><br><img src="https://cdn.jsdelivr.net/gh/wzy012/myblogPicBed@master/image/20230921232735.png" alt="20230921232735"><br></li>
-<li><strong>SOA应用程序</strong><br>各个功能模块以独立进程（服务）运行功能模块之间通过服务接口进行通信<br><br><img src="https://cdn.jsdelivr.net/gh/wzy012/myblogPicBed@master/image/20230921232817.png" alt="20230921232817"><br><br><img src="https://cdn.jsdelivr.net/gh/wzy012/myblogPicBed@master/image/20230921232847.png" alt="20230921232847"><br><br>图中：Process_C进程中divide服务接口想使用minus服务接口也必须需要使用IPC、网络，是因为minus以服务接口对外提供功能，没有提供API。<br></li>
-</ul>
-<p>服务等价于函数体；<br><br>服务是独立运行的进程，可以通过IPC、网络远程访问；<br><br>一个进程可以提供多个服务。<br></p>
-<ul>
-<li>服务接口<br><br>服务接口等价于函数接口；<br><br>服务接口是使用服务的唯一途径<br></li>
-</ul>
-<h4 id="1-2-SOA（面向服务的架构）："><a href="#1-2-SOA（面向服务的架构）：" class="headerlink" title="1.2 SOA（面向服务的架构）："></a>1.2 SOA（面向服务的架构）：</h4><h5 id="1-2-1-定义"><a href="#1-2-1-定义" class="headerlink" title="1.2.1 定义"></a>1.2.1 定义</h5><p>SOA是一个组件模型，将应用程序的不同功能单元（称为服务）进行拆分，并通过定义良好的通信机制【接口和协议】将这些服务联系起来。<br><br>接口是采用<strong>中立的方式</strong>【互联网、通信协议】进行定义的，它独立于实现服务的硬件平台、操作系统和编程语言，这使得在各种各样的系统中的服务可以以一种统一和通用的方式进行交互。<br><br><img src="https://cdn.jsdelivr.net/gh/wzy012/myblogPicBed@master/image/20230921233039.png" alt="20230921233039"><br></p>
-<h5 id="1-2-2-SOA中的-3-种角色："><a href="#1-2-2-SOA中的-3-种角色：" class="headerlink" title="1.2.2 SOA中的 3 种角色："></a>1.2.2 <strong>SOA中的 3 种角色</strong>：</h5><ul>
-<li>服务提供者（server）：利用服务中心对外提供服务；响应客户端的请求</li>
-<li>服务使用者（client）：利用服务中心查找所需的服务；使用服务</li>
-<li>服务中心（位于server）：注册、保存服务提供者提供的服务，广播服务</li>
-<li>服务中心（位于client）：查找网络中的有效服务，并通知client服务是否可用<br><img src="https://cdn.jsdelivr.net/gh/wzy012/myblogPicBed@master/image/20230921233313.png" alt="20230921233313"><br><br>一台设备有且只能有一个服务中心一台设备可有0个或多个服务提供者一台设备可有0个或多个服务使用者<br></li>
-</ul>
-<h5 id="1-2-3-SOA中的-4-种操作："><a href="#1-2-3-SOA中的-4-种操作：" class="headerlink" title="1.2.3 SOA中的 4 种操作："></a>1.2.3 <strong>SOA中的 4 种操作</strong>：</h5><ul>
-<li>发布服务（server）：发布服务的具体信息到网络</li>
-<li>查找服务（client）：查看目标服务在当前网络中是否可用</li>
-<li>使用服务（client）：根据查找到的服务具体信息（ip\port\tcp&#x2F;udp）与服务提供者建立联系，使用服务<br></li>
-<li>提供服务（server）：响应服务消费者的请求<br><br><img src="https://cdn.jsdelivr.net/gh/wzy012/myblogPicBed@master/image/20230921233340.png" alt="20230921233340"><br></li>
-</ul>
-<h5 id="1-2-4-SOA的工作流程："><a href="#1-2-4-SOA的工作流程：" class="headerlink" title="1.2.4 SOA的工作流程："></a>1.2.4 <strong>SOA的工作流程</strong>：</h5><p><img src="https://cdn.jsdelivr.net/gh/wzy012/myblogPicBed@master/image/20230921233439.png" alt="20230921233439"><br></p>
-<h5 id="1-2-5-SOA优势："><a href="#1-2-5-SOA优势：" class="headerlink" title="1.2.5 SOA优势："></a>1.2.5 SOA优势：</h5><p>优势：灵活适应业务变化、降低网络负担、通信机制标准化-跨平台、松耦合、隔离性、后期维护成本低<br><br>劣势：性能成本（IPC、网络通信）、维护开发成本<br></p>
-<h3 id="2-someip"><a href="#2-someip" class="headerlink" title="2 someip"></a>2 <strong>someip</strong></h3><h4 id="2-1-someip与SOA的关系："><a href="#2-1-someip与SOA的关系：" class="headerlink" title="2.1 someip与SOA的关系："></a>2.1 someip与SOA的关系：</h4><p><img src="https://cdn.jsdelivr.net/gh/wzy012/myblogPicBed@master/image/20230921231543.png" alt="20230921231543"><br><br><img src="https://cdn.jsdelivr.net/gh/wzy012/myblogPicBed@master/image/20230921231616.png" alt="20230921231616"><br></p>
-<p>SOME&#x2F;IP定义了服务提供者、服务使用者之间的通信接口<br><br>SD：service discovery<br><br>someip-sd协议是someip协议的特殊实现<br><br><img src="https://cdn.jsdelivr.net/gh/wzy012/myblogPicBed@master/image/20230921231711.png" alt="20230921231711"><br><br>some&#x2F;ip-sd是服务中心，只负责服务发现功能；<br></p>
-<p><img src="https://cdn.jsdelivr.net/gh/wzy012/myblogPicBed@master/image/20230921231730.png" alt="20230921231730"><br></p>
-<p>some&#x2F;IP&amp;SD：服务中心不仅仅是服务中心，也可以是服务提供者、服务使用者。<br><br><img src="https://cdn.jsdelivr.net/gh/wzy012/myblogPicBed@master/image/20230921231812.png" alt="20230921231812"><br></p>
-<p>一台设备只能有一个sd<br></p>
-<h4 id="2-2-someip工作原理："><a href="#2-2-someip工作原理：" class="headerlink" title="2.2 someip工作原理："></a>2.2 <strong>someip工作原理</strong>：</h4><p><img src="https://cdn.jsdelivr.net/gh/wzy012/myblogPicBed@master/image/20230921231856.png" alt="20230921231856"><br></p>
-<p>SOME&#x2F;IP协议位于TCP&#x2F;IP 5层模型中的第5层-应用层<br><br><img src="https://cdn.jsdelivr.net/gh/wzy012/myblogPicBed@master/image/20230921231909.png" alt="20230921231909"><br></p>
-<p>SOME&#x2F;IP中间件成功解耦了具体的应用与通信机制<br></p>
-<h5 id="2-2-1-接口类型"><a href="#2-2-1-接口类型" class="headerlink" title="2.2.1 接口类型"></a>2.2.1 <strong>接口类型</strong></h5><p><img src="https://cdn.jsdelivr.net/gh/wzy012/myblogPicBed@master/image/20230921232007.png" alt="20230921232007"><br><br>(1) <strong>method方法</strong>：由client向server发送请求消息<br><br>RR：server需要回复的请求&#x2F;RR&#x3D;&#x3D;int func();<br><br>FF：server不需要回复的请求&#x2F;FF&#x3D;&#x3D; void func();<br><br><img src="https://cdn.jsdelivr.net/gh/wzy012/myblogPicBed@master/image/20230921232040.png" alt="20230921232040"><br><br>（2）<strong>event事件</strong>：由server向client发送事件消息<br><br>server会在合适的时候发送event消息给客户端<br><br><img src="https://cdn.jsdelivr.net/gh/wzy012/myblogPicBed@master/image/20230921232121.png" alt="20230921232121"><br></p>
-<p>ps:subscribe eventgroup\ACK\stop subscribe是SD协议<br><br>事件组、强相关：将强相关的事件放到一个事件组中<br><br>客户端可以通过订阅事件组订阅感兴趣的事件<br><br>一个event（事件）必须加入事件组<br><br>一个event可以加入多个事件组<br><br>一个事件组中可以包含多个event<br><br>必须订阅event的所在事件组，不能订阅某个具体的event<br><br>(3) <strong>filed字段&#x2F;属性</strong>：一段内存空间的值，保存在server端<br><br>getter(method):获取，client可通过该方法主动从server获取field值<br><br>setter(method):设置，client可通过该方法设置field值<br><br>notifier(event):通知，当filed值发生改变，server就将最新值发送给client<br><br><img src="https://cdn.jsdelivr.net/gh/wzy012/myblogPicBed@master/image/20230921232208.png" alt="20230921232208"><br><br><img src="https://cdn.jsdelivr.net/gh/wzy012/myblogPicBed@master/image/20230921232234.png" alt="20230921232234"><br><br>一个field必须加入事件组<br><br>一个field可以加入多个事件组<br><br>一个事件组中可以包含多个field<br><br>必须订阅field所在事件组，不能订阅某个具体的field<br></p>
-<h5 id="2-2-2-someip服务接口："><a href="#2-2-2-someip服务接口：" class="headerlink" title="2.2.2 someip服务接口："></a>2.2.2 someip服务接口：</h5><p>所有接口都有ID（除了Field）：<br><br>service ID：区分系统里不同的服务，<br><br>Method ID：区分一个服务里的不同method，<br><br>Event ID：区分一个服务里的不同事件，<br><br>Eventgroup ID：区分事件组<br><br><img src="https://cdn.jsdelivr.net/gh/wzy012/myblogPicBed@master/image/20230921232404.png" alt="20230921232404"><br><br>同一服务的同类型接口ID不能重复<br><br>使用哪个服务哪个功能发生了哪个事件<br><br><img src="https://cdn.jsdelivr.net/gh/wzy012/myblogPicBed@master/image/20230921232533.png" alt="20230921232533"><br><br>第一个字段表示type、第二个表示ID<br><br>服务接口其实就是通信双方之间的交互机制<br><br>event notifier单向传输：只能由server端发起，发送给client<br></p>
-<h3 id="3-关于汽车软件通信"><a href="#3-关于汽车软件通信" class="headerlink" title="3.关于汽车软件通信"></a>3.关于汽车软件通信</h3><p>传统的车载软件通信采用的是经典的总线协议（比如CAN、LIN、FlexRay），这些总线采用的是面向信号的数据传输(Signal-based)，基于信号在双绞线中的传输来通信，但是这些协议的传输带宽和传输速率有限，且不容易实现基于无线网更新车载软件(OTA)的需求。因此，新一代的车载软件通信更多采用了SOA架构下的SOME&#x2F;IP协议，该协议采用的是面向服务的数据传输(Service-Oriented)，基于ECU的服务在车载以太网中被请求或订阅来通信。<br><br>有用链接：<br><br><a href="https://www.51fusa.com/client/information/informationdetail/id/1788.html">https://www.51fusa.com/client/information/informationdetail/id/1788.html</a><br><br><a href="https://blog.csdn.net/qq_42981705/article/details/130735667">https://blog.csdn.net/qq_42981705/article/details/130735667</a><br><br><a href="https://mp.weixin.qq.com/s/rCRuCbHb_SUyysA7lWUPGA">https://mp.weixin.qq.com/s/rCRuCbHb_SUyysA7lWUPGA</a><br></p>
-]]></content>
-      <categories>
-        <category>通信协议</category>
-      </categories>
-      <tags>
-        <tag>SOME/IP</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>数据结构基础知识</title>
-    <url>/2023/09/20/04-datastructure/</url>
-    <content><![CDATA[<h3 id="3-数据结构"><a href="#3-数据结构" class="headerlink" title="3.数据结构"></a>3.数据结构</h3><h4 id="3-1-前言"><a href="#3-1-前言" class="headerlink" title="3.1 前言"></a>3.1 前言</h4><p>数据结构是为实现对计算机数据有效使用的各种数据组织形式，服务于各类计算机操作。不同的数据结构具有各自对应的适用场景，旨在降低各种算法计算的时间与空间复杂度，达到最佳的任务执行效率。</p>
-<h4 id="3-2-数组"><a href="#3-2-数组" class="headerlink" title="3.2 数组"></a>3.2 数组</h4><p>固定数组和可变数组</p>
-<h4 id="3-3-链表"><a href="#3-3-链表" class="headerlink" title="3.3 链表"></a>3.3 链表</h4><p>链表以节点为单位，每个元素都是一个独立对象，在内存中的存储空间是非连续的。链表的节点对象具有两个成员变量：「值 <code>val</code>」，「后继节点引用 <code>next</code>」 。</p>
-<pre class=" language-cpp"><code class="language-cpp"><span class="token keyword">struct</span> ListNode<span class="token punctuation">{</span>
-    <span class="token keyword">int</span> val<span class="token punctuation">;</span>
-    ListNode <span class="token operator">*</span>next<span class="token punctuation">;</span>
-    <span class="token function">ListNode</span><span class="token punctuation">(</span><span class="token keyword">int</span> x<span class="token punctuation">)</span> <span class="token operator">:</span> <span class="token function">val</span><span class="token punctuation">(</span>x<span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token function">next</span><span class="token punctuation">(</span><span class="token constant">NULL</span><span class="token punctuation">)</span> <span class="token punctuation">{</span><span class="token punctuation">}</span>
-<span class="token punctuation">}</span><span class="token punctuation">;</span>
-</code></pre>
-<h4 id="3-4-栈"><a href="#3-4-栈" class="headerlink" title="3.4 栈"></a>3.4 栈</h4><p>栈是一种具有 「先入后出」 特点的抽象数据结构，可使用<strong>数组</strong>或<strong>链表</strong>实现</p>
-<pre class=" language-cpp"><code class="language-cpp">stack<span class="token operator">&lt;</span>T<span class="token operator">></span> stk<span class="token punctuation">;</span>
-</code></pre>
-<h4 id="3-5-队列"><a href="#3-5-队列" class="headerlink" title="3.5 队列"></a>3.5 队列</h4><p>队列是一种具有 「先入先出」 特点的抽象数据结构，可使用<strong>链表</strong>实现。</p>
-<pre class=" language-cpp"><code class="language-cpp">queue<span class="token operator">&lt;</span>T<span class="token operator">></span> que<span class="token punctuation">;</span>
-</code></pre>
-<h4 id="3-6-树"><a href="#3-6-树" class="headerlink" title="3.6 树"></a>3.6 树</h4><p>树是一种非线性数据结构，根据子节点数量可分为 「二叉树」 和 「多叉树」，最顶层的节点称为「根节点 root」。以二叉树为例，每个节点包含三个成员变量：「值 val」、「左子节点 left」、「右子节点 right」 。</p>
-<pre class=" language-cpp"><code class="language-cpp"><span class="token keyword">struct</span> TreeNode<span class="token punctuation">{</span>
-    <span class="token keyword">int</span> val<span class="token punctuation">;</span>
-    TreeNode <span class="token operator">*</span>left<span class="token punctuation">;</span>
-    TreeNode <span class="token operator">*</span>right<span class="token punctuation">;</span>
-    <span class="token function">TreeNode</span><span class="token punctuation">(</span><span class="token keyword">int</span> x<span class="token punctuation">)</span> <span class="token operator">:</span> <span class="token function">val</span><span class="token punctuation">(</span>x<span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token function">left</span><span class="token punctuation">(</span><span class="token constant">NULL</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token function">right</span><span class="token punctuation">(</span><span class="token constant">NULL</span><span class="token punctuation">)</span><span class="token punctuation">{</span><span class="token punctuation">}</span>
-<span class="token punctuation">}</span><span class="token punctuation">;</span>
-</code></pre>
-<p>构建二叉树示例：</p>
-<pre class=" language-cpp"><code class="language-cpp"><span class="token comment" spellcheck="true">//初始化节点</span>
-TreeNode <span class="token operator">*</span>n1 <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token function">TreeNode</span><span class="token punctuation">(</span><span class="token number">3</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// root</span>
-TreeNode <span class="token operator">*</span>n2 <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token function">TreeNode</span><span class="token punctuation">(</span><span class="token number">4</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-TreeNode <span class="token operator">*</span>n3 <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token function">TreeNode</span><span class="token punctuation">(</span><span class="token number">5</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-TreeNode <span class="token operator">*</span>n4 <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token function">TreeNode</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-TreeNode <span class="token operator">*</span>n5 <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token function">TreeNode</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-
-<span class="token comment" spellcheck="true">//构建引用指向</span>
-n1<span class="token operator">-</span><span class="token operator">></span>left <span class="token operator">=</span> n2<span class="token punctuation">;</span>
-n1<span class="token operator">-</span><span class="token operator">></span>right <span class="token operator">=</span> n3<span class="token punctuation">;</span>
-n2<span class="token operator">-</span><span class="token operator">></span>left <span class="token operator">=</span> n4<span class="token punctuation">;</span>
-n2<span class="token operator">-</span><span class="token operator">></span>right <span class="token operator">=</span> n5<span class="token punctuation">;</span>
-</code></pre>
-<h4 id="3-7-图"><a href="#3-7-图" class="headerlink" title="3.7 图"></a>3.7 图</h4><p>图是一种非线性数据结构，由「节点（顶点）<code>vertex</code>」和「边 <code>edge</code>」组成，每条边连接一对顶点。根据边的方向有无，图可分为「有向图」和「无向图」。</p>
-<p><strong>以无向图为例</strong> 开展介绍，无向图的 <strong>顶点</strong> 和 <strong>边</strong> 集合分别为：</p>
-<ul>
-<li>顶点集合：<code>vertices = &#123;1, 2, 3, 4, 5&#125;</code></li>
-<li>边集合：<code>edges = &#123;(1, 2), (1, 3), (1, 4), (1, 5), (2,4), (3,5), (4,5)&#125;</code></li>
-</ul>
-<p><strong>表示图</strong>的方法通常有两种：</p>
-<p>1.<strong>邻接矩阵</strong>：使用数组vertices存储顶点，邻接矩阵edges存储边；<code>edges[i][j]</code>代表节点<code>i+1</code>和节点<code>j+1</code>之间是否有边。</p>
-<pre class=" language-cpp"><code class="language-cpp"><span class="token keyword">int</span> vertices<span class="token punctuation">[</span><span class="token number">5</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">,</span> <span class="token number">4</span><span class="token punctuation">,</span> <span class="token number">5</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
-<span class="token keyword">int</span> edges<span class="token punctuation">[</span><span class="token number">5</span><span class="token punctuation">]</span><span class="token punctuation">[</span><span class="token number">5</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token punctuation">{</span><span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
-                   <span class="token punctuation">{</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
-                   <span class="token punctuation">{</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
-                   <span class="token punctuation">{</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
-                   <span class="token punctuation">{</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">}</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
-</code></pre>
-<p>2.<strong>邻接表</strong>：使用数组vertices存储顶点，邻接矩阵edges存储边。第一维<code>i</code>代表顶点索引，第二维edges[i]存储此顶点对应的边集合。</p>
-<p>邻接矩阵 VS 邻接表 ：</p>
-<p>邻接矩阵的大小只与节点数量有关，即 N^2  ，其中 N 为节点数量。因此，当边数量明显少于节点数量时，使用邻接矩阵存储图会造成较大的内存浪费。<br>因此，邻接表 适合存储稀疏图（顶点较多、边较少）； 邻接矩阵 适合存储稠密图（顶点较少、边较多）。</p>
-]]></content>
-      <categories>
-        <category>数据结构与算法</category>
-      </categories>
-      <tags>
-        <tag>基础知识</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>UML（统一建模语言）</title>
-    <url>/2023/09/18/02-uml/</url>
-    <content><![CDATA[<h2 id="1-前言"><a href="#1-前言" class="headerlink" title="1 前言"></a>1 前言</h2><p>通过使用UML使得在软件开发之前， 对整个软件设计有更好的可读性，可理解性，从而降低开发风险。同时，也能方便各个开发人员之间的交流。</p>
-<h2 id="2-UML图分类"><a href="#2-UML图分类" class="headerlink" title="2 UML图分类"></a>2 UML图分类</h2><ul>
-<li>UML图分为结构图和行为图；</li>
-<li><strong>结构图</strong>分为: 类图、组件图、对象图、轮廓图、组合结构图、部署图、包图；</li>
-<li><strong>行为图</strong>分为：活动图、用例图、状态机图、交互图。<br><img src="https://cdn.jsdelivr.net/gh/wzy012/myblogPicBed@master/image/20230918223614.png" alt="20230918223614"><br></li>
-</ul>
-<h3 id="2-1-类图"><a href="#2-1-类图" class="headerlink" title="2.1 类图"></a>2.1 类图</h3><h4 id="2-1-1-前言"><a href="#2-1-1-前言" class="headerlink" title="2.1.1 前言"></a>2.1.1 前言</h4><p><strong>概念</strong>：类图是一切面向对象方法的核心建模工具，类图描述了系统中对象的类型以及它们之间存在的各种静态关系；<br><br><strong>目的</strong>：表示类、接口以及它们之间的静态结构和关系。</p>
-<h4 id="2-1-2-关系"><a href="#2-1-2-关系" class="headerlink" title="2.1.2 关系"></a>2.1.2 关系</h4><p>（1）泛化(Generalization)<br></p>
-<ul>
-<li>【泛化关系】是一种继承关系，表示子类继承父类的所有特征和行为。</li>
-<li>【箭头指向】带三角箭头的实现，箭头指向父类。<br><br><img src="https://cdn.jsdelivr.net/gh/wzy012/myblogPicBed@master/image/20230918225224.png" alt="20230918225224"><br><br>（2）实现(Realization)<br></li>
-<li>【实现关系】是一种类与接口的关系，表示类是接口所有特征和行为的实现。</li>
-<li>【箭头指向】带三角箭头的虚线，箭头指向接口。<br><br><img src="https://cdn.jsdelivr.net/gh/wzy012/myblogPicBed@master/image/20230918225239.png" alt="20230918225239"><br><br>（3）关联(Association)<br></li>
-<li>【关联关系】是一种拥有关系，它使得一个类知道另一个的属性和方法。</li>
-<li>【箭头指向】带普通箭头的实线，指向被拥有者。单向的关联只有一个箭头，双向的关联可以有两个箭头或者没有箭头。<br></li>
-<li>【代码体现】成员变量。<br><br><img src="https://cdn.jsdelivr.net/gh/wzy012/myblogPicBed@master/image/20230918225252.png" alt="20230918225252"><br><br>（4）聚合(Aggregation)<br></li>
-<li>【聚合关系】是一种整体与部分的关系，且部分可以离开整体而单独存在。聚合关系是关联关系的一种，是强的关联关系；关联和聚合在语法上无法区分，必须考察具体的逻辑关系。</li>
-<li>【箭头指向】带空心菱形的实线，空心菱形指向整体。</li>
-<li>【代码体现】成员变量。<br><br><img src="https://cdn.jsdelivr.net/gh/wzy012/myblogPicBed@master/image/20230918225306.png" alt="20230918225306"><br><br>（5）组合(Composition)<br></li>
-<li>【组合关系】是一种整体与部分的关系，但部分不能离开整体而单独存在。组合关系是关联关系的一种，是比聚合关系还要强的一种。</li>
-<li>【箭头指向】带实心菱形和普通箭头的实现，实心菱形指向整体。</li>
-<li>【代码体现】成员变量。<br><br><img src="https://cdn.jsdelivr.net/gh/wzy012/myblogPicBed@master/image/20230918225319.png" alt="20230918225319"><br><br>（6）依赖(Dependency)<br></li>
-<li>【依赖关系】是一种使用关系，即一个类的实现需要另一个类的协助。</li>
-<li>【箭头指向】带普通箭头的虚线，普通箭头指向被使用者。<br><img src="https://cdn.jsdelivr.net/gh/wzy012/myblogPicBed@master/image/20230918225336.png" alt="20230918225336"><br></li>
-</ul>
-<h4 id="2-2-组件图"><a href="#2-2-组件图" class="headerlink" title="2.2 组件图"></a>2.2 组件图</h4><ul>
-<li>【概念】描绘了系统中组件提供的、需要的接口、端口等，以及它们之间的关系。</li>
-<li>【目的】用来展示各个组件之间的依赖关系。<br><br><img src="https://cdn.jsdelivr.net/gh/wzy012/myblogPicBed@master/image/20230918230948.png" alt="20230918230948"><br><br>订单系统组件依赖于客户资源库和库存系统组件。中间的虚线箭头表示依赖关系。另外两个符号，表示组件连接器，一个提供接口，一个需要接口。</li>
-</ul>
-<h4 id="2-3-对象图"><a href="#2-3-对象图" class="headerlink" title="2.3 对象图"></a>2.3 对象图</h4><ul>
-<li>【概念】对象图是类图的一个实例，是系统在某个时间点的详细状态的快照。</li>
-<li>【目的】用来表示两个或者多个对象之间在某一时刻之间的关系。<br><br><img src="https://cdn.jsdelivr.net/gh/wzy012/myblogPicBed@master/image/20230918230817.png" alt="20230918230817"><br><br>图中就是描述的，某时间点bat这个公司有一个研发部，一个销售部，两个部门只有一个人iisheng。</li>
-</ul>
-<h4 id="2-4-轮廓图"><a href="#2-4-轮廓图" class="headerlink" title="2.4 轮廓图"></a>2.4 轮廓图</h4><h4 id="2-5-组合结构图"><a href="#2-5-组合结构图" class="headerlink" title="2.5 组合结构图"></a>2.5 组合结构图</h4><h4 id="2-6-部署图"><a href="#2-6-部署图" class="headerlink" title="2.6 部署图"></a>2.6 部署图</h4><h4 id="2-7-包图"><a href="#2-7-包图" class="headerlink" title="2.7 包图"></a>2.7 包图</h4><h4 id="2-8-活动图"><a href="#2-8-活动图" class="headerlink" title="2.8 活动图"></a>2.8 活动图</h4><ul>
-<li>【概念】描述了具体业务用例的实现流程</li>
-<li>【目的】用来表示用例实现的工作流程。</li>
-</ul>
-<h4 id="2-9-用例图"><a href="#2-9-用例图" class="headerlink" title="2.9 用例图"></a>2.9 用例图</h4><h4 id="2-10-状态机图"><a href="#2-10-状态机图" class="headerlink" title="2.10 状态机图"></a>2.10 状态机图</h4><h4 id="2-11-交互图"><a href="#2-11-交互图" class="headerlink" title="2.11 交互图"></a>2.11 交互图</h4><h4 id="2-12-序列图"><a href="#2-12-序列图" class="headerlink" title="2.12 序列图"></a>2.12 序列图</h4><h4 id="2-13-交互概览图"><a href="#2-13-交互概览图" class="headerlink" title="2.13 交互概览图"></a>2.13 交互概览图</h4><h4 id="2-14-通讯图"><a href="#2-14-通讯图" class="headerlink" title="2.14 通讯图"></a>2.14 通讯图</h4><h4 id="2-15-时序图"><a href="#2-15-时序图" class="headerlink" title="2.15 时序图"></a>2.15 时序图</h4>]]></content>
-      <categories>
-        <category>设计模式</category>
-      </categories>
-      <tags>
-        <tag>UML</tag>
       </tags>
   </entry>
 </search>
