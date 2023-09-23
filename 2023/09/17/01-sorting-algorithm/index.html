@@ -645,7 +645,7 @@ h <span class="token operator">=</span> h <span class="token operator">/</span> 
         <span class="token punctuation">}</span>
         <span class="token keyword">else</span>
         <span class="token punctuation">{</span>
-            <span class="token function">swap</span><span class="token punctuation">(</span>left<span class="token punctuation">,</span> right<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token function">swap</span><span class="token punctuation">(</span>arr<span class="token punctuation">[</span>left<span class="token punctuation">]</span><span class="token punctuation">,</span> arr<span class="token punctuation">[</span>right<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
         <span class="token punctuation">}</span>
 
     <span class="token punctuation">}</span>
@@ -655,6 +655,7 @@ h <span class="token operator">=</span> h <span class="token operator">/</span> 
 <span class="token punctuation">}</span>
 </code></pre>
 <h4 id="2-6-3-性能分析"><a href="#2-6-3-性能分析" class="headerlink" title="2.6.3 性能分析"></a>2.6.3 性能分析</h4><p>（1）快速排序和归并排序的区别<br><br>快速排序也是一种分治的排序算法；<br><br>快递排序和归并排序是互补的，归并排序将数组分成两个子数组分别排序，并将有序的子数组归并从而将整个数组排序，而快速排序的方式是则当两个子数组有序时整个数组自然就有序了。<br><br>在归并排序中，一个数组被等分为两半，归并调用发生在处理整个数组之前，在快速排序中，切分数组的位置取决于数组的内容，递归调用发生在处理整个数组之后。<br><br>（2）复杂度分析<br><br>时间复杂度：<br><br>最好情况：每一次切分选择的基准数字刚好将当前序列等分，O(nlogn)；<br><br>最坏情况：每次切分选择的基准数字是最大值最小值；O(n^2);<br><br>平均情况：每次切分选择的基准数字不是最大值最小值，也不是中值，可用数学归纳法证明，快速排序的时间复杂度为O(nlogn)<br><br>空间复杂度：O(n)</p>
+<h4 id="2-6-4-算法优化"><a href="#2-6-4-算法优化" class="headerlink" title="2.6.4 算法优化"></a>2.6.4 算法优化</h4><p><a target="_blank" rel="noopener" href="https://leetcode.cn/leetbook/read/illustration-of-algorithm/p57uhr/">https://leetcode.cn/leetbook/read/illustration-of-algorithm/p57uhr/</a></p>
 <h2 id="3-排序的稳定性"><a href="#3-排序的稳定性" class="headerlink" title="3. 排序的稳定性"></a>3. 排序的稳定性</h2><p><strong>稳定性概述</strong>：</p>
 <ul>
 <li>稳定性的定义：数组中有若干元素，其中A元素和B元素相等，并且A元素在B元素前面，如果使用某种排序算法排序后，能够保证A元素依然在B元素的前面，则说这个算法是稳定。<br><br><img src="https://cdn.jsdelivr.net/gh/wzy012/myblogPicBed@master/image/20230923121043.png" alt="20230923121043"><br></li>
@@ -666,7 +667,7 @@ h <span class="token operator">=</span> h <span class="token operator">/</span> 
 <li>归并排序：稳定<br></li>
 <li>快速排序：需要一个基准值，在基准值右侧找比基准值大的元素，在基准值的左侧找比基准值小的元素，然后交换元素，会破坏稳定性，所以不稳定<br></li>
 </ul>
-<h2 id="3-总结"><a href="#3-总结" class="headerlink" title="3. 总结"></a>3. 总结</h2><p>（1）简单排序算法的时间复杂度都为O(N^2)，随着输入规模的增大，时间成本急剧上升，因此简单排序算法不能处理大规模问题；<br><br>（2）排序的稳定性：<br><br>稳定的排序算法：冒泡排序、插入排序、归并排序；<br><br> 不稳定的排序算法：选择排序、希尔排序、快速排序。</p>
+<h2 id="3-总结"><a href="#3-总结" class="headerlink" title="3. 总结"></a>3. 总结</h2><p>（1）简单排序算法的时间复杂度都为O(N^2)，随着输入规模的增大，时间成本急剧上升，因此简单排序算法不能处理大规模问题；<br><br>（2）排序的稳定性：<br><br>稳定的排序算法：冒泡排序、插入排序、归并排序；<br><br>不稳定的排序算法：选择排序、希尔排序、快速排序。</p>
 
                 
             </div>

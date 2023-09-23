@@ -362,14 +362,13 @@ n1<span class="token operator">-</span><span class="token operator">></span>righ
 n2<span class="token operator">-</span><span class="token operator">></span>left <span class="token operator">=</span> n4<span class="token punctuation">;</span>
 n2<span class="token operator">-</span><span class="token operator">></span>right <span class="token operator">=</span> n5<span class="token punctuation">;</span>
 </code></pre>
-<h4 id="3-7-图"><a href="#3-7-图" class="headerlink" title="3.7 图"></a>3.7 图</h4><p>图是一种非线性数据结构，由「节点（顶点）<code>vertex</code>」和「边 <code>edge</code>」组成，每条边连接一对顶点。根据边的方向有无，图可分为「有向图」和「无向图」。</p>
+<h4 id="3-7-图"><a href="#3-7-图" class="headerlink" title="3.7 图"></a>3.7 图</h4><p>图是一种非线性数据结构，由「节点（顶点）<code>vertex</code>」和「边 <code>edge</code>」组成，每条边连接一对顶点。根据边的方向有无，图可分为「有向图」和「无向图」，根据顶点之间是否有权重，分为[有权图]和[无权图]。</p>
 <p><strong>以无向图为例</strong> 开展介绍，无向图的 <strong>顶点</strong> 和 <strong>边</strong> 集合分别为：</p>
 <ul>
 <li>顶点集合：<code>vertices = &#123;1, 2, 3, 4, 5&#125;</code></li>
 <li>边集合：<code>edges = &#123;(1, 2), (1, 3), (1, 4), (1, 5), (2,4), (3,5), (4,5)&#125;</code></li>
 </ul>
-<p><strong>表示图</strong>的方法通常有两种：</p>
-<p>1.<strong>邻接矩阵</strong>：使用数组vertices存储顶点，邻接矩阵edges存储边；<code>edges[i][j]</code>代表节点<code>i+1</code>和节点<code>j+1</code>之间是否有边。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/wzy012/myblogPicBed@master/image/20230923163558.png" alt="20230923163558"><br><strong>表示图</strong>的方法通常有两种：<br>1.<strong>邻接矩阵</strong>：使用数组vertices存储顶点，邻接矩阵edges存储边；<code>edges[i][j]</code>代表节点<code>i+1</code>和节点<code>j+1</code>之间是否有边。</p>
 <pre class=" language-cpp"><code class="language-cpp"><span class="token keyword">int</span> vertices<span class="token punctuation">[</span><span class="token number">5</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">,</span> <span class="token number">4</span><span class="token punctuation">,</span> <span class="token number">5</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
 <span class="token keyword">int</span> edges<span class="token punctuation">[</span><span class="token number">5</span><span class="token punctuation">]</span><span class="token punctuation">[</span><span class="token number">5</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token punctuation">{</span><span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
                    <span class="token punctuation">{</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
@@ -377,9 +376,89 @@ n2<span class="token operator">-</span><span class="token operator">></span>righ
                    <span class="token punctuation">{</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
                    <span class="token punctuation">{</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">}</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
 </code></pre>
-<p>2.<strong>邻接表</strong>：使用数组vertices存储顶点，邻接矩阵edges存储边。第一维<code>i</code>代表顶点索引，第二维edges[i]存储此顶点对应的边集合。</p>
-<p>邻接矩阵 VS 邻接表 ：</p>
-<p>邻接矩阵的大小只与节点数量有关，即 N^2  ，其中 N 为节点数量。因此，当边数量明显少于节点数量时，使用邻接矩阵存储图会造成较大的内存浪费。<br>因此，邻接表 适合存储稀疏图（顶点较多、边较少）； 邻接矩阵 适合存储稠密图（顶点较少、边较多）。</p>
+<p>2.<strong>邻接表</strong>：使用数组vertices存储顶点，邻接矩阵edges存储边。edges为一个二维容器，第一维<code>i</code>代表顶点索引，第二维edges[i]存储此顶点对应的边集合。<br>上图对应的邻接表为：</p>
+<pre class=" language-cpp"><code class="language-cpp"><span class="token keyword">int</span> vertices<span class="token punctuation">[</span><span class="token number">5</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">,</span> <span class="token number">4</span><span class="token punctuation">,</span> <span class="token number">5</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
+<span class="token keyword">int</span> edges <span class="token operator">=</span> <span class="token punctuation">[</span>
+    <span class="token punctuation">[</span><span class="token number">2</span> <span class="token number">3</span> <span class="token number">4</span> <span class="token number">5</span><span class="token punctuation">]</span>
+    <span class="token punctuation">[</span><span class="token number">1</span> <span class="token number">4</span><span class="token punctuation">]</span>
+    <span class="token punctuation">[</span><span class="token number">1</span> <span class="token number">5</span><span class="token punctuation">]</span>
+    <span class="token punctuation">[</span><span class="token number">1</span> <span class="token number">2</span> <span class="token number">5</span><span class="token punctuation">]</span>
+    <span class="token punctuation">[</span><span class="token number">1</span> <span class="token number">3</span> <span class="token number">4</span><span class="token punctuation">]</span>
+<span class="token punctuation">]</span> <span class="token punctuation">;</span>
+</code></pre>
+<pre class=" language-cpp"><code class="language-cpp"><span class="token keyword">int</span> vertices<span class="token punctuation">[</span><span class="token number">5</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">,</span> <span class="token number">4</span><span class="token punctuation">,</span> <span class="token number">5</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
+vector<span class="token operator">&lt;</span>vector<span class="token operator">&lt;</span><span class="token keyword">int</span><span class="token operator">>></span> edges<span class="token punctuation">;</span>
+
+vector<span class="token operator">&lt;</span><span class="token keyword">int</span><span class="token operator">></span> edge_1 <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">,</span> <span class="token number">4</span><span class="token punctuation">,</span> <span class="token number">5</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
+vector<span class="token operator">&lt;</span><span class="token keyword">int</span><span class="token operator">></span> edge_2 <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">4</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
+vector<span class="token operator">&lt;</span><span class="token keyword">int</span><span class="token operator">></span> edge_3 <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">5</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
+vector<span class="token operator">&lt;</span><span class="token keyword">int</span><span class="token operator">></span> edge_4 <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">5</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
+vector<span class="token operator">&lt;</span><span class="token keyword">int</span><span class="token operator">></span> edge_5 <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">,</span> <span class="token number">4</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+edges<span class="token punctuation">.</span><span class="token function">push_back</span><span class="token punctuation">(</span>edge_1<span class="token punctuation">)</span><span class="token punctuation">;</span>
+edges<span class="token punctuation">.</span><span class="token function">push_back</span><span class="token punctuation">(</span>edge_2<span class="token punctuation">)</span><span class="token punctuation">;</span>
+edges<span class="token punctuation">.</span><span class="token function">push_back</span><span class="token punctuation">(</span>edge_3<span class="token punctuation">)</span><span class="token punctuation">;</span>
+edges<span class="token punctuation">.</span><span class="token function">push_back</span><span class="token punctuation">(</span>edge_4<span class="token punctuation">)</span><span class="token punctuation">;</span>
+edges<span class="token punctuation">.</span><span class="token function">push_back</span><span class="token punctuation">(</span>edge_5<span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre>
+<p>邻接矩阵 VS 邻接表 ：<br><br>邻接矩阵的大小只与节点数量有关，即 N^2  ，其中 N 为节点数量。因此，当边数量明显少于节点数量时，使用邻接矩阵存储图会造成较大的内存浪费。<br><br>因此，邻接表 适合存储稀疏图（顶点较多、边较少）； 邻接矩阵 适合存储稠密图（顶点较少、边较多）。<br></p>
+<h4 id="3-8-散列表"><a href="#3-8-散列表" class="headerlink" title="3.8 散列表"></a>3.8 散列表</h4><p>散列表是一种非线性数据结构，通过利用 Hash 函数将指定的「键 key」映射至对应的「值 value」，以实现高效的元素查找。<br></p>
+<pre class=" language-text"><code class="language-text">设想一个简单场景：小力、小特、小扣的学号分别为 10001, 10002, 10003 。
+现需求从「姓名」查找「学号」。
+</code></pre>
+<pre class=" language-cpp"><code class="language-cpp">unordered_map<span class="token operator">&lt;</span>string<span class="token punctuation">,</span> <span class="token keyword">int</span><span class="token operator">></span> dic<span class="token punctuation">;</span>
+
+dic<span class="token punctuation">[</span><span class="token string">"小力"</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token number">10001</span>；
+dic<span class="token punctuation">[</span><span class="token string">"小特"</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token number">10002</span>；
+dic<span class="token punctuation">[</span><span class="token string">"小扣"</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token number">10003</span>；
+
+dic<span class="token punctuation">.</span><span class="token function">find</span><span class="token punctuation">(</span><span class="token string">"小力"</span><span class="token punctuation">)</span><span class="token operator">-</span><span class="token operator">></span>second<span class="token punctuation">;</span>
+dic<span class="token punctuation">.</span><span class="token function">find</span><span class="token punctuation">(</span><span class="token string">"小特"</span><span class="token punctuation">)</span><span class="token operator">-</span><span class="token operator">></span>second<span class="token punctuation">;</span>
+dic<span class="token punctuation">.</span><span class="token function">find</span><span class="token punctuation">(</span><span class="token string">"小扣"</span><span class="token punctuation">)</span><span class="token operator">-</span><span class="token operator">></span>second<span class="token punctuation">;</span>
+</code></pre>
+<p><strong>Hash函数设计Demo</strong>：</p>
+<pre class=" language-text"><code class="language-text">需求：从「学号」查找「姓名」
+</code></pre>
+<p>将三人的姓名存储至以下数组中，则各姓名在数组中的索引分别为 0, 1, 2 。<br></p>
+<pre class=" language-cpp"><code class="language-cpp">string names<span class="token punctuation">[</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token punctuation">{</span> <span class="token string">"小力"</span><span class="token punctuation">,</span> <span class="token string">"小特"</span><span class="token punctuation">,</span> <span class="token string">"小扣"</span> <span class="token punctuation">}</span><span class="token punctuation">;</span>
+</code></pre>
+<p>此时，我们构造一个简单的 Hash 函数（ % 为取余符号 ），公式和封装函数如下所示：</p>
+<pre class=" language-text"><code class="language-text">hash(key) = (key -1)%10000;
+</code></pre>
+<pre class=" language-cpp"><code class="language-cpp"><span class="token keyword">int</span> <span class="token function">hash</span><span class="token punctuation">(</span><span class="token keyword">int</span> id<span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    <span class="token keyword">int</span> index <span class="token operator">=</span> <span class="token punctuation">(</span>id <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token operator">%</span><span class="token number">10000</span><span class="token punctuation">;</span>
+    <span class="token keyword">return</span> index<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p>则我们构建了以学号为 key 、姓名对应的数组索引为 value 的散列表。利用此 Hash 函数，则可在O(1) 时间复杂度下通过学号查找到对应姓名，即：</p>
+<pre class=" language-cpp"><code class="language-cpp">names<span class="token punctuation">[</span><span class="token function">hash</span><span class="token punctuation">(</span><span class="token number">10001</span><span class="token punctuation">)</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+names<span class="token punctuation">[</span><span class="token function">hash</span><span class="token punctuation">(</span><span class="token number">10002</span><span class="token punctuation">)</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+names<span class="token punctuation">[</span><span class="token function">hash</span><span class="token punctuation">(</span><span class="token number">10003</span><span class="token punctuation">)</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+</code></pre>
+<p><img src="https://cdn.jsdelivr.net/gh/wzy012/myblogPicBed@master/image/20230923172308.png" alt="20230923172308"><br></p>
+<h4 id="3-9-堆"><a href="#3-9-堆" class="headerlink" title="3.9 堆"></a>3.9 堆</h4><p>堆是一种基于「完全二叉树」的数据结构，可使用数组实现。<br><br>以堆为原理的排序算法称为「堆排序」，基于堆实现的数据结构为「优先队列」。<br><br>堆分为「大顶堆」和「小顶堆」，大（小）顶堆：任意节点的值小于等于（大于等于）其父节点的值。<br></p>
+<pre class=" language-text"><code class="language-text">完全二叉树定义： 设二叉树深度为 k ，若二叉树除第 k 层外的其它各层（第 1 至 k-1层）的节点达到最大个数，且处于第 k 层的节点都连续集中在最左边
+</code></pre>
+<p><img src="https://cdn.jsdelivr.net/gh/wzy012/myblogPicBed@master/image/20230923172803.png" alt="20230923172803"><br><br>通过使用「优先队列」的「压入 push()」和「弹出 pop()」操作，即可完成堆排序，实现代码如下：<br></p>
+<pre class=" language-cpp"><code class="language-cpp"><span class="token comment" spellcheck="true">// 初始化小顶堆</span>
+priority_queue<span class="token operator">&lt;</span><span class="token keyword">int</span><span class="token punctuation">,</span> vector<span class="token operator">&lt;</span><span class="token keyword">int</span><span class="token operator">></span><span class="token punctuation">,</span> greater<span class="token operator">&lt;</span><span class="token keyword">int</span><span class="token operator">>></span> heap<span class="token punctuation">;</span>
+
+<span class="token comment" spellcheck="true">// 元素入堆</span>
+heap<span class="token punctuation">.</span><span class="token function">push</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+heap<span class="token punctuation">.</span><span class="token function">push</span><span class="token punctuation">(</span><span class="token number">4</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+heap<span class="token punctuation">.</span><span class="token function">push</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+heap<span class="token punctuation">.</span><span class="token function">push</span><span class="token punctuation">(</span><span class="token number">6</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+heap<span class="token punctuation">.</span><span class="token function">push</span><span class="token punctuation">(</span><span class="token number">8</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment" spellcheck="true">// 元素出堆（从小到大）</span>
+heap<span class="token punctuation">.</span><span class="token function">pop</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// -> 1</span>
+heap<span class="token punctuation">.</span><span class="token function">pop</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// -> 2</span>
+heap<span class="token punctuation">.</span><span class="token function">pop</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// -> 4</span>
+heap<span class="token punctuation">.</span><span class="token function">pop</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// -> 6</span>
+heap<span class="token punctuation">.</span><span class="token function">pop</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// -> 8</span>
+</code></pre>
+<p>常用的线性结构有：线性表，栈，队列，双队列，数组，串。<br>常见的非线性结构有：二维数组，多维数组，广义表，树(二叉树等)，图，堆。</p>
 
                 
             </div>
