@@ -365,26 +365,6 @@ h <span class="token operator">=</span> h <span class="token operator">/</span> 
       </tags>
   </entry>
   <entry>
-    <title>初来乍到</title>
-    <url>/2023/09/17/00-1/</url>
-    <content><![CDATA[<p>写在开始…<br><br>初入职场，受组长凯哥影响，想要搭建自己的技术博客，于是有了这篇…<br><br>本人博客传送门：<a href="https://wzy012.github.io/">https://wzy012.github.io/</a> <br></p>
-<p>2023.6.19 从SDU毕业<br><br>2023.8.3 入职byd<br><br>开始了自己的菜鸟<del>打工</del>（成长）生涯<br><br>从事智驾开发工作<br><br>作为一个7年的自动化<del>不</del>专业学生<br><br>进入了一个纯软的技术赛道<br><br>其实还是很有压力的<br><br>但同时感觉充满了兴奋与挑战<br><br>开个人博客的初衷是：<br></p>
-<ul>
-<li>记录自己学习各个技术的过程，形成文档以备查漏补缺；<br></li>
-<li>如果有幸被需要的人看到，也是分享的意义</li>
-</ul>
-<p>希望自己坚持学习，一点一点进步，争取成为一名技术<del>大</del>小佬！</p>
-<p>最后附：<br><br>    Hexo + Github + Git 的博客搭建方案链接：<a href="https://yushuaigee.gitee.io/archives/">https://yushuaigee.gitee.io/archives/</a><br><br>    vscode + PicGo + Markdown All in one 的配置链接：<a href="https://blog.csdn.net/qq_35621494/article/details/106432399">https://blog.csdn.net/qq_35621494/article/details/106432399</a><br></p>
-<p>本人使用的是：vscode + Hexo + Github + Git + PicGO + Markdown All in one 的实现方案。</p>
-]]></content>
-      <categories>
-        <category>个人成长</category>
-      </categories>
-      <tags>
-        <tag>关于本人</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>UML（统一建模语言）</title>
     <url>/2023/09/18/02-uml/</url>
     <content><![CDATA[<h2 id="1-前言"><a href="#1-前言" class="headerlink" title="1 前言"></a>1 前言</h2><p>通过使用UML使得在软件开发之前， 对整个软件设计有更好的可读性，可理解性，从而降低开发风险。同时，也能方便各个开发人员之间的交流。</p>
@@ -655,6 +635,242 @@ h <span class="token operator">=</span> h <span class="token operator">/</span> 
       </tags>
   </entry>
   <entry>
+    <title>数据结构基础知识</title>
+    <url>/2023/09/20/04-datastructure/</url>
+    <content><![CDATA[<h3 id="3-数据结构"><a href="#3-数据结构" class="headerlink" title="3.数据结构"></a>3.数据结构</h3><h4 id="3-1-前言"><a href="#3-1-前言" class="headerlink" title="3.1 前言"></a>3.1 前言</h4><p>数据结构是为实现对计算机数据有效使用的各种数据组织形式，服务于各类计算机操作。不同的数据结构具有各自对应的适用场景，旨在降低各种算法计算的时间与空间复杂度，达到最佳的任务执行效率。</p>
+<h4 id="3-2-数组"><a href="#3-2-数组" class="headerlink" title="3.2 数组"></a>3.2 数组</h4><p>固定数组和可变数组</p>
+<h4 id="3-3-链表"><a href="#3-3-链表" class="headerlink" title="3.3 链表"></a>3.3 链表</h4><p>链表以节点为单位，每个元素都是一个独立对象，在内存中的存储空间是非连续的。链表的节点对象具有两个成员变量：「值 <code>val</code>」，「后继节点引用 <code>next</code>」 。</p>
+<pre class=" language-cpp"><code class="language-cpp"><span class="token keyword">struct</span> ListNode<span class="token punctuation">{</span>
+    <span class="token keyword">int</span> val<span class="token punctuation">;</span>
+    ListNode <span class="token operator">*</span>next<span class="token punctuation">;</span>
+    <span class="token function">ListNode</span><span class="token punctuation">(</span><span class="token keyword">int</span> x<span class="token punctuation">)</span> <span class="token operator">:</span> <span class="token function">val</span><span class="token punctuation">(</span>x<span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token function">next</span><span class="token punctuation">(</span><span class="token constant">NULL</span><span class="token punctuation">)</span> <span class="token punctuation">{</span><span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+</code></pre>
+<h4 id="3-4-栈"><a href="#3-4-栈" class="headerlink" title="3.4 栈"></a>3.4 栈</h4><p>栈是一种具有 「先入后出」 特点的抽象数据结构，可使用<strong>数组</strong>或<strong>链表</strong>实现</p>
+<pre class=" language-cpp"><code class="language-cpp">stack<span class="token operator">&lt;</span>T<span class="token operator">></span> stk<span class="token punctuation">;</span>
+</code></pre>
+<h4 id="3-5-队列"><a href="#3-5-队列" class="headerlink" title="3.5 队列"></a>3.5 队列</h4><p>队列是一种具有 「先入先出」 特点的抽象数据结构，可使用<strong>链表</strong>实现。</p>
+<pre class=" language-cpp"><code class="language-cpp">queue<span class="token operator">&lt;</span>T<span class="token operator">></span> que<span class="token punctuation">;</span>
+</code></pre>
+<h4 id="3-6-树"><a href="#3-6-树" class="headerlink" title="3.6 树"></a>3.6 树</h4><p>树是一种非线性数据结构，根据子节点数量可分为 「二叉树」 和 「多叉树」，最顶层的节点称为「根节点 root」。以二叉树为例，每个节点包含三个成员变量：「值 val」、「左子节点 left」、「右子节点 right」 。</p>
+<pre class=" language-cpp"><code class="language-cpp"><span class="token keyword">struct</span> TreeNode<span class="token punctuation">{</span>
+    <span class="token keyword">int</span> val<span class="token punctuation">;</span>
+    TreeNode <span class="token operator">*</span>left<span class="token punctuation">;</span>
+    TreeNode <span class="token operator">*</span>right<span class="token punctuation">;</span>
+    <span class="token function">TreeNode</span><span class="token punctuation">(</span><span class="token keyword">int</span> x<span class="token punctuation">)</span> <span class="token operator">:</span> <span class="token function">val</span><span class="token punctuation">(</span>x<span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token function">left</span><span class="token punctuation">(</span><span class="token constant">NULL</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token function">right</span><span class="token punctuation">(</span><span class="token constant">NULL</span><span class="token punctuation">)</span><span class="token punctuation">{</span><span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+</code></pre>
+<p>构建二叉树示例：</p>
+<pre class=" language-cpp"><code class="language-cpp"><span class="token comment" spellcheck="true">//初始化节点</span>
+TreeNode <span class="token operator">*</span>n1 <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token function">TreeNode</span><span class="token punctuation">(</span><span class="token number">3</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// root</span>
+TreeNode <span class="token operator">*</span>n2 <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token function">TreeNode</span><span class="token punctuation">(</span><span class="token number">4</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+TreeNode <span class="token operator">*</span>n3 <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token function">TreeNode</span><span class="token punctuation">(</span><span class="token number">5</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+TreeNode <span class="token operator">*</span>n4 <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token function">TreeNode</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+TreeNode <span class="token operator">*</span>n5 <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token function">TreeNode</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment" spellcheck="true">//构建引用指向</span>
+n1<span class="token operator">-</span><span class="token operator">></span>left <span class="token operator">=</span> n2<span class="token punctuation">;</span>
+n1<span class="token operator">-</span><span class="token operator">></span>right <span class="token operator">=</span> n3<span class="token punctuation">;</span>
+n2<span class="token operator">-</span><span class="token operator">></span>left <span class="token operator">=</span> n4<span class="token punctuation">;</span>
+n2<span class="token operator">-</span><span class="token operator">></span>right <span class="token operator">=</span> n5<span class="token punctuation">;</span>
+</code></pre>
+<h4 id="3-7-图"><a href="#3-7-图" class="headerlink" title="3.7 图"></a>3.7 图</h4><p>图是一种非线性数据结构，由「节点（顶点）<code>vertex</code>」和「边 <code>edge</code>」组成，每条边连接一对顶点。根据边的方向有无，图可分为「有向图」和「无向图」，根据顶点之间是否有权重，分为[有权图]和[无权图]。</p>
+<p><strong>以无向图为例</strong> 开展介绍，无向图的 <strong>顶点</strong> 和 <strong>边</strong> 集合分别为：</p>
+<ul>
+<li>顶点集合：<code>vertices = &#123;1, 2, 3, 4, 5&#125;</code></li>
+<li>边集合：<code>edges = &#123;(1, 2), (1, 3), (1, 4), (1, 5), (2,4), (3,5), (4,5)&#125;</code></li>
+</ul>
+<p><img src="https://cdn.jsdelivr.net/gh/wzy012/myblogPicBed@master/image/20230923163558.png" alt="20230923163558"><br><strong>表示图</strong>的方法通常有两种：<br>1.<strong>邻接矩阵</strong>：使用数组vertices存储顶点，邻接矩阵edges存储边；<code>edges[i][j]</code>代表节点<code>i+1</code>和节点<code>j+1</code>之间是否有边。</p>
+<pre class=" language-cpp"><code class="language-cpp"><span class="token keyword">int</span> vertices<span class="token punctuation">[</span><span class="token number">5</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">,</span> <span class="token number">4</span><span class="token punctuation">,</span> <span class="token number">5</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
+<span class="token keyword">int</span> edges<span class="token punctuation">[</span><span class="token number">5</span><span class="token punctuation">]</span><span class="token punctuation">[</span><span class="token number">5</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token punctuation">{</span><span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
+                   <span class="token punctuation">{</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
+                   <span class="token punctuation">{</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
+                   <span class="token punctuation">{</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
+                   <span class="token punctuation">{</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">}</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
+</code></pre>
+<p>2.<strong>邻接表</strong>：使用数组vertices存储顶点，邻接矩阵edges存储边。edges为一个二维容器，第一维<code>i</code>代表顶点索引，第二维edges[i]存储此顶点对应的边集合。<br>上图对应的邻接表为：</p>
+<pre class=" language-cpp"><code class="language-cpp"><span class="token keyword">int</span> vertices<span class="token punctuation">[</span><span class="token number">5</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">,</span> <span class="token number">4</span><span class="token punctuation">,</span> <span class="token number">5</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
+<span class="token keyword">int</span> edges <span class="token operator">=</span> <span class="token punctuation">[</span>
+    <span class="token punctuation">[</span><span class="token number">2</span> <span class="token number">3</span> <span class="token number">4</span> <span class="token number">5</span><span class="token punctuation">]</span>
+    <span class="token punctuation">[</span><span class="token number">1</span> <span class="token number">4</span><span class="token punctuation">]</span>
+    <span class="token punctuation">[</span><span class="token number">1</span> <span class="token number">5</span><span class="token punctuation">]</span>
+    <span class="token punctuation">[</span><span class="token number">1</span> <span class="token number">2</span> <span class="token number">5</span><span class="token punctuation">]</span>
+    <span class="token punctuation">[</span><span class="token number">1</span> <span class="token number">3</span> <span class="token number">4</span><span class="token punctuation">]</span>
+<span class="token punctuation">]</span> <span class="token punctuation">;</span>
+</code></pre>
+<pre class=" language-cpp"><code class="language-cpp"><span class="token keyword">int</span> vertices<span class="token punctuation">[</span><span class="token number">5</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">,</span> <span class="token number">4</span><span class="token punctuation">,</span> <span class="token number">5</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
+vector<span class="token operator">&lt;</span>vector<span class="token operator">&lt;</span><span class="token keyword">int</span><span class="token operator">>></span> edges<span class="token punctuation">;</span>
+
+vector<span class="token operator">&lt;</span><span class="token keyword">int</span><span class="token operator">></span> edge_1 <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">,</span> <span class="token number">4</span><span class="token punctuation">,</span> <span class="token number">5</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
+vector<span class="token operator">&lt;</span><span class="token keyword">int</span><span class="token operator">></span> edge_2 <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">4</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
+vector<span class="token operator">&lt;</span><span class="token keyword">int</span><span class="token operator">></span> edge_3 <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">5</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
+vector<span class="token operator">&lt;</span><span class="token keyword">int</span><span class="token operator">></span> edge_4 <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">5</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
+vector<span class="token operator">&lt;</span><span class="token keyword">int</span><span class="token operator">></span> edge_5 <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">,</span> <span class="token number">4</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+edges<span class="token punctuation">.</span><span class="token function">push_back</span><span class="token punctuation">(</span>edge_1<span class="token punctuation">)</span><span class="token punctuation">;</span>
+edges<span class="token punctuation">.</span><span class="token function">push_back</span><span class="token punctuation">(</span>edge_2<span class="token punctuation">)</span><span class="token punctuation">;</span>
+edges<span class="token punctuation">.</span><span class="token function">push_back</span><span class="token punctuation">(</span>edge_3<span class="token punctuation">)</span><span class="token punctuation">;</span>
+edges<span class="token punctuation">.</span><span class="token function">push_back</span><span class="token punctuation">(</span>edge_4<span class="token punctuation">)</span><span class="token punctuation">;</span>
+edges<span class="token punctuation">.</span><span class="token function">push_back</span><span class="token punctuation">(</span>edge_5<span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre>
+<p>邻接矩阵 VS 邻接表 ：<br><br>邻接矩阵的大小只与节点数量有关，即 N^2  ，其中 N 为节点数量。因此，当边数量明显少于节点数量时，使用邻接矩阵存储图会造成较大的内存浪费。<br><br>因此，邻接表 适合存储稀疏图（顶点较多、边较少）； 邻接矩阵 适合存储稠密图（顶点较少、边较多）。<br></p>
+<h4 id="3-8-散列表"><a href="#3-8-散列表" class="headerlink" title="3.8 散列表"></a>3.8 散列表</h4><p>散列表是一种非线性数据结构，通过利用 Hash 函数将指定的「键 key」映射至对应的「值 value」，以实现高效的元素查找。<br></p>
+<pre class=" language-text"><code class="language-text">设想一个简单场景：小力、小特、小扣的学号分别为 10001, 10002, 10003 。
+现需求从「姓名」查找「学号」。
+</code></pre>
+<pre class=" language-cpp"><code class="language-cpp">unordered_map<span class="token operator">&lt;</span>string<span class="token punctuation">,</span> <span class="token keyword">int</span><span class="token operator">></span> dic<span class="token punctuation">;</span>
+
+dic<span class="token punctuation">[</span><span class="token string">"小力"</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token number">10001</span>；
+dic<span class="token punctuation">[</span><span class="token string">"小特"</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token number">10002</span>；
+dic<span class="token punctuation">[</span><span class="token string">"小扣"</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token number">10003</span>；
+
+dic<span class="token punctuation">.</span><span class="token function">find</span><span class="token punctuation">(</span><span class="token string">"小力"</span><span class="token punctuation">)</span><span class="token operator">-</span><span class="token operator">></span>second<span class="token punctuation">;</span>
+dic<span class="token punctuation">.</span><span class="token function">find</span><span class="token punctuation">(</span><span class="token string">"小特"</span><span class="token punctuation">)</span><span class="token operator">-</span><span class="token operator">></span>second<span class="token punctuation">;</span>
+dic<span class="token punctuation">.</span><span class="token function">find</span><span class="token punctuation">(</span><span class="token string">"小扣"</span><span class="token punctuation">)</span><span class="token operator">-</span><span class="token operator">></span>second<span class="token punctuation">;</span>
+</code></pre>
+<p><strong>Hash函数设计Demo</strong>：</p>
+<pre class=" language-text"><code class="language-text">需求：从「学号」查找「姓名」
+</code></pre>
+<p>将三人的姓名存储至以下数组中，则各姓名在数组中的索引分别为 0, 1, 2 。<br></p>
+<pre class=" language-cpp"><code class="language-cpp">string names<span class="token punctuation">[</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token punctuation">{</span> <span class="token string">"小力"</span><span class="token punctuation">,</span> <span class="token string">"小特"</span><span class="token punctuation">,</span> <span class="token string">"小扣"</span> <span class="token punctuation">}</span><span class="token punctuation">;</span>
+</code></pre>
+<p>此时，我们构造一个简单的 Hash 函数（ % 为取余符号 ），公式和封装函数如下所示：</p>
+<pre class=" language-text"><code class="language-text">hash(key) = (key -1)%10000;
+</code></pre>
+<pre class=" language-cpp"><code class="language-cpp"><span class="token keyword">int</span> <span class="token function">hash</span><span class="token punctuation">(</span><span class="token keyword">int</span> id<span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    <span class="token keyword">int</span> index <span class="token operator">=</span> <span class="token punctuation">(</span>id <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token operator">%</span><span class="token number">10000</span><span class="token punctuation">;</span>
+    <span class="token keyword">return</span> index<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p>则我们构建了以学号为 key 、姓名对应的数组索引为 value 的散列表。利用此 Hash 函数，则可在O(1) 时间复杂度下通过学号查找到对应姓名，即：</p>
+<pre class=" language-cpp"><code class="language-cpp">names<span class="token punctuation">[</span><span class="token function">hash</span><span class="token punctuation">(</span><span class="token number">10001</span><span class="token punctuation">)</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+names<span class="token punctuation">[</span><span class="token function">hash</span><span class="token punctuation">(</span><span class="token number">10002</span><span class="token punctuation">)</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+names<span class="token punctuation">[</span><span class="token function">hash</span><span class="token punctuation">(</span><span class="token number">10003</span><span class="token punctuation">)</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+</code></pre>
+<p><img src="https://cdn.jsdelivr.net/gh/wzy012/myblogPicBed@master/image/20230923172308.png" alt="20230923172308"><br></p>
+<h4 id="3-9-堆"><a href="#3-9-堆" class="headerlink" title="3.9 堆"></a>3.9 堆</h4><p>堆是一种基于「完全二叉树」的数据结构，可使用数组实现。<br><br>以堆为原理的排序算法称为「堆排序」，基于堆实现的数据结构为「优先队列」。<br><br>堆分为「大顶堆」和「小顶堆」，大（小）顶堆：任意节点的值小于等于（大于等于）其父节点的值。<br></p>
+<pre class=" language-text"><code class="language-text">完全二叉树定义： 设二叉树深度为 k ，若二叉树除第 k 层外的其它各层（第 1 至 k-1层）的节点达到最大个数，且处于第 k 层的节点都连续集中在最左边
+</code></pre>
+<p><img src="https://cdn.jsdelivr.net/gh/wzy012/myblogPicBed@master/image/20230923172803.png" alt="20230923172803"><br><br>通过使用「优先队列」的「压入 push()」和「弹出 pop()」操作，即可完成堆排序，实现代码如下：<br></p>
+<pre class=" language-cpp"><code class="language-cpp"><span class="token comment" spellcheck="true">// 初始化小顶堆</span>
+priority_queue<span class="token operator">&lt;</span><span class="token keyword">int</span><span class="token punctuation">,</span> vector<span class="token operator">&lt;</span><span class="token keyword">int</span><span class="token operator">></span><span class="token punctuation">,</span> greater<span class="token operator">&lt;</span><span class="token keyword">int</span><span class="token operator">>></span> heap<span class="token punctuation">;</span>
+
+<span class="token comment" spellcheck="true">// 元素入堆</span>
+heap<span class="token punctuation">.</span><span class="token function">push</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+heap<span class="token punctuation">.</span><span class="token function">push</span><span class="token punctuation">(</span><span class="token number">4</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+heap<span class="token punctuation">.</span><span class="token function">push</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+heap<span class="token punctuation">.</span><span class="token function">push</span><span class="token punctuation">(</span><span class="token number">6</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+heap<span class="token punctuation">.</span><span class="token function">push</span><span class="token punctuation">(</span><span class="token number">8</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment" spellcheck="true">// 元素出堆（从小到大）</span>
+heap<span class="token punctuation">.</span><span class="token function">pop</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// -> 1</span>
+heap<span class="token punctuation">.</span><span class="token function">pop</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// -> 2</span>
+heap<span class="token punctuation">.</span><span class="token function">pop</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// -> 4</span>
+heap<span class="token punctuation">.</span><span class="token function">pop</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// -> 6</span>
+heap<span class="token punctuation">.</span><span class="token function">pop</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// -> 8</span>
+</code></pre>
+<p>常用的线性结构有：线性表，栈，队列，双队列，数组，串。<br>常见的非线性结构有：二维数组，多维数组，广义表，树(二叉树等)，图，堆。</p>
+]]></content>
+      <categories>
+        <category>数据结构与算法</category>
+      </categories>
+      <tags>
+        <tag>基础知识</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>初来乍到</title>
+    <url>/2023/09/17/00-1/</url>
+    <content><![CDATA[<p>写在开始…<br><br>初入职场，受组长凯哥影响，想要搭建自己的技术博客，于是有了这篇…<br><br>本人博客传送门：<a href="https://wzy012.github.io/">https://wzy012.github.io/</a> <br></p>
+<p>2023.6.19 从SDU毕业<br><br>2023.8.3 入职byd<br><br>开始了自己的菜鸟<del>打工</del>（成长）生涯<br><br>从事智驾开发工作<br><br>作为一个7年的自动化<del>不</del>专业学生<br><br>进入了一个纯软的技术赛道<br><br>其实还是很有压力的<br><br>但同时感觉充满了兴奋与挑战<br><br>开个人博客的初衷是：<br></p>
+<ul>
+<li>记录自己学习各个技术的过程，形成文档以备查漏补缺；<br></li>
+<li>如果有幸被需要的人看到，也是分享的意义</li>
+</ul>
+<p>希望自己坚持学习，一点一点进步，争取成为一名技术<del>大</del>小佬！</p>
+<p>最后附：<br><br>    Hexo + Github + Git 的博客搭建方案链接：<a href="https://yushuaigee.gitee.io/archives/">https://yushuaigee.gitee.io/archives/</a><br><br>    vscode + PicGo + Markdown All in one 的配置链接：<a href="https://blog.csdn.net/qq_35621494/article/details/106432399">https://blog.csdn.net/qq_35621494/article/details/106432399</a><br></p>
+<p>本人使用的是：vscode + Hexo + Github + Git + PicGO + Markdown All in one 的实现方案。</p>
+]]></content>
+      <categories>
+        <category>个人成长</category>
+      </categories>
+      <tags>
+        <tag>关于本人</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>红黑树</title>
+    <url>/2023/09/27/07-tree/</url>
+    <content><![CDATA[<p><strong>线性序列</strong>：<br>查找：线性搜索（Liner search），时间复杂度为O(N)；<br><br>     【有序序列】二分查找（Binary search）: 时间复杂度为O(log2^N);<br><br>插入和删除操作：时间复杂度为O(N);<br></p>
+<p><strong>二叉树（Binary search tree， BST）</strong>:<br>对于每一个节点，满足左子树的值小于该节点的值，右子树的值大于该节点的值。<br></p>
+<ul>
+<li>查找：从根节点走到叶子节点，时间复杂度ｏ(h);<br>如果构造为一个平衡的二叉树，高度为h，每层的节点个数为1, 2, 2^2, …, 2^(h-1),总节点数为2^h-1，则h&#x3D;log2^n+1，因此遍历的时间复杂度为<code>n = log2^h + 1</code>;<br></li>
+<li>插入&#x2F;删除：</li>
+</ul>
+<p><strong>平衡二叉树</strong>：<br>满足二叉树的特性，同时对于任何一个节点：平衡因子为<code>|Height(RightTree) - Height(LeftTree)| &lt;= 1</code>或<code>|Height(LeftTree) - Height(RightTree) &lt;= 1</code>;<br><br>因此平衡二叉树的高度为：<code>h = log2^n + 1</code>; <br><br>查找的时间复杂度为：<code>O(log2^n)</code>;<br><br>插入：<br><br>插入有时会失去平衡：线型、∟型等<br><br><code>Four Cases:LL, RR, LR, RL</code><br></p>
+<ul>
+<li>LL:左节点的左子树：可右旋<br><br><img src="https://cdn.jsdelivr.net/gh/wzy012/myblogPicBed@master/image/20231001210901.png" alt="20231001210901"><br></li>
+<li>RR：右节点的右子树：可左旋<br><br><img src="https://cdn.jsdelivr.net/gh/wzy012/myblogPicBed@master/image/20231001211036.png" alt="20231001211036"><br></li>
+<li>LR：左节点的右子树：先左旋再右旋<br><br><img src="https://cdn.jsdelivr.net/gh/wzy012/myblogPicBed@master/image/20231001212345.png" alt="20231001212345"><br><br><img src="https://cdn.jsdelivr.net/gh/wzy012/myblogPicBed@master/image/20231001212604.png" alt="20231001212604"><br><br></li>
+<li>RL：右节点的左子树：先右旋再左旋<br><img src="https://cdn.jsdelivr.net/gh/wzy012/myblogPicBed@master/image/20231001212953.png" alt="20231001212953"><br><br><img src="https://cdn.jsdelivr.net/gh/wzy012/myblogPicBed@master/image/20231001213142.png" alt="20231001213142"><br></li>
+</ul>
+<p>插入删除需要不断调整结构，效率低；<br><br>**红黑树(Red-Black Tree)**：<br>红黑树是一个自平衡(self-balanced)的二叉搜索树;<br><br>如果搜索频繁插入删除不多可用平衡二叉树，插入删除多用红黑树；<br><br><img src="https://cdn.jsdelivr.net/gh/wzy012/myblogPicBed@master/image/20231001214149.png" alt="20231001214149"><br><br><strong>特点</strong>：<br>（1）[root property]根节点是黑色的;<br><br>（2）[red property]红节点的子节点是黑色的；<br><br>（3）[black property]对于任何一个节点，从该节点到叶子节点包含的黑节点的个数相同；<br><br>（4）红黑树的高度最多为<code>2*log2^(n+1)</code><br><br><img src="https://cdn.jsdelivr.net/gh/wzy012/myblogPicBed@master/image/20231001215037.png" alt="20231001215037"><br><br>Black Height(bh(x)):从任何一个节点x到叶子节点经过的黑色节点的数量;<br><br><img src="https://cdn.jsdelivr.net/gh/wzy012/myblogPicBed@master/image/20231001215501.png" alt="20231001215501"><br><br>命题：<br><br>(1)任何一个节点x的子树至少有2^bh(x)-1个内部节点（internal node）<br><br>(2)任何一个节点的高度h(x)满足 bh(x)&gt;&#x3D;h(x)&#x2F;2;<br><br>对于一个根节点有：<br><br><code>n &gt;= 2^bh(root) - 1</code>;<br><br><code>bh(root)&gt;=h/2</code>;<br><br>可得：<code>h &lt;= 2log2^(n+1)</code><br><br>因此，RBT的时间复杂度为:O(h)&#x3D;O(log2^n)。<br><br><img src="https://cdn.jsdelivr.net/gh/wzy012/myblogPicBed@master/image/20231001220041.png" alt="20231001220041"><br><br>RBT的插入:<br><br><img src="https://cdn.jsdelivr.net/gh/wzy012/myblogPicBed@master/image/20231001221246.png" alt="20231001221246"><br><br><img src="https://cdn.jsdelivr.net/gh/wzy012/myblogPicBed@master/image/20231001221512.png" alt="20231001221512"><br><br><img src="https://cdn.jsdelivr.net/gh/wzy012/myblogPicBed@master/image/20231001221845.png" alt="20231001221845"><br><br><strong>总结</strong>：<br><br><img src="https://cdn.jsdelivr.net/gh/wzy012/myblogPicBed@master/image/20231001222017.png" alt="20231001222017"><br><br><img src="https://cdn.jsdelivr.net/gh/wzy012/myblogPicBed@master/image/20231001222046.png" alt="20231001222046"><br></p>
+]]></content>
+      <categories>
+        <category>数据结构与算法</category>
+      </categories>
+      <tags>
+        <tag>二叉树</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>someip</title>
+    <url>/2023/09/21/06-someip/</url>
+    <content><![CDATA[<h3 id="1-SOA（Service-Oriented-Architecture）"><a href="#1-SOA（Service-Oriented-Architecture）" class="headerlink" title="1 SOA（Service Oriented Architecture）"></a>1 SOA（Service Oriented Architecture）</h3><h4 id="1-1-前言"><a href="#1-1-前言" class="headerlink" title="1.1 前言"></a>1.1 前言</h4><ul>
+<li><strong>单体式应用程序</strong><br>所有功能模块包含在一个进程内功能模块之间通过直接调用API进行通信<br><img src="https://cdn.jsdelivr.net/gh/wzy012/myblogPicBed@master/image/20230921232656.png" alt="20230921232656"><br><br><img src="https://cdn.jsdelivr.net/gh/wzy012/myblogPicBed@master/image/20230921232719.png" alt="20230921232719"><br><br><img src="https://cdn.jsdelivr.net/gh/wzy012/myblogPicBed@master/image/20230921232735.png" alt="20230921232735"><br></li>
+<li><strong>SOA应用程序</strong><br>各个功能模块以独立进程（服务）运行功能模块之间通过服务接口进行通信<br><br><img src="https://cdn.jsdelivr.net/gh/wzy012/myblogPicBed@master/image/20230921232817.png" alt="20230921232817"><br><br><img src="https://cdn.jsdelivr.net/gh/wzy012/myblogPicBed@master/image/20230921232847.png" alt="20230921232847"><br><br>图中：Process_C进程中divide服务接口想使用minus服务接口也必须需要使用IPC、网络，是因为minus以服务接口对外提供功能，没有提供API。<br></li>
+</ul>
+<p>服务等价于函数体；<br><br>服务是独立运行的进程，可以通过IPC、网络远程访问；<br><br>一个进程可以提供多个服务。<br></p>
+<ul>
+<li>服务接口<br><br>服务接口等价于函数接口；<br><br>服务接口是使用服务的唯一途径<br></li>
+</ul>
+<h4 id="1-2-SOA（面向服务的架构）："><a href="#1-2-SOA（面向服务的架构）：" class="headerlink" title="1.2 SOA（面向服务的架构）："></a>1.2 SOA（面向服务的架构）：</h4><h5 id="1-2-1-定义"><a href="#1-2-1-定义" class="headerlink" title="1.2.1 定义"></a>1.2.1 定义</h5><p>SOA是一个组件模型，将应用程序的不同功能单元（称为服务）进行拆分，并通过定义良好的通信机制【接口和协议】将这些服务联系起来。<br><br>接口是采用<strong>中立的方式</strong>【互联网、通信协议】进行定义的，它独立于实现服务的硬件平台、操作系统和编程语言，这使得在各种各样的系统中的服务可以以一种统一和通用的方式进行交互。<br><br><img src="https://cdn.jsdelivr.net/gh/wzy012/myblogPicBed@master/image/20230921233039.png" alt="20230921233039"><br></p>
+<h5 id="1-2-2-SOA中的-3-种角色："><a href="#1-2-2-SOA中的-3-种角色：" class="headerlink" title="1.2.2 SOA中的 3 种角色："></a>1.2.2 <strong>SOA中的 3 种角色</strong>：</h5><ul>
+<li>服务提供者（server）：利用服务中心对外提供服务；响应客户端的请求</li>
+<li>服务使用者（client）：利用服务中心查找所需的服务；使用服务</li>
+<li>服务中心（位于server）：注册、保存服务提供者提供的服务，广播服务</li>
+<li>服务中心（位于client）：查找网络中的有效服务，并通知client服务是否可用<br><img src="https://cdn.jsdelivr.net/gh/wzy012/myblogPicBed@master/image/20230921233313.png" alt="20230921233313"><br><br>一台设备有且只能有一个服务中心一台设备可有0个或多个服务提供者一台设备可有0个或多个服务使用者<br></li>
+</ul>
+<h5 id="1-2-3-SOA中的-4-种操作："><a href="#1-2-3-SOA中的-4-种操作：" class="headerlink" title="1.2.3 SOA中的 4 种操作："></a>1.2.3 <strong>SOA中的 4 种操作</strong>：</h5><ul>
+<li>发布服务（server）：发布服务的具体信息到网络</li>
+<li>查找服务（client）：查看目标服务在当前网络中是否可用</li>
+<li>使用服务（client）：根据查找到的服务具体信息（ip\port\tcp&#x2F;udp）与服务提供者建立联系，使用服务<br></li>
+<li>提供服务（server）：响应服务消费者的请求<br><br><img src="https://cdn.jsdelivr.net/gh/wzy012/myblogPicBed@master/image/20230921233340.png" alt="20230921233340"><br></li>
+</ul>
+<h5 id="1-2-4-SOA的工作流程："><a href="#1-2-4-SOA的工作流程：" class="headerlink" title="1.2.4 SOA的工作流程："></a>1.2.4 <strong>SOA的工作流程</strong>：</h5><p><img src="https://cdn.jsdelivr.net/gh/wzy012/myblogPicBed@master/image/20230921233439.png" alt="20230921233439"><br></p>
+<h5 id="1-2-5-SOA优势："><a href="#1-2-5-SOA优势：" class="headerlink" title="1.2.5 SOA优势："></a>1.2.5 SOA优势：</h5><p>优势：灵活适应业务变化、降低网络负担、通信机制标准化-跨平台、松耦合、隔离性、后期维护成本低<br><br>劣势：性能成本（IPC、网络通信）、维护开发成本<br></p>
+<h3 id="2-someip"><a href="#2-someip" class="headerlink" title="2 someip"></a>2 <strong>someip</strong></h3><h4 id="2-1-someip与SOA的关系："><a href="#2-1-someip与SOA的关系：" class="headerlink" title="2.1 someip与SOA的关系："></a>2.1 someip与SOA的关系：</h4><p><img src="https://cdn.jsdelivr.net/gh/wzy012/myblogPicBed@master/image/20230921231543.png" alt="20230921231543"><br><br><img src="https://cdn.jsdelivr.net/gh/wzy012/myblogPicBed@master/image/20230921231616.png" alt="20230921231616"><br></p>
+<p>SOME&#x2F;IP定义了服务提供者、服务使用者之间的通信接口<br><br>SD：service discovery<br><br>someip-sd协议是someip协议的特殊实现<br><br><img src="https://cdn.jsdelivr.net/gh/wzy012/myblogPicBed@master/image/20230921231711.png" alt="20230921231711"><br><br>some&#x2F;ip-sd是服务中心，只负责服务发现功能；<br></p>
+<p><img src="https://cdn.jsdelivr.net/gh/wzy012/myblogPicBed@master/image/20230921231730.png" alt="20230921231730"><br></p>
+<p>some&#x2F;IP&amp;SD：服务中心不仅仅是服务中心，也可以是服务提供者、服务使用者。<br><br><img src="https://cdn.jsdelivr.net/gh/wzy012/myblogPicBed@master/image/20230921231812.png" alt="20230921231812"><br></p>
+<p>一台设备只能有一个sd<br></p>
+<h4 id="2-2-someip工作原理："><a href="#2-2-someip工作原理：" class="headerlink" title="2.2 someip工作原理："></a>2.2 <strong>someip工作原理</strong>：</h4><p><img src="https://cdn.jsdelivr.net/gh/wzy012/myblogPicBed@master/image/20230921231856.png" alt="20230921231856"><br></p>
+<p>SOME&#x2F;IP协议位于TCP&#x2F;IP 5层模型中的第5层-应用层<br><br><img src="https://cdn.jsdelivr.net/gh/wzy012/myblogPicBed@master/image/20230921231909.png" alt="20230921231909"><br></p>
+<p>SOME&#x2F;IP中间件成功解耦了具体的应用与通信机制<br></p>
+<h5 id="2-2-1-接口类型"><a href="#2-2-1-接口类型" class="headerlink" title="2.2.1 接口类型"></a>2.2.1 <strong>接口类型</strong></h5><p><img src="https://cdn.jsdelivr.net/gh/wzy012/myblogPicBed@master/image/20230921232007.png" alt="20230921232007"><br><br>(1) <strong>method方法</strong>：由client向server发送请求消息<br><br>RR：server需要回复的请求&#x2F;RR&#x3D;&#x3D;int func();<br><br>FF：server不需要回复的请求&#x2F;FF&#x3D;&#x3D; void func();<br><br><img src="https://cdn.jsdelivr.net/gh/wzy012/myblogPicBed@master/image/20230921232040.png" alt="20230921232040"><br><br>（2）<strong>event事件</strong>：由server向client发送事件消息<br><br>server会在合适的时候发送event消息给客户端<br><br><img src="https://cdn.jsdelivr.net/gh/wzy012/myblogPicBed@master/image/20230921232121.png" alt="20230921232121"><br></p>
+<p>ps:subscribe eventgroup\ACK\stop subscribe是SD协议<br><br>事件组、强相关：将强相关的事件放到一个事件组中<br><br>客户端可以通过订阅事件组订阅感兴趣的事件<br><br>一个event（事件）必须加入事件组<br><br>一个event可以加入多个事件组<br><br>一个事件组中可以包含多个event<br><br>必须订阅event的所在事件组，不能订阅某个具体的event<br><br>(3) <strong>filed字段&#x2F;属性</strong>：一段内存空间的值，保存在server端<br><br>getter(method):获取，client可通过该方法主动从server获取field值<br><br>setter(method):设置，client可通过该方法设置field值<br><br>notifier(event):通知，当filed值发生改变，server就将最新值发送给client<br><br><img src="https://cdn.jsdelivr.net/gh/wzy012/myblogPicBed@master/image/20230921232208.png" alt="20230921232208"><br><br><img src="https://cdn.jsdelivr.net/gh/wzy012/myblogPicBed@master/image/20230921232234.png" alt="20230921232234"><br><br>一个field必须加入事件组<br><br>一个field可以加入多个事件组<br><br>一个事件组中可以包含多个field<br><br>必须订阅field所在事件组，不能订阅某个具体的field<br></p>
+<h5 id="2-2-2-someip服务接口："><a href="#2-2-2-someip服务接口：" class="headerlink" title="2.2.2 someip服务接口："></a>2.2.2 someip服务接口：</h5><p>所有接口都有ID（除了Field）：<br><br>service ID：区分系统里不同的服务，<br><br>Method ID：区分一个服务里的不同method，<br><br>Event ID：区分一个服务里的不同事件，<br><br>Eventgroup ID：区分事件组<br><br><img src="https://cdn.jsdelivr.net/gh/wzy012/myblogPicBed@master/image/20230921232404.png" alt="20230921232404"><br><br>同一服务的同类型接口ID不能重复<br><br>使用哪个服务哪个功能发生了哪个事件<br><br><img src="https://cdn.jsdelivr.net/gh/wzy012/myblogPicBed@master/image/20230921232533.png" alt="20230921232533"><br><br>第一个字段表示type、第二个表示ID<br><br>服务接口其实就是通信双方之间的交互机制<br><br>event notifier单向传输：只能由server端发起，发送给client<br></p>
+<h3 id="3-关于汽车软件通信"><a href="#3-关于汽车软件通信" class="headerlink" title="3.关于汽车软件通信"></a>3.关于汽车软件通信</h3><p>传统的车载软件通信采用的是经典的总线协议（比如CAN、LIN、FlexRay），这些总线采用的是面向信号的数据传输(Signal-based)，基于信号在双绞线中的传输来通信，但是这些协议的传输带宽和传输速率有限，且不容易实现基于无线网更新车载软件(OTA)的需求。因此，新一代的车载软件通信更多采用了SOA架构下的SOME&#x2F;IP协议，该协议采用的是面向服务的数据传输(Service-Oriented)，基于ECU的服务在车载以太网中被请求或订阅来通信。<br><br>有用链接：<br><br><a href="https://www.51fusa.com/client/information/informationdetail/id/1788.html">https://www.51fusa.com/client/information/informationdetail/id/1788.html</a><br><br><a href="https://blog.csdn.net/qq_42981705/article/details/130735667">https://blog.csdn.net/qq_42981705/article/details/130735667</a><br><br><a href="https://mp.weixin.qq.com/s/rCRuCbHb_SUyysA7lWUPGA">https://mp.weixin.qq.com/s/rCRuCbHb_SUyysA7lWUPGA</a><br></p>
+]]></content>
+      <categories>
+        <category>通信协议</category>
+      </categories>
+      <tags>
+        <tag>SOME/IP</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>SQLite数据库</title>
     <url>/2023/09/20/05-sqlitedb/</url>
     <content><![CDATA[<h3 id="1-数据库"><a href="#1-数据库" class="headerlink" title="1 数据库"></a>1 数据库</h3><h4 id="1-1-数据库的基本概念"><a href="#1-1-数据库的基本概念" class="headerlink" title="1.1 数据库的基本概念"></a>1.1 数据库的基本概念<br></h4><p>数据库的核心概念包括数据、表格、字段、记录和主键等。<br></p>
@@ -868,197 +1084,6 @@ $ .exit//退出sqlite3数据库
       </categories>
       <tags>
         <tag>sqlite</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>数据结构基础知识</title>
-    <url>/2023/09/20/04-datastructure/</url>
-    <content><![CDATA[<h3 id="3-数据结构"><a href="#3-数据结构" class="headerlink" title="3.数据结构"></a>3.数据结构</h3><h4 id="3-1-前言"><a href="#3-1-前言" class="headerlink" title="3.1 前言"></a>3.1 前言</h4><p>数据结构是为实现对计算机数据有效使用的各种数据组织形式，服务于各类计算机操作。不同的数据结构具有各自对应的适用场景，旨在降低各种算法计算的时间与空间复杂度，达到最佳的任务执行效率。</p>
-<h4 id="3-2-数组"><a href="#3-2-数组" class="headerlink" title="3.2 数组"></a>3.2 数组</h4><p>固定数组和可变数组</p>
-<h4 id="3-3-链表"><a href="#3-3-链表" class="headerlink" title="3.3 链表"></a>3.3 链表</h4><p>链表以节点为单位，每个元素都是一个独立对象，在内存中的存储空间是非连续的。链表的节点对象具有两个成员变量：「值 <code>val</code>」，「后继节点引用 <code>next</code>」 。</p>
-<pre class=" language-cpp"><code class="language-cpp"><span class="token keyword">struct</span> ListNode<span class="token punctuation">{</span>
-    <span class="token keyword">int</span> val<span class="token punctuation">;</span>
-    ListNode <span class="token operator">*</span>next<span class="token punctuation">;</span>
-    <span class="token function">ListNode</span><span class="token punctuation">(</span><span class="token keyword">int</span> x<span class="token punctuation">)</span> <span class="token operator">:</span> <span class="token function">val</span><span class="token punctuation">(</span>x<span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token function">next</span><span class="token punctuation">(</span><span class="token constant">NULL</span><span class="token punctuation">)</span> <span class="token punctuation">{</span><span class="token punctuation">}</span>
-<span class="token punctuation">}</span><span class="token punctuation">;</span>
-</code></pre>
-<h4 id="3-4-栈"><a href="#3-4-栈" class="headerlink" title="3.4 栈"></a>3.4 栈</h4><p>栈是一种具有 「先入后出」 特点的抽象数据结构，可使用<strong>数组</strong>或<strong>链表</strong>实现</p>
-<pre class=" language-cpp"><code class="language-cpp">stack<span class="token operator">&lt;</span>T<span class="token operator">></span> stk<span class="token punctuation">;</span>
-</code></pre>
-<h4 id="3-5-队列"><a href="#3-5-队列" class="headerlink" title="3.5 队列"></a>3.5 队列</h4><p>队列是一种具有 「先入先出」 特点的抽象数据结构，可使用<strong>链表</strong>实现。</p>
-<pre class=" language-cpp"><code class="language-cpp">queue<span class="token operator">&lt;</span>T<span class="token operator">></span> que<span class="token punctuation">;</span>
-</code></pre>
-<h4 id="3-6-树"><a href="#3-6-树" class="headerlink" title="3.6 树"></a>3.6 树</h4><p>树是一种非线性数据结构，根据子节点数量可分为 「二叉树」 和 「多叉树」，最顶层的节点称为「根节点 root」。以二叉树为例，每个节点包含三个成员变量：「值 val」、「左子节点 left」、「右子节点 right」 。</p>
-<pre class=" language-cpp"><code class="language-cpp"><span class="token keyword">struct</span> TreeNode<span class="token punctuation">{</span>
-    <span class="token keyword">int</span> val<span class="token punctuation">;</span>
-    TreeNode <span class="token operator">*</span>left<span class="token punctuation">;</span>
-    TreeNode <span class="token operator">*</span>right<span class="token punctuation">;</span>
-    <span class="token function">TreeNode</span><span class="token punctuation">(</span><span class="token keyword">int</span> x<span class="token punctuation">)</span> <span class="token operator">:</span> <span class="token function">val</span><span class="token punctuation">(</span>x<span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token function">left</span><span class="token punctuation">(</span><span class="token constant">NULL</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token function">right</span><span class="token punctuation">(</span><span class="token constant">NULL</span><span class="token punctuation">)</span><span class="token punctuation">{</span><span class="token punctuation">}</span>
-<span class="token punctuation">}</span><span class="token punctuation">;</span>
-</code></pre>
-<p>构建二叉树示例：</p>
-<pre class=" language-cpp"><code class="language-cpp"><span class="token comment" spellcheck="true">//初始化节点</span>
-TreeNode <span class="token operator">*</span>n1 <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token function">TreeNode</span><span class="token punctuation">(</span><span class="token number">3</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// root</span>
-TreeNode <span class="token operator">*</span>n2 <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token function">TreeNode</span><span class="token punctuation">(</span><span class="token number">4</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-TreeNode <span class="token operator">*</span>n3 <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token function">TreeNode</span><span class="token punctuation">(</span><span class="token number">5</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-TreeNode <span class="token operator">*</span>n4 <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token function">TreeNode</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-TreeNode <span class="token operator">*</span>n5 <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token function">TreeNode</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-
-<span class="token comment" spellcheck="true">//构建引用指向</span>
-n1<span class="token operator">-</span><span class="token operator">></span>left <span class="token operator">=</span> n2<span class="token punctuation">;</span>
-n1<span class="token operator">-</span><span class="token operator">></span>right <span class="token operator">=</span> n3<span class="token punctuation">;</span>
-n2<span class="token operator">-</span><span class="token operator">></span>left <span class="token operator">=</span> n4<span class="token punctuation">;</span>
-n2<span class="token operator">-</span><span class="token operator">></span>right <span class="token operator">=</span> n5<span class="token punctuation">;</span>
-</code></pre>
-<h4 id="3-7-图"><a href="#3-7-图" class="headerlink" title="3.7 图"></a>3.7 图</h4><p>图是一种非线性数据结构，由「节点（顶点）<code>vertex</code>」和「边 <code>edge</code>」组成，每条边连接一对顶点。根据边的方向有无，图可分为「有向图」和「无向图」，根据顶点之间是否有权重，分为[有权图]和[无权图]。</p>
-<p><strong>以无向图为例</strong> 开展介绍，无向图的 <strong>顶点</strong> 和 <strong>边</strong> 集合分别为：</p>
-<ul>
-<li>顶点集合：<code>vertices = &#123;1, 2, 3, 4, 5&#125;</code></li>
-<li>边集合：<code>edges = &#123;(1, 2), (1, 3), (1, 4), (1, 5), (2,4), (3,5), (4,5)&#125;</code></li>
-</ul>
-<p><img src="https://cdn.jsdelivr.net/gh/wzy012/myblogPicBed@master/image/20230923163558.png" alt="20230923163558"><br><strong>表示图</strong>的方法通常有两种：<br>1.<strong>邻接矩阵</strong>：使用数组vertices存储顶点，邻接矩阵edges存储边；<code>edges[i][j]</code>代表节点<code>i+1</code>和节点<code>j+1</code>之间是否有边。</p>
-<pre class=" language-cpp"><code class="language-cpp"><span class="token keyword">int</span> vertices<span class="token punctuation">[</span><span class="token number">5</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">,</span> <span class="token number">4</span><span class="token punctuation">,</span> <span class="token number">5</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
-<span class="token keyword">int</span> edges<span class="token punctuation">[</span><span class="token number">5</span><span class="token punctuation">]</span><span class="token punctuation">[</span><span class="token number">5</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token punctuation">{</span><span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
-                   <span class="token punctuation">{</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
-                   <span class="token punctuation">{</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
-                   <span class="token punctuation">{</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
-                   <span class="token punctuation">{</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">}</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
-</code></pre>
-<p>2.<strong>邻接表</strong>：使用数组vertices存储顶点，邻接矩阵edges存储边。edges为一个二维容器，第一维<code>i</code>代表顶点索引，第二维edges[i]存储此顶点对应的边集合。<br>上图对应的邻接表为：</p>
-<pre class=" language-cpp"><code class="language-cpp"><span class="token keyword">int</span> vertices<span class="token punctuation">[</span><span class="token number">5</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">,</span> <span class="token number">4</span><span class="token punctuation">,</span> <span class="token number">5</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
-<span class="token keyword">int</span> edges <span class="token operator">=</span> <span class="token punctuation">[</span>
-    <span class="token punctuation">[</span><span class="token number">2</span> <span class="token number">3</span> <span class="token number">4</span> <span class="token number">5</span><span class="token punctuation">]</span>
-    <span class="token punctuation">[</span><span class="token number">1</span> <span class="token number">4</span><span class="token punctuation">]</span>
-    <span class="token punctuation">[</span><span class="token number">1</span> <span class="token number">5</span><span class="token punctuation">]</span>
-    <span class="token punctuation">[</span><span class="token number">1</span> <span class="token number">2</span> <span class="token number">5</span><span class="token punctuation">]</span>
-    <span class="token punctuation">[</span><span class="token number">1</span> <span class="token number">3</span> <span class="token number">4</span><span class="token punctuation">]</span>
-<span class="token punctuation">]</span> <span class="token punctuation">;</span>
-</code></pre>
-<pre class=" language-cpp"><code class="language-cpp"><span class="token keyword">int</span> vertices<span class="token punctuation">[</span><span class="token number">5</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">,</span> <span class="token number">4</span><span class="token punctuation">,</span> <span class="token number">5</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
-vector<span class="token operator">&lt;</span>vector<span class="token operator">&lt;</span><span class="token keyword">int</span><span class="token operator">>></span> edges<span class="token punctuation">;</span>
-
-vector<span class="token operator">&lt;</span><span class="token keyword">int</span><span class="token operator">></span> edge_1 <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">,</span> <span class="token number">4</span><span class="token punctuation">,</span> <span class="token number">5</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
-vector<span class="token operator">&lt;</span><span class="token keyword">int</span><span class="token operator">></span> edge_2 <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">4</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
-vector<span class="token operator">&lt;</span><span class="token keyword">int</span><span class="token operator">></span> edge_3 <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">5</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
-vector<span class="token operator">&lt;</span><span class="token keyword">int</span><span class="token operator">></span> edge_4 <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">5</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
-vector<span class="token operator">&lt;</span><span class="token keyword">int</span><span class="token operator">></span> edge_5 <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">,</span> <span class="token number">4</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
-
-edges<span class="token punctuation">.</span><span class="token function">push_back</span><span class="token punctuation">(</span>edge_1<span class="token punctuation">)</span><span class="token punctuation">;</span>
-edges<span class="token punctuation">.</span><span class="token function">push_back</span><span class="token punctuation">(</span>edge_2<span class="token punctuation">)</span><span class="token punctuation">;</span>
-edges<span class="token punctuation">.</span><span class="token function">push_back</span><span class="token punctuation">(</span>edge_3<span class="token punctuation">)</span><span class="token punctuation">;</span>
-edges<span class="token punctuation">.</span><span class="token function">push_back</span><span class="token punctuation">(</span>edge_4<span class="token punctuation">)</span><span class="token punctuation">;</span>
-edges<span class="token punctuation">.</span><span class="token function">push_back</span><span class="token punctuation">(</span>edge_5<span class="token punctuation">)</span><span class="token punctuation">;</span>
-</code></pre>
-<p>邻接矩阵 VS 邻接表 ：<br><br>邻接矩阵的大小只与节点数量有关，即 N^2  ，其中 N 为节点数量。因此，当边数量明显少于节点数量时，使用邻接矩阵存储图会造成较大的内存浪费。<br><br>因此，邻接表 适合存储稀疏图（顶点较多、边较少）； 邻接矩阵 适合存储稠密图（顶点较少、边较多）。<br></p>
-<h4 id="3-8-散列表"><a href="#3-8-散列表" class="headerlink" title="3.8 散列表"></a>3.8 散列表</h4><p>散列表是一种非线性数据结构，通过利用 Hash 函数将指定的「键 key」映射至对应的「值 value」，以实现高效的元素查找。<br></p>
-<pre class=" language-text"><code class="language-text">设想一个简单场景：小力、小特、小扣的学号分别为 10001, 10002, 10003 。
-现需求从「姓名」查找「学号」。
-</code></pre>
-<pre class=" language-cpp"><code class="language-cpp">unordered_map<span class="token operator">&lt;</span>string<span class="token punctuation">,</span> <span class="token keyword">int</span><span class="token operator">></span> dic<span class="token punctuation">;</span>
-
-dic<span class="token punctuation">[</span><span class="token string">"小力"</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token number">10001</span>；
-dic<span class="token punctuation">[</span><span class="token string">"小特"</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token number">10002</span>；
-dic<span class="token punctuation">[</span><span class="token string">"小扣"</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token number">10003</span>；
-
-dic<span class="token punctuation">.</span><span class="token function">find</span><span class="token punctuation">(</span><span class="token string">"小力"</span><span class="token punctuation">)</span><span class="token operator">-</span><span class="token operator">></span>second<span class="token punctuation">;</span>
-dic<span class="token punctuation">.</span><span class="token function">find</span><span class="token punctuation">(</span><span class="token string">"小特"</span><span class="token punctuation">)</span><span class="token operator">-</span><span class="token operator">></span>second<span class="token punctuation">;</span>
-dic<span class="token punctuation">.</span><span class="token function">find</span><span class="token punctuation">(</span><span class="token string">"小扣"</span><span class="token punctuation">)</span><span class="token operator">-</span><span class="token operator">></span>second<span class="token punctuation">;</span>
-</code></pre>
-<p><strong>Hash函数设计Demo</strong>：</p>
-<pre class=" language-text"><code class="language-text">需求：从「学号」查找「姓名」
-</code></pre>
-<p>将三人的姓名存储至以下数组中，则各姓名在数组中的索引分别为 0, 1, 2 。<br></p>
-<pre class=" language-cpp"><code class="language-cpp">string names<span class="token punctuation">[</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token punctuation">{</span> <span class="token string">"小力"</span><span class="token punctuation">,</span> <span class="token string">"小特"</span><span class="token punctuation">,</span> <span class="token string">"小扣"</span> <span class="token punctuation">}</span><span class="token punctuation">;</span>
-</code></pre>
-<p>此时，我们构造一个简单的 Hash 函数（ % 为取余符号 ），公式和封装函数如下所示：</p>
-<pre class=" language-text"><code class="language-text">hash(key) = (key -1)%10000;
-</code></pre>
-<pre class=" language-cpp"><code class="language-cpp"><span class="token keyword">int</span> <span class="token function">hash</span><span class="token punctuation">(</span><span class="token keyword">int</span> id<span class="token punctuation">)</span>
-<span class="token punctuation">{</span>
-    <span class="token keyword">int</span> index <span class="token operator">=</span> <span class="token punctuation">(</span>id <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token operator">%</span><span class="token number">10000</span><span class="token punctuation">;</span>
-    <span class="token keyword">return</span> index<span class="token punctuation">;</span>
-<span class="token punctuation">}</span>
-</code></pre>
-<p>则我们构建了以学号为 key 、姓名对应的数组索引为 value 的散列表。利用此 Hash 函数，则可在O(1) 时间复杂度下通过学号查找到对应姓名，即：</p>
-<pre class=" language-cpp"><code class="language-cpp">names<span class="token punctuation">[</span><span class="token function">hash</span><span class="token punctuation">(</span><span class="token number">10001</span><span class="token punctuation">)</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
-names<span class="token punctuation">[</span><span class="token function">hash</span><span class="token punctuation">(</span><span class="token number">10002</span><span class="token punctuation">)</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
-names<span class="token punctuation">[</span><span class="token function">hash</span><span class="token punctuation">(</span><span class="token number">10003</span><span class="token punctuation">)</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
-</code></pre>
-<p><img src="https://cdn.jsdelivr.net/gh/wzy012/myblogPicBed@master/image/20230923172308.png" alt="20230923172308"><br></p>
-<h4 id="3-9-堆"><a href="#3-9-堆" class="headerlink" title="3.9 堆"></a>3.9 堆</h4><p>堆是一种基于「完全二叉树」的数据结构，可使用数组实现。<br><br>以堆为原理的排序算法称为「堆排序」，基于堆实现的数据结构为「优先队列」。<br><br>堆分为「大顶堆」和「小顶堆」，大（小）顶堆：任意节点的值小于等于（大于等于）其父节点的值。<br></p>
-<pre class=" language-text"><code class="language-text">完全二叉树定义： 设二叉树深度为 k ，若二叉树除第 k 层外的其它各层（第 1 至 k-1层）的节点达到最大个数，且处于第 k 层的节点都连续集中在最左边
-</code></pre>
-<p><img src="https://cdn.jsdelivr.net/gh/wzy012/myblogPicBed@master/image/20230923172803.png" alt="20230923172803"><br><br>通过使用「优先队列」的「压入 push()」和「弹出 pop()」操作，即可完成堆排序，实现代码如下：<br></p>
-<pre class=" language-cpp"><code class="language-cpp"><span class="token comment" spellcheck="true">// 初始化小顶堆</span>
-priority_queue<span class="token operator">&lt;</span><span class="token keyword">int</span><span class="token punctuation">,</span> vector<span class="token operator">&lt;</span><span class="token keyword">int</span><span class="token operator">></span><span class="token punctuation">,</span> greater<span class="token operator">&lt;</span><span class="token keyword">int</span><span class="token operator">>></span> heap<span class="token punctuation">;</span>
-
-<span class="token comment" spellcheck="true">// 元素入堆</span>
-heap<span class="token punctuation">.</span><span class="token function">push</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-heap<span class="token punctuation">.</span><span class="token function">push</span><span class="token punctuation">(</span><span class="token number">4</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-heap<span class="token punctuation">.</span><span class="token function">push</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-heap<span class="token punctuation">.</span><span class="token function">push</span><span class="token punctuation">(</span><span class="token number">6</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-heap<span class="token punctuation">.</span><span class="token function">push</span><span class="token punctuation">(</span><span class="token number">8</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-
-<span class="token comment" spellcheck="true">// 元素出堆（从小到大）</span>
-heap<span class="token punctuation">.</span><span class="token function">pop</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// -> 1</span>
-heap<span class="token punctuation">.</span><span class="token function">pop</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// -> 2</span>
-heap<span class="token punctuation">.</span><span class="token function">pop</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// -> 4</span>
-heap<span class="token punctuation">.</span><span class="token function">pop</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// -> 6</span>
-heap<span class="token punctuation">.</span><span class="token function">pop</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// -> 8</span>
-</code></pre>
-<p>常用的线性结构有：线性表，栈，队列，双队列，数组，串。<br>常见的非线性结构有：二维数组，多维数组，广义表，树(二叉树等)，图，堆。</p>
-]]></content>
-      <categories>
-        <category>数据结构与算法</category>
-      </categories>
-      <tags>
-        <tag>基础知识</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>someip</title>
-    <url>/2023/09/21/06-someip/</url>
-    <content><![CDATA[<h3 id="1-SOA（Service-Oriented-Architecture）"><a href="#1-SOA（Service-Oriented-Architecture）" class="headerlink" title="1 SOA（Service Oriented Architecture）"></a>1 SOA（Service Oriented Architecture）</h3><h4 id="1-1-前言"><a href="#1-1-前言" class="headerlink" title="1.1 前言"></a>1.1 前言</h4><ul>
-<li><strong>单体式应用程序</strong><br>所有功能模块包含在一个进程内功能模块之间通过直接调用API进行通信<br><img src="https://cdn.jsdelivr.net/gh/wzy012/myblogPicBed@master/image/20230921232656.png" alt="20230921232656"><br><br><img src="https://cdn.jsdelivr.net/gh/wzy012/myblogPicBed@master/image/20230921232719.png" alt="20230921232719"><br><br><img src="https://cdn.jsdelivr.net/gh/wzy012/myblogPicBed@master/image/20230921232735.png" alt="20230921232735"><br></li>
-<li><strong>SOA应用程序</strong><br>各个功能模块以独立进程（服务）运行功能模块之间通过服务接口进行通信<br><br><img src="https://cdn.jsdelivr.net/gh/wzy012/myblogPicBed@master/image/20230921232817.png" alt="20230921232817"><br><br><img src="https://cdn.jsdelivr.net/gh/wzy012/myblogPicBed@master/image/20230921232847.png" alt="20230921232847"><br><br>图中：Process_C进程中divide服务接口想使用minus服务接口也必须需要使用IPC、网络，是因为minus以服务接口对外提供功能，没有提供API。<br></li>
-</ul>
-<p>服务等价于函数体；<br><br>服务是独立运行的进程，可以通过IPC、网络远程访问；<br><br>一个进程可以提供多个服务。<br></p>
-<ul>
-<li>服务接口<br><br>服务接口等价于函数接口；<br><br>服务接口是使用服务的唯一途径<br></li>
-</ul>
-<h4 id="1-2-SOA（面向服务的架构）："><a href="#1-2-SOA（面向服务的架构）：" class="headerlink" title="1.2 SOA（面向服务的架构）："></a>1.2 SOA（面向服务的架构）：</h4><h5 id="1-2-1-定义"><a href="#1-2-1-定义" class="headerlink" title="1.2.1 定义"></a>1.2.1 定义</h5><p>SOA是一个组件模型，将应用程序的不同功能单元（称为服务）进行拆分，并通过定义良好的通信机制【接口和协议】将这些服务联系起来。<br><br>接口是采用<strong>中立的方式</strong>【互联网、通信协议】进行定义的，它独立于实现服务的硬件平台、操作系统和编程语言，这使得在各种各样的系统中的服务可以以一种统一和通用的方式进行交互。<br><br><img src="https://cdn.jsdelivr.net/gh/wzy012/myblogPicBed@master/image/20230921233039.png" alt="20230921233039"><br></p>
-<h5 id="1-2-2-SOA中的-3-种角色："><a href="#1-2-2-SOA中的-3-种角色：" class="headerlink" title="1.2.2 SOA中的 3 种角色："></a>1.2.2 <strong>SOA中的 3 种角色</strong>：</h5><ul>
-<li>服务提供者（server）：利用服务中心对外提供服务；响应客户端的请求</li>
-<li>服务使用者（client）：利用服务中心查找所需的服务；使用服务</li>
-<li>服务中心（位于server）：注册、保存服务提供者提供的服务，广播服务</li>
-<li>服务中心（位于client）：查找网络中的有效服务，并通知client服务是否可用<br><img src="https://cdn.jsdelivr.net/gh/wzy012/myblogPicBed@master/image/20230921233313.png" alt="20230921233313"><br><br>一台设备有且只能有一个服务中心一台设备可有0个或多个服务提供者一台设备可有0个或多个服务使用者<br></li>
-</ul>
-<h5 id="1-2-3-SOA中的-4-种操作："><a href="#1-2-3-SOA中的-4-种操作：" class="headerlink" title="1.2.3 SOA中的 4 种操作："></a>1.2.3 <strong>SOA中的 4 种操作</strong>：</h5><ul>
-<li>发布服务（server）：发布服务的具体信息到网络</li>
-<li>查找服务（client）：查看目标服务在当前网络中是否可用</li>
-<li>使用服务（client）：根据查找到的服务具体信息（ip\port\tcp&#x2F;udp）与服务提供者建立联系，使用服务<br></li>
-<li>提供服务（server）：响应服务消费者的请求<br><br><img src="https://cdn.jsdelivr.net/gh/wzy012/myblogPicBed@master/image/20230921233340.png" alt="20230921233340"><br></li>
-</ul>
-<h5 id="1-2-4-SOA的工作流程："><a href="#1-2-4-SOA的工作流程：" class="headerlink" title="1.2.4 SOA的工作流程："></a>1.2.4 <strong>SOA的工作流程</strong>：</h5><p><img src="https://cdn.jsdelivr.net/gh/wzy012/myblogPicBed@master/image/20230921233439.png" alt="20230921233439"><br></p>
-<h5 id="1-2-5-SOA优势："><a href="#1-2-5-SOA优势：" class="headerlink" title="1.2.5 SOA优势："></a>1.2.5 SOA优势：</h5><p>优势：灵活适应业务变化、降低网络负担、通信机制标准化-跨平台、松耦合、隔离性、后期维护成本低<br><br>劣势：性能成本（IPC、网络通信）、维护开发成本<br></p>
-<h3 id="2-someip"><a href="#2-someip" class="headerlink" title="2 someip"></a>2 <strong>someip</strong></h3><h4 id="2-1-someip与SOA的关系："><a href="#2-1-someip与SOA的关系：" class="headerlink" title="2.1 someip与SOA的关系："></a>2.1 someip与SOA的关系：</h4><p><img src="https://cdn.jsdelivr.net/gh/wzy012/myblogPicBed@master/image/20230921231543.png" alt="20230921231543"><br><br><img src="https://cdn.jsdelivr.net/gh/wzy012/myblogPicBed@master/image/20230921231616.png" alt="20230921231616"><br></p>
-<p>SOME&#x2F;IP定义了服务提供者、服务使用者之间的通信接口<br><br>SD：service discovery<br><br>someip-sd协议是someip协议的特殊实现<br><br><img src="https://cdn.jsdelivr.net/gh/wzy012/myblogPicBed@master/image/20230921231711.png" alt="20230921231711"><br><br>some&#x2F;ip-sd是服务中心，只负责服务发现功能；<br></p>
-<p><img src="https://cdn.jsdelivr.net/gh/wzy012/myblogPicBed@master/image/20230921231730.png" alt="20230921231730"><br></p>
-<p>some&#x2F;IP&amp;SD：服务中心不仅仅是服务中心，也可以是服务提供者、服务使用者。<br><br><img src="https://cdn.jsdelivr.net/gh/wzy012/myblogPicBed@master/image/20230921231812.png" alt="20230921231812"><br></p>
-<p>一台设备只能有一个sd<br></p>
-<h4 id="2-2-someip工作原理："><a href="#2-2-someip工作原理：" class="headerlink" title="2.2 someip工作原理："></a>2.2 <strong>someip工作原理</strong>：</h4><p><img src="https://cdn.jsdelivr.net/gh/wzy012/myblogPicBed@master/image/20230921231856.png" alt="20230921231856"><br></p>
-<p>SOME&#x2F;IP协议位于TCP&#x2F;IP 5层模型中的第5层-应用层<br><br><img src="https://cdn.jsdelivr.net/gh/wzy012/myblogPicBed@master/image/20230921231909.png" alt="20230921231909"><br></p>
-<p>SOME&#x2F;IP中间件成功解耦了具体的应用与通信机制<br></p>
-<h5 id="2-2-1-接口类型"><a href="#2-2-1-接口类型" class="headerlink" title="2.2.1 接口类型"></a>2.2.1 <strong>接口类型</strong></h5><p><img src="https://cdn.jsdelivr.net/gh/wzy012/myblogPicBed@master/image/20230921232007.png" alt="20230921232007"><br><br>(1) <strong>method方法</strong>：由client向server发送请求消息<br><br>RR：server需要回复的请求&#x2F;RR&#x3D;&#x3D;int func();<br><br>FF：server不需要回复的请求&#x2F;FF&#x3D;&#x3D; void func();<br><br><img src="https://cdn.jsdelivr.net/gh/wzy012/myblogPicBed@master/image/20230921232040.png" alt="20230921232040"><br><br>（2）<strong>event事件</strong>：由server向client发送事件消息<br><br>server会在合适的时候发送event消息给客户端<br><br><img src="https://cdn.jsdelivr.net/gh/wzy012/myblogPicBed@master/image/20230921232121.png" alt="20230921232121"><br></p>
-<p>ps:subscribe eventgroup\ACK\stop subscribe是SD协议<br><br>事件组、强相关：将强相关的事件放到一个事件组中<br><br>客户端可以通过订阅事件组订阅感兴趣的事件<br><br>一个event（事件）必须加入事件组<br><br>一个event可以加入多个事件组<br><br>一个事件组中可以包含多个event<br><br>必须订阅event的所在事件组，不能订阅某个具体的event<br><br>(3) <strong>filed字段&#x2F;属性</strong>：一段内存空间的值，保存在server端<br><br>getter(method):获取，client可通过该方法主动从server获取field值<br><br>setter(method):设置，client可通过该方法设置field值<br><br>notifier(event):通知，当filed值发生改变，server就将最新值发送给client<br><br><img src="https://cdn.jsdelivr.net/gh/wzy012/myblogPicBed@master/image/20230921232208.png" alt="20230921232208"><br><br><img src="https://cdn.jsdelivr.net/gh/wzy012/myblogPicBed@master/image/20230921232234.png" alt="20230921232234"><br><br>一个field必须加入事件组<br><br>一个field可以加入多个事件组<br><br>一个事件组中可以包含多个field<br><br>必须订阅field所在事件组，不能订阅某个具体的field<br></p>
-<h5 id="2-2-2-someip服务接口："><a href="#2-2-2-someip服务接口：" class="headerlink" title="2.2.2 someip服务接口："></a>2.2.2 someip服务接口：</h5><p>所有接口都有ID（除了Field）：<br><br>service ID：区分系统里不同的服务，<br><br>Method ID：区分一个服务里的不同method，<br><br>Event ID：区分一个服务里的不同事件，<br><br>Eventgroup ID：区分事件组<br><br><img src="https://cdn.jsdelivr.net/gh/wzy012/myblogPicBed@master/image/20230921232404.png" alt="20230921232404"><br><br>同一服务的同类型接口ID不能重复<br><br>使用哪个服务哪个功能发生了哪个事件<br><br><img src="https://cdn.jsdelivr.net/gh/wzy012/myblogPicBed@master/image/20230921232533.png" alt="20230921232533"><br><br>第一个字段表示type、第二个表示ID<br><br>服务接口其实就是通信双方之间的交互机制<br><br>event notifier单向传输：只能由server端发起，发送给client<br></p>
-<h3 id="3-关于汽车软件通信"><a href="#3-关于汽车软件通信" class="headerlink" title="3.关于汽车软件通信"></a>3.关于汽车软件通信</h3><p>传统的车载软件通信采用的是经典的总线协议（比如CAN、LIN、FlexRay），这些总线采用的是面向信号的数据传输(Signal-based)，基于信号在双绞线中的传输来通信，但是这些协议的传输带宽和传输速率有限，且不容易实现基于无线网更新车载软件(OTA)的需求。因此，新一代的车载软件通信更多采用了SOA架构下的SOME&#x2F;IP协议，该协议采用的是面向服务的数据传输(Service-Oriented)，基于ECU的服务在车载以太网中被请求或订阅来通信。<br><br>有用链接：<br><br><a href="https://www.51fusa.com/client/information/informationdetail/id/1788.html">https://www.51fusa.com/client/information/informationdetail/id/1788.html</a><br><br><a href="https://blog.csdn.net/qq_42981705/article/details/130735667">https://blog.csdn.net/qq_42981705/article/details/130735667</a><br><br><a href="https://mp.weixin.qq.com/s/rCRuCbHb_SUyysA7lWUPGA">https://mp.weixin.qq.com/s/rCRuCbHb_SUyysA7lWUPGA</a><br></p>
-]]></content>
-      <categories>
-        <category>通信协议</category>
-      </categories>
-      <tags>
-        <tag>SOME/IP</tag>
       </tags>
   </entry>
 </search>
