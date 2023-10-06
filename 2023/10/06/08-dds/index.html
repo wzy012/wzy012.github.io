@@ -4,9 +4,11 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="红黑树, spring">
-    <meta name="description" content="线性序列：查找：线性搜索（Liner search），时间复杂度为O(N)；     【有序序列】二分查找（Binary search）: 时间复杂度为O(log2^N);插入和删除操作：时间复杂度为O(N);
-二叉树（Binary sea">
+    <meta name="keywords" content="DDS协议, spring">
+    <meta name="description" content="背景及概述分布式系统通信模型
+
+Client-Server:服务器把算法和数据封装成标准接口，客户端通过请求-响应机制来调用接口（RPC）；适用于数据集中且数据流向明确的系统，比如文件服务系统、邮件系统等；
+Publish-Subscrib">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -18,7 +20,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>红黑树 | spring</title>
+    <title>DDS协议 | spring</title>
     <link rel="icon" type="image/png" href="/favicon.png">
     
 
@@ -249,12 +251,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/2.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/10.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">红黑树</h1>
+                    <h1 class="description center-align post-title">DDS协议</h1>
                 </div>
             </div>
         </div>
@@ -278,8 +280,8 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/%E4%BA%8C%E5%8F%89%E6%A0%91/">
-                                <span class="chip bg-color">二叉树</span>
+                            <a href="/tags/DDS%E5%8D%8F%E8%AE%AE/">
+                                <span class="chip bg-color">DDS协议</span>
                             </a>
                         
                     </div>
@@ -290,8 +292,8 @@
                     <div class="post-cate">
                         <i class="fas fa-bookmark fa-fw icon-category"></i>
                         
-                            <a href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/" class="post-category">
-                                数据结构与算法
+                            <a href="/categories/%E9%80%9A%E4%BF%A1%E5%8D%8F%E8%AE%AE/" class="post-category">
+                                通信协议
                             </a>
                         
                     </div>
@@ -303,7 +305,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2023-09-27
+                    2023-10-06
                 </div>
                 
 
@@ -324,20 +326,37 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <p><strong>线性序列</strong>：<br>查找：线性搜索（Liner search），时间复杂度为O(N)；<br><br>     【有序序列】二分查找（Binary search）: 时间复杂度为O(log2^N);<br><br>插入和删除操作：时间复杂度为O(N);<br></p>
-<p><strong>二叉树（Binary search tree， BST）</strong>:<br>对于每一个节点，满足左子树的值小于该节点的值，右子树的值大于该节点的值。<br></p>
+                <p><strong>背景及概述</strong><br><br><em><strong>分布式系统通信模型</strong></em><br><br><img src="https://cdn.jsdelivr.net/gh/wzy012/myblogPicBed@master/image/20231006105333.png" alt="20231006105333"><br></p>
 <ul>
-<li>查找：从根节点走到叶子节点，时间复杂度ｏ(h);<br>如果构造为一个平衡的二叉树，高度为h，每层的节点个数为1, 2, 2^2, …, 2^(h-1),总节点数为2^h-1，则h&#x3D;log2^n+1，因此遍历的时间复杂度为<code>n = log2^h + 1</code>;<br></li>
-<li>插入&#x2F;删除：</li>
+<li>Client-Server:<br><br>服务器把算法和数据封装成标准接口，客户端通过请求-响应机制来调用接口（RPC）；<br><br>适用于数据集中且数据流向明确的系统，比如文件服务系统、邮件系统等；<br></li>
+<li>Publish-Subscribe:<br><br>节点订阅感兴趣的数据，发布生产的数据；<br><br>需支持动态发现机制；<br><br>适用于大量的实时数据分发；<br></li>
 </ul>
-<p><strong>平衡二叉树</strong>：<br>满足二叉树的特性，同时对于任何一个节点：平衡因子为<code>|Height(RightTree) - Height(LeftTree)| &lt;= 1</code>或<code>|Height(LeftTree) - Height(RightTree) &lt;= 1</code>;<br><br>因此平衡二叉树的高度为：<code>h = log2^n + 1</code>; <br><br>查找的时间复杂度为：<code>O(log2^n)</code>;<br><br>插入：<br><br>插入有时会失去平衡：线型、∟型等<br><br><code>Four Cases:LL, RR, LR, RL</code><br></p>
+<p>一、DDS概念：<br><br>DDS是OMG在2004年发布的中间件协议和应用程序接口标准，定义了一个<strong>基于发布-订阅模型的以数据为中心的互联框架</strong>，它为分布式系统提供了低延迟、高可靠性及可扩展的通信架构标准。<br><br><img src="https://cdn.jsdelivr.net/gh/wzy012/myblogPicBed@master/image/20231006110514.png" alt="20231006110514"><br></p>
+<ol>
+<li><p>核心标准：<br><br>(1) DDS Specification:<br><br>API标准：保证不同DDS实现的应用程序的可移植性；<br><br>(2) DDSI-RTPS Specification:<br><br>协议标准：保证不同DDS实现的互操作性。<br></p>
+</li>
+<li><p>Global Data Space（GDS）：<br><br>由GDS动态发现系统中的Publisher、Subscriber、数据及类型；<br><br><img src="https://cdn.jsdelivr.net/gh/wzy012/myblogPicBed@master/image/20231006113352.png" alt="20231006113352"></p>
+</li>
+<li><p>Domain &amp; Domain Participant:<br><br>(1) 在DDS应用程序中，GDS成为Domain；<br><br>(2) Domain是对一组DDS应用程序的逻辑分组，不同Domain中的实体互相独立，不能互相访问；<br><br>(3) 通过Domain ID来识别唯一的Domain;<br><br>(4) 应用程序通过指定Domain ID创建Domain Participant（DP）来获取相应的Domain的访问权限；<br><br><img src="https://cdn.jsdelivr.net/gh/wzy012/myblogPicBed@master/image/20231006114905.png" alt="20231006114905"><br><br><img src="https://cdn.jsdelivr.net/gh/wzy012/myblogPicBed@master/image/20231006114929.png" alt="20231006114929"><br></p>
+</li>
+<li><p>Topic:<br><br>(1) DDS的数据发布的最小单元为Topic；<br><br>(2) Topic三要素：<br></p>
 <ul>
-<li>LL:左节点的左子树：可右旋<br><br><img src="https://cdn.jsdelivr.net/gh/wzy012/myblogPicBed@master/image/20231001210901.png" alt="20231001210901"><br></li>
-<li>RR：右节点的右子树：可左旋<br><br><img src="https://cdn.jsdelivr.net/gh/wzy012/myblogPicBed@master/image/20231001211036.png" alt="20231001211036"><br></li>
-<li>LR：左节点的右子树：先左旋再右旋<br><br><img src="https://cdn.jsdelivr.net/gh/wzy012/myblogPicBed@master/image/20231001212345.png" alt="20231001212345"><br><br><img src="https://cdn.jsdelivr.net/gh/wzy012/myblogPicBed@master/image/20231001212604.png" alt="20231001212604"><br><br></li>
-<li>RL：右节点的左子树：先右旋再左旋<br><img src="https://cdn.jsdelivr.net/gh/wzy012/myblogPicBed@master/image/20231001212953.png" alt="20231001212953"><br><br><img src="https://cdn.jsdelivr.net/gh/wzy012/myblogPicBed@master/image/20231001213142.png" alt="20231001213142"><br></li>
+<li><p>数据类型：<br></p>
+<ul>
+<li>仅支持OMG Interface Definition Language（IDL）定义的数据类型；</li>
+<li>支持基本数据类型（如short、long、float、string）以及array、sequence、union、enumeration，支持结构体嵌套；</li>
+<li>与定义C结构体的语法基本相同；<br></li>
 </ul>
-<p>插入删除需要不断调整结构，效率低；<br><br>**红黑树(Red-Black Tree)**：<br>红黑树是一个自平衡(self-balanced)的二叉搜索树;<br><br>如果搜索频繁插入删除不多可用平衡二叉树，插入删除多用红黑树；<br><br><img src="https://cdn.jsdelivr.net/gh/wzy012/myblogPicBed@master/image/20231001214149.png" alt="20231001214149"><br><br><strong>特点</strong>：<br>（1）[root property]根节点是黑色的;<br><br>（2）[red property]红节点的子节点是黑色的；<br><br>（3）[black property]对于任何一个节点，从该节点到叶子节点包含的黑节点的个数相同；<br><br>（4）红黑树的高度最多为<code>2*log2^(n+1)</code><br><br><img src="https://cdn.jsdelivr.net/gh/wzy012/myblogPicBed@master/image/20231001215037.png" alt="20231001215037"><br><br>Black Height(bh(x)):从任何一个节点x到叶子节点经过的黑色节点的数量;<br><br><img src="https://cdn.jsdelivr.net/gh/wzy012/myblogPicBed@master/image/20231001215501.png" alt="20231001215501"><br><br>命题：<br><br>(1)任何一个节点x的子树至少有2^bh(x)-1个内部节点（internal node）<br><br>(2)任何一个节点的高度h(x)满足 bh(x)&gt;&#x3D;h(x)&#x2F;2;<br><br>对于一个根节点有：<br><br><code>n &gt;= 2^bh(root) - 1</code>;<br><br><code>bh(root)&gt;=h/2</code>;<br><br>可得：<code>h &lt;= 2log2^(n+1)</code><br><br>因此，RBT的时间复杂度为:O(h)&#x3D;O(log2^n)。<br><br><img src="https://cdn.jsdelivr.net/gh/wzy012/myblogPicBed@master/image/20231001220041.png" alt="20231001220041"><br><br>RBT的插入:<br><br><img src="https://cdn.jsdelivr.net/gh/wzy012/myblogPicBed@master/image/20231001221246.png" alt="20231001221246"><br><br><img src="https://cdn.jsdelivr.net/gh/wzy012/myblogPicBed@master/image/20231001221512.png" alt="20231001221512"><br><br><img src="https://cdn.jsdelivr.net/gh/wzy012/myblogPicBed@master/image/20231001221845.png" alt="20231001221845"><br><br><strong>总结</strong>：<br><br><img src="https://cdn.jsdelivr.net/gh/wzy012/myblogPicBed@master/image/20231001222017.png" alt="20231001222017"><br><br><img src="https://cdn.jsdelivr.net/gh/wzy012/myblogPicBed@master/image/20231001222046.png" alt="20231001222046"><br></p>
+</li>
+<li><p>Topic名称 <br></p>
+</li>
+<li><p>一组QoS策略<br></p>
+</li>
+</ul>
+<p>(3) 同一个Topic可以存在多个实例，通过key来进行区分；<br></p>
+</li>
+</ol>
+<p>(4) Topic定义完成后，通过预处理器将IDL文件生成类型库，应用程序可以通过DDS API将这些类型实例化；<br><br><img src="https://cdn.jsdelivr.net/gh/wzy012/myblogPicBed@master/image/20231006120346.png" alt="20231006120346"><br><br><img src="https://cdn.jsdelivr.net/gh/wzy012/myblogPicBed@master/image/20231006120322.png" alt="创建话题"><br><br>5. 通信形式-DCPS模型（Data-Centric Publish-Subscribe）<br><br>DDS的数据共享以Topic为单元，应用程序能够通过Topic判断其所包含的数据类型，而不必依赖其他的上下文信息；<br><br>DDS能够按照用户定义的方式自动地进行存储、发布或订阅数据，使应用程序能够像访问本地数据一样地去写入或者读取数据；<br><br><img src="https://cdn.jsdelivr.net/gh/wzy012/myblogPicBed@master/image/20231006131455.png" alt="20231006131455"><br><br><img src="https://cdn.jsdelivr.net/gh/wzy012/myblogPicBed@master/image/20231006132012.png" alt="20231006132012"><br><br><img src="https://cdn.jsdelivr.net/gh/wzy012/myblogPicBed@master/image/20231006132035.png" alt="20231006132035"><br><br><img src="https://cdn.jsdelivr.net/gh/wzy012/myblogPicBed@master/image/20231006131916.png" alt="20231006131916"><br><br><img src="https://cdn.jsdelivr.net/gh/wzy012/myblogPicBed@master/image/20231006132240.png" alt="20231006132240"><br><br><br>定义IDL数据库，通过预处理器将IDL数据库转成类型库；<br>创建应用程序写数据、读数据<br><br>6. 服务质量（QoS）<br><br>用户可以通过设置Qos策略来控制数据在应用程序之间共享的方式，如可靠性、周期性等，以满足不同场景下应用程序对功能和性能需求；<br><br>Qos特性的支持使DDS非常适用于数据类型丰富且功能&amp;性能需求多样性的场景。<br><br><img src="https://cdn.jsdelivr.net/gh/wzy012/myblogPicBed@master/image/20231006134040.png" alt="20231006134040"><br><br><img src="https://cdn.jsdelivr.net/gh/wzy012/myblogPicBed@master/image/20231006134346.png" alt="20231006134346"><br><br><br><img src="https://cdn.jsdelivr.net/gh/wzy012/myblogPicBed@master/image/20231006134649.png" alt="20231006134649"><br><br><br><img src="https://cdn.jsdelivr.net/gh/wzy012/myblogPicBed@master/image/20231006135313.png" alt="20231006135313"><br><br><br><img src="https://cdn.jsdelivr.net/gh/wzy012/myblogPicBed@master/image/20231006135820.png" alt="20231006135820"><br><br><br><img src="https://cdn.jsdelivr.net/gh/wzy012/myblogPicBed@master/image/20231006140143.png" alt="20231006140143"><br><br><br><img src="https://cdn.jsdelivr.net/gh/wzy012/myblogPicBed@master/image/20231006141646.png" alt="20231006141646"><br><br><br><img src="https://cdn.jsdelivr.net/gh/wzy012/myblogPicBed@master/image/20231006141938.png" alt="20231006141938"><br><br><br><img src="https://cdn.jsdelivr.net/gh/wzy012/myblogPicBed@master/image/20231006142413.png" alt="20231006142413"></p>
 
                 
             </div>
@@ -364,7 +383,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="http://example.com/2023/09/27/07-tree/">http://example.com/2023/09/27/07-tree/</a>
+                    <a href="http://example.com/2023/10/06/08-dds/">http://example.com/2023/10/06/08-dds/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -402,8 +421,8 @@
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/%E4%BA%8C%E5%8F%89%E6%A0%91/">
-                                    <span class="chip bg-color">二叉树</span>
+                                <a href="/tags/DDS%E5%8D%8F%E8%AE%AE/">
+                                    <span class="chip bg-color">DDS协议</span>
                                 </a>
                             
                         </div>
@@ -449,9 +468,10 @@
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
             <div class="card">
                 <a href="/2023/10/06/08-dds/">
                     <div class="card-image">
@@ -469,9 +489,9 @@
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2023-10-06
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2023-10-06
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
@@ -484,6 +504,7 @@
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
@@ -502,13 +523,13 @@
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2023/09/21/06-someip/">
+                <a href="/2023/09/27/07-tree/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/5.jpg" class="responsive-img" alt="someip">
+                        <img src="/medias/featureimages/2.jpg" class="responsive-img" alt="红黑树">
                         
-                        <span class="card-title">someip</span>
+                        <span class="card-title">红黑树</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -519,14 +540,14 @@
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2023-09-21
+                                <i class="far fa-clock fa-fw icon-date"></i>2023-09-27
                             </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/%E9%80%9A%E4%BF%A1%E5%8D%8F%E8%AE%AE/" class="post-category">
-                                    通信协议
+                            <a href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/" class="post-category">
+                                    数据结构与算法
                                 </a>
                             
                             
@@ -536,8 +557,8 @@
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/SOME-IP/">
-                        <span class="chip bg-color">SOME/IP</span>
+                    <a href="/tags/%E4%BA%8C%E5%8F%89%E6%A0%91/">
+                        <span class="chip bg-color">二叉树</span>
                     </a>
                     
                 </div>

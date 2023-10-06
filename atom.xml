@@ -6,7 +6,7 @@
   <link href="http://example.com/atom.xml" rel="self"/>
   
   <link href="http://example.com/"/>
-  <updated>2023-10-01T14:23:02.536Z</updated>
+  <updated>2023-10-06T06:34:15.213Z</updated>
   <id>http://example.com/</id>
   
   <author>
@@ -17,11 +17,36 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>DDS协议</title>
+    <link href="http://example.com/2023/10/06/08-dds/"/>
+    <id>http://example.com/2023/10/06/08-dds/</id>
+    <published>2023-10-06T02:46:56.000Z</published>
+    <updated>2023-10-06T06:34:15.213Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;&lt;strong&gt;背景及概述&lt;/strong&gt;&lt;br&gt;&lt;br&gt;&lt;em&gt;&lt;strong&gt;分布式系统通信模型&lt;/strong&gt;&lt;/em&gt;&lt;br&gt;&lt;br&gt;&lt;img</summary>
+        
+      
+    
+    
+    
+    <category term="通信协议" scheme="http://example.com/categories/%E9%80%9A%E4%BF%A1%E5%8D%8F%E8%AE%AE/"/>
+    
+    
+    <category term="DDS协议" scheme="http://example.com/tags/DDS%E5%8D%8F%E8%AE%AE/"/>
+    
+  </entry>
+  
+  <entry>
     <title>红黑树</title>
     <link href="http://example.com/2023/09/27/07-tree/"/>
     <id>http://example.com/2023/09/27/07-tree/</id>
     <published>2023-09-27T13:30:44.000Z</published>
-    <updated>2023-10-01T14:23:02.536Z</updated>
+    <updated>2023-10-06T03:27:08.963Z</updated>
     
     
       
