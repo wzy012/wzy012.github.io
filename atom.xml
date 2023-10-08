@@ -6,7 +6,7 @@
   <link href="http://example.com/atom.xml" rel="self"/>
   
   <link href="http://example.com/"/>
-  <updated>2023-10-06T06:34:15.213Z</updated>
+  <updated>2023-10-08T13:50:24.249Z</updated>
   <id>http://example.com/</id>
   
   <author>
@@ -15,6 +15,31 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>激光雷达</title>
+    <link href="http://example.com/2023/10/08/09-lidar/"/>
+    <id>http://example.com/2023/10/08/09-lidar/</id>
+    <published>2023-10-08T13:06:28.000Z</published>
+    <updated>2023-10-08T13:50:24.249Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;&lt;strong&gt;激光雷达的四要素&lt;/strong&gt;：&lt;br&gt;1.光源&lt;br&gt;&lt;br&gt;激光的全称是受激辐射放大，利用原子中电子的能量跃迁激发出单色平行的激光。&lt;br&gt;&lt;br&gt;不同的波源可以产生不同波段的激光，激光发射器可以分为：固体（光纤激光器）、气体（惰性气体或二氧化碳）、</summary>
+        
+      
+    
+    
+    
+    <category term="感知传感器" scheme="http://example.com/categories/%E6%84%9F%E7%9F%A5%E4%BC%A0%E6%84%9F%E5%99%A8/"/>
+    
+    
+    <category term="雷达" scheme="http://example.com/tags/%E9%9B%B7%E8%BE%BE/"/>
+    
+  </entry>
   
   <entry>
     <title>DDS协议</title>
